@@ -1,0 +1,301 @@
+WEBVTT
+
+00:01.660 --> 00:09.270
+One of the key part of creating awesome resources is returning the correct response status back
+
+00:09.380 --> 00:17.870
+always. In the previous step, we returned a proper response status of created when we created the resource.
+
+00:18.000 --> 00:24.020
+However, we have not really started thinking about what should happen when something goes wrong. When a
+
+00:24.020 --> 00:26.080
+user is not found.
+
+00:26.150 --> 00:29.520
+What should be the response that should be returned back.
+
+00:29.660 --> 00:32.190
+Let's try and execute a simple request.
+
+00:32.180 --> 00:35.210
+I'm creating a URI, localhost 8080 slash user slash
+
+00:35.210 --> 00:38.510
+you can say 500. This is a user which is not there.
+
+00:38.510 --> 00:43.750
+The Id we created users one two three four and probably you would have created a couple of resource at five and six
+
+00:44.270 --> 00:48.040
+users five hundred is a resource which does not exist.
+
+00:48.040 --> 00:52.210
+So when I send it, I'm right now getting a response back of 200.
+
+00:52.250 --> 00:52.850
+OK.
+
+00:52.880 --> 00:54.100
+And the body is empty.
+
+00:54.110 --> 00:55.590
+So the body is empty.
+
+00:55.590 --> 00:57.620
+We're getting a successful response.
+
+00:57.620 --> 01:01.370
+So 200 is always, think about it as if it's a successful status.
+
+01:01.370 --> 01:09.080
+So as you can see in the pop up which comes up, it's standard response for successful HTTP requests. Even
+
+01:09.080 --> 01:11.170
+though the resource does not exist,
+
+01:11.200 --> 01:13.960
+We are sending a successful response back.
+
+01:14.000 --> 01:15.670
+That's not really good isn't it?
+
+01:15.770 --> 01:17.360
+So let's fix that first.
+
+01:17.420 --> 01:25.810
+I'll take the service dot find one to a local variable and I'll call this user.
+
+01:25.810 --> 01:35.360
+So this is a user from the service and if user is NULL, if user is equal to null then what can
+
+01:35.360 --> 01:46.920
+we do? For now, let's just throw a simple exception. So I’ll say throw new user not found exception. I can
+
+01:46.920 --> 01:53.310
+throw you a runtimeexception as well but I would want to be very specific. So I’ll say new user not found
+
+01:53.310 --> 01:54.080
+exception.
+
+01:54.360 --> 02:03.660
+And I would pass in Id as the parameter to that so that we know which user which Id wasn't out.
+
+02:03.660 --> 02:07.660
+Obviously the user not found exception is not present. So I’ll create class
+
+02:07.720 --> 02:11.530
+user not found exception. I’ll create it in the user package itself.
+
+02:11.850 --> 02:14.030
+And let's go ahead. Superclass,
+
+02:14.100 --> 02:20.190
+I don't want exception. I would want to use the runtime exception. Exception is a checked exception.
+
+02:20.250 --> 02:25.050
+I kind of try and avoid checked exceptions. So wherever we can possibly can.
+
+02:25.250 --> 02:27.030
+So we're using a runtime exception.
+
+02:27.120 --> 02:28.500
+And you can click Finish.
+
+02:28.820 --> 02:33.750
+So now a user not found exception is created with runtime exception.
+
+02:33.870 --> 02:40.200
+I’ll also want to override the constructor and provide a message constructor.
+
+02:40.350 --> 02:46.290
+So what I'll do is right click source generate constructor from superclass that’s what we want to do.
+
+02:46.290 --> 02:48.000
+Generate constructor from superclass.
+
+02:48.240 --> 02:49.790
+And I would want to.
+
+02:49.790 --> 02:50.430
+over ride
+
+02:50.460 --> 02:51.740
+the one with string.
+
+02:51.810 --> 02:53.250
+That's the only one which we want to
+
+02:53.670 --> 02:54.350
+over ride.
+
+02:54.800 --> 03:02.820
+So now I have a user not found exception which is being thrown from user resource when there is a error. Let's see what
+
+03:02.820 --> 03:03.440
+would happen now.
+
+03:03.440 --> 03:07.770
+Let’s see how the frameworks react to this. So I am senidng in the same request.
+
+03:07.770 --> 03:16.260
+again. You can see that now the response is status is 500.  It’s saying internal server error. Id is equal to 500.
+
+03:16.380 --> 03:19.060
+And path is user slash 500.
+
+03:19.060 --> 03:22.670
+This is cool because this is giving me a lot more detail than earlier.
+
+03:22.980 --> 03:27.720
+And this is good for the end consumer as well because they know that it's a failure.
+
+03:27.810 --> 03:30.320
+The request did not succeed.
+
+03:30.340 --> 03:33.080
+The request resulted in a 500 Internal
+
+03:33.080 --> 03:39.940
+server error. This is better than returning a status of 200. But is this perfectly all right?
+
+03:39.960 --> 03:44.140
+Not really because this is not really a server error.
+
+03:44.330 --> 03:45.390
+The resource is not found.
+
+03:45.390 --> 03:47.310
+The request is …has a mistake.
+
+03:47.310 --> 03:50.900
+So whatever the resource you are searching for, it's not found.
+
+03:50.910 --> 03:51.770
+That's the problem.
+
+03:51.780 --> 03:57.270
+The problem is not a internal server error. How do we fix that?
+
+03:57.270 --> 04:00.670
+So currently we are getting a status of 500 internal server error.
+
+04:00.860 --> 04:04.860
+Is there a way we can improve this and actually return a not found?
+
+04:04.860 --> 04:08.220
+Actually I'm searching for a resource called 500.  And it's not found.
+
+04:08.220 --> 04:11.090
+So can I return a status of not found?
+
+04:11.310 --> 04:14.330
+That's what we would look at right now. In this exception,
+
+04:14.400 --> 04:18.960
+I would want to return, whenever this exception is happening , when user not found exception happens, it's
+
+04:18.990 --> 04:21.790
+always a response status of not found,
+
+04:21.800 --> 04:22.210
+right?
+
+04:22.320 --> 04:23.350
+How can I add that?
+
+04:23.400 --> 04:24.450
+It's very simple.
+
+04:24.720 --> 04:32.870
+As with anything in spring, simple annotation. So response status, response status and control one
+
+04:32.880 --> 04:40.040
+command one to import it. And what is the response status I would want to use? I would want to use HTTP status dot
+
+04:40.400 --> 04:46.260
+What is the status? Not found.Because the resource is not really found.
+
+04:46.260 --> 04:53.490
+So I'm going to use not found HTTP status called not found. Let’s save it. Let's wait for the server to restart.
+
+04:53.880 --> 04:55.660
+and fire the request again.
+
+04:56.090 --> 04:59.980
+And now you can see the status is 404 not found.
+
+05:00.030 --> 05:05.340
+Now this is a good response back to the consumer because we are saying, “Ok! You’re searching for
+
+05:05.340 --> 05:08.320
+the resource with Id 500. It's not found.
+
+05:08.320 --> 05:13.920
+And if you want more details you can look at the body of the response.” It’s saying not found. Message is
+
+05:13.920 --> 05:17.680
+not.. Id 500, path is users 500.
+
+05:17.690 --> 05:22.830
+We are specifically saying the Id 500 is not really found. Status is 404 and there is a
+
+05:22.830 --> 05:25.410
+time stamp being returned back.
+
+05:25.560 --> 05:31.650
+One of the things that is cool about this structure is this is something which is provided by the default
+
+05:31.680 --> 05:37.950
+error handling that is provided by the combination of spring boot and spring web MVC frameworks. So what 
+
+05:38.120 --> 05:43.490
+Spring Boot does is it auto configured some default exception handling for us.
+
+05:43.620 --> 05:46.060
+And that's why we are getting this return
+
+05:46.170 --> 05:47.780
+status back.
+
+05:47.940 --> 05:54.930
+However, one of the things that you would always need to remember is, it's important to have consistent
+
+05:55.320 --> 06:02.760
+exception message which is returned back for all the services inside your enterprise.
+
+06:02.760 --> 06:09.150
+So if you have a big organization and each of the services returns the exception message in a different
+
+06:09.150 --> 06:11.050
+way that's not really good.
+
+06:11.280 --> 06:17.070
+It would be really good if you can actually define a standard exception structure and that is followed
+
+06:17.070 --> 06:20.430
+across all you were restful services.
+
+06:20.700 --> 06:23.520
+What we’ll look at in the next step is defining
+
+06:23.560 --> 06:29.220
+a simple common structure like this. There will not be any new details that we would add in. But we would add
+
+06:29.220 --> 06:31.300
+in a simple common structure
+
+06:31.440 --> 06:37.330
+and later when we work on validating our requests. Right now we are not really validating our requests.
+
+06:37.670 --> 06:42.000
+If I'm trying to create a user with let's say name as empty.
+
+06:42.020 --> 06:44.020
+I'm not really validating that right now.
+
+06:44.090 --> 06:47.040
+At a later step, we'll look at how to validate that.
+
+06:47.210 --> 06:53.480
+And also we would want to return a consistent validation message there as well. Until the next step, bye-bye.

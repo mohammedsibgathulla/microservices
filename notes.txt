@@ -74,4 +74,7 @@
 - See the project.
 
 16. Enhancing POST Method to return correct HTTP Status Code and Location
-- 
+- See the project.
+
+17. Implementing Exception Handling - 404 Resource Not Found
+- See the project. 
