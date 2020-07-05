@@ -85,3 +85,5 @@
 19. Implementing DELETE Method To Delete a User Resource
 - See the project. 
 
+20. Implementing Validations for RESTful Services
+- 

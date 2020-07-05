@@ -1,0 +1,445 @@
+WEBVTT
+
+00:01.190 --> 00:10.170
+Welcome back! Until now, we looked at a lot of services related to user. To retrieve user, to create a user,
+
+00:10.180 --> 00:11.340
+to delete a user.
+
+00:11.770 --> 00:14.850
+One of the things which we are not doing right now is validation.
+
+00:14.920 --> 00:22.900
+So user has a name. We don't validate anything on the name. User has a birth date. I have validated anything in
+
+00:22.900 --> 00:23.650
+here.
+
+00:23.950 --> 00:28.730
+Validation is quite a common requirement in all the services. In this step,
+
+00:28.780 --> 00:37.810
+we’ll look at using java validation API to add validations on our beans. When we get a request to create a user
+
+00:37.870 --> 00:44.840
+we would want to validate the content and if it’s invalid,  we would want to return a proper response back.
+
+00:44.860 --> 00:46.520
+Let's get started with that.
+
+00:46.600 --> 00:50.330
+I would want to enable validation on this specific user.
+
+00:50.470 --> 00:55.960
+So what I would need to do is add in something called at valid.
+
+00:56.110 --> 01:00.590
+This is an annotation which is present in JavaX validation API.
+
+01:01.030 --> 01:10.090
+This is defined by the Java validation API. We already have the Java validation in API and its default implementation
+
+01:10.420 --> 01:11.370
+in the classpath
+
+01:11.380 --> 01:18.040
+because of something called spring boot starter web. That’s the starter we are making use to develop these REST web services.
+
+01:18.170 --> 01:20.590
+We'll talk about that at the end of this
+
+01:20.590 --> 01:22.250
+video a little more.
+
+01:22.390 --> 01:27.330
+For now let's focus on adding the validation. So at valid and user.
+
+01:27.340 --> 01:31.570
+Now I would want to add a validation on the name. I would want to say at least names should have two
+
+01:31.570 --> 01:33.080
+characters.
+
+01:33.220 --> 01:36.650
+Let’s add that in. So I’ll say at size.
+
+01:36.700 --> 01:38.710
+So I would want to put a restriction on size.
+
+01:38.710 --> 01:42.970
+You can see it's coming from package Javax validation and constraints.
+
+01:43.020 --> 01:49.720
+We are using the Java validation API. So at size and if I look at the attributes which are in there, you
+
+01:49.720 --> 01:51.300
+can see that there's a minimum attribute.
+
+01:51.310 --> 01:54.850
+I am going to say at size minimum is equal to two. The other thing
+
+01:54.850 --> 02:00.970
+I would also want to say is, this should always be in the past. Birth date cannot be in the future.
+
+02:01.060 --> 02:09.090
+So I would say at past and I would import the constraint in. Now, I've added the constraints in. I've added
+
+02:09.310 --> 02:12.160
+at valid annotation of on the request method.
+
+02:12.520 --> 02:17.220
+Let's see what happens when I fire in a request. So I'm saying localhost 8080 users.
+
+02:17.250 --> 02:19.370
+I'm sending a post request body.
+
+02:19.390 --> 02:21.720
+I selected raw and we chose
+
+02:21.730 --> 02:23.160
+JSON application JSON.
+
+02:23.290 --> 02:32.010
+And if I send a proper request, let’s say Ranga and he was born in 2002 zero seven nineteen and send it.
+
+02:32.250 --> 02:34.290
+This gives me a proper response back.
+
+02:34.360 --> 02:40.270
+It says two hundred and one created and the resource is created at users slash four. The location header is also
+
+02:40.270 --> 02:41.110
+coming back.
+
+02:41.300 --> 02:44.780
+Let's say I'm putting just R and sending it.
+
+02:45.070 --> 02:51.400
+Now you see that I'm getting a 400 bad request because we have added in the validation.
+
+02:51.400 --> 02:52.720
+That's pretty cool!
+
+02:52.810 --> 02:55.400
+The fact that we are validating it, it's very good.
+
+02:55.510 --> 03:02.310
+But if I didn't get this response back 400 bad request, if I look at the body there is nothing in here.
+
+03:02.350 --> 03:06.990
+If I look at the headers there's nothing here. All that they get back is 400 bad request.
+
+03:07.000 --> 03:08.050
+So what is bad?
+
+03:08.290 --> 03:09.750
+What is the error that is happening?
+
+03:09.760 --> 03:11.380
+How do they know about it?
+
+03:11.380 --> 03:16.450
+Now we have added in the validations. The validations are working but we need to always when we create
+
+03:16.450 --> 03:20.850
+services, when we create RESTful services, we need to think about the consumer.
+
+03:20.980 --> 03:24.810
+So how does the consumer know about what is wrong.
+
+03:25.120 --> 03:27.970
+So what we’ll do is we’ll add a simple message.
+
+03:27.970 --> 03:29.800
+Think about where we’d add it.
+
+03:29.890 --> 03:32.010
+We already created some exception handling.
+
+03:32.010 --> 03:32.260
+Right?
+
+03:32.260 --> 03:33.460
+Where did we create it?
+
+03:33.460 --> 03:34.350
+That's right!
+
+03:34.360 --> 03:37.560
+It's customized response entity exception handler.
+
+03:37.750 --> 03:39.290
+We are extending response
+
+03:39.280 --> 03:44.800
+entity exception handler in here. One of the methods which is defined in here is something called handle
+
+03:44.890 --> 03:47.180
+method argument not valid.
+
+03:47.200 --> 03:53.790
+So this is the method which is fired when binding to a specific method argument fails.
+
+03:53.920 --> 03:59.650
+So what we are trying to do is binding to a method argument, right? So we are trying to get the request name
+
+03:59.650 --> 04:05.950
+and birth date and we are binding it to the user object. And at that point we have a validation error. This
+
+04:05.950 --> 04:09.520
+is the thing which is triggered when that happens.
+
+04:09.520 --> 04:12.410
+So what we’ll do now is we’ll override this.
+
+04:12.430 --> 04:17.020
+So I'll copy this method into the customized response handler.
+
+04:17.110 --> 04:22.330
+And now I would want to override this. So at override.
+
+04:22.400 --> 04:23.100
+That’s cool.
+
+04:23.150 --> 04:26.510
+So now I would want to override this method. Over here,
+
+04:26.530 --> 04:29.810
+I want to create my own exception definition.
+
+04:29.830 --> 04:32.920
+I copied the default implementation we had from earlier.
+
+04:32.920 --> 04:36.670
+The message is fine. All that I would want to change is,
+
+04:36.790 --> 04:44.630
+give the consumer the details of what has went wrong and that's stored in something called binding result.
+
+04:44.640 --> 04:46.690
+So get binding result. 
+
+04:46.690 --> 04:56.160
+That’s what has the details of what went wrong. So let's put get binding result dot to string in here.
+
+04:56.410 --> 05:02.150
+So we would, we are actually creating a binding result dot toString and we're sending it out. The other
+
+05:02.150 --> 05:04.530
+thing is this is HTTP status.
+
+05:04.580 --> 05:09.270
+It's not not found. It’s bad request.
+
+05:09.690 --> 05:15.310
+So this is a bad request and we are returning the details of the binding back.
+
+05:15.410 --> 05:19.050
+Let's see what happens when I execute the request again. Bad request.
+
+05:19.100 --> 05:20.400
+What does the body contain?
+
+05:20.720 --> 05:22.400
+OK.
+
+05:22.400 --> 05:27.640
+The body contains the message. Validation failed for argument at index 0 in method
+
+05:27.870 --> 05:31.640
+So and so with one error. In the details,
+
+05:31.640 --> 05:34.880
+Also, there are a lot of other details which are being sent back.
+
+05:34.910 --> 05:39.320
+One of the important things is we are sending a lot of information out to the consumer right now.
+
+05:39.320 --> 05:44.210
+So the consumer has a lot of information which is present about the validation error.
+
+05:44.240 --> 05:48.830
+If you look at the response right now it's actually having a lot of duplication in . Message and details have
+
+05:48.830 --> 05:51.050
+almost similar kind of details..
+
+05:51.050 --> 05:54.740
+And I wouldn't want to send so much information out in the message.
+
+05:54.770 --> 06:00.860
+So for this specific scenario what I will do is customize the message. So I'll say exception dot get message
+
+06:00.890 --> 06:04.750
+I’ll say, instead of sending that I’d set validation failed.
+
+06:04.850 --> 06:06.250
+Wait of the server to restart.
+
+06:06.350 --> 06:08.670
+And I'm going to send the request again.
+
+06:08.810 --> 06:09.430
+This is cool.
+
+06:09.440 --> 06:12.100
+So now I have a time stamped message if validation failed.
+
+06:12.320 --> 06:15.440
+The details of the validation failed message are in here.
+
+06:15.440 --> 06:19.330
+So user and name and rejected value is so and so.
+
+06:19.340 --> 06:20.590
+And you have the arguments.
+
+06:20.720 --> 06:24.340
+We have a lot of details passed in and this might be useful for the consumer.
+
+06:24.350 --> 06:26.970
+You can further customize this details as well.
+
+06:26.990 --> 06:33.630
+What I’ll do is I’ll go to the user object and you can add in a customized message. So I can say
+
+06:33.770 --> 06:39.930
+min is equal to two. And you can say message is equal to - name should have.
+
+06:40.160 --> 06:45.080
+I want to add a simple message: name should have at least two characters.
+
+06:45.590 --> 06:50.510
+And I'm saving this. Wait for the server to restart and execute it again.
+
+06:50.510 --> 06:57.220
+Now you can see that the message is coming out. It's saying, name should have at least two characters.
+
+06:57.230 --> 07:03.030
+That's the one which has failed. This exception message is providing a lot of details.
+
+07:03.350 --> 07:09.520
+You might want to still customize it further and play around with the binding result.
+
+07:09.560 --> 07:14.330
+So what you can do is actually go to the binding result. Binding result class and you would see a
+
+07:14.330 --> 07:20.390
+lot of things which are present inside the binding result dot class. I can say something like get binding result
+
+07:20.510 --> 07:21.670
+dot get.
+
+07:21.710 --> 07:26.290
+You can say all errors and loop around all the errors and just print the message as well.
+
+07:26.290 --> 07:30.240
+So there are a wide variety of things that you can do with the valuation messages.
+
+07:30.290 --> 07:33.130
+Right now we are getting… giving a lot of detail to back.
+
+07:33.170 --> 07:38.980
+You can actually customize the whole thing so that you can actually return just the validation error
+
+07:38.990 --> 07:44.340
+messages back. Validations which we have used in this specific step
+
+07:44.370 --> 07:45.830
+are at size. It has an attribute
+
+07:45.840 --> 07:49.170
+min. And we use an attribute called at past as well.
+
+07:49.190 --> 07:55.470
+And a annotation call at past as well. This checks if the birth date is a date in the past. Anything
+
+07:55.470 --> 08:00.310
+greater than today’s date would result in a validation error.
+
+08:00.980 --> 08:06.550
+All these validations are defined in something called validation API dot jar.
+
+08:06.620 --> 08:09.250
+We’re using Java validation API.
+
+08:09.600 --> 08:11.560
+We are using version one point one.
+
+08:11.750 --> 08:17.000
+And what we are looking at right now is what are the different validations which are implemented in
+
+08:17.190 --> 08:21.300
+there. If I look in the constraints package of the jar,
+
+08:21.430 --> 08:26.860
+we would see that there are a lot of other validations which are defined. You have assert false
+
+08:26.960 --> 08:30.280
+assert true. There is a max min for decimals.
+
+08:30.530 --> 08:35.460
+So you can say, the maximum value is ten and minimum value is something. And you have digits, number of digits
+
+08:35.480 --> 08:36.660
+that can be defined.
+
+08:36.800 --> 08:43.580
+You can say that a date be in future and you have not null and null as well. So you can say a specific
+
+08:43.580 --> 08:45.780
+field should always be null or a specific filed
+
+08:46.260 --> 08:52.350
+should always be not null and we already looked at the past. We looked at the size as well.
+
+08:52.400 --> 08:56.590
+And the other one is to enable us to define the regular expression pattern.
+
+08:56.810 --> 08:59.500
+So this string should match this regular expression pattern.
+
+08:59.690 --> 09:03.900
+The Java validation API defines all these validations.
+
+09:04.240 --> 09:10.650
+I mean the most popular implementation of validation API is hibernated validator.
+
+09:10.670 --> 09:14.660
+So hibernate validator implements whatever validations are defined in here.
+
+09:14.670 --> 09:23.220
+We are getting these two jars because they are defined as dependencies in spring boot web starter.
+
+09:23.270 --> 09:28.370
+We are developing a restful web service and we’re using the starter spring boot starter web and that's
+
+09:28.370 --> 09:31.960
+how we get these two jars related to validation.
+
+09:32.000 --> 09:37.430
+You can see that the fun part of working with Spring boot is the fact that we can directly get into
+
+09:37.430 --> 09:38.570
+using the framework.
+
+09:38.570 --> 09:42.260
+We don't really need to worry about configuring it or something like that.
+
+09:42.520 --> 09:49.760
+All that we needed to do was open our user bean, define the validations and then we went to the user resource
+
+09:50.120 --> 09:54.840
+and put in a annotation called at valid on the request body.
+
+09:55.040 --> 10:00.220
+That's all we had to do to get all these validations working. In this video,
+
+10:00.420 --> 10:03.720
+we started with talking about how to add validation about users.
+
+10:03.750 --> 10:09.870
+And at the end we were able to customize the whole thing so that we can give a proper error validation message
+
+10:10.080 --> 10:15.870
+to the user with a status of 400 which is a bad request. Until the next step, bye-bye.
