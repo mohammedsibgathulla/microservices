@@ -1,0 +1,172 @@
+WEBVTT
+
+00:00.860 --> 00:07.150
+The last few videos, we looked at the basics of Web services. We understood the key terminology which
+
+00:07.150 --> 00:14.370
+are associated with web services. In this video, we will take a quick look at the different types of
+
+00:14.420 --> 00:17.620
+web services, kinds of web services, groups of web services.
+
+00:17.630 --> 00:25.900
+However, you'd want to call them. SOAP and REST. One thing to remember is the fact that SOAP and
+
+00:25.900 --> 00:28.820
+REST are not really comparable.
+
+00:28.870 --> 00:32.350
+It's not really an apple to apple comparison.
+
+00:32.380 --> 00:36.710
+REST defines an architectural approach.
+
+00:36.820 --> 00:45.700
+Whereas SOAP poses restrictions on the format of XML which is exchanged between your service provider and
+
+00:45.700 --> 00:47.110
+the service consumer.
+
+00:47.200 --> 00:53.910
+Let's get started with SOAP. SOAP stands for Simple Object Access Protocol.
+
+00:53.980 --> 00:58.370
+Actually it no longer stands for Simple Object Access Protocol.
+
+00:58.390 --> 01:05.310
+It's no longer an abbreviation anymore. SOAP is just like a request response. Any of those terms.
+
+01:05.350 --> 01:13.690
+SOAP is just a term. SOAP defines a specific way of building web services. In SOAP we use XML as 
+
+01:13.690 --> 01:16.510
+the request exchange format.
+
+01:16.570 --> 01:20.890
+So I have a Facebook application which is talking to TODO application.
+
+01:20.890 --> 01:26.860
+Facebook is sending a XML request and TODO application is sending back an XML response.  An example
+
+01:26.860 --> 01:30.550
+of a request is shown below.  Get course details request.
+
+01:30.550 --> 01:32.210
+So this is using again XML.
+
+01:32.390 --> 01:36.790
+Is this SOAP? Are Facebook and TODO applications communicating using SOAP.
+
+01:36.790 --> 01:37.400
+Nope.
+
+01:37.480 --> 01:40.290
+This is not sufficient to be SOAP.
+
+01:40.290 --> 01:47.450
+Important thing is SOAP defines a specific XML request and response structure.
+
+01:47.560 --> 01:54.070
+If you're using SOAP then you have to use this structure. So you have to create a SOAP and envelope which
+
+01:54.070 --> 01:57.920
+contains a SOAP header and a SOAP body.
+
+01:58.150 --> 02:04.240
+The header contains meta information like authentication, authorization, signatures and things like
+
+02:04.240 --> 02:04.790
+that.
+
+02:05.090 --> 02:10.460
+Body is where you really put the real content of your request or your response.
+
+02:10.660 --> 02:17.230
+So if you're actually saying you are creating a SOAP web service then you have to adhere to this request
+
+02:17.350 --> 02:19.650
+and response format.
+
+02:19.840 --> 02:25.050
+You should use a SOAP envelope with a header and a body in the request and the response.
+
+02:25.060 --> 02:30.550
+So if you're using soap web services then Facebook and TODO application have to communicate using a SOAP
+
+02:30.610 --> 02:38.460
+XML requests and a SOAP XML response. And example response is shown in here. So you have a SOAP envelope.
+
+02:38.530 --> 02:40.030
+You have a header.
+
+02:40.030 --> 02:41.850
+Here the header is empty.
+
+02:41.890 --> 02:46.470
+You have a body with the content of the response.
+
+02:46.510 --> 02:55.360
+When we look at the big picture SOAP defines a format for your request and the response. SOAP does not pose
+
+02:55.390 --> 02:58.930
+any restrictions on your transport.
+
+02:59.290 --> 03:08.140
+You can either use HTTP or MQ. So you can communicate over the web, over the Internet or you can use queues
+
+03:08.140 --> 03:10.220
+to communicate as well.
+
+03:10.390 --> 03:18.000
+And in SOAP, the service definition is typically done using something called web service definition.
+
+03:18.000 --> 03:23.480
+Language. WSDL. Web service definition language.
+
+03:23.480 --> 03:32.800
+A WSDL defines the end point. Basically where your service is exposed at. It defines all the operations that
+
+03:32.800 --> 03:34.540
+are exposed.
+
+03:34.720 --> 03:39.150
+Get all codes details, add a new course, delete course.
+
+03:39.360 --> 03:43.320
+So what are all the operations that are allowed.
+
+03:43.700 --> 03:48.420
+And also it specifies the request and response structure.
+
+03:48.610 --> 03:54.380
+If I want to get all the details of a course, how do I send the request. If I want to delete a course,
+
+03:54.430 --> 03:56.130
+How do I send a request?
+
+03:56.410 --> 03:59.140
+And what kind of response can I expect?
+
+03:59.160 --> 04:03.080
+WSDL is the service definition for your SOAP
+
+04:03.110 --> 04:11.800
+Services. We will talk about all the details of a WSDL later in the course when we talk about SOAP
+
+04:11.890 --> 04:13.160
+services in detail.
+
+04:13.210 --> 04:22.780
+In summary, SOAP is all about adhering to the services XML structure. Adhering to the envelop header and
+
+04:22.780 --> 04:23.530
+the body.
+
+04:23.560 --> 04:28.740
+Once you have your request and response in that structure then you can say you are developing.
+
+04:28.750 --> 04:34.440
+SOAP web services. Now that we talk a lot about the SOAP Web services. In the next video, 
+
+04:34.580 --> 04:38.540
+we would be talking about REST web services. Until then, bye-bye.

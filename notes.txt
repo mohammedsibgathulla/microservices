@@ -28,3 +28,10 @@
  			1. HTTP - over the web.
  			2. MQ	- Communication over a queue.	
 
+4. Web Service Groups
+- SOAP - based :
+- REST - styled :  	
+- SOAP & REST are not really comparable. 
+- REST defines ann architectural approach. Whereas SOAP poses restrictions on the format of XML which is exchanged between your service provider and the service consumer.
+- SOAP stands for Simple Object Access Protocol. Actually it no longer stands for Simple Object Access Protocol. It's no longer an abbreviation anymore. SOAP is just like a request response. Any of those terms. SOAP is just a term. SOAP defines a specific way of building web services. In SOAP we use XML as the request exchange format.		
+
