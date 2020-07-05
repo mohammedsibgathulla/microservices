@@ -1,0 +1,439 @@
+WEBVTT
+
+00:01.800 --> 00:04.150
+Welcome back! In the previous few steps,
+
+00:04.240 --> 00:11.830
+we created a few simple RESTful services. We were returning a few resources back.
+
+00:11.830 --> 00:19.290
+So we were creating simple retrieve services. So all that we were doing was using the GetMapping.
+
+00:19.360 --> 00:23.710
+This is the first step we would go into something called Post.
+
+00:23.860 --> 00:30.400
+What we would use post for? We would use post typically to create something. In this step, we are going
+
+00:30.400 --> 00:32.130
+to create a new user.
+
+00:32.230 --> 00:34.210
+So we would want to create a new user.
+
+00:34.480 --> 00:40.090
+We would want to create a POST request to this specific URI. Before getting there,
+
+00:40.180 --> 00:43.210
+let's take a quick look at what we had already done
+
+00:43.210 --> 00:49.540
+with the Get request. So let's fire in a request to slash uses. I’m in Chrome right now.
+
+00:49.690 --> 00:57.010
+And if you do a right click and say inspect, a small window would open at the bottom of the screen where you can
+
+00:57.010 --> 00:59.740
+see a few more things about what is happening.
+
+01:00.130 --> 01:07.820
+Now. I would say refresh. You can see that there is a users request which is being sent out.
+
+01:07.830 --> 01:14.910
+You can see what is the request header and also what you can see is the response headers as well.
+
+01:14.940 --> 01:18.360
+And you can see what is the response coming back. As expected,
+
+01:18.360 --> 01:20.580
+the response is exactly what we expect, right?
+
+01:20.610 --> 01:24.430
+This is the details of all the users.
+
+01:24.630 --> 01:30.940
+One of the things you’d already see in general is the status code of 200.
+
+01:31.020 --> 01:38.130
+So, when we retrieve, when we return anything back from retrieve methods, what we're doing is we are
+
+01:38.130 --> 01:42.310
+sending a response with the status of 200.
+
+01:42.360 --> 01:49.410
+That's what Spring MVC framework does by default. So as soon as we return a proper response back, it thinks
+
+01:49.480 --> 01:54.000
+it's of a status 200. Status 200 as you can see with the green thing,
+
+01:54.060 --> 01:55.470
+that is right beside there.
+
+01:55.470 --> 01:56.110
+It means
+
+01:56.160 --> 01:59.110
+this is a successful request.
+
+01:59.130 --> 02:04.650
+However, when we talk about Post services, we would want to be more specific. We would want to return
+
+02:04.710 --> 02:07.260
+a status code called created.
+
+02:07.260 --> 02:08.550
+Let's take a quick over view.
+
+02:08.610 --> 02:12.770
+We want to get inputs of the details of the user. So the input of
+
+02:12.780 --> 02:15.080
+this will be the details of the user.
+
+02:15.090 --> 02:15.460
+Right?
+
+02:15.480 --> 02:22.830
+I would want to get all details of a user. And what is the output? The output I would want to say is the
+
+02:22.830 --> 02:24.230
+status is created.
+
+02:24.420 --> 02:28.190
+And also I would want to return the created.
+
+02:28.210 --> 02:29.460
+URI.
+
+02:29.520 --> 02:35.490
+So if I'm creating a new user, I would want to return the URI of the created user.
+
+02:35.610 --> 02:39.630
+Let's not worry about the output right now. Ler’s focus on the inputs.
+
+02:39.690 --> 02:41.490
+I'll just call this public void.
+
+02:41.490 --> 02:43.800
+for now. We will change the output a little later.
+
+02:43.830 --> 02:45.570
+I'll call this create user.
+
+02:45.660 --> 02:52.440
+And the thing is, this should use a post mapping, right? So I would need to do a Post mapping not a Get
+
+02:52.440 --> 02:58.140
+mapping because this is going to be accepting a post request. Post mapping
+
+02:58.370 --> 03:01.080
+let's import it in. Import post mapping.
+
+03:01.410 --> 03:06.200
+So the slash users is now mapped to this specific thing.
+
+03:06.360 --> 03:10.370
+When I do the request to a specific user, this is how the response comes in.
+
+03:10.390 --> 03:10.870
+Right?
+
+03:11.040 --> 03:17.330
+So, I want to use the exact request to be creating a user as well.
+
+03:17.490 --> 03:22.440
+I don't want to pass in the Id because Id is something which should be assigned on the backend. So I’ll
+
+03:22.560 --> 03:24.690
+let the Id to be assigned from the back end.
+
+03:24.840 --> 03:31.470
+What I would send is the name and the birth date. So this is the kind of request that we would want to send
+
+03:31.470 --> 03:40.620
+in to create a user. We can send this as part of our body of the Post request. What we want to do so is once
+
+03:40.620 --> 03:46.010
+we get a request with the body as this, we would need to map it to a user.
+
+03:46.020 --> 03:53.300
+So the input for this is a user object. So user user. I want to map this to a user.
+
+03:53.680 --> 03:57.510
+And now I would also need to say, do the mapping.
+
+03:57.540 --> 03:58.490
+How do I do that?
+
+03:58.510 --> 04:04.060
+I’ll say this is the body of a request. How do I say that? Its at request body.
+
+04:04.200 --> 04:11.160
+So when I type…when I put at request body on a parameter, what would happen is whatever I would
+
+04:11.160 --> 04:17.210
+pass in the body of the request would be mapped to this parameter. I’m passing in the name, Adam.
+
+04:17.220 --> 04:23.420
+So that gets mapped to name here. I am passing in a birthdate, that gets mapped to the birth date in here.
+
+04:23.700 --> 04:30.900
+That would be because of the at request body annotation that we have added in. Now, the service has a simple
+
+04:30.980 --> 04:33.910
+method, right? Service dot save user.
+
+04:34.080 --> 04:38.100
+So we will use the same method save for a new user and existing user as well.
+
+04:38.100 --> 04:45.940
+So for, now let's just call it service dot save user and let’s assign it to a new one. I’ll call this saved user.
+
+04:46.500 --> 04:53.610
+I'm calling the save user service. And right now I’m returning a void back. We'll fix that a little later.
+
+04:53.760 --> 04:59.860
+For now, what we have created is a simple method which is mapped to a post request to slash users. I’ll
+
+05:00.240 --> 05:04.220
+get the request details into the requests body user.
+
+05:04.410 --> 05:06.470
+And then I'm saving it in.
+
+05:06.540 --> 05:09.440
+I'll just go into the Save method.
+
+05:09.630 --> 05:11.970
+We can see that we are assigning a user Id.
+
+05:11.970 --> 05:12.690
+If it's null.
+
+05:12.740 --> 05:16.450
+So if the Id is null then we are saying it's Ids,
+
+05:16.590 --> 05:19.840
+We calculate the Id and then we add it to the list.
+
+05:19.860 --> 05:20.720
+So that's cool.
+
+05:20.730 --> 05:22.850
+Now let's go ahead and execute this.
+
+05:22.890 --> 05:24.240
+How did we execute that?
+
+05:24.240 --> 05:28.420
+Think about it. How do we execute a Post mapping?
+
+05:28.830 --> 05:33.310
+If I type in.. if I do a refresh here, what is being sent is a get request.
+
+05:33.420 --> 05:39.630
+How do I send a post request? To be able to send a post request, what we would need to have is a simple
+
+05:39.790 --> 05:44.390
+REST flag.  We can actually do this from the command line as well.
+
+05:44.520 --> 05:52.030
+But let's use a REST client. The REST client which we’ll use is get postman. The one which we use is postman.
+
+05:52.170 --> 05:58.980
+If you go to get postman dot com, you should be able to download the postman app. The other way
+
+05:58.990 --> 06:00.250
+you can install postman
+
+06:00.240 --> 06:03.820
+is also search for postman chrome plug in.
+
+06:03.870 --> 06:09.760
+So if you search for postman chrome plugin you can actually go to this page and you'd be able to install
+
+06:10.060 --> 06:14.190
+the postman plug. Postman is a wonderful rest client.
+
+06:14.440 --> 06:18.480
+It has all the features that you would need when you're developing a restful services.
+
+06:18.520 --> 06:22.420
+When you launch a postman, this is what you would see.
+
+06:22.450 --> 06:27.830
+So, I can fire a get request also from Postman. Until now we have been fighting get requests from the browser.
+
+06:28.000 --> 06:37.630
+I can say HTTP localhost colon 8080 slash users slash one …Oops! Get the details of this first user.
+
+06:37.680 --> 06:43.910
+You can see that I'm getting the details back. So you can send get requests as well as you send a
+
+06:43.960 --> 06:50.620
+a post request as well. The way would send a post request is change the request method. So instead of get we would want
+
+06:50.620 --> 06:51.810
+to send a post.
+
+06:52.150 --> 06:57.610
+What I've done is I’ve copied body of the response. So I copied the body of the response which was coming
+
+06:57.610 --> 07:06.140
+for user slash one. And now I would want to make it the body for the post request. In the post request body,
+
+07:06.140 --> 07:13.140
+I would need to send this thing in. And what we would want to do is we would want to send a raw request.
+
+07:13.210 --> 07:15.470
+So in the body, you’d need to choose raw
+
+07:15.800 --> 07:19.080
+and put in this text in there.
+
+07:19.330 --> 07:26.700
+And I would actually remove the Id because we dont want to assign the Id. Name is Adam and birthdate..I’ll…name
+
+07:26.720 --> 07:28.350
+is Ranga and Ranga’s birthdate,
+
+07:28.480 --> 07:33.120
+Let’s make it two thousand. I am very young guy.
+
+07:33.490 --> 07:33.920
+OK!
+
+07:34.040 --> 07:41.050
+Now, instead of text the thing which you need to send, what we are saying in here is JSON application
+
+07:41.050 --> 07:42.930
+JSON. That’s what we’d need to choose.
+
+07:43.210 --> 07:48.050
+So the body contains application JSON. Whatever we send in the body,
+
+07:48.220 --> 07:53.560
+what would happen? It would be mapped to this request body in here.
+
+07:53.760 --> 07:57.200
+We are sending a post request to slash user slash one. No!
+
+07:57.210 --> 08:02.950
+We should send it to slash users because that’s what we wouldnt map it. As we discussed earlier, when
+
+08:03.040 --> 08:10.350
+we want to create a user what we do is we will do a post to slash users. We are sending a post request
+
+08:10.350 --> 08:15.880
+to slash users so thats what we have put in here. Local host 8080 slash users. I would want to send
+
+08:15.880 --> 08:20.370
+the body, application JSON, name is Ranga and the specific details.
+
+08:20.380 --> 08:30.060
+And now I am sending it. When I send the request, you’d see there is an error which is happening.
+
+08:30.080 --> 08:33.470
+It’s saying internal server error. Type definition error.
+
+08:33.650 --> 08:37.400
+I cannot create an instance of com in28minutes user.
+
+08:37.530 --> 08:42.470
+It says, no creators default constructor exist.
+
+08:42.470 --> 08:49.220
+Earlier we learned that for all the elements that are part of this bean, we need to have getters and
+
+08:49.430 --> 08:55.820
+setters. The other thing which we would also need is a default constructor.
+
+08:55.820 --> 09:02.850
+It doesn’t need to be a public constructor but there should definitely be a default no argument constructor.
+
+09:02.900 --> 09:10.970
+When we created this constructor we over rided the default no argument constructor which is generally
+
+09:10.970 --> 09:12.280
+provided by Java.
+
+09:12.490 --> 09:20.330
+So now I would actually create it back. So I’ll say protected and I’ll say user
+
+09:20.690 --> 09:26.100
+and create it in. So, it’s very simple, right? So, all that we are doing is adding a default no argument constructor.
+
+09:26.230 --> 09:31.240
+There is no longer a default no argument constructor because we are providing the implementation for it.
+
+09:31.250 --> 09:38.360
+Ideally if this was not there then Java would provide a default constructor for us. Since we added this
+
+09:38.450 --> 09:43.190
+in, I have to now add in a no argument constructor. So let's do that.
+
+09:43.190 --> 09:51.650
+The application has restarted and it’s fired the request again. Cool! Now, you see that status is 200-OK
+
+09:51.710 --> 09:54.370
+That's pretty good, right?
+
+09:54.630 --> 09:56.380
+So, now it says the status is fine.
+
+09:56.730 --> 09:59.660
+We are able to execute a request very well.
+
+09:59.910 --> 10:02.390
+So the request went successfully.
+
+10:02.390 --> 10:06.030
+Now what I'll do is I'll send another get request.
+
+10:06.170 --> 10:08.720
+I’d want to send get request to users.
+
+10:09.030 --> 10:12.060
+You can see that there's a new user at the bottom.
+
+10:12.150 --> 10:14.710
+There's a new user with Id four, name Ranga.
+
+10:15.090 --> 10:20.880
+And the birth date which I have assigned to that. And the date is getting saved properly as well.
+
+10:21.120 --> 10:22.180
+So that's cool.
+
+10:22.250 --> 10:28.380
+In this step, what we have done is we created a simple resource to accept a Post. To execute a POST request
+
+10:28.380 --> 10:34.620
+with Postman,  all that we had to do was go to the post. Set the url to slash users and in the body of the
+
+10:34.620 --> 10:42.750
+request, we typed in the content we would want to use and we made the type as application JSON and
+
+10:42.750 --> 10:49.790
+then we created send.  And we saw that status which was coming back was success. If we want to adhere
+
+10:49.820 --> 10:57.790
+to the HTTP standards, you need to actually respond back with the status of created. User is created. So a service
+
+10:57.930 --> 11:01.200
+let’s say a consumer is calling this post request.
+
+11:01.320 --> 11:05.490
+he created a user and now he wants to get the details of the newly created user.
+
+11:05.580 --> 11:11.580
+So he does not know how to do that because he does not have any information about what is the Id of
+
+11:11.580 --> 11:17.600
+the user that is created. Whether the Id of the user is ten, is it twenty five, is it four?
+
+11:17.670 --> 11:22.380
+They don't know it because we have not given the Id of the newly created user back.
+
+11:22.380 --> 11:24.960
+Those are the two things we’ll fix in the next step.

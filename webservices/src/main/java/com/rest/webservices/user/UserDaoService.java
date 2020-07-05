@@ -1,6 +1,8 @@
 package com.rest.webservices.user;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -33,4 +35,5 @@ public class UserDaoService {
         }
         return  null;
     }
+
 }
