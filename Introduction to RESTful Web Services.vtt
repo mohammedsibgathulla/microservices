@@ -1,0 +1,265 @@
+WEBVTT
+
+00:00.940 --> 00:02.890
+In the last video, we talked about
+
+00:02.900 --> 00:04.030
+SOAP web services.
+
+00:04.070 --> 00:09.020
+And in this video, we'd start with an important concept called REST.
+
+00:09.040 --> 00:10.260
+What is the REST?
+
+00:10.270 --> 00:11.530
+What is REST all about?
+
+00:11.590 --> 00:17.150
+REST stands for representational state transfer. It’s a term which is
+
+00:17.380 --> 00:20.140
+Coined by Roy Fielding.
+
+00:20.200 --> 00:25.520
+If you remember, Roy Fielding is the guy who also developed HTTP protocol.
+
+00:25.610 --> 00:34.090
+The key thing about REST services is the fact that they would want to make best use of his HTTP.
+
+00:34.330 --> 00:35.390
+Ok! What is HTTP?
+
+00:35.410 --> 00:36.920
+Let's take a quick overview.
+
+00:37.060 --> 00:40.640
+Let's go to Google. I’ll type in www dot Google dot in.
+
+00:40.730 --> 00:43.620
+And I would want to search for what is a web service.
+
+00:43.630 --> 00:52.120
+The browser comes back with a response and I can choose one of these links and click it and then I can
+
+00:52.120 --> 00:56.020
+choose any of the links which are present in here as well.
+
+00:56.020 --> 00:58.570
+So this is how we typically browse the web.
+
+00:58.600 --> 00:59.250
+Right?
+
+00:59.320 --> 01:02.910
+This is how we browse the internet. While we were browsing
+
+01:02.940 --> 01:05.920
+There was a lot of things which were happening in the background.
+
+01:05.930 --> 01:13.020
+This is how a simple interaction happens between the browser and any of the servers of the websites you're
+
+01:13.060 --> 01:13.920
+visiting.
+
+01:13.930 --> 01:21.940
+For example, Google. What happens is when I enter a URL in the browser, a request is being sent
+
+01:22.330 --> 01:24.370
+to the website server.
+
+01:24.980 --> 01:29.200
+And the website server responds back with a response.
+
+01:29.200 --> 01:37.510
+The important thing that we would need to talk about is what is the format of this request and response.
+
+01:37.600 --> 01:47.080
+These requests and response are in a format which is defined by HTTP. Hypertext Transfer
+
+01:47.080 --> 01:52.710
+Protocol. When I type in a URL in the browser.
+
+01:52.900 --> 01:56.060
+It sends a GET request to that
+
+01:56.080 --> 02:04.580
+server. Server responds back with a HTTP response containing the HTML.
+
+02:04.810 --> 02:14.200
+So I'm sending a GET request and the server is sending back a response. A HTTP response containing
+
+02:14.200 --> 02:15.700
+the HTML.
+
+02:16.060 --> 02:22.690
+The browser looks at that response, takes the HTML and displays it on the screen.
+
+02:22.780 --> 02:28.690
+Let's say there's a form I'm filling up with a list of details and I click the submit button. In those
+
+02:28.690 --> 02:37.060
+kind of scenarios, typically, we are creating a post request. HTTP defines the headers which are present
+
+02:37.060 --> 02:41.630
+in the request and the body of the request. Also, along with the response
+
+02:41.710 --> 02:45.140
+there are headers and also the body.
+
+02:45.430 --> 02:54.580
+In addition to the request header and the request body HTTP also defines something called request
+
+02:54.890 --> 03:03.700
+methods. You can indicate what action you are doing by using the HTTP request methods. Get.
+
+03:03.700 --> 03:07.310
+I'm trying to get the details of something. Post.
+
+03:07.420 --> 03:14.230
+I'm trying to create something. Put. I am trying to update something. A HTTP response,
+
+03:14.230 --> 03:23.140
+on the other hand, will also include a HTTP response status code. Was it successful?
+
+03:23.140 --> 03:26.930
+Page not found? 404 and things like that.
+
+03:26.950 --> 03:30.720
+Roy Fielding said, “Why do we need to reinvent the wheel?”
+
+03:30.880 --> 03:37.110
+Why don't we make use of HTTP to develop our web services as well.
+
+03:37.420 --> 03:44.170
+And that's where the concept of RESTful web services comes in.
+
+03:44.190 --> 03:52.450
+RESTful web services try to define services using the different concepts that are already present
+
+03:52.870 --> 04:02.800
+in HTTP. The most important abstraction in the REST is something called a resource. A resource is anything
+
+04:02.980 --> 04:08.830
+that you'd want to expose to the outside world through your application.
+
+04:08.860 --> 04:15.790
+For example, when I talk about the TODO management application the users are a resource who is using
+
+04:15.790 --> 04:16.350
+it.
+
+04:16.350 --> 04:19.600
+Ranga is a resource. What are the TODOs
+
+04:19.630 --> 04:26.860
+also can be a resource. A specific TODO is a resource. A list of TODOs is also a resource. When we are
+
+04:26.860 --> 04:29.720
+talking about talking about RESTful services,
+
+04:29.770 --> 04:33.700
+we are always thinking about resources.
+
+04:33.910 --> 04:35.550
+What are the resources
+
+04:35.560 --> 04:44.740
+in my application. A TODO or user.  A list of TODOs? What we do is we would assign a URI to the
+
+04:44.830 --> 04:46.000
+resource.
+
+04:46.000 --> 04:52.080
+For example, the URI, the resource Ranga is slash user slash Ranga.
+
+04:52.120 --> 05:00.920
+URL to all the TODOs that Ranga has, slash user Ranga todos. The URI to first
+
+05:00.920 --> 05:07.640
+Resource that Ranga has is user Ranga todos slash one.
+
+05:07.680 --> 05:13.860
+So what we do is we assign a URI to each resource.
+
+05:14.040 --> 05:19.000
+REST does not worry about how you are representing your resource.
+
+05:19.020 --> 05:20.390
+Is it XML?
+
+05:20.400 --> 05:24.460
+Is it HTML? Is it JSON? That does not really matter.
+
+05:24.480 --> 05:32.460
+The most important thing is the fact that you define your resource and perform the actions on the resource
+
+05:32.880 --> 05:38.760
+using whatever facilities that are provided by HTTP. Just like we discussed earlier, if I wanted to create
+
+05:38.760 --> 05:46.020
+a resource I would do a post to slash users. If I want to delete something, do a delete to slash users
+
+05:46.030 --> 05:50.900
+slash one. get slash users. get slash users slash one.
+
+05:50.910 --> 05:57.940
+The important thing about REST is the fact that you have to think in terms of the resources.
+
+05:58.020 --> 06:02.730
+What are the different resources that are present in your application that you would want to expose
+
+06:02.940 --> 06:05.460
+to other applications.
+
+06:05.520 --> 06:13.020
+And the second thing is make use of the HTTP. If you want to do any operations on the resource you have
+
+06:13.020 --> 06:22.280
+to use the verbs which are already specified by HTTP. Get, Put, POST, FETCH and things like that. In rest,
+
+06:22.290 --> 06:26.300
+we don't really have any restriction on the data exchange format.
+
+06:26.550 --> 06:32.610
+While JSON is very popular, REST does not worry whether you are using JSON,  XML or whatever format
+
+06:32.640 --> 06:33.870
+you would want to use.
+
+06:33.900 --> 06:41.430
+Important thing is transport is always HTTP. REST is completely built on top of HTTP. There is
+
+06:41.430 --> 06:47.580
+no standard service definition which is attached with REST. That can be a drawback in some scenarios
+
+06:47.610 --> 06:53.640
+because when a client wants to consume a service it needs to understand the request format and response
+
+06:53.640 --> 06:54.170
+format too.
+
+06:54.210 --> 07:01.310
+So the service definition will be really useful. WADL.  Its called web application definition language
+
+07:01.360 --> 07:06.050
+WADL is one of the formats in which you can specify your RESTful Web services.
+
+07:06.060 --> 07:08.610
+It has not become very popular.
+
+07:08.610 --> 07:10.420
+Another option is Swagger.
+
+07:10.470 --> 07:16.510
+Swagger is gaining a lot of popularity and we would use swagger in this course for defining our RESTful
+
+07:16.570 --> 07:24.870
+services. REST focuses on your resources and how do you perform actions on them making best use of 
+
+07:24.980 --> 07:26.670
+HTTP. In the next video,
+
+07:26.820 --> 07:31.200
+let's look at the comparison between REST and SOAP. Until then, bye-bye.

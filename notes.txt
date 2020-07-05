@@ -35,3 +35,7 @@
 - REST defines ann architectural approach. Whereas SOAP poses restrictions on the format of XML which is exchanged between your service provider and the service consumer.
 - SOAP stands for Simple Object Access Protocol. Actually it no longer stands for Simple Object Access Protocol. It's no longer an abbreviation anymore. SOAP is just like a request response. Any of those terms. SOAP is just a term. SOAP defines a specific way of building web services. In SOAP we use XML as the request exchange format.		
 
+5. Introductions To RESTFUL Web Services
+- REST stands for representational state transfer. It’s a term which is Coined by Roy Fielding. If you remember, Roy Fielding is the guy who also developed HTTP protocol.
+- RESTful web services try to define services using the different concepts that are already present in HTTP. The most important abstraction in the REST is something called a resource. A resource is anything that you'd want to expose to the outside world through your application.
+
