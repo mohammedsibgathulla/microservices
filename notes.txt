@@ -71,5 +71,7 @@
 - See the project.
 
 15. Implementing POST Method To create User Resource
-- 
+- See the project.
 
+16. Enhancing POST Method to return correct HTTP Status Code and Location
+- 

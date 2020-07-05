@@ -1,0 +1,247 @@
+WEBVTT
+
+00:02.030 --> 00:11.110
+In the previous step we created a simple method to handle the users create request. So we mapped a post url
+
+00:11.110 --> 00:16.710
+to slash users and map the request body using the at reques body annotation.
+
+00:16.810 --> 00:22.930
+And we were able to save the user back. But what we have not done is we have not returned a status of
+
+00:22.960 --> 00:23.650
+created.
+
+00:23.650 --> 00:30.250
+So wheneve we want to return the fact that a resource is created we need to return a status called created.
+
+00:30.320 --> 00:37.450
+That's a best practice. And the other thing is the URI of the resource which we created is slash user slash four.
+
+00:37.450 --> 00:45.370
+But the client does not know about this yet because we have not sent him that detail. In this step,
+
+00:45.580 --> 00:54.330
+we would learn how to create, how to return a status of created back and how to set the URI of the created
+
+00:54.360 --> 00:57.580
+resource into the response.
+
+00:57.820 --> 01:02.410
+Let's get started now. First thing is I would want to set the return status of created.
+
+01:02.410 --> 01:03.190
+How do I do that?
+
+01:03.250 --> 01:13.010
+There is something called response entity. Response entity dot created. That's the one which we can use to return
+
+01:13.090 --> 01:18.270
+a created status. Response entity is something which is already part of the Spring Framework.
+
+01:18.280 --> 01:23.750
+If you look at the response entity, its basically a extension of HTTP entity. However,
+
+01:24.040 --> 01:29.080
+the additional thing is you can actually return a state code back. And thats what we would want to
+
+01:29.080 --> 01:36.330
+return back, right? A status code of created. When I use the created method in response and entity
+
+01:36.800 --> 01:42.850
+I would be able to pass in what was the location of the resource which was created.
+
+01:42.850 --> 01:47.040
+Now how do I create the URI for the location?
+
+01:47.050 --> 01:51.610
+How do I create the URI of the location of the resource that is created?
+
+01:51.900 --> 01:55.670
+There is something called servelt URI components 
+
+01:55.730 --> 01:58.710
+builder. I would import it in.
+
+01:58.780 --> 02:03.130
+Oops! Servlet URI components builder. Lets put that in.
+
+02:03.130 --> 02:06.000
+Now I would actually use this. If you look at the
+
+02:06.000 --> 02:11.440
+servelt URI components builder, there is something called - from current requests. So I can go ahead and say
+
+02:11.470 --> 02:15.220
+from current request. So I would want to…how do I want to map the URI?
+
+02:15.240 --> 02:17.620
+I'd want to take this URI…slash users.
+
+02:17.770 --> 02:21.390
+And I would want to append the Id of the saved user.
+
+02:21.400 --> 02:26.580
+So I have slash user, right? That's the current request URI.
+
+02:26.680 --> 02:32.740
+So I would want to take the current request URI and I would want to append slash four. That's the
+
+02:33.070 --> 02:34.380
+newly created.
+
+02:34.600 --> 02:42.370
+So this one is… I can get this by saying, user dot get Id. So the new saved user..I can ..from it get the getId.
+
+02:42.370 --> 02:45.560
+So I can get this save user dot getId.
+
+02:45.670 --> 02:53.840
+And what I would do is I'd create a simple template. So I'll say Id. So I'd try and replace this Id with saved user
+
+02:53.890 --> 02:57.570
+dot get Id. The way I can get the current request
+
+02:57.580 --> 03:01.500
+URI is by using the servlet URI components builder. 
+
+03:01.570 --> 03:08.270
+I would want to get the current request and I would want to append something to the URI of it and there
+
+03:08.270 --> 03:15.040
+is a method called path. The path method allows me to append some thing to the you URI. What I want
+
+03:15.040 --> 03:16.980
+to append is slash Id. 
+
+03:17.200 --> 03:21.940
+So I'd say path slash Id. Obviously, this is string.
+
+03:21.940 --> 03:25.220
+So I'd need to put it within double quotes. Let's do that.
+
+03:25.510 --> 03:27.680
+And then after you have the
+
+03:27.690 --> 03:35.190
+path, then I can actually do something called build and expand.
+
+03:35.350 --> 03:39.680
+I would need to pass the value that I want to replace in this variable.
+
+03:39.700 --> 03:45.430
+The value I would want to replace in this variable is..what do I want replace? Saved users dot get Id.
+
+03:46.400 --> 03:47.410
+Let's replace that.
+
+03:47.540 --> 03:57.160
+From this I would want to get the calculated URI. How do we do that? Dot to URI. And that's the
+
+03:57.160 --> 04:03.690
+URI of the new service or the new resource that we have created. Quickly revise what we have done until now.
+
+04:03.730 --> 04:06.550
+So this would return the current request URI.
+
+04:06.580 --> 04:12.550
+Servlet URI components builder from current request, it would get me this. I'm appending slash
+
+04:12.590 --> 04:17.370
+Id to that. And then I'm replacing saved user dot get Id.
+
+04:17.590 --> 04:19.800
+That's basically what we are doing in here.
+
+04:19.820 --> 04:21.790
+Now I'll take this location.
+
+04:21.790 --> 04:23.400
+So assign statement.
+
+04:23.650 --> 04:33.170
+This is the location that is created and now I can actually do response entity of user dot
+
+04:33.230 --> 04:39.220
+response entity dot created location and I'll build this and return this back.
+
+04:39.250 --> 04:41.090
+The thing is our return type right now is
+
+04:41.090 --> 04:43.300
+void. So let's change that as well.
+
+04:43.460 --> 04:48.620
+I would change the return type to response entity. I have waited for the server to pick up the change.
+
+04:48.620 --> 04:52.690
+Now I can go ahead and execute the post request to users again.
+
+04:53.010 --> 05:00.550
+So first users in the body, I'd want to actually have James and let's send this out right now.
+
+05:00.710 --> 05:06.550
+If you look at the response which comes back it has a status of two hundred and one created.
+
+05:06.770 --> 05:12.680
+When we create a resource the best status to return is two hundred and one. That's one of the things which
+
+05:12.680 --> 05:18.620
+is HTTP best practices. And that's what we followed during creating our RESTful services.
+
+05:18.620 --> 05:24.460
+So says two hundred and one, created. The request has been fulfilled and resulted in a new resource
+
+05:24.500 --> 05:26.870
+being created. That's what we have done.
+
+05:27.200 --> 05:29.290
+And if you go into the headers.
+
+05:29.480 --> 05:35.890
+So if you're going to the headers of the response, it also has a header called location. In the location
+
+05:35.900 --> 05:39.920
+what we are returning is the URI of the created user.
+
+05:40.180 --> 05:47.120
+The URI of the created user James is localhost 8080 user slash four. That's what we are returning back.
+
+05:47.120 --> 05:52.550
+Now if I want to, actually, I can go and execute a get requests to this URI and you'd see that I'm
+
+05:52.550 --> 05:56.140
+getting the details of James back. In the step,
+
+05:56.180 --> 06:01.140
+what they have done is we have returned a status of two hundred and one. That's created.
+
+06:01.370 --> 06:03.910
+So the resource is properly created.
+
+06:03.920 --> 06:10.100
+That's what we said by saying two O one created and we are also returning the location of the created
+
+06:10.100 --> 06:12.310
+user in a header.
+
+06:12.380 --> 06:18.080
+So if the client or the consumer wants to know where the source was created, they have a easy way.
+
+06:18.080 --> 06:23.870
+They just need to pick up the location from the header of the response.  In the last two steps
+
+06:24.110 --> 06:28.400
+we created a simple method to allow creation of a user.
+
+06:28.520 --> 06:32.710
+What we did is we created a post mapping to slash users.
+
+06:32.810 --> 06:41.900
+URI. We are accepting the content of the user as the input and we are returning a status of 200 and one or created
+
+06:41.900 --> 06:44.310
+back, when it's successful.
+
+06:44.540 --> 06:45.710
+Until the next step, bye-bye.
