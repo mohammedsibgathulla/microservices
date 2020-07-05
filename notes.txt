@@ -57,3 +57,6 @@
 
 10. Enhancing The Hello World Service To Return A Bean
 - See the project.
+
+11. Quick Review of Spring Boot Auto Configuration And Dispatcher Servlet
+- Refer .vtt file & image.
