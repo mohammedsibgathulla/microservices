@@ -86,4 +86,9 @@
 - See the project. 
 
 20. Implementing Validations for RESTful Services
-- 
+- See the project.
+
+21. Implementing HATEOAS for RESTful Services
+- HATEOAS - Hyper Media As The Engine Of Application State
+- In recent versions classes in the HATEOAS are update like Resource to EntityModel, ControlLinkBuilder to WebMvcLinkBuilder 
+
