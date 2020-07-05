@@ -60,3 +60,6 @@
 
 11. Quick Review of Spring Boot Auto Configuration And Dispatcher Servlet
 - Refer .vtt file & image.
+
+12. Enhancing The Hello World Service with A Path Variable
+- See the project.

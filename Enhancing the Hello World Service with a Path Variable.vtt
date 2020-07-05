@@ -1,0 +1,145 @@
+WEBVTT
+
+00:01.950 --> 00:09.190
+Welcome back! When we talked about the resource mappings, we said some of the values would be passed in the path
+
+00:09.340 --> 00:19.300
+parameters. So, here Slash user slash Id. Id is a path parameter. In this step, what we'll do is we'll create another
+
+00:19.300 --> 00:25.660
+simple hello world bean request with a  path parameter. What I'll do is I'll copy this
+
+00:25.870 --> 00:33.130
+And what we want to do is we want to pass in a param. What we'll say is we’ll create a URI - hello world 
+
+00:33.430 --> 00:36.250
+path variable slash.
+
+00:36.450 --> 00:40.400
+I’d want to accept the path variable in here.
+
+00:40.430 --> 00:44.220
+I would need to give a name to the variable so I’ll call it name.
+
+00:44.320 --> 00:51.490
+So what would happen here is when I get a request let's say path variable slash in28minutes, then
+
+00:51.490 --> 00:56.230
+in28minutes will be mapped to this variable name.
+
+00:56.350 --> 00:59.570
+So let's create a variable to take that. So that’s called string name,
+
+00:59.620 --> 01:00.240
+right?
+
+01:00.370 --> 01:01.390
+Is that sufficient?
+
+01:01.420 --> 01:02.830
+Actually it's not.
+
+01:02.860 --> 01:06.720
+I’d need to add an annotation called at path variable.
+
+01:06.740 --> 01:09.200
+And now it's imported in.
+
+01:09.280 --> 01:14.610
+Now what would happen is when somebody types in a URI- in28minutes -  it would get mapped to the
+
+01:14.620 --> 01:15.610
+name in here.
+
+01:15.610 --> 01:22.360
+So this in28minutes would be what would be mapped into name. I’ll change the name of the method.
+
+01:22.360 --> 01:23.620
+It doesn't really matter.
+
+01:23.740 --> 01:25.920
+But let's change it. Hello world
+
+01:26.030 --> 01:34.150
+path variable. Over here I would want to use a format. So I’ll say hello world percentage S. I’ll use a name
+
+01:34.360 --> 01:35.390
+in here.
+
+01:35.540 --> 01:39.210
+So I'll say a string dot format. string dot format.
+
+01:39.370 --> 01:46.620
+And this is the format to use and I'll say use the arguments - name.
+
+01:46.650 --> 01:47.270
+What would happen?
+
+01:47.320 --> 01:52.560
+This percentage S would be replaced with name and this hello world bean
+
+01:52.630 --> 01:54.110
+would be returned back.
+
+01:54.220 --> 01:56.190
+So what we're creating here is very simple, right?
+
+01:56.200 --> 02:01.330
+What we want to do is to take this path variable and whatever value is coming back,
+
+02:01.330 --> 02:07.180
+We are creating a hello world bean with this string template and returning that back.
+
+02:07.220 --> 02:15.190
+It's a simple example to show the power of path variables. In all our social media application resource
+
+02:15.190 --> 02:16.020
+mappings,
+
+02:16.240 --> 02:18.880
+we will use path parameter extensively.
+
+02:18.880 --> 02:24.810
+So here we are mapping user id. Here we’re using post Id. In restful applications,
+
+02:24.940 --> 02:29.810
+we make extensive use of the path variables. These are also called path parameters.
+
+02:29.810 --> 02:36.120
+Now let's start the application and I'll copy this hello world path variable in28minutes down here.
+
+02:36.280 --> 02:43.330
+So it's localhost 8080 hello world path variable in28minutes and you're seeing now that it's coming back
+
+02:43.330 --> 02:45.290
+with a response, Hello world
+
+02:45.360 --> 02:49.910
+in28minutes. Whatever I am passing in as a path variable is getting replaced in here.
+
+02:49.930 --> 02:51.000
+Let's change it again.
+
+02:51.020 --> 02:52.080
+Hello World Ranga.
+
+02:52.510 --> 02:54.220
+This is getting us hello world Ranga.
+
+02:54.220 --> 02:57.920
+So whatever value we are passing in is being picked up by the controller.
+
+02:58.060 --> 03:05.050
+And it is being sent back in the response. Path variables are a critical part of creating REST resources.
+
+03:05.290 --> 03:07.320
+We’ll make extensive use of path
+
+03:07.340 --> 03:12.910
+variables in this specific course. In this step, we learned how to create a path variable and how to pick
+
+03:12.910 --> 03:16.440
+up the value from it and use it in a controller method.
+
+03:16.470 --> 03:17.900
+Until the next step, bye-bye.
