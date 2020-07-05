@@ -82,3 +82,6 @@
 18. Implementing Generic Exception Handling For All Resources
 - See the project. 
 
+19. Implementing DELETE Method To Delete a User Resource
+- See the project. 
+

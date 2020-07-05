@@ -1,0 +1,190 @@
+WEBVTT
+
+00:02.220 --> 00:05.910
+In this step, let's add a delete mapping to our resource. If you look at it,
+
+00:06.010 --> 00:09.760
+our service right now, there is no delete method right now. So I'll create a delete method.
+
+00:09.800 --> 00:11.740
+Let's copy the find method.
+
+00:11.900 --> 00:18.430
+It should be easy quick, right? So delete by Id and I would want to actually pass in the Id.
+
+00:18.450 --> 00:26.330
+So one of the important things is I cannot use the for loop thing because I cannot delete a user in between
+
+00:26.380 --> 00:27.240
+a request.
+
+00:27.300 --> 00:30.050
+One of the option is to create a temporary list and add to it.
+
+00:30.210 --> 00:32.860
+But rather than that I would use an iterator.
+
+00:33.000 --> 00:37.560
+So what I'll do is I’ll get the users dot iterator. Use the iterator.
+
+00:37.590 --> 00:45.360
+So I'll say while iterator dot has next, while iterator dot has next.
+
+00:45.510 --> 00:46.340
+I’ll say user, user 
+
+00:46.710 --> 00:53.490
+is equal to iterator dot next.
+
+00:54.000 --> 00:59.580
+And if the Id matches then what we would want to do is we would want to return.
+
+00:59.700 --> 01:01.750
+We would want to remove it out.
+
+01:01.770 --> 01:07.730
+So iterator dot remove. So I would want to remove that object out if it matches.
+
+01:07.730 --> 01:11.730
+I am basically deleting it from the static array list. That’s basically what we are doing.
+
+01:11.820 --> 01:18.130
+And once it is removed, I’d return the deleted resource back.
+
+01:18.260 --> 01:20.110
+Otherwise I would return null. That’s cool!
+
+01:20.540 --> 01:24.550
+So what we are doing is we are deleting the resource and returning the resource back.
+
+01:24.600 --> 01:29.450
+So if they want the Id of the delete resource then we can actually provide it.
+
+01:29.490 --> 01:35.160
+We created a simple method in the service to delete by id and now let's create a resource for that.
+
+01:35.160 --> 01:39.870
+So I would copy this one because I would want to create delete method.
+
+01:39.870 --> 01:45.980
+So now I would say at delete mapping imported it in.
+
+01:45.990 --> 01:52.490
+So this would be no longer a delete user. One of the important things with delete user it’s sufficient
+
+01:52.500 --> 01:59.910
+if I just return a 200 status back. Success status back. So if everything went through fine and I return
+
+01:59.910 --> 02:02.820
+nothing back then it's a 200 status.
+
+02:02.820 --> 02:09.680
+The other thing that we can also do is we can also create the response entity and return a status of no content.
+
+02:09.690 --> 02:14.190
+So if you look at the response entity thing there are other methods which are present. So response entity
+
+02:14.190 --> 02:16.010
+there are no content.
+
+02:16.140 --> 02:21.020
+So you can either return a no content back or I can return an empty thing.
+
+02:21.020 --> 02:28.290
+So I just put a void and if I nothing is returned it means it’s a success. So let's do the void route this
+
+02:28.290 --> 02:28.710
+time.
+
+02:28.830 --> 02:32.830
+So what we would want to do is delete user instead of find one.
+
+02:32.850 --> 02:36.500
+What I want to do is delete by Id.
+
+02:36.870 --> 02:37.390
+So that’s cool!
+
+02:37.410 --> 02:42.690
+So if the delete went through fine I would get back the user. User user
+
+02:42.720 --> 02:44.810
+is equal to service delete by id.
+
+02:44.820 --> 02:49.400
+So if user is null then I would want to again throw the same exception.
+
+02:49.430 --> 02:56.160
+User not found for that specific thing. And I don't really need to worry about it right now. What the delete user
+
+02:56.160 --> 03:01.380
+does is if the user is deleted successfully it would be return a status of 200.
+
+03:01.650 --> 03:04.350
+Otherwise it would return a status of resource not found.
+
+03:04.350 --> 03:05.910
+Again,
+
+03:06.240 --> 03:12.660
+think about it when I'm trying to delete a specific resource, I would want to find out whether it's successful
+
+03:12.960 --> 03:19.130
+or not and that’s…if it's successful I would return a status of 200 back if it's not successful.
+
+03:19.200 --> 03:24.300
+What we are doing is we are saying, your users is not found. The resource you wanted to delete was not really
+
+03:24.300 --> 03:24.810
+found.
+
+03:24.960 --> 03:30.600
+And if any other exception happens in delete by Id also because we have defined the appropriate exception
+
+03:30.600 --> 03:35.580
+handlers it would get a proper response back, saying something wrong going back on.
+
+03:35.580 --> 03:38.440
+So let's go ahead and execute a delete request.
+
+03:38.490 --> 03:42.200
+So I'm going to say delete one and send it.
+
+03:42.270 --> 03:44.010
+Status is success.
+
+03:44.130 --> 03:45.630
+So let's go to users.
+
+03:45.930 --> 03:50.780
+And …Oops..I would want to get request from the users. Ok get users.
+
+03:51.020 --> 03:51.440
+There you go.
+
+03:51.450 --> 03:53.470
+So the one was deleted.
+
+03:53.490 --> 03:57.230
+So, I only have two users left out.
+
+03:57.630 --> 04:02.200
+And let's try and delete a nonexisting user.  Thousand.
+
+04:02.470 --> 04:08.790
+Ok, it’s saying resource not found and this is the request details that are being shared.
+
+04:08.820 --> 04:09.930
+So that's pretty cool.
+
+04:09.930 --> 04:12.680
+So you're saying I'm getting a delete request on a non-existing user.
+
+04:12.820 --> 04:17.690
+And we're saying I don't know who you are and how can I delete you. A successful delete request,
+
+04:17.730 --> 04:23.130
+we are returning 200 back. Delete on a non-existing resources, we’re returning a 404 back. That’s perfect
+
+04:23.400 --> 04:30.290
+and we're adhering to most of the conventions of HTTP. That’s cool. Until the next step, bye-bye.
