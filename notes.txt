@@ -67,3 +67,6 @@
 13. Creating User Bean And User Service
 - See the project. 
 
+14. Implementing GET Methods for User Resource
+- See the project.
+

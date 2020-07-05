@@ -12,8 +12,8 @@ public class UserDaoService {
     private static int usersCount = 3;
     static {
         users.add(new User(1, "Adam", new Date()));
-        users.add(new User(1, "Eve", new Date()));
-        users.add(new User(1, "Jack", new Date()));
+        users.add(new User(2, "Eve", new Date()));
+        users.add(new User(3, "Jack", new Date()));
     }
     public List<User> findAll() {
         return users;
@@ -30,7 +30,6 @@ public class UserDaoService {
         for(User user: users) {
             if(user.getId() == id)
                 return user;
-            break;
         }
         return  null;
     }
