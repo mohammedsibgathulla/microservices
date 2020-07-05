@@ -1,0 +1,76 @@
+WEBVTT
+
+00:01.740 --> 00:08.700
+Before we get our hands dirty and start with implementing our first SOAP service, we would try and
+
+00:08.700 --> 00:12.550
+understand the differences between REST and SOAP.
+
+00:12.660 --> 00:19.510
+Actually as we discussed earlier this is not apples to apples comparison because SOPA is an format of
+
+00:19.680 --> 00:24.740
+XML whereas REST is actually an architectural style.
+
+00:24.780 --> 00:33.490
+Let's talk about the data exchange format. In SOAP the data exchange format is always XML that too specifically
+
+00:33.520 --> 00:40.080
+the SOAP XML with SOAP envelope header and body. Both your request and response should adhere to the SOAP
+
+00:40.110 --> 00:42.030
+Structure. In REST
+
+00:42.030 --> 00:45.820
+there is no strict date exchange format.
+
+00:45.960 --> 00:52.350
+You can exchange a XML, a JSON or any other format you would want use.
+
+00:52.470 --> 00:59.580
+However, JSON is the most popular data exchange format in REST. As far as the service definitions are
+
+00:59.580 --> 01:05.610
+concerned SOAP uses WSDL. Web service definition language.
+
+01:05.610 --> 01:09.800
+REST does not have a standard definition language.
+
+01:09.990 --> 01:17.760
+While WADL is one of the standards. Web application definition language. However, its not really popularly
+
+01:17.760 --> 01:19.500
+Used. In this course,
+
+01:19.560 --> 01:25.550
+we are going to use one of the popular definitions for RESTful web services - Swagger.
+
+01:25.710 --> 01:31.500
+As far as the transport protocol is concerned SOAP does not pose any restrictions at all.
+
+01:31.500 --> 01:36.870
+You can use web that is HTTP or you can use MQ.
+
+01:36.870 --> 01:45.180
+REST is very specific about making the best use of HTTP protocol. RESTful services are typically
+
+01:45.270 --> 01:49.020
+more easier to implement than SOAP.
+
+01:49.080 --> 01:55.470
+RESTful services are typically based on JSON which is an easy format to pass and do things with it
+
+01:55.950 --> 01:57.910
+and also with RESTful services.
+
+01:57.930 --> 02:05.670
+we don't really need to mandate really define a service definition. But with SOAP you have to define WSDL and there
+
+02:05.670 --> 02:11.580
+are a lot of complexities associated with parsing your XMLs as well.
+
+02:11.640 --> 02:17.880
+These are some of the differences between REST and SOAP. This marks the end of our theory sessions on web services.
+
+02:17.980 --> 02:19.310
+Until the next video, bye-bye.

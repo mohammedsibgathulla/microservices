@@ -39,3 +39,9 @@
 - REST stands for representational state transfer. It’s a term which is Coined by Roy Fielding. If you remember, Roy Fielding is the guy who also developed HTTP protocol.
 - RESTful web services try to define services using the different concepts that are already present in HTTP. The most important abstraction in the REST is something called a resource. A resource is anything that you'd want to expose to the outside world through your application.
 
+6. SOAP vs RESTFUl Web Services
+- In SOAP the data exchange format is always XML that too specifically the SOAP XML with SOAP envelope header and body. Both your request and response should adhere to the SOAP Structure.
+- In REST there is no strict date exchange format. You can exchange a XML, a JSON or any other format you would want use.
+- As far as the service definitions are concerned SOAP uses WSDL. Web service definition language. REST does not have a standard definition language.
+- As far as the transport protocol is concerned SOAP does not pose any restrictions at all. You can use web that is HTTP or you can use MQ. REST is very specific about making the best use of HTTP protocol. RESTful services are typically more easier to implement than SOAP.
+- RESTful services are typically based on JSON which is an easy format to pass and do things with it and also with RESTful services. We don't really need to mandate really define a service definition. But with SOAP you have to define WSDL and there are a lot of complexities associated with parsing your XMLs as well.
