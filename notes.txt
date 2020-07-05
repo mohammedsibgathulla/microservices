@@ -48,3 +48,6 @@
 
 7. Initializing A RESTful Services Project With Spring Boot
 - Choose web, devtools, h2 & jpa in spring initializer and generate the project. 
+
+8. Understanding the RESTful Services We Would Create 
+- See the image.

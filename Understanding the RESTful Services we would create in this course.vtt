@@ -1,0 +1,229 @@
+WEBVTT
+
+00:02.020 --> 00:07.420
+Welcome to this step where we are going to get an overview of the different RESTful services that
+
+00:07.440 --> 00:12.640
+we are going to create in these series of videos. As we discussed earlier,
+
+00:12.670 --> 00:20.560
+REST stands for representational state transfer. REST is just a style of how you design your
+
+00:20.560 --> 00:29.200
+resources and how you expose them using HTTP. REST aims to make best use of HTTP.
+
+00:29.230 --> 00:33.820
+So we would want to make the best use of whatever things that HTTP provides. Like
+
+00:33.820 --> 00:36.350
+HTTP methods and HTTP status codes.
+
+00:36.820 --> 00:42.230
+As we discussed earlier, the key abstraction is something called a resource.
+
+00:42.490 --> 00:49.750
+Each resource would have a URI and we can have different representations for each resource.
+
+00:49.750 --> 00:56.910
+These were the examples that we looked at. Creating a user we would want to do a post for slash users. Delete
+
+00:56.920 --> 01:04.140
+a user, we would want to send a delete request to a URI slash users slash 1.
+
+01:04.300 --> 01:11.500
+Similarly, get all users, we’d want to send a get request to slash users. And to get a specific user
+
+01:11.950 --> 01:16.810
+we’d want to send a get request to slash users slash one.
+
+01:17.020 --> 01:23.560
+Let's quickly look at all the RESTful web services that we would want to create in this specific course.
+
+01:24.010 --> 01:29.170
+I would want to retrieve the details of all the users that are present.
+
+01:29.260 --> 01:36.820
+It should be slash users. What request should I send? Should it be get, put, post? Which one should it be?
+
+01:36.940 --> 01:42.460
+I want to get the detail so it should be a get request. Get to slash users.
+
+01:42.670 --> 01:46.840
+Now I would want to create a user. I would want to create a new user.
+
+01:46.900 --> 01:47.880
+How do I do that?
+
+01:47.880 --> 01:48.640
+How do I do that?
+
+01:48.640 --> 01:49.490
+Think about it.
+
+01:49.610 --> 01:55.090
+I’d need to do a post again to slash users.
+
+01:55.090 --> 02:00.280
+I’d want to retrieve the details of a specific user. Few of the details of one user.
+
+02:00.280 --> 02:01.320
+How do I do that?
+
+02:01.330 --> 02:04.660
+Would it be sufficient if I say get and slash users?
+
+02:04.690 --> 02:08.440
+This will get me a list of users not a specific user.
+
+02:08.710 --> 02:17.740
+If I want to get specific user, I would need to pass in an Id. So something like Slash users slash 1
+
+02:18.000 --> 02:19.820
+slash users slash 2.
+
+02:20.080 --> 02:21.120
+So that’s what we need to do.
+
+02:21.130 --> 02:23.120
+Now I would need to delete that user.
+
+02:23.170 --> 02:24.430
+It’s very simple, right?
+
+02:24.440 --> 02:30.430
+I need to send a delete request to the specific Id or this specific URI.
+
+02:30.430 --> 02:36.490
+That’s cool. Now, this user can be a user of any application, right?
+
+02:36.520 --> 02:39.880
+It can be a user of a social media application.
+
+02:39.970 --> 02:48.160
+It can be a user of a magazine or whatever it can be. The domain we are looking at right now is a social
+
+02:48.160 --> 02:49.570
+media application.
+
+02:49.690 --> 02:56.850
+Let's consider a simple social media application. So a user makes a number of posts.
+
+02:56.860 --> 03:04.510
+So the relationship between user to posts is one to many. A user over period of his life will make a lot of posts.
+
+03:04.520 --> 03:07.360
+So the relationship is one too many.
+
+03:07.360 --> 03:13.430
+I would want to extend the representation of resources to posts.
+
+03:13.490 --> 03:20.110
+So if I want to retrieve all the posts for the user, how do I do that?
+
+03:20.110 --> 03:25.970
+Think about it. I would want to retrieve all the posts for a specific user.
+
+03:26.140 --> 03:27.940
+So first thing is it’s a retrieve.
+
+03:27.940 --> 03:29.010
+So what should I do?
+
+03:29.050 --> 03:35.320
+It should be a get request and I would want to get all posts for a specific user. So the first thing
+
+03:35.320 --> 03:39.130
+is, I would need to get the user. That’s the user.
+
+03:39.130 --> 03:41.100
+So I have a specific user.
+
+03:41.380 --> 03:49.090
+And then I can retrieve all his posts. That’s simple right. So if I want to get all posts for a user
+
+03:49.180 --> 03:50.380
+this is the URI.
+
+03:50.530 --> 03:57.170
+And if I want to get, if I want to create a post for a user, so I would want to create a post for
+
+03:57.220 --> 03:58.700
+a specific user.
+
+03:58.900 --> 04:01.450
+So a user wants to make a post. How do I do that?
+
+04:01.450 --> 04:11.230
+It’s basically, post slash user slash Id. To this URI we are going to send a Post request.
+
+04:11.310 --> 04:18.540
+The last resource we would want to expose is to get the details of a specific post.
+
+04:18.570 --> 04:19.310
+Think about it.
+
+04:19.320 --> 04:22.330
+Can a post exist without a user?
+
+04:22.350 --> 04:29.660
+If I say a slash post slash ….lets say post Id. Can a post exist without a user?
+
+04:29.790 --> 04:31.270
+Actually not.
+
+04:31.440 --> 04:35.950
+So when we are mapping resources, we also take that into consideration.
+
+04:35.970 --> 04:44.400
+So, ideally the way we would need to map this is also put a user Id. Slash user, user id slash post slash 
+
+04:44.730 --> 04:46.840
+post Id. And we would need to send..
+
+04:46.860 --> 04:54.360
+Obviously if you want do a retrieve, I would the send a get request. The most important thing to understand
+
+04:54.450 --> 05:00.820
+is the fact that whatever we’re looking at is only the ideal scenarios. But when it really get down to
+
+05:00.840 --> 05:02.050
+practical stuff,
+
+05:02.220 --> 05:06.440
+you might need to have a few things differently done.
+
+05:06.570 --> 05:15.780
+So if let's say I'm having an SSN. I don't want to send an SSN as part of my get request because if
+
+05:15.810 --> 05:19.550
+it's part of the URI then everybody can see the SSN.
+
+05:19.680 --> 05:22.890
+So, obviously these are just guidelines.
+
+05:23.040 --> 05:27.800
+These need to be adapted to your specific needs.
+
+05:27.840 --> 05:35.280
+What we'll do in the subsequent steps is we would start with creating a couple of Hello World Services.
+
+05:35.520 --> 05:41.870
+And then we would move into creating all these social media applications resources.
+
+05:41.880 --> 05:48.320
+So we would create users and services for their post as well.
+
+05:48.450 --> 05:50.370
+While we move into next steps,
+
+05:50.370 --> 05:57.750
+we'll also focus on things like validations, internationalization, exception handling, versioning your
+
+05:57.750 --> 06:06.360
+services, content negotiation, generating documentation for these services and we’ll also talk about HATEOAS
+
+06:06.750 --> 06:11.160
+and also about how to monitor these services.
+
+06:11.280 --> 06:17.980
+Those are a few of the things that we would be discussing in the next steps. Until the next step, bye-bye.
