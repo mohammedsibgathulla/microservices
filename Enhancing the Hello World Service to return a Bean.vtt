@@ -1,0 +1,265 @@
+WEBVTT
+
+00:01.510 --> 00:09.400
+In the previous step, we returned a hard coded string back. We mapped get requests to this URI, to this method
+
+00:09.400 --> 00:15.820
+which was returning a simple string. In this step, we would actually create an object for hello world
+
+00:15.860 --> 00:20.430
+bean and try to return that back and see what would happen.
+
+00:20.770 --> 00:24.520
+One of the things you need to understand is the fact that there is a lot of things that are happening in
+
+00:24.520 --> 00:25.510
+the background.
+
+00:25.660 --> 00:31.210
+We used spring boot to create the project through the spring boot starter projects. We’re using frameworks
+
+00:31.240 --> 00:34.320
+like spring, spring MVC and a lot of other things.
+
+00:34.450 --> 00:38.580
+So there is a lot of magic which is happening in the background. Before we get there,
+
+00:38.650 --> 00:45.130
+we would focus on getting another simple get request working. So I’d copy this method.
+
+00:45.250 --> 00:46.380
+There would be a compilation error.
+
+00:46.590 --> 00:48.420
+Let's not worry about it right now.
+
+00:48.510 --> 00:56.470
+What I want to do is to create a get mapping to Hello World and this time I would want to create a bean
+
+00:56.800 --> 00:58.910
+and return it back.
+
+00:58.930 --> 01:04.990
+So instead of creating a simple string, I would want to create a bean and return it back. The URI I would
+
+01:04.990 --> 01:11.800
+want a map is hello world bean. We would continue mapping the get mapping request. However, instead of returning a
+
+01:11.800 --> 01:13.530
+string we want to return a bean back.
+
+01:13.540 --> 01:14.230
+How do we do that?
+
+01:14.230 --> 01:15.630
+Let's quickly do that.
+
+01:15.820 --> 01:21.750
+So we want to do hello world bean and I’ll make the change in the method name.
+
+01:21.780 --> 01:28.720
+Now you would see that the entire thing compiles but instead of creating hello world, what I would want
+
+01:28.720 --> 01:32.440
+to do is to create a hello world bean.
+
+01:32.620 --> 01:37.910
+One more thing I want to do is to make sure that this method is returning a hello world bean. So instead of string,
+
+01:37.990 --> 01:38.940
+we want to return a
+
+01:39.120 --> 01:41.590
+hello world bean. Actually the hello world bean is
+
+01:41.590 --> 01:42.510
+not really there.
+
+01:42.520 --> 01:49.080
+So let's go ahead and create that first. How do I create it? Control one or command one and one and create class
+
+01:49.140 --> 01:50.130
+Hello world bean.
+
+01:50.320 --> 01:51.750
+Let's do that.
+
+01:51.940 --> 01:53.130
+Hello world bean.
+
+01:53.350 --> 01:55.230
+I’ll take the defaults and click finish.
+
+01:55.270 --> 01:58.380
+And I would want to create next.
+
+01:58.450 --> 02:04.150
+If you’d see the constructor which is present in here. So let's go ahead and do a control one and create
+
+02:04.150 --> 02:05.800
+constructor hello world.
+
+02:06.130 --> 02:10.590
+I’d want to create a hello world bean with a message.
+
+02:10.630 --> 02:18.990
+What I want to do is this dot message is equal to message. Now, I would get another compilation error.
+
+02:19.180 --> 02:22.650
+Now I press control one and I'm going to create a message in here.
+
+02:22.660 --> 02:24.960
+So we have a private field called message.
+
+02:25.180 --> 02:25.390
+We have a
+
+02:25.390 --> 02:25.960
+hello bean
+
+02:25.960 --> 02:31.500
+accepting that in the constructor and setting it to itself. Let’s  create a getter.
+
+02:31.940 --> 02:35.510
+Sorry, a setter quickly. So I’ll say select setters.
+
+02:35.680 --> 02:36.340
+OK.
+
+02:36.460 --> 02:43.880
+The easiest way to do that is right click source and you can go and select generate getters and setters.
+
+02:43.990 --> 02:49.750
+So I generated a setter and obviously I would also want to generate a toString.
+
+02:49.750 --> 02:52.140
+So let's generate a tostring as well.
+
+02:52.370 --> 02:54.570
+Right click source generate tostring.
+
+02:54.970 --> 02:55.870
+I'll say OK.
+
+02:56.180 --> 02:59.040
+So we are creating a very simple bean. Nothing complex in here.
+
+02:59.050 --> 02:59.580
+So we’re
+
+02:59.620 --> 03:02.510
+Just creating a simple bean. And now our
+
+03:02.590 --> 03:05.430
+Hellh world controller would compile fine.
+
+03:05.680 --> 03:11.830
+So what we have done until now is very simple, right? We have defined a simple hello world bean which accepts
+
+03:11.830 --> 03:18.550
+a message and we are actually returning it back in the controller method. Let’s start the application up.
+
+03:18.550 --> 03:20.180
+Let's go to URI.
+
+03:20.230 --> 03:21.520
+Hello world bean.
+
+03:21.750 --> 03:25.460
+You would see that there is an error.
+
+03:25.630 --> 03:27.440
+It was an unexpected error.
+
+03:27.630 --> 03:30.760
+No converter found for return value of type
+
+03:30.820 --> 03:32.270
+Hello world bean.
+
+03:32.320 --> 03:38.730
+This is one of the important things that you need to understand. Actually it is not really a easy error to debug.
+
+03:38.830 --> 03:41.480
+And that's the reason why I illustrated this first step.
+
+03:41.620 --> 03:45.820
+So this hello world bean does not have a getter.
+
+03:46.150 --> 03:51.280
+So if we don't create a getter then the automatic conversion will not work.
+
+03:51.280 --> 03:53.100
+So let's go out and create the getter.
+
+03:53.150 --> 03:54.220
+So right click source.
+
+03:54.250 --> 04:00.900
+generate getters and setters and select the getter for that.
+
+04:01.030 --> 04:04.850
+And now you’d see that the getter is present in here.
+
+04:04.960 --> 04:07.020
+Let's quickly restart the application.
+
+04:07.180 --> 04:11.850
+And now if you launch the hello world bean you would see a JSON message back.
+
+04:11.860 --> 04:13.410
+You'd see that message.
+
+04:13.570 --> 04:14.880
+Hello world.
+
+04:14.890 --> 04:19.210
+You can see that this message is adhering to a JSON structure.
+
+04:19.250 --> 04:21.590
+We're calling this get URI.
+
+04:21.820 --> 04:26.430
+And the hello world bean is being returned with the value Hello world.
+
+04:26.710 --> 04:31.440
+And if you look at the structure it's actually reflecting the structure in here.
+
+04:31.450 --> 04:35.640
+So it’s just returning message and hello world.
+
+04:35.890 --> 04:38.030
+The name of the field here is message.
+
+04:38.050 --> 04:45.770
+So that's exactly what is here and the text which is being sent to the message is being presented as its value.
+
+04:45.820 --> 04:49.800
+And this coming back as a JSON string.
+
+04:49.840 --> 04:53.320
+In this step, we added in one more simple method.
+
+04:53.470 --> 04:58.150
+However, this is returning a bean back. Earlier we returned a simple string back.
+
+04:58.150 --> 05:04.350
+Now we're returning a bean back and this bean is being automatically converted into JSON and returned
+
+05:04.370 --> 05:07.910
+back. The first two steps were really simple, right?
+
+05:07.930 --> 05:14.030
+We just created a couple of simple methods. In the next step, we will understand what's happening in the
+
+05:14.030 --> 05:17.390
+background of these two steps.
+
+05:17.390 --> 05:20.480
+How is the request being handled?
+
+05:20.480 --> 05:26.980
+Who is handling the request and also how is the hello world bean content getting translated to a JSON.
+
+05:27.110 --> 05:29.820
+We'll look at all that in the next step.

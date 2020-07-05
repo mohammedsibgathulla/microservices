@@ -54,3 +54,6 @@
 
 9. Creating A HelloWorld Service
 - See the project.
+
+10. Enhancing The Hello World Service To Return A Bean
+- See the project.
