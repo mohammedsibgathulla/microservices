@@ -1,0 +1,499 @@
+WEBVTT
+
+00:02.160 --> 00:08.240
+In the previous step, we saw that when we executed the request to a non-existing user, we were getting a 404
+
+00:08.350 --> 00:15.070
+not found but the specific structure which is defined by default by spring MVC. As we discussed earlier,
+
+00:15.340 --> 00:19.030
+in an organization you would to define a standard structure.
+
+00:19.190 --> 00:23.350
+So let's say you have some standard structure designed in your organization.
+
+00:23.530 --> 00:25.490
+And how do we adhere to that.
+
+00:25.600 --> 00:30.450
+How do we create responses in that specific structure.
+
+00:30.700 --> 00:34.150
+That's basically what we would look at in this specific step.
+
+00:34.150 --> 00:40.080
+Customizing the exception handling to a structure that is defined by us.
+
+00:40.360 --> 00:42.670
+Go ahead and create a simple structure.
+
+00:42.670 --> 00:51.310
+So I would want to have a new class and I’ll call this exception. I can call this exception details, exception
+
+00:51.310 --> 00:52.140
+response or whatever
+
+00:52.140 --> 00:54.900
+I would want to.  So I'll just call this
+
+00:54.900 --> 00:56.380
+exception response.
+
+00:56.380 --> 01:04.450
+Actually, I would want to create it in the package dot exception and move it to that package. In the exception response, we can create
+
+01:04.510 --> 01:11.020
+any custom structure. At the basic level, I mean at the most basic level the important things that you would
+
+01:11.020 --> 01:17.830
+need to have are -  first would be a timestamp indicating where…when the exception happened then probably
+
+01:17.830 --> 01:21.380
+you would want to have some exception message and some detail.
+
+01:21.730 --> 01:33.960
+So let's create simple elements for them. Private date time stamp, private string message and I would
+
+01:33.960 --> 01:40.660
+create private string details. I’ll import java dot util dot date.
+
+01:40.800 --> 01:43.240
+Ok! That's a very basic structure.
+
+01:43.530 --> 01:50.160
+And let's quickly add in the basic constructor. So right click source generate constructor using fields.
+
+01:50.540 --> 01:51.650
+That's cool!
+
+01:51.690 --> 02:01.630
+I have a constructor and I’ll also generate getters and setter. I’ll say select getters. Setters aren’t really needed.
+
+02:01.740 --> 02:03.860
+I just create the getters.
+
+02:03.870 --> 02:09.710
+So what we have created is a simple exception response bean. We have a data string and string time stamped
+
+02:09.720 --> 02:10.950
+message and details.
+
+02:11.020 --> 02:14.280
+There’s a simple constructor and a few getters also in there.
+
+02:14.330 --> 02:19.200
+And now what do we want to do, when an exception happens,
+
+02:19.200 --> 02:24.980
+I would want to return the exception in this format. So instead of the message we were getting earlier, timestamp
+
+02:25.060 --> 02:26.190
+status error message path.
+
+02:26.190 --> 02:34.290
+But I would want to create a message of this structure. Timestamp, message and details. At a later point in time,
+
+02:34.500 --> 02:38.370
+you can actually enhance this to meet the standards of your organization.
+
+02:38.370 --> 02:40.910
+So name of these variables might be different.
+
+02:40.920 --> 02:45.250
+So, instead of calling it a timestamp, maybe you'd call it something else. Instead of calling this message
+
+02:45.300 --> 02:47.490
+or details, you might be calling it something else.
+
+02:47.760 --> 02:50.880
+But you can easily customize it to whatever your needs are.
+
+02:50.920 --> 02:57.110
+The most important thing is this exception response should be something that should be standard across
+
+02:57.170 --> 02:59.820
+your organization. Not just your project,
+
+02:59.910 --> 03:06.900
+I would even think a level above and make it a standard across almost all services in your organization so that
+
+03:06.960 --> 03:13.020
+everybody can use this structure. The structure is the most important part and the structure has
+
+03:13.020 --> 03:17.410
+to be language independent because you are creating a java service.
+
+03:17.430 --> 03:21.330
+You are creating a java resource. There might be other resources which are exposed from let's
+
+03:21.330 --> 03:24.600
+say Nodejs or dot Net or whatever it is.
+
+03:24.600 --> 03:28.880
+Once the structure is defined you can provide the Java implementation for it.
+
+03:29.250 --> 03:33.870
+What we want to do is whenever an exception happens we would want to return a response back in this
+
+03:34.140 --> 03:35.980
+specific format.
+
+03:36.360 --> 03:37.750
+How can we do that?
+
+03:37.770 --> 03:43.880
+One of the important classes which is present in spring is response entity exception handler.
+
+03:43.920 --> 03:50.580
+This is basically an abstract class which can be extended to provide centralized exception handling
+
+03:50.670 --> 03:53.460
+across all the different exception handler methods.
+
+03:53.640 --> 04:01.210
+So this one I can use as the base class to provide some default exception handling for all our requests.
+
+04:01.260 --> 04:07.800
+What we’ll do is we’ll extend this class. So we'll extend this and provide a customized exception handling
+
+04:08.010 --> 04:09.060
+functionality.
+
+04:09.180 --> 04:10.530
+So let's create a new class.
+
+04:10.620 --> 04:14.440
+Again I’ll go to the package exception and create a new class.
+
+04:14.790 --> 04:19.650
+I would want to call this customized response entity exception handler.
+
+04:20.010 --> 04:25.410
+Actually, you can put your organization name or whatever you’d want as the name here.
+
+04:25.440 --> 04:26.970
+That would make it even more specific.
+
+04:26.970 --> 04:29.870
+But for now I’ll just keep it simple.
+
+04:29.940 --> 04:36.150
+I’d want to extend the default exception handling which is provided by spring in response entity exception
+
+04:36.250 --> 04:36.860
+handler.
+
+04:37.050 --> 04:42.750
+The other thing is this exception handling I would want it to apply to all controller. There might
+
+04:42.750 --> 04:44.510
+be a number of controllers that are defined, right?
+
+04:44.560 --> 04:49.770
+So there's a hello world controller, there is a user resource. One of the things you need to understand
+
+04:49.770 --> 04:53.160
+is we are calling this user resource because we're exposing it as a resource.
+
+04:53.160 --> 04:56.350
+Some projects, some people might even call this user controller.
+
+04:56.420 --> 04:57.520
+So instead of user resource,
+
+04:57.620 --> 04:59.770
+this might be to a user controller as well.
+
+04:59.770 --> 05:01.720
+So a controller or resource,
+
+05:01.850 --> 05:06.600
+I'm trying to be more specific to say this is a resource which is being exposed but you can
+
+05:06.600 --> 05:13.170
+still call it a user controller. Controller is something which we follow from the MVC Model View Controller pattern.
+
+05:13.440 --> 05:16.230
+So, this is exactly doing something similar.
+
+05:16.470 --> 05:21.580
+This is specifically exposing resources. So I call it user resource, you can also call it user controller.
+
+05:21.600 --> 05:23.190
+It doesn't really matter.
+
+05:23.190 --> 05:25.510
+The most important thing is to remain consistent.
+
+05:25.540 --> 05:26.790
+So, once you call this user
+
+05:26.800 --> 05:32.730
+resource, I'm going to call everything else as a resource as well. First thing we need to do is we need to call
+
+05:32.730 --> 05:37.740
+this a rest controller because this is providing a response back. In case of exceptions,
+
+05:37.740 --> 05:43.530
+that's what it does, at rest controller and other thing is I would want this to be applicable across
+
+05:43.770 --> 05:45.790
+all the other controllers.
+
+05:45.840 --> 05:47.250
+So, how can we do that?
+
+05:47.250 --> 05:51.740
+It can be done by using another spring annotation called Spring controller advice.
+
+05:51.900 --> 05:54.380
+I am importing controller advice here.
+
+05:54.570 --> 06:00.460
+So if you look at the controller advice, it says specialization of the component for classes that declare methods
+
+06:00.580 --> 06:04.170
+to be shared across multiple controller classes.
+
+06:04.170 --> 06:09.870
+So when we have multiple controller classes and we would want to share things across them, then we
+
+06:09.870 --> 06:15.090
+would use this thing called controller advice. Using a controller advice, the typical things which
+
+06:15.090 --> 06:18.430
+are defined are exception handling. That’s what we are defining right now.
+
+06:18.660 --> 06:23.430
+The other things which can be defined is how do you handle dates. That's defined by using init binder
+
+06:23.430 --> 06:24.390
+for example.
+
+06:24.690 --> 06:29.460
+And also the other things which can be defined are common modal attributes that you would want to use
+
+06:29.460 --> 06:32.280
+across controllers. In all these scenarios.
+
+06:32.280 --> 06:37.910
+we would use a controller advice. We have defined the controller advice annotation we have made it a
+
+06:37.990 --> 06:39.290
+rest controller.
+
+06:39.300 --> 06:42.760
+Now I would want to go ahead. So response entity exception handler.
+
+06:42.870 --> 06:49.050
+If you go further down here there is a specific syntax that you would need to provide to over ride
+
+06:49.050 --> 06:50.210
+things in here.
+
+06:51.390 --> 06:56.270
+So there's a default thing that is provided by response entity exception handler. We want to over ride
+
+06:56.270 --> 06:58.800
+that for specific exceptions.
+
+06:59.000 --> 07:01.000
+So what I'll do I'll copy this method from here.
+
+07:01.090 --> 07:04.730
+So I’ll say public final response entity of object.
+
+07:04.730 --> 07:08.110
+Handle exception, exception comma web request.
+
+07:08.120 --> 07:13.010
+Now I want to over ride this for a specific exception.
+
+07:13.150 --> 07:18.670
+So, whenever some exception happens, I would want to say at exception handler.
+
+07:18.740 --> 07:20.430
+What kind of exception does this handle?
+
+07:20.480 --> 07:26.140
+I would want, for now, to handle all the exceptions. So exception dot class.
+
+07:26.220 --> 07:31.090
+I can import the exception handler in. And I’ll rename the method. I'll call this
+
+07:31.150 --> 07:34.250
+all exceptions. Right now we are not returning anything back.
+
+07:34.250 --> 07:41.780
+What we want to do is when a exception happens we want to create a new instance of our specific bean.
+
+07:42.450 --> 07:47.220
+So what we want to create is…we created a bean called exceptional response.
+
+07:47.240 --> 07:47.510
+Right?
+
+07:47.510 --> 07:54.860
+So we want to return our specific thing back. We want to return a exception response back. And to create
+
+07:54.860 --> 07:55.730
+an exception response,
+
+07:55.730 --> 07:58.200
+first thing I’d need to have is the date.
+
+07:58.260 --> 08:03.540
+So I’ll for now just say new date. I’ll import java util date. Java util date, that’s 
+
+08:03.700 --> 08:11.360
+what I want. The next thing I would need to send is the message. So I’ll get that from the exception. I’ll
+
+08:11.360 --> 08:14.020
+say exception dot get message.
+
+08:14.160 --> 08:17.410
+I can … I need to add in a few more details.
+
+08:17.420 --> 08:21.410
+Any details that you would want to add in for that specific exception you can add.
+
+08:21.590 --> 08:27.590
+You have to be sensitive about security when we're sending any response back and in the detail you
+
+08:27.590 --> 08:29.740
+need to think about what you would want to send. For now, 
+
+08:29.780 --> 08:37.160
+I would send something called request dot get description. And I’d include the client info as
+
+08:37.170 --> 08:44.030
+well. This has to be evaluated on case by case basis to see if you'd want to really include this description
+
+08:44.430 --> 08:45.670
+as part of your response.
+
+08:45.680 --> 08:48.000
+But for now let’s just create this.
+
+08:48.200 --> 08:53.510
+I would actually take this into a variable. So exception response exception response is equal to new
+
+08:53.510 --> 08:58.240
+exception response. That’s cool. It’s perfect. Format this a little bit.
+
+08:58.250 --> 09:00.150
+Now we have the exception response.
+
+09:00.150 --> 09:06.630
+Now I would want to create a response entity object. So how do I create a new response entity object? Response entity
+
+09:06.850 --> 09:12.990
+object. I would pass in the exception response. That’s one of the parameters that's input to it.
+
+09:13.280 --> 09:19.700
+And the next thing you would need to send in is the HTTP status. HTTP status dot…I’ll give a status of
+
+09:19.700 --> 09:22.490
+internal server error for now. So for all exceptions,
+
+09:22.490 --> 09:25.570
+this is the status that is being returned back right now.
+
+09:25.730 --> 09:29.160
+We will quickly override this specific exceptions.
+
+09:29.360 --> 09:30.220
+That's cool, right?
+
+09:30.250 --> 09:35.660
+So now we have defined a default exception handling for all the things which would return an internal
+
+09:35.720 --> 09:41.010
+error back and we're creating an exception response object in our structure.
+
+09:41.270 --> 09:44.390
+Let's wait for the server to pick this change up.
+
+09:44.390 --> 09:46.300
+And now I would execute the request.
+
+09:46.300 --> 09:54.740
+So if you see that when I get ….execute the request for 500 it says, internal server error, time stamp is this, message is this
+
+09:54.740 --> 09:55.330
+details is this.
+
+09:55.400 --> 10:02.360
+So we are getting the message back in our format but we're going back to the earlier thing of 500 internal
+
+10:02.470 --> 10:07.760
+server error. For all exceptions we would want to return internal server error but we would want to customize
+
+10:07.850 --> 10:12.660
+it for specific exceptions to return a different status back. For exception class,
+
+10:12.680 --> 10:14.710
+it's OK to return internal server error.
+
+10:14.780 --> 10:23.020
+But let's say for user not found exception I can customize it. So I can say handle user not found
+
+10:23.090 --> 10:26.340
+exception. I'm just copying the earlier method, renaming a few things.
+
+10:26.360 --> 10:29.770
+Exception and this instead of exception I’ll
+
+10:29.780 --> 10:32.220
+call this user not found exception.
+
+10:32.350 --> 10:40.520
+And now I can go ahead and customize the exception status that’s returned. dot not found. And now when I execute
+
+10:40.520 --> 10:41.190
+the request,
+
+10:41.270 --> 10:46.790
+you would see that I'm getting a 404 not found and with a specific structure that we're using for
+
+10:47.100 --> 10:49.540
+our specific thing.  At a high level,
+
+10:49.580 --> 10:54.670
+the most important things that you would want to understand is the fact that having a customized message
+
+10:54.680 --> 10:57.760
+structure across the organization is very important.
+
+10:57.800 --> 11:04.310
+You need to have some class of this kind trying to define what is the status that you would want to return
+
+11:04.310 --> 11:07.460
+back to for different kinds of exceptions.
+
+11:07.460 --> 11:13.010
+Probably you can create a simple jar with the exception responses that you'd want to give for the common
+
+11:13.010 --> 11:13.540
+ones.
+
+11:13.730 --> 11:20.690
+What we have looked at is different options that are present in spring MVC to customize how you
+
+11:20.690 --> 11:23.540
+return the exception object back.
+
+11:23.540 --> 11:29.960
+Actually you might not even need to create this entity exception handler if the default structure
+
+11:29.990 --> 11:33.770
+which is provided by spring MVC is good enough for you.
+
+11:33.900 --> 11:39.620
+But if you want to customize it then you can create a customized response entity exception handler
+
+11:39.830 --> 11:45.740
+where you can actually go ahead and customize how you would want your exception responses to look like and what
+
+11:45.740 --> 11:51.840
+kind of HTTP response status you'd want to return back. Until the next step, bye-bye.

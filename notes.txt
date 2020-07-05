@@ -78,3 +78,7 @@
 
 17. Implementing Exception Handling - 404 Resource Not Found
 - See the project. 
+
+18. Implementing Generic Exception Handling For All Resources
+- See the project. 
+
