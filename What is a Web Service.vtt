@@ -1,0 +1,250 @@
+WEBVTT
+
+00:00.840 --> 00:02.770
+Hi there! Welcome to this video,
+
+00:02.950 --> 00:06.500
+where we will try and understand what is a
+
+00:06.610 --> 00:07.380
+web service.
+
+00:07.560 --> 00:14.370
+Let's consider a simple definition of a web service. A service which is delivered over the web.
+
+00:14.400 --> 00:16.500
+Is that a complete definition?
+
+00:16.500 --> 00:17.260
+Think about it.
+
+00:17.260 --> 00:24.140
+So if I deliver a service over the Internet over HTTP, does it really become of service?
+
+00:24.270 --> 00:27.480
+You might be using a lot of web applications. Right?
+
+00:27.480 --> 00:35.550
+Facebook, Twitter, your shopping applications, a wide variety of applications. Are all of them Web services?
+
+00:35.760 --> 00:42.630
+Let's consider todo application that I have build. This application helps you to log in log out and
+
+00:42.690 --> 00:44.460
+try and manage your Todos.
+
+00:44.490 --> 00:50.330
+You can add new Todos delete existing ones and also updated the Todo information.
+
+00:50.370 --> 00:56.150
+It's a simple web application which is built using Java and Spring MVC frameworks.
+
+00:56.160 --> 00:57.710
+Is this a Web service?
+
+00:57.750 --> 00:59.700
+Let's consider a situation.
+
+01:00.060 --> 01:06.590
+A friend of mine, he's building a social application. Let's call it something like Facebook. Right?
+
+01:06.630 --> 01:12.600
+So he wants to add the features to manage Todos into his application.
+
+01:12.600 --> 01:18.130
+He wants to use some of the functionality from our Todo application which we have built.
+
+01:18.180 --> 01:23.930
+Will he be able to use the application as it is? The current application as we have built it
+
+01:23.960 --> 01:31.620
+Delivers HTML out put. HTML format which is designed for rendering data on the screen on the
+
+01:31.620 --> 01:36.740
+Browser. HTML supports like I want my menu here or I would want this data.
+
+01:36.750 --> 01:42.090
+I would want this button to on my screen. I can use HTML to design that kind of stuff.
+
+01:42.520 --> 01:49.070
+HTML is not really a format which is designed for application to application interaction.
+
+01:49.260 --> 01:51.780
+My friend does not want to give up so easily.
+
+01:51.810 --> 01:52.630
+He says OK.
+
+01:52.680 --> 01:56.660
+The output that you're delivering and it's not consumable by my application.
+
+01:56.700 --> 01:58.970
+So what are the other options that are present?
+
+01:58.980 --> 02:04.350
+He comes to me and tells me, “Hey! Haven't you really designed your application very well?”
+
+02:04.410 --> 02:06.260
+Your application is really having
+
+02:06.480 --> 02:11.820
+well defined layers. You have web layer, you have a business layer and a data layer.
+
+02:11.820 --> 02:14.540
+Can I reuse this stuff from your business layer?
+
+02:14.550 --> 02:17.050
+Your… the output from your web layer is HTML.
+
+02:17.070 --> 02:21.280
+I cannot use it. But can I use your business logic?
+
+02:21.300 --> 02:28.020
+He comes to me and says, “OK! Can I create a jar with your business logic and reuse that stuff?”
+
+02:28.050 --> 02:29.280
+Hmm..That's a good option. Right?
+
+02:29.280 --> 02:30.180
+Think about it.
+
+02:30.210 --> 02:34.910
+He wants to create a jar out of the business logic. Can he use it as it is?
+
+02:34.980 --> 02:36.760
+What does the data layer need?
+
+02:36.840 --> 02:39.890
+The data layer really needs a database. Right?
+
+02:39.900 --> 02:42.220
+So it needs a database to talk to.
+
+02:42.280 --> 02:50.100
+So what my friend needs to do now is to install a database and also there would be other dependencies.
+
+02:50.100 --> 02:54.380
+So he would need to make sure that all other dependencies are satisfied.
+
+02:54.390 --> 03:00.270
+Think about when does a change in the business logic. So let's say I am upgrading my Todo application
+
+03:00.270 --> 03:02.000
+to have some new business logic.
+
+03:02.010 --> 03:03.530
+Will he automatically get it?
+
+03:03.650 --> 03:04.370
+Nope!
+
+03:04.370 --> 03:10.470
+I wanted to actually create a jar and provide him a new version of the jar. So that he can get the new
+
+03:10.470 --> 03:12.130
+version of the business logic.
+
+03:12.150 --> 03:18.600
+We cannot consume the output from the web layer which is HTML and there are a lot of problems associated
+
+03:18.600 --> 03:22.360
+with creating a jar and trying to reuse it that way.
+
+03:22.410 --> 03:30.390
+If the Todo application is able to provide output in a format that other applications are able to understand
+
+03:30.600 --> 03:32.790
+then will it solve the problem?
+
+03:32.820 --> 03:38.220
+That's where the concept of a web service comes into picture.
+
+03:38.480 --> 03:43.290
+What we are looking at right now is the W3C definition of a web service.
+
+03:43.800 --> 03:51.960
+It says it's a software system designed to support interoperable machine to machine interaction over
+
+03:51.960 --> 03:53.080
+a network.
+
+03:53.100 --> 03:55.530
+The three key words are - interoperable,
+
+03:55.530 --> 03:59.000
+machine to machine interaction, over a network.
+
+03:59.010 --> 04:05.650
+The first thing is, web services are designed for application to application interaction.
+
+04:05.700 --> 04:11.250
+My Todo application is not a web service because it's not designed for application to application interaction.
+
+04:11.250 --> 04:15.390
+Right now it's only designed for a human interaction.
+
+04:15.630 --> 04:17.840
+If another application wants to talk to it
+
+04:17.970 --> 04:22.960
+the Todo application is not ready yet. Should be interoperable.
+
+04:23.040 --> 04:28.070
+Any other kind of application should be able to talk to my application.
+
+04:28.080 --> 04:34.380
+It can be application A which is installed on dot net. Application B which is installed on Java and application
+
+04:34.380 --> 04:40.100
+C may have been built using PHP. Irrespective of their technologies
+
+04:40.320 --> 04:44.100
+they should be able to talk to my Todo service.
+
+04:44.130 --> 04:51.600
+That's when my Todo application will become of web service and the last one is it should allow communication.
+
+04:51.620 --> 04:53.320
+over a network.
+
+04:53.340 --> 04:56.400
+We were talking about this jar option. Right?
+
+04:56.400 --> 05:04.670
+So when I create a jar and give it to my friend then the jar is installed locally. Communication would happen
+
+05:04.730 --> 05:07.750
+within the boundaries of this system.
+
+05:07.940 --> 05:11.620
+The communication will not happen over the network.
+
+05:11.720 --> 05:18.550
+In that scenario, this not really a web service. For an application to be of web service,
+
+05:18.740 --> 05:25.570
+it should allow a communication over a network. Other application should be able to talk to it.
+
+05:25.580 --> 05:28.270
+The applications could have been deployed anywhere.
+
+05:28.280 --> 05:34.470
+They might have been deployed on the same system, on a different system or somewhere on the Internet.
+
+05:34.490 --> 05:41.110
+They should be allowed to talk to my application only then my application will be a web service.
+
+05:41.240 --> 05:48.200
+What we have done in this video, is try to understand the most important things that are web service.
+
+05:48.260 --> 05:50.010
+should support.
+
+05:50.120 --> 05:55.140
+We learned that a web service should support application to application interaction.
+
+05:55.160 --> 06:01.550
+It should be interoperable and it should allow communication over the network.
+
+06:01.610 --> 06:07.240
+In the next video, we will look at how to build web services like these.

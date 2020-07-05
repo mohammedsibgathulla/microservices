@@ -1,0 +1,5 @@
+1. What Is A Web Service?
+- Software System designed to support interoperable machine-to-machine interaction over network.
+- Designed for machine-to-machine or applicaion-to-application interaction.
+- Should be interoperable (Any other kind of application should be able to talk to the application) - Not platform independent. Irrespective of technologies they should be able to talk to the webservice.
+- It should allow communication over a network.
