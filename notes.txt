@@ -45,3 +45,6 @@
 - As far as the service definitions are concerned SOAP uses WSDL. Web service definition language. REST does not have a standard definition language.
 - As far as the transport protocol is concerned SOAP does not pose any restrictions at all. You can use web that is HTTP or you can use MQ. REST is very specific about making the best use of HTTP protocol. RESTful services are typically more easier to implement than SOAP.
 - RESTful services are typically based on JSON which is an easy format to pass and do things with it and also with RESTful services. We don't really need to mandate really define a service definition. But with SOAP you have to define WSDL and there are a lot of complexities associated with parsing your XMLs as well.
+
+7. Initializing A RESTful Services Project With Spring Boot
+- Choose web, devtools, h2 & jpa in spring initializer and generate the project. 
