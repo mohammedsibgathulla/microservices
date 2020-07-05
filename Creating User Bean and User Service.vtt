@@ -1,0 +1,307 @@
+WEBVTT
+
+00:01.360 --> 00:09.350
+Welcome back! In the last few steps, we created a few simple hello world resources to understand the basics
+
+00:09.350 --> 00:15.650
+of creating different things with rest controllers. Now we would want to start shifting our attention
+
+00:15.830 --> 00:22.690
+to creating the real resources, users and the posts. What we’ll do in the initial part of the course,
+
+00:22.910 --> 00:28.970
+we will use a static array list. We’ll not really talk to a database. We’ll use a static array list to represent
+
+00:28.970 --> 00:29.950
+all our data.
+
+00:29.960 --> 00:35.330
+After learning about JPA convert all our resources to use JPA.
+
+00:35.450 --> 00:42.320
+So let's start with using a simple static list static array list and then over a period of time we would graduate
+
+00:42.620 --> 00:46.390
+to moving to JPA and storing it to an in-memory database.
+
+00:46.730 --> 00:50.470
+Let's create our first bean to store the user details.
+
+00:50.690 --> 00:57.440
+So I’ll say control N, new class, I would want to call this bean as user. For this user I would want to have
+
+00:57.440 --> 00:59.270
+a few member variables.
+
+00:59.330 --> 01:07.190
+So private, I’ll use an integer class to represent the Id and I would have private string name and let's
+
+01:07.190 --> 01:17.530
+say the user has a birth date. So I’ll say private date, birth date. What I’ll also do is import this in. So import
+
+01:17.530 --> 01:22.000
+the date in. Control one, I want to use Java Util date.
+
+01:22.140 --> 01:26.220
+Now I can go ahead and create the getters and setters
+
+01:26.350 --> 01:33.210
+in the constructor. So alt shift S,  getters and setters. I would want to say select all and say OK. Let's also generate a
+
+01:33.430 --> 01:36.580
+tostring. Again Alt Shift S, generate tostring.
+
+01:36.580 --> 01:39.010
+Or you can do a right click source generate tostring.
+
+01:39.130 --> 01:44.170
+And the last thing we would want to generate is a constructor. Generate a constructor using fields.
+
+01:44.250 --> 01:45.840
+The same thing.
+
+01:46.020 --> 01:52.140
+Right click source. Generate constructor using fields. And I would want to use id name and birth date. Let’s go ahead and do that.
+
+01:52.140 --> 01:52.740
+This is cool.
+
+01:52.780 --> 01:54.920
+This is a very simple user.
+
+01:54.940 --> 02:02.140
+This would enable us to create a few things around the user. To manage this user, I’d create something called
+
+02:02.530 --> 02:03.620
+user DAO.
+
+02:04.080 --> 02:09.220
+The user dao would be something which would be usually talking to the database and getting the details back
+
+02:09.220 --> 02:10.000
+for you.
+
+02:10.000 --> 02:15.010
+In this example, we will use a static array list in the user Dao service.
+
+02:15.160 --> 02:17.040
+So let's go ahead and do that. Before getting there,
+
+02:17.080 --> 02:22.400
+I would want to do a few small refactoring of the packages. So, I’d …RESTful web services
+
+02:22.450 --> 02:24.600
+I'll recall this as hello world.
+
+02:25.050 --> 02:33.120
+I would want to change the package name so control C, control one and I would say move it to the package.
+
+02:33.170 --> 02:40.140
+So now this one is moved to the hello world package and similar to that the hello world bean.
+
+02:40.250 --> 02:47.190
+I would also want to move it. So dot hello world package and move it to the hello world package please.
+
+02:47.470 --> 02:54.820
+And you would see that now these are in the hello world package. I would want the user to be in the
+
+02:55.670 --> 02:59.820
+dot user package. Move user to the package. We have
+
+02:59.830 --> 03:00.500
+Hello world
+
+03:00.670 --> 03:07.250
+and we have user present in here and we have RESTful web application…web services application in the root.
+
+03:07.260 --> 03:07.750
+That's cool.
+
+03:07.750 --> 03:11.060
+So now in the user, we would want to create another thing.
+
+03:11.080 --> 03:15.480
+We want call it dao service, right? So I’ll create a new class. User
+
+03:15.490 --> 03:20.110
+Dao service. One of the important things is we would want this to be managed by spring.
+
+03:20.110 --> 03:23.170
+So how do I do that? By putting at component on it.
+
+03:23.170 --> 03:24.890
+So at component,
+
+03:25.020 --> 03:27.850
+This is something which would be talking to the database.
+
+03:27.850 --> 03:32.120
+Actually, I could have put at repository on it as well because it talks to the database.
+
+03:32.140 --> 03:38.810
+But here we are using a simple array list to store the list of users. We want to create a simple list of users.
+
+03:38.830 --> 03:50.740
+So I’ll say public… actually private list of user, users is equal to new array list of users. I’m organising imports. Importing
+
+03:50.770 --> 03:57.250
+util dot list. And one of the important things that I would want this to be a static list. So private static
+
+03:57.530 --> 03:59.560
+lift of user users is equal to array list.
+
+03:59.830 --> 04:04.780
+And in the static block let's initialize a few values into users.
+
+04:04.910 --> 04:07.790
+Users dot add, new user.
+
+04:08.080 --> 04:10.070
+I’m importing java dot util dot date.
+
+04:10.180 --> 04:12.130
+Let's create a couple of users. So, 
+
+04:12.210 --> 04:18.460
+Let's say Adam, Eve, Jack and let’s change the Ids.
+
+04:18.460 --> 04:19.680
+One two three.
+
+04:19.690 --> 04:21.930
+These are very simple users.
+
+04:21.960 --> 04:22.340
+Right?
+
+04:22.340 --> 04:27.310
+So, I just have a static list where I have a list of three users and let's create a couple of methods
+
+04:27.380 --> 04:31.720
+as well. We would want to have methods to return a specific user.
+
+04:31.840 --> 04:35.730
+And also we would want to be able to return all the users back.
+
+04:35.830 --> 04:41.430
+And also we would want to be able to add a user. The methods I would want to create are findAll which returns
+
+04:41.450 --> 04:46.630
+a list of users back. And we would now create save user to save the user to the database.
+
+04:46.630 --> 04:52.510
+I mean that's basically the array list in here. And we would want to find one.. to find a specific user based
+
+04:52.510 --> 04:53.540
+on this Id.
+
+04:53.710 --> 04:59.080
+Let's start with find all. So findAll method, we would want to return a list of users back.
+
+04:59.080 --> 04:59.930
+It's very simple, right?
+
+04:59.950 --> 05:02.580
+I just need to say users and return it back.
+
+05:02.590 --> 05:03.100
+That's it.
+
+05:03.150 --> 05:08.290
+That's the findAll method. And the save user method, on the other hand, I would need to actually add the
+
+05:08.290 --> 05:09.840
+user to the list.
+
+05:09.880 --> 05:18.130
+So what I would need to do is users dot add user. One of the important things is, typically when you create
+
+05:18.130 --> 05:24.870
+a new user, the Id is calculated by the backend. The primary key is determined by the database.
+
+05:24.880 --> 05:27.940
+So let's have a counter to determine the Id.
+
+05:28.000 --> 05:33.670
+So what I’ll do is, I’ll say private static users count.
+
+05:34.480 --> 05:37.310
+Initially it's three, right? So over here,
+
+05:37.330 --> 05:40.260
+by the end of this initialization, it’s three.
+
+05:40.300 --> 05:42.580
+So users count …I’d actually need to define the type.
+
+05:42.640 --> 05:46.290
+It should be int. Users count is three.
+
+05:46.530 --> 05:51.400
+Now what I would need to do is, for the incoming user that I would want to be able to save, I would
+
+05:51.490 --> 05:56.440
+check if it's …if user dot get Id is equal to is equal to null.
+
+05:56.770 --> 06:01.170
+If it does not have an Id then what I'll do is I'll give a Id.
+
+06:01.210 --> 06:06.550
+I'll do actually a plus plus user account because the ids are 1, 2 and 3 and the next one I would want
+
+06:06.550 --> 06:10.840
+to go to 4. And once I add the user in, I’ll return user back.
+
+06:10.900 --> 06:12.310
+So the save method is very simple.
+
+06:12.310 --> 06:13.430
+I'm checking if the Id is null,
+
+06:13.430 --> 06:19.970
+If Id is not null then I'm setting the Id and I am adding the user to the list and returning the user back.
+
+06:20.000 --> 06:26.950
+Last one is find one. So we have a list of users and I would want to find one and among them.
+
+06:26.950 --> 06:27.570
+How do I do that?
+
+06:27.580 --> 06:29.590
+I just need to use array list, right?
+
+06:29.620 --> 06:33.820
+It's very simple. So, for user user in users.
+
+06:33.910 --> 06:41.320
+If user dot get Id is equal to the id which is passed in, then what we would want to do? We want to return the
+
+06:41.330 --> 06:42.060
+user back.
+
+06:42.450 --> 06:44.310
+Otherwise, I’ll return null back.
+
+06:44.350 --> 06:49.920
+That means, it's not found. In this step, until now, we defined a simple user bean, right?
+
+06:49.940 --> 06:58.270
+So, we defined a very simple user bean with an Id, name and birth date and we created a few users and we
+
+06:58.270 --> 07:02.920
+created a few methods to play around with these users.
+
+07:02.920 --> 07:11.050
+Now we have a method to return a  list of users, to save a specific user, and do a find one on the user.
+
+07:11.050 --> 07:13.840
+For now we are just using a static array list.
+
+07:14.230 --> 07:20.260
+After learning about JPA we would actually switch this application to use JPA. We'll switch all these
+
+07:20.260 --> 07:29.920
+resources to talk to a JPA backend. In the next step we will shift our attention to creating the user controller.
+
+07:30.010 --> 07:30.850
+Until then, bye-bye.
