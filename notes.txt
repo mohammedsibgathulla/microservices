@@ -19,3 +19,12 @@
 		3. Response Structure.
 		4. Endpoint. (How to call the service.)
 
+3. Web Services - Key Terminology
+ - Service Provider or Server - Which host the web service
+ - Service Consumer or Client - Which consumes the web service
+ - Service Definition - It is the contract b/n the service provider and the service consumer.
+ - Transport: It defines how a service is called is it exposed over internet or is exposed over MQ.
+ 	It has two formats
+ 			1. HTTP - over the web.
+ 			2. MQ	- Communication over a queue.	
+

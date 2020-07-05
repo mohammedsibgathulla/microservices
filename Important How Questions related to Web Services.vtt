@@ -1,0 +1,232 @@
+WEBVTT
+
+00:01.600 --> 00:04.100
+In the last video, we looked at the ‘What’
+
+00:04.100 --> 00:09.130
+related to web services. We defined what is a web service.
+
+00:09.170 --> 00:15.260
+We looked at the fact that the three keys to a web service are - it needs to support an application to
+
+00:15.260 --> 00:16.680
+application interaction.
+
+00:16.760 --> 00:23.320
+It should be platform independent and it should allow communication over a network.
+
+00:23.330 --> 00:26.150
+In this video we will shift our attention
+
+00:26.170 --> 00:33.980
+to ‘How.’ We will answers some of the important ‘How’ questions related to web services.
+
+00:33.980 --> 00:35.770
+Let's start with the first one.
+
+00:35.780 --> 00:40.130
+How does data exchange between applications take place?
+
+00:40.190 --> 00:47.490
+I have an application which is consuming a web service. How does the data exchange take place?
+
+00:47.540 --> 00:48.950
+We have an application A
+
+00:48.950 --> 00:57.320
+which is consuming a web service. Let’s say the web service is related to a Todo application and it offers a list
+
+00:57.320 --> 01:06.590
+of Todos back. The application A  needs to same some input to the web service. It needs to say I want
+
+01:06.590 --> 01:14.570
+Todos related to Ranga. So it needs to send an input called Ranga to the web service and the web
+
+01:14.570 --> 01:21.230
+service needs to send an output back. Ranga has this list of Todos. He wants to create a course on this
+
+01:21.230 --> 01:24.100
+Topic. He wants to learn this topic more.
+
+01:24.140 --> 01:31.550
+Those list of Todos have to be sent back to application A by the web service.
+
+01:31.730 --> 01:35.620
+So there is an input and there is an output.
+
+01:35.720 --> 01:45.890
+The input to a web service is called a Request and the output from a web service is called a Response.
+
+01:45.890 --> 01:52.430
+So if application A needs some data from the web service our needs to perform some action on the
+
+01:52.430 --> 01:53.500
+web service,
+
+01:53.630 --> 01:56.590
+It creates a request. Application A
+
+01:56.600 --> 02:05.690
+will create a request saying, “OK! I want details of Todos of Ranga.” Web service would look at the request,
+
+02:05.990 --> 02:14.000
+process it and it would create a response with the list of Todo's that Ranga has and it returns them
+
+02:14.000 --> 02:21.070
+back to application A. Request and response are the basic concepts behind
+
+02:21.320 --> 02:23.850
+web services. The important thing
+
+02:23.870 --> 02:28.080
+is the web services should be platform independent.
+
+02:28.190 --> 02:33.460
+Our web service we should be able to collect from a java application or dot net application and a PHP
+
+02:33.480 --> 02:35.210
+applicaiton as well.
+
+02:35.210 --> 02:36.800
+How do we achieve that?
+
+02:36.800 --> 02:37.570
+Think about it.
+
+02:37.610 --> 02:45.920
+If the request format, lets say its a specific format or a dot net specific format, will other applications
+
+02:45.920 --> 02:49.570
+in other platforms be able to send the request in the format?
+
+02:49.580 --> 02:57.570
+Nope! The important thing for the web service to be platform independent is that the request and the response
+
+02:57.800 --> 03:08.000
+also should be platform independent. They should be in formats which are supported by all different kinds
+
+03:08.090 --> 03:13.950
+of platforms. Thaere two popular formats for request and response.
+
+03:13.970 --> 03:22.070
+The first one is XML. XML stands for Extensible Markup Language. You can generate XML from a Java
+
+03:22.100 --> 03:26.850
+platform or a dot Net platform or any other platform of your choice.
+
+03:26.870 --> 03:33.170
+You have node, a closing node. Another node, another closing node which is specifying the detail
+
+03:33.230 --> 03:34.850
+of the code that we would want.
+
+03:34.850 --> 03:45.410
+I would want to get the details of course one. I'm creating an XML request. So XML is one of the popular
+
+03:45.410 --> 03:50.400
+format for request and response in Web services.
+
+03:50.450 --> 03:53.930
+The other data exchange format is JSON.
+
+03:53.930 --> 03:58.140
+JSON stands for javascript object notation.
+
+03:58.170 --> 04:03.860
+It's the language javascript, which is used typically on the front end.
+
+04:03.920 --> 04:10.130
+Now, we are also using javascript in the back end like Node JS and things like that. But javascript for a
+
+04:10.130 --> 04:18.700
+long while was a language of the front end. And JSON is how javascript represent its objects.
+
+04:18.740 --> 04:26.930
+The great thing is JSON is supported by a wide variety of platforms. Not just front end systems but also
+
+04:26.930 --> 04:29.270
+backend systems.
+
+04:29.510 --> 04:32.670
+Java, dot net and all other platforms.
+
+04:32.670 --> 04:40.330
+So to make the web service platform independent what we do is make the request and the response platform
+
+04:40.330 --> 04:41.300
+independent.
+
+04:41.300 --> 04:48.590
+The next question is how does the application A know the format of request and response. Application A
+
+04:48.680 --> 04:57.260
+needs to send a request to the web service and once it gets the response it needs to be able to process
+
+04:57.320 --> 05:00.380
+it and do whatever it wants to do with it.
+
+05:00.380 --> 05:05.270
+How does it know what request to send, where to send it,
+
+05:05.420 --> 05:08.150
+and what is the format of the response?
+
+05:08.150 --> 05:18.620
+The solution to that is service definition. Every web service offers a service definition.
+
+05:18.660 --> 05:23.490
+The service definition would specify - A) request and response format.
+
+05:23.510 --> 05:26.420
+OK! what is the format which is used for request and response?
+
+05:26.420 --> 05:27.420
+Is it JSON?
+
+05:27.500 --> 05:29.020
+Is it XML?
+
+05:29.030 --> 05:33.910
+Or is it any other format? That's specified by your service definition.
+
+05:34.070 --> 05:37.190
+It specifies the structure of the request.
+
+05:37.190 --> 05:40.400
+How can a consumer create a request?
+
+05:40.400 --> 05:43.710
+What is the format of the request. Also defined
+
+05:43.780 --> 05:51.400
+is the response structure. What is this structure of the response which is returned by the service.
+
+05:51.410 --> 05:58.010
+The last thing which is part of service definition is how to call the service. What is the end point? Where
+
+05:58.100 --> 06:01.250
+is this service available? So the application A
+
+06:01.250 --> 06:03.340
+wants to make use of the web service.
+
+06:03.420 --> 06:11.840
+In this video, we looked at the important ‘HOWs’ related to web service. How does data exchange take place through
+
+06:11.840 --> 06:13.640
+request and response.
+
+06:13.640 --> 06:19.910
+How do we make web services platform independent by creating platform independent requests and responses.
+
+06:20.300 --> 06:24.990
+By using data exchange format like XML and JSON.
+
+06:25.010 --> 06:30.210
+How does an application know the format of a request and response?
+
+06:30.230 --> 06:35.130
+We do that by providing something called a service definition.
+
+06:35.210 --> 06:40.650 
+In the next video we will look at some of the key terminology related to web services.
