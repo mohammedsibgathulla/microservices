@@ -103,3 +103,17 @@
 24. Content Negotiation - Implementing Support For XML
 - We use Accept in the header and try to access applicaton/json it will get the values but for application/xml the status is 406 Not Acceptable.	
 - By adding the jackson-dataformat-xml dependency we can get the data in the xml format.
+
+25. Monitoring APIs With Spring Boot Actuator
+- In microservice architecture it is very important to create monitoring around your api's. 
+- Acutator provides a lot of monitoring around your services. We need to use the hal browser dependincies also.
+- localhost:8080/actuator or localhost:8080/application
+- After defining management.endpoints.web.exposure.include=* in application.properties you will get lot of urls that you can use.
+- In localhost:8080 you will get the hal browser.
+- We can use hal browser to browse through the actuator. Enter /acutator and then Go.
+- auditevents show the users authenticated and the users failed.
+- beans show all the spring beans configured.
+- conditions - Autoconfiguration
+- In metrics you can see the metrics 
+- httptraces - shows all the request that were executed. You cannot enable in production as it will have performance issues.
+- mappings - shows all the different things that are mapped.
