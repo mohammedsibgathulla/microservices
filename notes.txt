@@ -96,3 +96,6 @@
 - We have to configure the LocaleResolver & ResourceBundleMessageSource
 - Default Locale: Locale.US
 - See the project.
+
+23. Internationalization For RESTful Services Part II
+- Here we have used AcceptHeaderLocaleResolver instead of SessionLocaleResolver. We have removed ResourceBundleMessageSource and directly configured in application.properties file. This is the more best way to configure internalization.
