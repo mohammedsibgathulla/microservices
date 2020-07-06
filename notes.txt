@@ -92,3 +92,7 @@
 - HATEOAS - Hyper Media As The Engine Of Application State
 - In recent versions classes in the HATEOAS are update like Resource to EntityModel, ControlLinkBuilder to WebMvcLinkBuilder 
 
+22. Internationalization For RESTful Services
+- We have to configure the LocaleResolver & ResourceBundleMessageSource
+- Default Locale: Locale.US
+- See the project.
