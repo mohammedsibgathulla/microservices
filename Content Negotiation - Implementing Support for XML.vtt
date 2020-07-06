@@ -1,0 +1,223 @@
+WEBVTT
+
+00:01.380 --> 00:07.930
+Welcome back! In this step we will understand another important concept called content negotiation.
+
+00:08.110 --> 00:14.380
+We talked about the fact that in REST resources are the most important things and these resources
+
+00:14.470 --> 00:17.300
+can have multiple representations.
+
+00:17.560 --> 00:21.520
+Until now in all our examples we have been using JSON.
+
+00:21.570 --> 00:26.780
+However, let's say I would want a XML representation of a specific resource.
+
+00:26.830 --> 00:28.070
+How do we do that?
+
+00:28.360 --> 00:31.670
+And what are the complexities in doing that?
+
+00:31.690 --> 00:35.140
+That's what we would discuss in this specific step.
+
+00:35.190 --> 00:37.980
+Until now, we have been executing a lot of get requests, right?
+
+00:37.990 --> 00:45.310
+So, we said get and when we said Send it was getting the content back.
+
+00:45.430 --> 00:47.500
+Where are we specifying that it's JSON?
+
+00:47.560 --> 00:48.880
+Actually we are not.
+
+00:48.880 --> 00:53.970
+So if you look at the headers we are not really specifying what we would want to accept.
+
+00:54.010 --> 01:02.650
+So let's now say accept application slash JSON and click send. You’d see that I would get the same response
+
+01:02.650 --> 01:03.750
+back.
+
+01:03.820 --> 01:10.220
+Let's just say I'm going to send an accept header saying application slash XML
+
+01:10.670 --> 01:15.080
+I am saying I would want a XML  response.
+
+01:15.580 --> 01:16.850
+What do you get?
+
+01:16.930 --> 01:18.970
+You get a status of four O six.
+
+01:18.970 --> 01:20.780
+Not acceptable.
+
+01:20.980 --> 01:27.400
+So what it's saying is the requested resource is only capable of generating content according to the
+
+01:27.400 --> 01:36.510
+accept headers sent in the request. What it's saying is this XML, application dot xml is not a valid
+
+01:36.780 --> 01:37.770
+accept header.
+
+01:37.770 --> 01:39.870
+So we don't support XML.
+
+01:39.870 --> 01:41.570
+That's basically what it's saying now.
+
+01:41.990 --> 01:47.890
+All our services that we created until now only work with the JSON input and the JSON output.
+
+01:47.910 --> 01:51.840
+So we're using the JSON representation of the resource.
+
+01:51.900 --> 01:58.710
+If you want to add XML format to one of the representations that is supported, how do we do that?
+
+01:59.370 --> 02:06.100
+All that we need to do is to make a simple jar available in our pom dot xml. Let’s do that right now.
+
+02:06.100 --> 02:12.410
+So let's go to the pom dot xml. All the binding from JSON to objects and objects to JSON is happening
+
+02:12.490 --> 02:14.220
+through something called Jackson.
+
+02:14.260 --> 02:16.150
+Jackson does this binding.
+
+02:16.230 --> 02:23.020
+There's another simple dependency which we can add in here which can help us with handling the XML
+
+02:23.260 --> 02:23.970
+conversion as well.
+
+02:24.120 --> 02:31.490
+You can do a simple Google search to get the group id and artifact id. It’s Jackson data format XML. So
+
+02:31.500 --> 02:33.210
+we would want to use that.
+
+02:33.220 --> 02:35.910
+I’ll take one of these versions. We will not go..
+
+02:35.980 --> 02:41.000
+We are not going to specify the version as such. All that we would need is the group id and the artifact id.
+
+02:41.040 --> 02:44.610
+So I am going to pick this group id and artifact id from here.
+
+02:44.670 --> 02:51.750
+Now I can put that in here. I’ll remove the comment. I’ll remove the version because the version we’ll get from
+
+02:52.410 --> 02:54.530
+spring boot dependency management.
+
+02:54.650 --> 03:01.020
+So all that we did until now is just added in com fasterxml jckson data format. Jackson data format xml
+
+03:01.130 --> 03:06.090
+all that you need to do is search for these in Google you should be able to get the group Id or you
+
+03:06.090 --> 03:06.960
+can type this in.
+
+03:06.990 --> 03:08.510
+So it's com faster XML
+
+03:08.610 --> 03:13.680
+Jackson data format group id. The artifact id is Jackson data format XML.
+
+03:13.920 --> 03:14.910
+If I save this,
+
+03:14.910 --> 03:19.260
+Make sure that you restart the application. I'm relaunching it.
+
+03:19.380 --> 03:25.620
+Cool! The application has restarted and now I'm going to send a request for XML representation.
+
+03:25.870 --> 03:26.520
+Awesome!
+
+03:26.700 --> 03:31.560
+Now you're getting the data back in XML format as well.
+
+03:31.560 --> 03:35.150
+So let's try other requests as well so users slash one.
+
+03:35.260 --> 03:38.920
+Does this work? Wow! this works.
+
+03:39.000 --> 03:41.350
+So you can see that I'm getting a resource back. Id is one.
+
+03:41.370 --> 03:47.120
+Name is Adam. You have the birth date, you have the links and other stuff as well.
+
+03:47.520 --> 03:51.460
+And we can even do a post. Before I do a post,
+
+03:51.530 --> 03:55.800
+I’ll do a get to local host slash users.
+
+03:56.410 --> 04:06.260
+And I would want to pick up a header accept and we’d be accepting applications xml and send. I would need to
+
+04:06.260 --> 04:14.600
+pick up this structure. So I would want to create a post request. In the body, I would want to send raw
+
+04:15.170 --> 04:20.570
+and I'm now sending application XML. That's the format that we're using here.
+
+04:20.900 --> 04:26.610
+And I would not need to set the Id. And I’ll send the name as Ranga.
+
+04:26.700 --> 04:31.570
+So what we are sending is XML representation. And let's see the header. What it's there.
+
+04:31.570 --> 04:39.070
+So the content type is application XML, the accept header is application XML and the body contains
+
+04:39.100 --> 04:47.680
+the user that I would want to create. I have to post to slash users, right? So I’m doing a post to slash users with the body as this.
+
+04:47.890 --> 04:53.250
+And you can see that the resource is created. The status is 201 created.
+
+04:53.500 --> 04:56.330
+And I can go ahead and now execute this request.
+
+04:56.740 --> 05:00.050
+And you’d see that I'm getting a new user back.
+
+05:00.100 --> 05:08.340
+So there is the third item which is present in here. Id four, name Ranga, birthdate. We have added in content
+
+05:08.350 --> 05:11.020
+negotiation feature to our RESTful service as well.
+
+05:11.020 --> 05:12.520
+So we use it as well.
+
+05:12.730 --> 05:17.070
+So based on what is in accept, whether it's JSON or XML.
+
+05:17.170 --> 05:23.650
+All that we needed to do was to just add in Jackson data format XML dependency to our application.
+
+05:23.800 --> 05:29.870
+And we are now able to support both the XML and JSON presentations for your resource.
+
+05:30.200 --> 05:31.420
+Until the next step, bye-bye.

@@ -99,3 +99,7 @@
 
 23. Internationalization For RESTful Services Part II
 - Here we have used AcceptHeaderLocaleResolver instead of SessionLocaleResolver. We have removed ResourceBundleMessageSource and directly configured in application.properties file. This is the more best way to configure internalization.
+
+24. Content Negotiation - Implementing Support For XML
+- We use Accept in the header and try to access applicaton/json it will get the values but for application/xml the status is 406 Not Acceptable.	
+- By adding the jackson-dataformat-xml dependency we can get the data in the xml format.
