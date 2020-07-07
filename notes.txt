@@ -127,3 +127,38 @@
 
 28. Versioning RESTful Services - Basic Approach with URIs
 - See the project.
+
+29. Versioning RESTful Services - Header And Content Negotiation Approach
+- We use the uri localhost:8080/person/param?version=2 in postman using RequestParam
+- To test versioning using Header Versioning us need to add the X-API-VERSION in the key in headers in postman and 1 / 2 as value
+- To versioning using produces which is also called Content Negotiation or Accept Versioning in headers in key enter Accept and for value use application/vnd.company.app-v1+json / v2
+
+- Media Type Versioning (a.k.a "content negotiation" or "accept header")
+	- Github
+- (Custom) Headers Versioning
+	- Microsoft
+
+- URI Versioning
+	- Twitter
+- Request Parameter Versioning
+	- Amazon
+- Factors 
+	- URI Pollution
+	  - If you look at the URI versioning and the Request Paramter versioning, we are actually polluting the URI space. So we are   actually creating new URIs or creating new request parameters as part of the URIs. 
+
+	- Misuse of HTTP Headers
+	  - Whereas in Media Type Versioning & Headers Versioning we are actually not polluting the URI space at all. These two do, what is called misuse of HTTP headers. HTTP header were never intended for versioning. 
+
+	- Caching
+	  - Media Type Versioning & Headers Versioning these two approaches use headers to differentiate between the requests, the caching can never come into picture because I cannot cache requests because they have the same URI. I would also need to look at the headers and do complicated things like that. So caching becomes very difficult here. But in these two options URI versioning and request paramter versioning I can still cache them because the version is part of the URI. 
+
+	- Can we execute the request on the browser?
+	  - What we did was, we executed all the requests using REST service client Postman. But think about a end user of your application. Probably most of them would be using a browser. So will they be able to execute the requests on the browser. For these two, No. For the media type versioning and custom header versioning. You cannot execute them on the normal browser. You have to actually have some kind of a plugin and the user has to have some kind of technical knowledge to be able to configure a HTTP header, HTTP request header and send the request out. But if you are using URL versioning or request parameter versioning, even a normal user would be able to fire a request very easily. I mean …I’m obviously talking about just the request to retrieve the data. As far as the request to..let’s say create something or update something, you would anyway need to send the body and that would definitely need a little bit of technical knowledge.
+
+	- API Documentation
+	  - You need to ensure that whatever thing that you are using is documented very well so your consumers know how to send the versioning input to your service. So you need to document that. And with the URI versioning and the Request Parameter versioning the documentation is a little easy because you can directly generate it out of code. But with the others it might be a little difficult to generate documentation out of code.
+
+- No Perfect Solution: The important thing to realize is there is no perfect solution. It means there is no solution which would fit everybody.
+
+- The recommended thing you to do is when you are starting building your APIs, finalize your versioning. So before you build your first API, have your versioning strategy really. Build a few examples of it, test them, make sure they are all working for your needs. That's the best you can do.
+

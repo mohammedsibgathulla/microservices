@@ -1,0 +1,403 @@
+WEBVTT
+
+00:01.330 --> 00:03.530
+In the previous step, we looked at versioning our
+
+00:03.680 --> 00:05.500
+APIs using our URI.
+
+00:05.580 --> 00:10.960
+So what are the other options that are present let's look at them in this specific step.
+
+00:10.970 --> 00:15.060
+One of the options that we have is to use a request parameter.
+
+00:15.140 --> 00:16.380
+So how do we do that?
+
+00:16.400 --> 00:22.390
+So I'll say slash person is the URI and I'll just distinguish the different method by using their name. So I’ll say
+
+00:22.620 --> 00:28.070
+slash person because we are using a request param I’ll set slash param. Let's say that’s the URI. I’ll just
+
+00:28.070 --> 00:32.550
+call this method. Param V1 and let's call this Param V2.
+
+00:32.830 --> 00:38.000
+Ok cool! Now, the code would compile but you’d still need to differentiate between these two have
+
+00:38.000 --> 00:39.670
+the same mapping.
+
+00:39.800 --> 00:45.270
+Now how do you want to distinguish them? I’ll to put a value attribute because we would want to add the second
+
+00:45.740 --> 00:50.690
+attribute in. The second attribute which we would want to add in something called params.
+
+00:50.690 --> 00:56.760
+You can say params is equal to which param you want to use for distinguishing. So I can say version
+
+00:56.870 --> 01:03.650
+is equal to one. I can copy the same thing out and say version is equal to two in here.
+
+01:03.770 --> 01:08.330
+Now we are doing versioning using a request parameter.
+
+01:08.330 --> 01:10.190
+Let's see how to execute this stuff.
+
+01:10.200 --> 01:17.700
+Now what I can do is instead of the..I need to pass in the entire one so person slash param version is equal
+
+01:17.720 --> 01:18.540
+to one.
+
+01:18.550 --> 01:23.640
+Now you would see that when I say version is equal to 1, I get Bob Charlie, version is equal to
+
+01:23.730 --> 01:27.000
+two. I get Bob and Charlie. This is cool.
+
+01:27.020 --> 01:28.340
+This is one way of doing that.
+
+01:28.340 --> 01:29.480
+We'll discuss more about
+
+01:29.480 --> 01:34.580
+advantages and disadvantages a little later. We'll just focus on initially different options that
+
+01:34.580 --> 01:35.590
+have are present.
+
+01:35.610 --> 01:38.180
+So now I would want to use another one.
+
+01:38.190 --> 01:44.090
+Another option of doing versioning. The option we want to use is called header versioning. So we would
+
+01:44.090 --> 01:51.590
+use a header parameter. We would have a parameter in the request header which would be used to differentiate
+
+01:51.590 --> 01:52.670
+between these two.
+
+01:52.670 --> 01:53.990
+So I’ll say header V1
+
+01:54.140 --> 01:56.410
+And here I'll call this header V2
+
+01:56.680 --> 02:00.890
+And instead of the params we would want to use the header params.
+
+02:00.920 --> 02:01.610
+How do we do that?
+
+02:01.610 --> 02:03.580
+We do it by using the headers.
+
+02:03.730 --> 02:09.600
+So instead of params it is headers. You can say version is equal to two or if you want to be really specific I 
+
+02:09.600 --> 02:14.320
+can say X API hyphen version is equal to two.
+
+02:14.390 --> 02:18.810
+I'm keeping it all caps because it's a header thing. Oops! I'm changing the wrong one.
+
+02:18.860 --> 02:20.270
+So let's remove it from there.
+
+02:20.330 --> 02:23.520
+It's not the one I want to change. I want to change the one with headers.
+
+02:23.560 --> 02:30.300
+So what we want to do here is X API version is equal to one.
+
+02:30.410 --> 02:36.590
+And for the second one, I would say to it’s version two. And this is a header. Slash person slash header. I’m differentiating
+
+02:36.590 --> 02:37.800
+them based on the headers.
+
+02:37.800 --> 02:39.410
+So let's see what would happen.
+
+02:39.410 --> 02:41.780
+So here we are using header.
+
+02:41.810 --> 02:49.120
+And also we want to pass in header. So X API version one.
+
+02:49.790 --> 02:51.750
+What's the response? Bob Charlie.
+
+02:52.130 --> 02:55.870
+If I send in two, name and first name last name.
+
+02:55.970 --> 02:57.850
+So this is another way of versioning.
+
+02:57.850 --> 03:00.010
+This is using something called a header.
+
+03:00.140 --> 03:05.930
+So I'm using a header called X API version and based on the request header we are differentiating them.
+
+03:06.110 --> 03:11.760
+Last option of versioning which is typically used is something called by using produces.
+
+03:11.900 --> 03:13.350
+So I rename this.
+
+03:13.350 --> 03:14.990
+So it's called produces.
+
+03:14.990 --> 03:21.290
+This is again a header parameter. However, the way this is sent in request is a little different. What we’d need
+
+03:21.290 --> 03:27.790
+to say is something of this kind. So I'm saying produces is equal to application slash vnd company app.
+
+03:27.880 --> 03:31.460
+And I'm saying my company V1. So what does the produces do?
+
+03:31.460 --> 03:38.970
+So the produces attribute is actually saying what is the output of this specific service.
+
+03:38.990 --> 03:41.600
+So what kind of output are we producing until now?
+
+03:41.780 --> 03:48.920
+So until now, we were always producing application slash JSON. Over here, we are saying, we are not producing
+
+03:48.920 --> 03:54.480
+application JSON. We are actually appending something saying we are going to do V1.
+
+03:54.500 --> 04:01.010
+So we are using produces to differentiate between these services. So lets call this produces V1.
+
+04:01.280 --> 04:04.370
+and this one, we’ll call this produces.
+
+04:04.540 --> 04:05.490
+V2.
+
+04:05.510 --> 04:07.120
+Over here, I’ll copy this.
+
+04:07.130 --> 04:11.640
+This will be, what will it be? V2
+
+04:11.770 --> 04:15.030
+How do I send this as part of our request?
+
+04:15.070 --> 04:20.590
+How did we send application JSON as part of our earlier request? Lets copy this and I would go here
+
+04:21.010 --> 04:26.380
+and this is now based on produces. We want to differentiate based on produces. So I don't want to send
+
+04:26.380 --> 04:31.450
+the API version. But I would want to send a new one. How do we send application JSON?
+
+04:32.050 --> 04:36.810
+We would say accept. So what we are saying is we would accept this version.
+
+04:36.820 --> 04:39.280
+So which version? V1 JSON.
+
+04:39.290 --> 04:40.820
+And when I send you get a.
+
+04:40.870 --> 04:48.780
+Bob Charlie back and if I say V2 you would get the new structure back first name last name and name.
+
+04:48.910 --> 04:52.370
+We created an API here and this was a version using a request param.
+
+04:52.390 --> 05:00.550
+This was used …version using a header param. And this was version using the produces. The produces is sent as
+
+05:00.820 --> 05:01.810
+accept header.
+
+05:01.840 --> 05:07.880
+So this is also called accept header versioning. And this is called header versioning. This is also called
+
+05:07.980 --> 05:13.420
+mime type versioning because applicaiton slash json is typically a mime type, right? So we are using the
+
+05:13.420 --> 05:18.950
+mime type to version our API. Mime type versioning or accept header versioning.
+
+05:18.970 --> 05:26.620
+And this is the head versiong and this would be typically called request parameter versioning and the
+
+05:26.620 --> 05:29.980
+first one which we talked about is called URI versioning.
+
+05:30.250 --> 05:36.290
+So these are the different options of versioning the APIs.
+
+05:36.480 --> 05:42.570
+So how do you really choose between them? We looked at media type versioning which was what we called Mime versioning.
+
+05:42.700 --> 05:46.690
+It is also called content negotiation or accept header versioning.
+
+05:46.900 --> 05:52.600
+And also we looked at header versioning, URI versioning and parameter versioning. Passing a
+
+05:52.690 --> 05:53.910
+request parameter.
+
+05:54.040 --> 05:57.350
+So this can be actually a request parameter versioning.
+
+05:57.490 --> 06:04.120
+The thing is, there are quite popular organizations where each one of these is used. Media type versioning
+
+06:04.120 --> 06:09.580
+is used in GitHub, custom headers versioning is used by Microsoft. URI versioning is used by Twitter and
+
+06:09.580 --> 06:16.670
+request paramter versioning is used by Amazon. The usage here is quite varied. Typically the factors
+
+06:16.720 --> 06:21.420
+that you’d need to consider when you talk about URI versioning
+
+06:21.700 --> 06:24.800
+are basically, think about the URI pollution.
+
+06:24.850 --> 06:31.160
+If you look at the URI versioning and the request paramter versioning, we are actually polluting the
+
+06:31.160 --> 06:32.030
+URI space.
+
+06:32.260 --> 06:38.350
+So we are actually creating new URIs or creating new request parameters as part of the URIs. Whereas
+
+06:38.410 --> 06:39.040
+in these two
+
+06:39.100 --> 06:46.430
+we are actually not polluting the URI space at all. These two do, what is called misuse of HTTP headers.
+
+06:46.630 --> 06:50.190
+HTTP header were never intended for versioning.
+
+06:50.260 --> 06:57.970
+And the other important factor is cashing. Because these two approaches use headers to differentiate
+
+06:58.180 --> 07:04.210
+between the requests, the caching can never come into picture because I cannot cache requests because
+
+07:04.210 --> 07:08.830
+they have the same URI. I would also need to look at the headers and do complicated things like that.
+
+07:08.830 --> 07:14.020
+So caching becomes very difficult here. But in these two options URI versioning and request paramter
+
+07:14.020 --> 07:14.590
+versioning
+
+07:14.680 --> 07:20.980
+I can still cache them because the version is part of the URI. The other important factor you can consider
+
+07:21.130 --> 07:24.050
+is executing a request on the browser.
+
+07:24.190 --> 07:29.260
+What we did was, we executed all the requests using REST service client Postman.
+
+07:29.440 --> 07:35.310
+But think about a end user of your application. Probably most of them would be using a browser.
+
+07:35.590 --> 07:41.110
+So will they be able to execute the requests on the browser. For these two,
+
+07:41.200 --> 07:44.420
+No. For the media type versioning and custom header versioning.
+
+07:44.440 --> 07:49.140
+You cannot execute them on the normal browser. You have to actually have some kind of a plugin and
+
+07:49.140 --> 07:53.920
+the user has to have some kind of technical knowledge to be able to configure a HTTP header,
+
+07:54.310 --> 07:56.780
+HTTP request header and send the request out.
+
+07:56.780 --> 08:03.340
+But if you are using URL versioning or request parameter versioning, even a normal user would be able to fire a request
+
+08:03.340 --> 08:04.450
+very easily.
+
+08:04.450 --> 08:10.270
+I mean …I’m obviously talking about just the request to retrieve the data. As far as the request to..let’s say create something
+
+08:10.270 --> 08:14.680
+or update something, you would anyway need to send the body and that would definitely need a little
+
+08:14.680 --> 08:16.300
+bit of technical knowledge.
+
+08:16.570 --> 08:21.300
+And the last one is how easy is it to generate your API documentation.
+
+08:21.340 --> 08:26.830
+You need to ensure that whatever thing that you are using is documented very well so your consumers 
+
+08:26.830 --> 08:30.720
+know how to send the versioning input to your service.
+
+08:30.790 --> 08:32.350
+So you need to document that.
+
+08:32.520 --> 08:38.980
+And with the URI versioning and the request parameter versioning the documentation is a little easy because
+
+08:38.980 --> 08:44.230
+you can directly generate it out of code. But with the others it might be a little difficult to generate
+
+08:44.230 --> 08:46.190
+documentation out of code.
+
+08:46.380 --> 08:46.710
+OK.
+
+08:46.750 --> 08:52.080
+These are the different factors that you would consider before you try and version your API.
+
+08:52.090 --> 08:55.740
+Before you even try and select an option for versioning your API.
+
+08:56.020 --> 08:58.910
+The important thing to realize is there is no perfect solution.
+
+08:58.910 --> 09:02.650
+I mean there is no solution which would fit everybody.
+
+09:02.650 --> 09:07.940
+Most important thing I would recommend you to do when you are starting building your APIs, finalize your
+
+09:07.940 --> 09:08.990
+versioning.
+
+09:09.160 --> 09:16.070
+So before you build your first API, have your versioning strategy really. Build a few examples of it, test
+
+09:16.090 --> 09:18.960
+them, make sure they are all working for your needs.
+
+09:18.990 --> 09:20.060
+That's the best you can do.
+
+09:20.080 --> 09:21.780
+Until the next step, bye-bye.
