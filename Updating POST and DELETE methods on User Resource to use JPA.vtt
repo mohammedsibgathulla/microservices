@@ -1,0 +1,199 @@
+WEBVTT
+
+00:01.770 --> 00:09.000
+Welcome back. In the previous step, we converted the retrive service, the get services, the get methods to the JPA.
+
+00:09.000 --> 00:13.490
+Now let's quickly convert our delete and the create user method.
+
+00:13.500 --> 00:15.720
+Also to use JPA, we are using
+
+00:15.760 --> 00:19.310
+service, so the thing which we would need to use is user repositoy.
+
+00:19.340 --> 00:23.870
+One of things is that the user repository delete method, that doesn’t return anything back.
+
+00:23.910 --> 00:28.780
+So I’d need to remove this code in here. So let's remove this stuff as well.
+
+00:28.860 --> 00:33.390
+So if it fails it would throw an exception and it would work on its own.
+
+00:33.390 --> 00:36.390
+So now let’s go ahead and send a delete request.
+
+00:36.540 --> 00:39.540
+So I'm going to try and delete JPA users one.
+
+00:39.600 --> 00:41.840
+And I'm sending a delete request to that.
+
+00:41.900 --> 00:43.350
+So that's successful.
+
+00:43.350 --> 00:44.280
+That's very good.
+
+00:44.280 --> 00:47.290
+I'm trying to send the request again. When I send the request again
+
+00:47.310 --> 00:50.810
+It says no entity with Id one exists.
+
+00:50.850 --> 00:53.810
+So it’s saying this the delete request has failed.
+
+00:53.820 --> 00:57.030
+So I tried to delete once and I'm trying to delete it again.
+
+00:57.090 --> 00:58.640
+It throws me an exception.
+
+00:58.650 --> 00:59.770
+That's pretty cool too.
+
+00:59.790 --> 01:01.470
+And also let’s try and
+
+01:01.530 --> 01:06.620
+do a get request to users and see what comes up.
+
+01:07.780 --> 01:11.840
+And you would see that Id one is now missing. So Jill and Jam are coming up.
+
+01:11.840 --> 01:18.020
+But AB  is no longer coming back because the Is is deleted. Let’s quickly update the other one as well. So
+
+01:18.050 --> 01:23.420
+create user, the one which we need to use is user repository. Oops!
+
+01:23.470 --> 01:25.750
+this is even smoother than earlier.
+
+01:25.850 --> 01:27.960
+All that I need to do is to change the name.
+
+01:28.070 --> 01:30.080
+Let's see if we're able to create a user.
+
+01:30.170 --> 01:37.970
+So let's change this to post. What we want to send is inside the body, the content of the user to be created.
+
+01:37.970 --> 01:39.680
+So let's go to the body.
+
+01:39.740 --> 01:48.710
+And over here there is name Ranga and two thousand zero seven nineteen which is already present. So I’ll make use of it and I’ll
+
+01:48.710 --> 01:52.310
+it’s application, you need to make sure that it's JSON application JSON raw.
+
+01:52.400 --> 01:55.610
+If you look at the headers it would have content type application JSON.
+
+01:55.760 --> 01:57.520
+I don't need the authorization actually.
+
+01:57.590 --> 02:04.490
+But that fine. Let’s go ahead and send it. When I tried to create the user I got an exception. It says constraint violation
+
+02:04.640 --> 02:07.960
+exception. What is happening is hibernate uses a sequence.
+
+02:08.040 --> 02:12.840
+Since we said on the user entity we said ID is generated value.
+
+02:12.950 --> 02:16.740
+So what Hibernate is doing is it created a sequence for us.
+
+02:16.770 --> 02:22.310
+So if we… if we look at the log and search for sequence, you'd see that there is a sequence which is being
+
+02:22.310 --> 02:28.550
+created and the sequence starts with one.  What’s hibernate… what Hibernate is doing is it's trying to insert
+
+02:28.600 --> 02:30.790
+a row with Id one.
+
+02:30.830 --> 02:34.100
+And this conflicts with the data we already have.
+
+02:34.100 --> 02:38.120
+So the in-memory database we configured, we probably populated with some data, right?
+
+02:38.130 --> 02:40.670
+So source main resources in our data dot sql.
+
+02:40.670 --> 02:43.750
+What did we do? With preconfigured some data in.
+
+02:43.940 --> 02:50.580
+So I’ll do is I’ll take a kind of a workaround. So I’ll say, this is ten thousand one. So I would be able to continue
+
+02:50.580 --> 02:51.470
+with the whole thing.
+
+02:51.490 --> 02:54.740
+So ten thousand two, ten thousand three.
+
+02:54.830 --> 03:00.170
+So I'm updating the Ids of whatever the data that is being inserted by us.
+
+03:00.410 --> 03:05.190
+So this will be inserted as ten thousand one. Whatever data which we would insert through the
+
+03:05.220 --> 03:07.480
+services, we will start with one.
+
+03:07.700 --> 03:13.470
+Let's wait for the whole thing to pick up and let's go ahead and fire the request again.
+
+03:13.790 --> 03:17.240
+Now you get two O one, created.
+
+03:17.270 --> 03:17.830
+That's cool.
+
+03:17.900 --> 03:21.650
+Let's see if this row is really created in the H2 database.
+
+03:21.650 --> 03:26.050
+Let's go to the database. I’ll refresh the page and I’ll say connect.
+
+03:26.360 --> 03:36.070
+And now I would need to do a select star from this user and run. You'll see that Id one and birthdate and Ranga.
+
+03:36.680 --> 03:38.300
+That's pretty cool, right?
+
+03:38.420 --> 03:42.770
+So we are now able to insert a row into the database as well.
+
+03:42.780 --> 03:47.790
+Now, I don't need the service anymore. That's the beauty of the whole thing.
+
+03:47.910 --> 03:54.590
+You have taken a step by step approach while converting from our in memory arraylist to the embedded
+
+03:54.590 --> 03:55.500
+database.
+
+03:55.580 --> 03:59.610
+And now we're using JPA to connect to our database.
+
+03:59.690 --> 04:01.050
+This is awesome, right? So the entire resource
+
+04:01.040 --> 04:04.500
+right now is backed up by the database.
+
+04:04.880 --> 04:10.130
+In the next step, we would add more relationships to this entity that we already have user.
+
+04:10.250 --> 04:13.860
+And we would add psot to that and see what would happen.
+
+04:13.970 --> 04:15.210
+Until the next step, bye-bye.

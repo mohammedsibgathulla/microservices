@@ -178,4 +178,7 @@ spring.security.user.password=password
 32. Updating GET Methods On User Resource to use JPA
 - See the project.
 
+33. Updating POST And DELETE Methods On User Resource To Use JPA
+- See the project.
+
 
