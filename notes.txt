@@ -181,4 +181,7 @@ spring.security.user.password=password
 33. Updating POST And DELETE Methods On User Resource To Use JPA
 - See the project.
 
+34. Creating Post Entity And Many To One Relationship With User Entity
+- See the project.
+
 

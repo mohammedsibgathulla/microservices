@@ -1,0 +1,268 @@
+WEBVTT
+
+00:02.050 --> 00:02.960
+Welcome back!
+
+00:03.020 --> 00:10.100
+When we started this course, we talked about exposing resources related to user and user’s posts.
+
+00:10.100 --> 00:19.370
+What we wanted to do was create services to get a list of all posts and create a new post. As well as retrieving
+
+00:19.430 --> 00:21.560
+a specific post.
+
+00:21.560 --> 00:25.300
+These are the URIs we designed earlier for this.
+
+00:25.460 --> 00:33.260
+So now let's create the post entity. Create a new class. I’ll call this post and this would be an entity.
+
+00:33.320 --> 00:36.660
+So I'll say entity. I'll have an Id field as usual.
+
+00:36.680 --> 00:44.780
+So I’ll call this private integer Id and we'll also have a description for the post. It’ll have a string description
+
+00:44.940 --> 00:52.010
+saying what has been posted and this is like this social media application, right? So I can post a number of
+
+00:52.010 --> 00:52.570
+things.
+
+00:52.700 --> 00:57.150
+Next one I would want to add in is user. So private user user.
+
+00:57.170 --> 01:02.190
+I would need to have a relation back to a user. I’ll say private user user.
+
+01:02.570 --> 01:04.820
+We’ll think about the mapping a little later.
+
+01:04.820 --> 01:10.310
+For now let's focus on creating all this stuff that is needed. Let’s quickly create the getters and setters as well
+
+01:10.850 --> 01:11.940
+Getters and setters.
+
+01:12.050 --> 01:15.540
+Let’s create the to string as well. Let’s be very clear here.
+
+01:15.650 --> 01:18.060
+You should not select user in here.
+
+01:18.200 --> 01:22.680
+So user would try to print the post and post will try to print the user and we would end up out-of-memory.
+
+01:22.900 --> 01:24.070
+So let's say OK.
+
+01:24.320 --> 01:27.580
+The important thing is I'm not printing the details of the user.
+
+01:27.650 --> 01:30.020
+We have created this entity called post now.
+
+01:30.040 --> 01:31.520
+So this post entity
+
+01:31.910 --> 01:33.580
+And there is a user entity.
+
+01:33.740 --> 01:39.180
+What is the relationship between this? A user entity can do many posts.
+
+01:39.260 --> 01:42.600
+So a post is tied back to one user, right?
+
+01:42.680 --> 01:44.780
+So the relationship is many to one.
+
+01:44.810 --> 01:48.900
+So there is a many to one relationship between these two objects.
+
+01:48.900 --> 01:52.430
+So how do we indicate a many to one relationship in JPA?
+
+01:52.640 --> 01:53.500
+It's very simple.
+
+01:53.510 --> 02:01.280
+I'd need to add a annotation - money to one. So I’ll say import many to one. So user has a many to one relationship
+
+02:01.430 --> 02:02.210
+with post.
+
+02:02.250 --> 02:03.900
+That's what we are mapping in here.
+
+02:04.160 --> 02:08.700
+And the other thing is I would make the fetch as lazy.
+
+02:08.720 --> 02:14.720
+So one of the important things in JPA is, if by default you would see that this would directly try
+
+02:14.720 --> 02:15.530
+to fetch the user.
+
+02:15.530 --> 02:19.100
+So the user would try and fetch the post post would try and fetch the user.
+
+02:19.130 --> 02:25.460
+And again they would be kind of recursion. On this side of the equation I'll make the fetch as lazy.
+
+02:25.550 --> 02:28.580
+That means unless call it, it will not try and fetch the details.
+
+02:28.670 --> 02:31.660
+So I’ll say fetch type dot lazy.
+
+02:31.880 --> 02:37.510
+This will not retrieve the details of the user unless you call post dot get user.
+
+02:37.520 --> 02:45.260
+The other thing I would want to make is this the primary key so at Id and this I would want hibernate to
+
+02:45.260 --> 02:51.560
+generate the value for it. So I’ll say generated value. This is the same as what we did while we were creating the
+
+02:51.560 --> 02:54.660
+Id in user. Import import.
+
+02:54.680 --> 02:59.840
+I've configured the relationship on the side of the post but but on the side of the user, we have not really
+
+02:59.840 --> 03:01.860
+configured the relationship yet.
+
+03:01.880 --> 03:04.170
+So how should the user post be?
+
+03:04.190 --> 03:07.510
+So a user can make a list of post.
+
+03:07.580 --> 03:16.310
+So a post has a one to many relationship so I'll say private post post. Actually it should be a list of
+
+03:16.500 --> 03:19.800
+post. Private list of post post.
+
+03:20.020 --> 03:22.560
+Let’s import the list in. Java util list.
+
+03:22.610 --> 03:26.580
+And the relationship that we would have in here, what should be the relationship?
+
+03:26.630 --> 03:31.890
+It's one too many. I would need to also tell, what is the mapped attribute.
+
+03:31.930 --> 03:33.790
+So, I am saying mapped by.
+
+03:33.860 --> 03:37.550
+So I'm saying which is the field which is owning the relationship.
+
+03:37.550 --> 03:41.740
+I don't want to create the relationship column in both user and post.
+
+03:41.750 --> 03:45.680
+I would actually just create the relationship column of user in post.
+
+03:45.680 --> 03:53.140
+So I'm saying it's mapped by is equal to the name of the field in post. The name of the field in post
+
+03:53.220 --> 03:54.120
+is user.
+
+03:54.260 --> 03:57.280
+I'm saying mapped by is equal to user.
+
+03:57.290 --> 04:00.660
+Now let's also create a couple of getters and setters for post.
+
+04:00.680 --> 04:06.370
+Alt shift S. Generate getters and setters. I would say generate them for post.
+
+04:06.560 --> 04:11.980
+Oops! I don't want them here. I’ll actually move them a little down. Just above to string.
+
+04:12.000 --> 04:16.640
+Now let's restart the application and see what would happen. When you look at the log, you would see
+
+04:16.640 --> 04:22.940
+that there are two tables. There is create table post. It has an Id and also it would have a foreign key. It’s called
+
+04:23.030 --> 04:24.350
+user Id integer.
+
+04:24.350 --> 04:32.120
+So the post table has a link to the user table by a user Id. A user can have multiple posts and
+
+04:32.120 --> 04:35.420
+all of them would have the same user Id against it.
+
+04:35.420 --> 04:36.700
+That's pretty cool.
+
+04:36.710 --> 04:36.970
+Right?
+
+04:36.970 --> 04:43.430
+So if you also go to the He console. If you refresh the H2 console you'd be able to see
+
+04:43.430 --> 04:49.610
+the tables in here as well. So you'd have a post table with the Id, description, user Id. And also a user
+
+04:49.610 --> 04:52.290
+table with Id, birthdate and name.
+
+04:52.310 --> 04:52.830
+That's cool.
+
+04:52.830 --> 04:57.190
+So now I can insert date into the post. How can I insert data into the post?
+
+04:57.260 --> 04:58.300
+Very simple, right?
+
+04:58.380 --> 05:03.800
+I'll open up the data dot sql file that we created earlier and I'll create a couple of posts as well.
+
+05:03.830 --> 05:10.140
+So I’ll say insert into post values. I would need to look at the database. So the first column is
+
+05:10.260 --> 05:10.820
+Id.
+
+05:10.860 --> 05:20.370
+So I'll give a post Id of let's say, let's start all post Ids with eleven thousand so eleven thousand one and the description
+
+05:20.740 --> 05:22.500
+is my first post.
+
+05:22.600 --> 05:24.370
+Not double quotes, single quotes.
+
+05:24.420 --> 05:32.220
+My first post. The user Id I would want the use is ten thousand and one. So let's say AB made this post. My first
+
+05:32.220 --> 05:32.850
+post.
+
+05:32.970 --> 05:38.210
+The things that you would need to create a post. I’ll do another insert into post. My second post.
+
+05:38.310 --> 05:41.230
+The Id, I’ll make it eleven thousand two.
+
+05:41.260 --> 05:47.130
+For AB itself I'm giving two posts. And for other users, let them have no post at all.
+
+05:47.130 --> 05:55.560
+So now, you would see that when the application starts up and I relaunch H2 and do a select star from
+
+05:55.620 --> 05:59.660
+post you are seeing the two rows in here. In the next step,
+
+05:59.700 --> 06:04.090
+Let's retreive this data using RESTful services. Until then, bye-bye.
