@@ -1,0 +1,235 @@
+WEBVTT
+
+00:01.580 --> 00:02.230
+In this video,
+
+00:02.390 --> 00:06.340
+let's discuss a key concept with APIs - Versioning.
+
+00:06.470 --> 00:11.760
+I’d think versioning is one of the toughest problems to handle as far as APIs are concerned.
+
+00:11.780 --> 00:16.820
+There are so many choices and different people opt for different choices.
+
+00:16.820 --> 00:19.360
+I don't think there's one good way to do that.
+
+00:19.370 --> 00:20.280
+There are tradeoffs.
+
+00:20.330 --> 00:22.980
+Irrespective of the way you're doing versioning.
+
+00:23.240 --> 00:24.710
+Let's get started.
+
+00:24.710 --> 00:25.920
+Why do you need versioning?
+
+00:25.970 --> 00:27.700
+Let's create a simple bean.
+
+00:27.710 --> 00:29.490
+I would want to call this person.
+
+00:29.540 --> 00:31.690
+I need to create a class first.
+
+00:32.270 --> 00:35.990
+I’ll call this person and I'll put it into a package called versioning.
+
+00:35.990 --> 00:42.820
+Let's talk about all the things related to versioning in this package. Versioning, let's say this guy has a name.
+
+00:42.980 --> 00:45.930
+So private string name.
+
+00:45.950 --> 00:52.990
+The initial version of the API, when we designed it, we created the person with a name.
+
+00:53.040 --> 00:59.100
+So I'm just making it easy by calling it person one. So person one in the version one of the APIs,
+
+00:59.330 --> 01:08.030
+he had a name. We evolved and over a period of time we recognize the need for having a separate first name
+
+01:08.030 --> 01:12.580
+and last name. We decided, in the version two, we would need to have a name.
+
+01:12.740 --> 01:18.860
+So what I'd do is create a class called name and now we are having the first name and last name. Some of the
+
+01:18.860 --> 01:27.170
+consumers want the first name and last name split out. However, the old consumers are still expecting the name
+
+01:27.350 --> 01:29.970
+to be returned as a single string.
+
+01:30.050 --> 01:32.240
+How do we solve this problem?
+
+01:32.740 --> 01:40.940
+Now, for the same API you need to have two different versions. One just giving the combined name back the other one which
+
+01:40.940 --> 01:44.410
+is returning the first name and last name separately.
+
+01:44.480 --> 01:47.650
+The example I've chosen is very very primitive.
+
+01:47.900 --> 01:53.000
+But when you go into the real world there are a lot of times you encounter these scenarios. You have
+
+01:53.000 --> 01:56.660
+to now create two different versions of these service.
+
+01:56.720 --> 02:03.260
+How do we create two versions of the same service. What are the different options that are present? Let's
+
+02:03.260 --> 02:05.270
+discuss them in this video.
+
+02:05.300 --> 02:10.820
+Let's get started with creating a few setters and getters and all that kind of stuff for all this stuff. So I’m generating
+
+02:10.820 --> 02:11.930
+getters and setters.
+
+02:11.990 --> 02:20.010
+Select all and I’ll also generate a constructor to make things easy. Generate constructor using fields and I’ll generate
+
+02:20.150 --> 02:22.720
+a no-name constructor as well.
+
+02:23.090 --> 02:24.150
+So, I’ll copy this.
+
+02:24.160 --> 02:25.770
+And let's paste it in.
+
+02:25.880 --> 02:26.340
+That's good.
+
+02:26.390 --> 02:29.450
+So this one has a no argument constructor. There are
+
+02:29.480 --> 02:31.010
+getters and setters as well.
+
+02:31.490 --> 02:34.160
+Let's do the same thing quickly for the other ones as well.
+
+02:34.400 --> 02:41.750
+So generate getters and setters. Select all, generate constructor using fields and I would generate a constructor
+
+02:41.840 --> 02:43.440
+with no arguments as well.
+
+02:43.510 --> 02:45.810
+Let’s format this.
+
+02:46.310 --> 02:48.230
+And let's move on to the other one which is person V1.
+
+02:48.230 --> 02:53.980
+Select all, quickly do that. And I’ll generate a constructor as well.
+
+02:54.050 --> 03:00.740
+One with name and the other one, just copy this, and remove the name of out of it.
+
+03:00.890 --> 03:03.850
+Ok! So what we have now is three simple classes,
+
+03:03.860 --> 03:06.450
+Right? Person V one with a string name.
+
+03:06.680 --> 03:09.830
+And we have a person V two with a name name.
+
+03:09.950 --> 03:12.640
+That's the only difference between these two guys.
+
+03:12.830 --> 03:19.690
+So let's quickly create couple of services. So a couple of methods. I’m going to create a class. I’ll just call
+
+03:19.690 --> 03:20.970
+this versioning controller.
+
+03:21.650 --> 03:27.010
+Or because it's versioning person I'll call this person person versioning controller. Let's do that.
+
+03:27.080 --> 03:28.620
+Obviously this is a rest controller.
+
+03:28.640 --> 03:31.830
+So let's put that in. Rest controller.
+
+03:31.880 --> 03:37.770
+What we want is one method which is actually returning public person V one.
+
+03:37.850 --> 03:39.990
+And let's not really make it complex.
+
+03:40.010 --> 03:47.120
+I'll just say, new person V one and I can pass in the name. Let's call him Bob Charlie and the other
+
+03:47.390 --> 03:53.340
+method actually is used for second version, person V two. I’ll call this person V two.
+
+03:53.390 --> 03:55.580
+And for him we cannot create one.
+
+03:55.580 --> 03:58.510
+So we need to create a name. So name
+
+03:58.550 --> 04:05.530
+Bob Charlie. And now I'd want to be able to expose these services from both of this.
+
+04:05.600 --> 04:11.680
+The simplest option of versioning services is by mapping different URIs to them, right?
+
+04:11.700 --> 04:20.420
+So I can say get mapping and I can very easily map different URIs to this. So I can say get mapping and say
+
+04:20.630 --> 04:28.940
+this is V one slash person and for the other, I can say V two slash person.
+
+04:28.940 --> 04:32.060
+Now let's see what would happen if I call this services
+
+04:32.060 --> 04:33.030
+No magic as such.
+
+04:33.070 --> 04:35.540
+So V1 slash person.
+
+04:35.700 --> 04:39.050
+Okay. It gives me the entire name as one.
+
+04:39.200 --> 04:43.410
+And you have V2 slash person. Bob Charlie within name.
+
+04:43.450 --> 04:45.510
+The V2 has separate first name and last name.
+
+04:45.560 --> 04:46.130
+That's cool.
+
+04:46.190 --> 04:53.480
+What we looked at until now is the basic way of doing versioning by actually mapping different URIs
+
+04:53.630 --> 04:54.500
+In the next step,
+
+04:54.500 --> 04:57.300
+We'll also look at a few more ways of doing versioning.
+
+04:57.590 --> 05:05.440
+And we would discuss what are the pros and cons for those approaches. As I said earlier, versioning is a difficult
+
+05:05.440 --> 05:12.430
+concept because while implementing versioning is easy making a choice of which method to use for doing
+
+05:12.430 --> 05:16.350
+the versioning is not very easy. Until the next step, bye-bye.

@@ -124,3 +124,6 @@
 
 27. Implementing Dynamic Filtering For RESTful Service
 - With dynamic filtering we cannot configure filtering directly on the bean.
+
+28. Versioning RESTful Services - Basic Approach with URIs
+- See the project.
