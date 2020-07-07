@@ -1,0 +1,364 @@
+WEBVTT
+
+00:01.160 --> 00:08.820
+In the previous step we looked at some static filtering. So static filtering I mean a field I don't want it to ever come in my response
+
+00:08.820 --> 00:09.140
+at all.
+
+00:09.140 --> 00:14.410
+So I can use static filtering annotations like JSON ignore or I can define the JSON ignore
+
+00:14.410 --> 00:21.960
+properties on the some bean, I’d be able to make sure that this field never comes in my response.
+
+00:21.960 --> 00:24.420
+The other option is dynamic filtering.
+
+00:24.510 --> 00:29.400
+What I would say is sometimes for some requests I would want to send these two fields alone and for
+
+00:29.400 --> 00:32.550
+other requests I would want to send these two fields.
+
+00:32.790 --> 00:38.950
+So in specific requests I don’t want to send one. In specific request I don’t want to send field three.
+
+00:39.270 --> 00:41.750
+How do we be able to do that?
+
+00:41.760 --> 00:48.660
+That's basically where the concept of dynamic filtering comes. With dynamic filtering
+
+00:48.660 --> 00:51.700
+we cannot configure filtering directly on the bean.
+
+00:51.780 --> 00:57.630
+What we’d need to do is, we need to start configuring the filtering where they’re retrieving the values.
+
+00:57.630 --> 01:04.830
+What I'll do is I’ll create a new local variable for this. I’ll say some bean is equal to new some bean. Now, I can so some filtering
+
+01:04.830 --> 01:05.450
+in here.
+
+01:05.470 --> 01:11.680
+So what I would want to do in this specific request is I would want to only send field one and field
+
+01:11.680 --> 01:13.520
+two. I don't want to send field three.
+
+01:13.680 --> 01:18.090
+So the only values I would want to map is field 1 and field two.
+
+01:18.360 --> 01:26.170
+I don't want to send field three as part of the filtering response. Over here I'd want to send field two and field three.
+
+01:26.270 --> 01:29.230
+only these two values I would want to send in the response.
+
+01:29.280 --> 01:33.800
+If you look at the current responses which are coming back, when I call filtering I'm getting all three
+
+01:33.790 --> 01:36.780
+values back because there is no static filtering
+
+01:36.800 --> 01:42.060
+defines. I have removed all that stuff. And same is the case with filtering. It returns all the three fields
+
+01:42.120 --> 01:43.520
+and their values back.
+
+01:43.560 --> 01:48.970
+I would want to configure something to enable me only to send field one and field two for filtering and
+
+01:49.080 --> 01:51.120
+field two and field three for filtering list.
+
+01:51.180 --> 01:52.370
+How do I do that?
+
+01:52.410 --> 02:00.660
+There is a class called Mapping Jackson value. To this mapping Jackson value class, mapping Jackson value. I’ll import 
+
+02:00.650 --> 02:01.800
+this in. Control space.
+
+02:01.880 --> 02:05.900
+Import it in please. We can create an instance of the mapping value class.
+
+02:05.970 --> 02:10.430
+And if you look at the code for the mapping value class you'd see that there is something called filters
+
+02:10.440 --> 02:11.720
+that you can configure.
+
+02:11.970 --> 02:16.550
+So we’ll create a mapping Jackson value class and configure a filter.
+
+02:16.770 --> 02:18.010
+Let's see how to do that.
+
+02:18.090 --> 02:21.370
+So, let's create a mapping Jackson value class.
+
+02:21.670 --> 02:24.350
+One of the things you can see is it needs a construct argument.
+
+02:24.360 --> 02:27.230
+That's basically the bean that you would want to pass in.
+
+02:27.240 --> 02:32.550
+So I would want to create a mapping Jackson value for this particular bean. Over here you can see that you
+
+02:32.550 --> 02:34.510
+can configure the filters.
+
+02:34.650 --> 02:40.860
+So I would want to configure the filters but to configure the filters I would need to actually create
+
+02:40.860 --> 02:42.060
+them. So first
+
+02:42.330 --> 02:46.380
+I’ll create a local variable, filters. So we would need to now configure the filters.
+
+02:46.440 --> 02:51.630
+What we would want to do is we would want to only send field one and field two. How do we create a filter
+
+02:51.630 --> 02:52.550
+of that kind?
+
+02:52.560 --> 02:57.450
+If I look at the class hierarchy of filter provider what you’d see is there is just one implementation
+
+02:57.510 --> 02:57.960
+of it.
+
+02:57.960 --> 03:03.380
+So its simple filter provider. Filter provider is an abstract class and we want to make use the simple filter
+
+03:03.400 --> 03:06.910
+provider which is a concrete implementation of it.
+
+03:06.970 --> 03:15.280
+I’ll say new simple filter provider. Let’s organise the imports to import it in. And in here,
+
+03:15.420 --> 03:21.930
+there is a method to add a filter. What we want to do is we would want to create a simple bean property
+
+03:21.930 --> 03:29.160
+filter. Id comma simple bean filter. And I can give any name in here. We would need to use this a little
+
+03:29.160 --> 03:30.340
+later. We'll see where.
+
+03:30.350 --> 03:35.430
+So for now, I would call this some bean filter because this is doing filtering on the some bean. I would call
+
+03:35.430 --> 03:36.680
+this some bean filter.
+
+03:36.780 --> 03:42.060
+And over here you would see that I would need to create an instance of a filter. So I’d need to define
+
+03:42.060 --> 03:44.510
+the filter. So I’ll create a local variable
+
+03:44.510 --> 03:50.180
+again. If you look at the simple bean property filter class there are a set of static methods.
+
+03:50.490 --> 03:58.200
+So I can say simple bean filter properly filter dot filter out all things except for what fields do you want
+
+03:58.200 --> 03:58.830
+to send?
+
+03:58.870 --> 04:05.810
+I’m saying simple bean property filter, filter out everything except for these two fields.
+
+04:06.060 --> 04:07.660
+So what does it do?
+
+04:07.830 --> 04:15.080
+The simple bean property filter, as it is configured right know what it will do is it will filter
+
+04:15.120 --> 04:20.220
+all the fields in the response except for field 1 and field 2.
+
+04:20.610 --> 04:23.830
+Let's quickly take a look at what we wanted to do again.
+
+04:24.030 --> 04:26.560
+So we want to send field 1 and 2 in the response.
+
+04:26.670 --> 04:30.740
+So we created a simple bean property filter saying I want to filter out
+
+04:30.780 --> 04:33.150
+all the other fields except for field one and field two.
+
+04:33.180 --> 04:39.300
+So I only want to send field one and field two in the response and I configure a filter provider with
+
+04:39.300 --> 04:45.840
+this specific filters. For this filter provider I added this filter and I created a mapping Jackson
+
+04:45.990 --> 04:51.070
+value with the bean I would want to send back and I configure this as the filter.
+
+04:51.330 --> 04:56.270
+While this kind of setup looks a little complicated when you try and code this,
+
+04:56.280 --> 04:58.310
+this would be a really simple thing to do.
+
+04:58.320 --> 05:03.910
+The last thing I would want to do is instead of returning the some bean actually what we would need to now return is the mapping
+
+05:03.910 --> 05:04.760
+Jackson value.
+
+05:04.880 --> 05:12.740
+So now I would return the mapping Jackson value. And obviously the return type is declared as some bean. I’ll change
+
+05:12.810 --> 05:15.270
+it to mapping Jackson value. That’s it.
+
+05:15.560 --> 05:21.260
+I'm saving this. Let’s execute filtering. Filtering is still returning field one value one, field two value two, field three
+
+05:21.890 --> 05:24.750
+value three. But we have configured a filter.
+
+05:25.190 --> 05:26.640
+What's going wrong?
+
+05:26.810 --> 05:29.890
+Actually there's one more step that you’d need to do.
+
+05:29.900 --> 05:34.680
+This is a common mistake that a lot of developers do when they're adding in a filter.
+
+05:34.970 --> 05:40.710
+One of the important things is the list of valid filters should be defined on the bean.
+
+05:40.790 --> 05:47.010
+So if you don't define some bean filter on the bean then whatever you’ve defined in this filter will not be executed
+
+05:47.020 --> 05:47.360
+at all.
+
+05:47.380 --> 05:53.900
+So I have to go to the some bean and I have to define a filter in here. How do we do that?
+
+05:53.900 --> 06:00.970
+It's very simple. It's called JSON filter and you can say some bean filter. I’ll import it in.
+
+06:01.070 --> 06:07.670
+And now you can send the request and you're seeing that only field one and field two are part of the
+
+06:07.670 --> 06:12.070
+response. Field three is no longer part of the response.
+
+06:12.080 --> 06:15.220
+And now I can go and change the other method as well.
+
+06:15.230 --> 06:21.180
+What did we want to do in this specific method? What did we want to return? What we wanted to send is only field
+
+06:21.200 --> 06:22.530
+two and field three back.
+
+06:22.550 --> 06:25.030
+So let's go ahead and do that. I’ll actually,
+
+06:25.400 --> 06:33.690
+Let's start with taking this thing into a variable. So I'll say alt shift L, command shift L and I would say
+
+06:33.700 --> 06:39.860
+list. For now let's just copy paste that in and over here we would not need to use some bean but we
+
+06:39.860 --> 06:42.270
+would actually need to use the list. Over here,
+
+06:42.290 --> 06:45.510
+one more thing that we wanted to do is we wanted to filter.
+
+06:45.560 --> 06:49.790
+We want to only have field two and field three in the response.
+
+06:50.270 --> 06:56.890
+Let's save that out and send the request out.  Filtering is returning field one and field two and filtering list
+
+06:56.990 --> 06:57.770
+is returning
+
+06:58.810 --> 07:05.140
+an error. That's because we're actually not returning the list back. So we're just returning a list back. We
+
+07:05.150 --> 07:08.150
+have not returned the mapping back yet. So it’s saying on the bean
+
+07:08.150 --> 07:09.970
+Also there is something called some bean filter.
+
+07:10.160 --> 07:14.500
+But actually in the return thing which we return back we did not return the filter back.
+
+07:14.510 --> 07:19.220
+So let's now return the mapping. Once you update the mapping there will be a compilation error because we need
+
+07:19.220 --> 07:23.960
+to change the return type of the method. So change the method return type to use mapping Jackson value.
+
+07:24.230 --> 07:29.050
+And you can save this down. And now I can go ahead and send the request out.
+
+07:29.310 --> 07:34.080
+Now you would see that you are only seeing field two and field three in the response.
+
+07:34.190 --> 07:34.910
+That's cool.
+
+07:34.910 --> 07:40.370
+So when I'm sending filtering I see a different set of fields. Field one and field two. When I'm executing
+
+07:40.370 --> 07:41.420
+a filtering list, 
+
+07:41.480 --> 07:47.430
+I'm seeing a different set of fields. Field two and field three. And that's pretty cool, isn't it?
+
+07:47.500 --> 07:49.340
+So this is dynamic filtering.
+
+07:49.340 --> 07:52.130
+There is some duplication between these two methods.
+
+07:52.130 --> 07:52.430
+Right?
+
+07:52.430 --> 07:58.930
+So the way we're creating the filters, setting into filters, setting it into mapping, I can actually 
+
+07:59.040 --> 08:01.970
+eliminate the duplication and create a simple method for that.
+
+08:02.120 --> 08:04.760
+So I’ll leave that as an exercise for you to try.
+
+08:04.760 --> 08:08.740
+So how do you eliminate all the duplication which is present between these two methods.
+
+08:08.780 --> 08:11.650
+In the last two steps, we looked at
+
+08:11.910 --> 08:17.570
+filtering. In the first step we looked at static filtering and in the second step now we are actually looking
+
+08:17.570 --> 08:19.180
+at Dynamic filtering.
+
+08:19.270 --> 08:20.690
+Until the next step, bye-bye.

@@ -117,3 +117,10 @@
 - In metrics you can see the metrics 
 - httptraces - shows all the request that were executed. You cannot enable in production as it will have performance issues.
 - mappings - shows all the different things that are mapped.
+
+26. Implementing Static Filtering For RESTful Service
+- You don't want to send password field in you response. You want to filer out a field. In that case we go for filtering.
+- We can use @JsonIgnore to filter a field out or we can use @JsonIgnoreProperties(value={"field1", "field2"}).
+
+27. Implementing Dynamic Filtering For RESTful Service
+- With dynamic filtering we cannot configure filtering directly on the bean.
