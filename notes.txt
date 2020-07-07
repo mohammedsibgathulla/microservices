@@ -162,3 +162,13 @@
 
 - The recommended thing you to do is when you are starting building your APIs, finalize your versioning. So before you build your first API, have your versioning strategy really. Build a few examples of it, test them, make sure they are all working for your needs. That's the best you can do.
 
+30. Implementing Basic Authentication With Spring Security
+- Basic Authentication: Here you send userId and password as part of your request. Only when you provide those userId and password you would be able to access the resource.
+- Digest Authenticatoin: Here the password digest is created and the digest is sent accross the actual password is not sent to the server.
+- OAuth or OAuth2 Auhenticatoin: 
+We will implement the basic authentication. For this add the spring security dependency. Once you restart the project you can see Using default security password printed in the console. Now when you fire the request in the postman you will get unauthrized error. In Auth of postman select BasicAuth and enter the default username as user and the password copied from log. Now once you hit you will get the response. Every time you start the password changes hence you can configure it in the application.properties file as 
+
+spring.security.user.name=username
+spring.security.user.password=password
+
+
