@@ -1,0 +1,49 @@
+WEBVTT
+
+00:01.390 --> 00:09.160
+Welcome back! In the previous steps, you would have learnt about JPA and we're ready to add JPA to the RESTful
+
+00:09.160 --> 00:11.570
+services that we created earlier.
+
+00:11.710 --> 00:18.700
+So in this step and the subsequent steps we would take the application which we built as part of our
+
+00:18.700 --> 00:20.890
+RESTful web services steps.
+
+00:20.890 --> 00:27.320
+This is the one where we talked about versioning, security, filtering and all that kind of stuff.
+
+00:27.340 --> 00:28.630
+So we'll take the RESTfull web services
+
+00:28.650 --> 00:35.220
+application resources and we will add JPA to them. What we'll do over the next few steps is
+
+00:35.300 --> 00:43.300
+we will take this user. We will actually make it something which is an entity managed by JPA and we will also
+
+00:43.300 --> 00:45.310
+create different user resource.
+
+00:45.310 --> 00:52.710
+So what we'll do is we'll take this users resource and step by step convert it from using the user dao service
+
+00:52.720 --> 01:00.100
+which is actually is a static arraylist, we would change that from this list to talk to the database.
+
+01:00.100 --> 01:05.620
+So we will have a new thing called user repository which is created which would be the one which would
+
+01:05.620 --> 01:12.900
+be talking to the database and we would step by step convert the user source to use JPA instead of the hard
+
+01:12.900 --> 01:13.360
+coded arraylist.
+
+01:13.370 --> 01:19.450
+We had a great time learning how to develop RESTful web services and I'm sure you'd have an
+
+01:19.480 --> 01:25.660
+equally interesting time converting this application to JPA. Until I you in the first step, bye-bye.

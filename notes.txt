@@ -171,4 +171,8 @@ We will implement the basic authentication. For this add the spring security dep
 spring.security.user.name=username
 spring.security.user.password=password
 
+31. Creating User Entity And Some Test Data
+- uri: localhost:8080/h2-console - To go to h2 console.
+- You have to just write the sql quries in data.sql file automatically the data inserted in the table by spring boot.
+
 
