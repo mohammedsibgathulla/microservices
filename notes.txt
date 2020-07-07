@@ -175,4 +175,7 @@ spring.security.user.password=password
 - uri: localhost:8080/h2-console - To go to h2 console.
 - You have to just write the sql quries in data.sql file automatically the data inserted in the table by spring boot.
 
+32. Updating GET Methods On User Resource to use JPA
+- See the project.
+
 

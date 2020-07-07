@@ -1,0 +1,295 @@
+WEBVTT
+
+00:03.040 --> 00:09.290
+In this step, we would want to create the service to retrieve all the users. Right now we have the user resource
+
+00:09.290 --> 00:12.470
+which is actually talking to the in-memory list.
+
+00:12.620 --> 00:15.320
+We would want to make it talk to the embedded database.
+
+00:15.560 --> 00:22.160
+What I’ll do is I’ll create this user resource again. I’ll copy and paste it in. So I’ll create a user, I’ll call
+
+00:22.360 --> 00:25.250
+this user JPA resource.
+
+00:25.250 --> 00:30.180
+So I don't want to disturb the existing resource that would serve as a reference for us all the time.
+
+00:30.410 --> 00:39.070
+So I'll rename this to user JPA resource and I’ll slowly convert the services in here from the dao service
+
+00:39.070 --> 00:44.030
+which is talking to arraylist, static array list do something called a user repository which will
+
+00:44.030 --> 00:45.080
+create queries.
+
+00:45.320 --> 00:51.050
+One of the things that you would see is the server would crash because we would have now two urls mapping
+
+00:51.050 --> 00:51.790
+to slash users.
+
+00:51.800 --> 00:55.480
+So we have user jpa resource and user resource. To separate them out
+
+00:55.490 --> 01:04.700
+what I’ll do is add a JPA to all the resources so I’ll say slash JPA as the thing which I would put in front
+
+01:04.700 --> 01:07.140
+of all the resources.
+
+01:07.180 --> 01:08.810
+Now we are very sure. Right? So 
+
+01:08.870 --> 01:14.750
+whenever I say slash jpa users, it’s coming to the user jpa service. Important thing for
+
+01:14.750 --> 01:18.650
+you to remember is  even though we're calling a JPA, it’s not really talking to the database yet.
+
+01:18.680 --> 01:20.720
+We will do that very soon.
+
+01:20.730 --> 01:24.920
+The first thing we would need to do to be able to talk to an entity, what we would need to do? We would need
+
+01:24.920 --> 01:27.520
+to create a spring data repository.
+
+01:27.620 --> 01:32.560
+So, how do we do that? Create a new class, I’ll  call this user repository.
+
+01:32.810 --> 01:33.290
+What is this?
+
+01:33.290 --> 01:35.510
+This is a at repository.
+
+01:35.600 --> 01:40.050
+Let's put an annotation on it to signify that. Import the repository please.
+
+01:40.130 --> 01:45.310
+And also the other important thing is this should be a interface actually this is not a class.
+
+01:45.350 --> 01:48.760
+The repository is an interface.
+
+01:48.860 --> 01:50.770
+And what does it extend?
+
+01:50.970 --> 01:56.370
+As we lookedat the JPA part of the course, a user repository, we would want to use JPA.
+
+01:56.390 --> 02:04.040
+So we'll use something called JPA repositoy. Let’s import the JPA repository and then we need to say what
+
+02:04.160 --> 02:08.300
+is the entity that needs to be managed. The entity that needs to be managed is user.
+
+02:08.450 --> 02:10.920
+And what is the primary key of it? The primary key
+
+02:10.930 --> 02:13.420
+of it is integer. As simple as that.
+
+02:13.420 --> 02:15.940
+Now you have the user repository ready.
+
+02:16.160 --> 02:20.860
+So what I'll do is now I would want to make use of the user repository
+
+02:20.890 --> 02:22.820
+in our user JPA resource.
+
+02:22.850 --> 02:23.780
+How do we do that?
+
+02:23.780 --> 02:28.540
+Think about it. All that we need to do is very simple, right? Private user repository
+
+02:28.540 --> 02:31.550
+I'll call this user repository.
+
+02:31.850 --> 02:34.250
+And what else do we need to do?
+
+02:34.280 --> 02:36.830
+We need to autowire it in as well.
+
+02:36.830 --> 02:40.440
+So right now the user repository is not really used at all.
+
+02:40.460 --> 02:41.270
+That's not a problem.
+
+02:41.270 --> 02:42.730
+We'll fix that very soon.
+
+02:42.770 --> 02:48.830
+And now I can use the data from the user repository. So I don't want to use the data from the
+
+02:48.830 --> 02:55.640
+list user repository dot find all. Actually one of the things that we have already followed…tried to follow 
+
+02:55.640 --> 02:56.460
+to an extent is
+
+02:56.620 --> 03:03.230
+whenever we were creating the service, user dao service, we tried to name the things with the repository
+
+03:03.310 --> 03:09.800
+convention that’s we could see all that I needed to change was user repository dot find all. Now the retrive
+
+03:09.800 --> 03:14.210
+all users is the only method which is making use of the user repository. All the other methods are
+
+03:14.210 --> 03:15.900
+getting it from the static array list.
+
+03:15.980 --> 03:20.070
+This is the only one which is actually getting the data from the embedded database.
+
+03:20.090 --> 03:22.430
+So let's go ahead and see what is happening.
+
+03:22.440 --> 03:32.470
+Let’s create a request to this. So JPA slash users. I’d  want to send a get request. You can see that
+
+03:32.470 --> 03:36.490
+the date at the bottom of your screen that is coming up is AB, Jill 
+
+03:36.630 --> 03:42.570
+and other stuff. So this is data which is coming from where? This is data which is coming from our embedded
+
+03:42.570 --> 03:43.920
+database.
+
+03:43.920 --> 03:48.650
+However, if you go ahead and say user slash one the data which would be coming back… what is the data
+
+03:48.690 --> 03:50.220
+that would be coming back?
+
+03:50.250 --> 03:54.910
+It's Adam. This is still picking it from the in memory list.
+
+03:54.960 --> 03:56.700
+So let's change that.
+
+03:56.700 --> 03:59.280
+So now users, I would get AB back.
+
+03:59.280 --> 04:03.420
+So if AB is coming back that's perfect it's coming from JPA database.
+
+04:03.790 --> 04:04.270
+OK!
+
+04:04.320 --> 04:12.260
+Now if I want to change the user also to get it from our embedded database how do we do that?
+
+04:12.270 --> 04:13.700
+It's very simple.
+
+04:13.920 --> 04:20.320
+What we would need to do is change the service. So user repository dot…
+
+04:20.620 --> 04:23.880
+So the thing is the method in the JPA has been changed.
+
+04:23.880 --> 04:27.130
+It's no longer a find one. It’s called find by id.
+
+04:27.450 --> 04:34.430
+So let's say fine by Id. I would need to pass the Id in and the other thing is the type of the user is
+
+04:34.440 --> 04:41.290
+no longer user. One of the important things is find by Id returns an optional of user.
+
+04:41.360 --> 04:49.100
+This is to ensure that whether user is null or not null, this would return a proper object.
+
+04:49.110 --> 04:51.830
+So this is actually one of the new concepts.
+
+04:51.990 --> 04:59.130
+So whenever you try and find by an Id, there are two possibilities - the id exists or not. And when it
+
+04:59.130 --> 05:00.220
+does not exist.
+
+05:00.360 --> 05:03.600
+This really comes back with a proper object.
+
+05:03.900 --> 05:05.290
+So, it will not be null.
+
+05:05.310 --> 05:10.200
+So the way I can check whether the user is there or not is not by user is equal to null.
+
+05:10.200 --> 05:15.490
+But by using user dot is present. So I'm checking if user is present.
+
+05:15.520 --> 05:22.530
+So this is coming back as a proper object. This is no longer a null. And what I would need to do to get
+
+05:22.530 --> 05:25.120
+the actual user is say user dot get.
+
+05:25.230 --> 05:30.030
+Now I can save this. Wait for the server to pick up the change and I would fire another get request
+
+05:30.030 --> 05:32.050
+to slash one. I'm getting a response 401…404
+
+05:32.080 --> 05:35.900
+not found with the message as id 1.
+
+05:36.000 --> 05:37.860
+Actually I made a small mistake.
+
+05:37.860 --> 05:42.240
+So if you look at this code which we have written probably you have already found the bug.
+
+05:42.300 --> 05:45.530
+I'm using user dot is present but actually I should do the reverse.
+
+05:45.540 --> 05:47.310
+I would say, I shouldn't need to say
+
+05:47.340 --> 05:52.890
+If not user dot is present then throw the exception. If user is not present then I would need
+
+05:52.890 --> 05:55.600
+to throw the exception. Let’s fire the request again.
+
+05:55.600 --> 06:01.080
+Now you would see that I'm getting a AB back. So AB with his birthdate and the links to JPA.
+
+06:01.110 --> 06:02.940
+Slash user is coming back.
+
+06:02.940 --> 06:04.110
+This is perfect.
+
+06:04.110 --> 06:04.870
+This is cool.
+
+06:04.950 --> 06:09.810
+In this step, what we focused on was trying to convert couple of services.
+
+06:09.970 --> 06:18.210
+We used JPA slash user, JPA slash users id and we took these services and we converted them to use JPA.
+
+06:18.240 --> 06:24.390
+We saw that it was really easy. All that we need to create was, create a repository and we were able to
+
+06:24.390 --> 06:28.370
+manage the entity and retrieve the values back. Very easy.
+
+06:28.590 --> 06:29.950
+Until the next step, bye-bye.
