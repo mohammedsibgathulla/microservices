@@ -1,0 +1,172 @@
+WEBVTT
+
+00:02.330 --> 00:08.780
+Welcome back. In the previous step, we set up the post table. We created the relationship to the user table.
+
+00:09.230 --> 00:15.830
+And in this step, let's focus on writing a service to retrieve all the posts for a specific user.
+
+00:15.980 --> 00:16.810
+How do I do that?
+
+00:16.820 --> 00:23.570
+Obviously I would need to do a GET request. So I'll create these resources at the end. As we discussed earlier.
+
+00:23.570 --> 00:27.610
+We would want to retrieve all the posts for a specific user.
+
+00:27.730 --> 00:31.470
+What I would need to do is the path would look something like this, right?
+
+00:31.500 --> 00:35.790
+So I would need to get the user id and I’ll need to get the posts.
+
+00:35.840 --> 00:44.950
+So this is how it would be and I would need to actually add in a at path variable of integer Id, int Id.
+
+00:45.140 --> 00:52.850
+So this is the id of the user and we would want to get all his posts. The way we would get user is
+
+00:53.030 --> 00:56.990
+user repository dot find by Id.
+
+00:57.020 --> 01:01.700
+So this would give me the details of the user.
+
+01:01.850 --> 01:03.470
+So I cannot return this back.
+
+01:03.470 --> 01:05.890
+I'll take it into local variable. user
+
+01:06.140 --> 01:08.910
+Optional is find by Id.
+
+01:09.020 --> 01:15.480
+If the user is not found, what would I would need to do? If not of user optional is present
+
+01:15.540 --> 01:18.720
+We need to throw the usual exception, right?
+
+01:18.860 --> 01:22.010
+So you need to tell that the user resource is not found.
+
+01:22.160 --> 01:26.500
+I'm trying to get the details of a user who is not existing.
+
+01:26.510 --> 01:32.320
+That's obviously a user not found exception so that will give you a resource not found That’s cool.
+
+01:32.420 --> 01:37.600
+Otherwise, what we need to do is to get the users. From the optional I would get the user.
+
+01:37.670 --> 01:40.140
+And I would get a list of his posts.
+
+01:40.300 --> 01:40.930
+OK.
+
+01:41.000 --> 01:45.670
+And I would want to return this back. Change method return type to list of post.
+
+01:45.950 --> 01:47.620
+That's pretty cool. Isn’t it?
+
+01:47.620 --> 01:51.230
+Now, I'll remove the few empty lines which are there in between.
+
+01:51.230 --> 02:01.160
+So we have mapped a get URI, JPA users, Id posts and we are trying to retrieve the posts that
+
+02:01.160 --> 02:03.610
+are related to a specific user.
+
+02:03.620 --> 02:10.910
+There is one more thing which we need to do before we are able execute the request. User has posts. In the
+
+02:10.910 --> 02:17.110
+user, we have a list post coming in. So whenever we convert user to JSON
+
+02:17.160 --> 02:19.750
+the posts would come by default.
+
+02:19.820 --> 02:26.240
+So in the user, there would be a tag called posts and the post of the user would come in by default. That’s perfect.
+
+02:26.240 --> 02:26.990
+That's good.
+
+02:27.110 --> 02:34.800
+But when I have a post, I only want the details of the post. I don't want the details of the user.
+
+02:34.940 --> 02:40.760
+If I also try and get the details of the user, what would happen? A recursive loop would happen. The post would 
+
+02:40.760 --> 02:45.940
+try to get the details of the user. User would try to get the details of post and so on and so forth.
+
+02:46.250 --> 02:53.520
+So it would be causing a problem and we are doing object conversion from object to JSON. So I would ignore this.
+
+02:53.550 --> 02:59.830 
+I would need to add in json ignore. Imported it in. So now this field will be ignored.
+
+03:00.020 --> 03:02.030
+Let's now fire a request to this.
+
+03:02.120 --> 03:07.010
+One of the important things is we have changed the Id of the user from one to ten thousand one.
+
+03:07.010 --> 03:12.750
+So the URI is JPA slash user slash ten thousand one slash posts.
+
+03:12.770 --> 03:18.410
+So that's the URI we are using. We are sending this request, get request and now what we are doing
+
+03:18.530 --> 03:20.020
+is we are going to say send.
+
+03:20.060 --> 03:27.080
+And you are seeing that the two details are being retrieved. So for ten thousand one, if we look at the data
+
+03:27.080 --> 03:33.410
+in the database where user Id is ten thousand one the data is two posts. elevent thousand one and eleven thousand two. my
+
+03:33.410 --> 03:35.000
+first post and my second post.
+
+03:35.170 --> 03:38.010
+And that's exactly the details that are being retrieved back.
+
+03:38.260 --> 03:43.060
+So let's try a ten thousand two. The user exists but there are no posts.
+
+03:43.190 --> 03:45.630
+So it's coming up with an empty array.
+
+03:45.830 --> 03:46.590
+That's cool.
+
+03:46.730 --> 03:50.700
+So let's try for a non-existing user - ten thousand ten. What is happening?
+
+03:50.720 --> 03:54.590
+cool. Status is 404, not found. We are saying user with id ten thousand ten
+
+03:54.700 --> 03:57.130
+is not really found. 
+
+03:57.180 --> 03:59.480
+That's perfect. This is saying resource is not found.
+
+03:59.690 --> 04:03.290
+So all the scenarios are working pretty fine.
+
+04:03.290 --> 04:06.600
+So we are able to get posts for a specific user.
+
+04:06.830 --> 04:11.920
+So in the next step, we will focus on creating a new post for our user.
+
+04:12.190 --> 04:13.310
+Until then, bye-bye.

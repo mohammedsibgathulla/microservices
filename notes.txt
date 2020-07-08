@@ -184,4 +184,8 @@ spring.security.user.password=password
 34. Creating Post Entity And Many To One Relationship With User Entity
 - See the project.
 
+35. Implementing A GET Service To Retrieve All Posts Of A User
+- See the project. 
+
+
 
