@@ -188,7 +188,9 @@ spring.security.user.password=password
 - See the project. 
 
 36. Implementing A POST Service To Create A Post For A User
-- 
+- See the project.
 
+40. Richardson Maturity Model
+- See the .vtt file.
 
 

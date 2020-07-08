@@ -1,0 +1,124 @@
+WEBVTT
+
+00:00.790 --> 00:08.170
+Before end this course, we want to give you a quick overview of all the important best practices when
+
+00:08.170 --> 00:09.420
+it comes to RESTful web services.
+
+00:09.480 --> 00:17.610
+One of the important models that you need to be aware of is something called Richardson Maturity Model.
+
+00:17.830 --> 00:23.170
+You're doing REST, you're calling your services RESTful but how RESTful are you?
+
+00:23.170 --> 00:27.120
+Richardson Maturity Model helps you evaluate this.
+
+00:27.140 --> 00:32.090
+It defines three different levels of RESTful services.
+
+00:32.290 --> 00:34.530
+Let's get started with level zero.
+
+00:34.900 --> 00:37.390
+What is level zero of Richardson.
+
+00:37.440 --> 00:43.240
+Maturity Model? It’s basically exposing your SOAP webservices in restful style.
+
+00:43.300 --> 00:49.600
+What do I mean? It’s exposing URLs like this. So you can see here that I'm not exposing resources
+
+00:49.600 --> 00:52.460
+here we are not talking about resources. These are just actions, Right?
+
+00:52.470 --> 00:55.510
+So I have an action saying get post.
+
+00:55.590 --> 00:59.730
+I have an action saying delete post. Do this do that.
+
+00:59.830 --> 01:07.830
+Retrieve all course details. Delete the course. All these things are basically exposing SOAP webservices in REST style.
+
+01:08.080 --> 01:09.330
+And this is level zero.
+
+01:09.400 --> 01:15.850
+So basically you take stuff from your SOPA web services and expose them in a REST style. That’s basically
+
+01:15.850 --> 01:18.010
+what level zero is all about.
+
+01:18.110 --> 01:25.270
+Level one is all about exposing your resources with a proper URI. So in level one, you start
+
+01:25.270 --> 01:32.010
+thinking about resources. You started migrating your services from SOAP to REST and now you started
+
+01:32.020 --> 01:38.160
+thinking about what are the resources. My resources our users, todos, accounts and things like that.
+
+01:38.410 --> 01:40.590
+So this is level one. However,
+
+01:40.600 --> 01:46.430
+the important thing to note is the fact that we are not making use of the proper http methods yet.
+
+01:46.570 --> 01:52.470
+Level 2 is level 1 plus proper use of HTTP method.
+
+01:52.630 --> 01:59.500
+So if I have to delete an account, I would send a delete request, delete HTTP request method. 
+
+01:59.560 --> 02:03.980
+I use that to send a request to HTTP servers account slash ten.
+
+02:04.040 --> 02:06.480
+If I want to create a new account.
+
+02:06.670 --> 02:07.760
+I would send it to
+
+02:07.780 --> 02:11.370
+server slash account and do a post request.
+
+02:11.530 --> 02:18.610
+If you look at most of the resources that we created as part of this course they are all at level 2
+
+02:18.880 --> 02:21.430
+level 3 is level 2 plus 
+
+02:21.550 --> 02:26.400
+HATEOAS. Hyper media as the engine of application state.
+
+02:26.500 --> 02:31.870
+What we wouldn't need to return when we are at level 3 is not just the data, not just the information
+
+02:32.110 --> 02:36.010
+but also what are the next possible actions.
+
+02:36.010 --> 02:41.570
+If I am returning information of our specific post by a Facebook user.
+
+02:41.770 --> 02:49.510
+Then I would also return information about how I can like that. How I can unlike that and how I can
+
+02:49.510 --> 02:51.480
+comment on that.
+
+02:51.520 --> 02:57.840
+So we are not just talking about the information of the post but also about the next possible actions
+
+02:58.150 --> 03:04.350
+We discussed about HATEOAS briefly in the course and we converted a resource to use HATEOAS
+
+03:04.360 --> 03:11.940
+In this quick video, we looked at the three levels of Richardson Maturity Model. It helps you evaluate at
+
+03:12.040 --> 03:18.820
+what kind of maturity you are with your RESTful services implementation. Until the next video,
+
+03:18.970 --> 03:19.300
+bye-bye.
