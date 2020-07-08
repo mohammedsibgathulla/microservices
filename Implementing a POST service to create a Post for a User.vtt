@@ -1,0 +1,262 @@
+WEBVTT
+
+00:02.010 --> 00:06.860
+Welcome back. In the previous step, we retrieved all the posts for a user. In this step,
+
+00:06.910 --> 00:12.650
+let's create the operation - that's the post operation - to enable creating the post for a user.
+
+00:12.820 --> 00:13.710
+Let's get started.
+
+00:13.810 --> 00:17.030
+I'm copying the post method that we created for user.
+
+00:17.170 --> 00:21.180
+So the URI to be mapped is Id slash posts.
+
+00:21.250 --> 00:24.590
+So we would want to post for a specific user.
+
+00:24.610 --> 00:28.070
+And that's where we would say user slash Id slash post.
+
+00:28.230 --> 00:29.940
+The post belongs to a user.
+
+00:30.040 --> 00:34.900
+So whenever we are creating a post we need to know which user you are creating the post for.
+
+00:34.900 --> 00:36.250
+So that's cool.
+
+00:36.260 --> 00:40.480
+I would copy the path variable Id from here. Let's do that quickly.
+
+00:40.480 --> 00:42.460
+This is not create user anymore.
+
+00:42.460 --> 00:44.140
+This is create post.
+
+00:44.380 --> 00:46.170
+So let’s change that as well.
+
+00:46.180 --> 00:48.480
+First, I would need to retrieve the user.
+
+00:48.680 --> 00:53.460
+What I'll do is user dot repository, find by Id.
+
+00:53.980 --> 00:56.020
+Actually we have done that in here already.
+
+00:56.020 --> 00:56.290
+Right?
+
+00:56.290 --> 00:57.380
+So let's take that.
+
+00:57.430 --> 01:01.020
+I would also need to throw an exception, So this is good code to start with.
+
+01:01.120 --> 01:02.590
+I’ll copied it in here.
+
+01:02.800 --> 01:07.210
+So what we are doing now is we are doing a find by Id, getting the user optional. If it's not present
+
+01:07.470 --> 01:14.290
+we would still throw a user not found exception because I'm trying to do a post for a specific user but that
+
+01:14.290 --> 01:15.530
+user itself does not exist.
+
+01:15.550 --> 01:17.320
+We should not let them do the post.
+
+01:17.470 --> 01:18.520
+So that's cool.
+
+01:18.520 --> 01:21.580
+The other thing I would want now is the content of the posts.
+
+01:21.580 --> 01:25.030
+What should I really post? That post post.
+
+01:25.200 --> 01:31.990
+So we get the content of the post in here and I’d a request body annotation as well. So we would get
+
+01:31.990 --> 01:38.780
+the content of the post coming in as part the request body. Over here the user is present. So now user
+
+01:38.800 --> 01:43.920
+optional dot get. I would take it into a new variable area called user. So that's cool.
+
+01:43.920 --> 01:45.910
+So I have the user variable right now.
+
+01:46.090 --> 01:53.380
+What I want to do is now I would want to add a post for this specific user. For this user I would
+
+01:53.380 --> 01:56.470
+want to create a new post.
+
+01:56.560 --> 01:57.420
+How do I do that?
+
+01:57.430 --> 02:03.400
+One of the important things is now we’d need to create a new repository. Create a new post what we would
+
+02:03.400 --> 02:07.540
+need to use is something called a post repository.
+
+02:07.540 --> 02:12.760
+So let's copy the user repository and create something called post repository because we would
+
+02:12.760 --> 02:15.120
+want to manage the posts in here.
+
+02:15.130 --> 02:19.550
+The important thing this should manage a post not a user.
+
+02:19.830 --> 02:24.600
+So I'm going to save this. I'm going to also need a post repository in the user JPA resource,
+
+02:24.660 --> 02:33.880
+Right? Over here, I’ll create a post repository instances. Post repository post repository and
+
+02:34.570 --> 02:42.760
+at autowired. And I got the user. I have post. One of the things I would need to do is map the user to the post
+
+02:42.940 --> 02:47.520
+So post set user. The user which is retrieved from the database.
+
+02:47.680 --> 02:54.920
+And then I can use the post repository. Post repository dot save the post.
+
+02:55.000 --> 03:03.570
+It should save the post to the database and I would now need to append Id but not the Id of the user
+
+03:03.580 --> 03:06.030
+Now I would need to append the id of the post to URI.
+
+03:06.070 --> 03:09.950
+And I am returning the created location back.
+
+03:09.970 --> 03:11.780
+Actually, this was really simple, right?
+
+03:11.800 --> 03:17.100
+All that we had to do to create a post was - we fetched the user. So we took the user
+
+03:17.100 --> 03:20.620
+we checked if he is there. If he is not there then we would want to throw an exception because we don't
+
+03:20.620 --> 03:24.070
+want to allow to create a post for a user who is not there.
+
+03:24.190 --> 03:31.150
+Next, we got the user. We set the user into the post and we are saving the post to the database.
+
+03:31.330 --> 03:36.580
+The post is saved. What I'm doing is, once the post is save, I'm getting the path of the post so that I
+
+03:36.580 --> 03:43.330
+can actually return the location of the created psot. So we need to return the URI. The resource URL
+
+03:43.330 --> 03:45.560
+for the created location.
+
+03:45.580 --> 03:49.650
+That's one of the best practices in REST, right? So that's what we did.
+
+03:49.660 --> 03:51.390
+Now, let's see what would happen.
+
+03:51.400 --> 03:57.850
+I would go to the earlier request that we sent. So we would want to create a new thing ten thousand ten.
+
+03:58.170 --> 04:04.220
+post and in the body I'd want to put the new post that we would want to create.
+
+04:04.460 --> 04:09.830
+I’d want to create a simple post, right? So all that I’d need to say is description, right?
+
+04:09.850 --> 04:13.870
+So that's the attribute name that we use in the post. In the post
+
+04:13.870 --> 04:18.160
+the thing is description. description my third post.
+
+04:18.220 --> 04:24.430
+Because that's the third post for ten thousand ten and I am firing the request.
+
+04:24.460 --> 04:27.140
+So the important things are raw json.
+
+04:27.280 --> 04:30.170
+I think once you have them set you should be good.
+
+04:30.190 --> 04:36.910
+And now I get a response back saying 404 not found. The mistake is ten thousand ten, it should be actually
+
+04:36.910 --> 04:42.520
+ten thousand one. We were using this Id for playing around with the request which was not found.
+
+04:42.610 --> 04:46.620
+So we have tested the negative scenario first. So 404 for ten thousand ten. That’s cool.
+
+04:46.740 --> 04:49.180
+I'm trying to create the resource for ten thousand one Id.
+
+04:49.200 --> 04:52.780
+The ten thousand one Id is mapped to AB. 
+
+04:52.900 --> 04:55.840
+So I am trying to create a new post for AB again.
+
+04:55.840 --> 04:58.640
+It returned a status of two hundred and one, created.
+
+04:58.690 --> 04:59.960
+That's pretty cool.
+
+05:00.010 --> 05:01.620
+Let's see if it's created in the database.
+
+05:03.030 --> 05:10.210
+And we want to select the post and there is my third post which is present in here. That’s very cool, isn’t?
+
+05:10.210 --> 05:17.020
+We were able to create a user, create a post and also we were able to expose different resources around
+
+05:17.020 --> 05:18.750
+different things. In this step.
+
+05:18.760 --> 05:25.510
+we updated the user JPA resource to allow us to create a post. We mapped a URI of JPA users, user Id 
+
+05:25.550 --> 05:33.460
+post and then we created the code that is needed to allow us to create a new post for the user.
+
+05:33.520 --> 05:36.290
+And we were able to successfully create a new post.
+
+05:36.370 --> 05:42.730
+You can try all the other options of error and try and executing it with nonexistent Id, some invalid
+
+05:42.730 --> 05:48.220
+content and also one of the exercises you can do is add a little bit of validation around the post. So
+
+05:48.220 --> 05:54.570
+you can have at valid annotationin here and you can have all validation added on the description field.
+
+05:54.670 --> 06:00.430
+I’ll leave that as an exercise for you. And the other exercises you can try is to add in different kinds
+
+06:00.430 --> 06:05.910
+of fields the user and the posts and try and see how the services work out.
+
+06:06.400 --> 06:07.750
+Until the next video, bye-bye.

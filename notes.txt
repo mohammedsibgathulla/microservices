@@ -187,5 +187,8 @@ spring.security.user.password=password
 35. Implementing A GET Service To Retrieve All Posts Of A User
 - See the project. 
 
+36. Implementing A POST Service To Create A Post For A User
+- 
+
 
 
