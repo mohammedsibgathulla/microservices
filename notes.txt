@@ -193,4 +193,7 @@ spring.security.user.password=password
 40. Richardson Maturity Model
 - See the .vtt file.
 
+41. RESTful Web Services - Best Practices
+- See the .vtt file.
+
 

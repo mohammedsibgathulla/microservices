@@ -1,0 +1,151 @@
+WEBVTT
+
+00:00.980 --> 00:01.550
+In this video
+
+00:01.690 --> 00:06.180
+let's quickly evaluate a few best practices in RESTful services
+
+00:06.190 --> 00:11.630
+design. The first and the last best practice is consumer first.
+
+00:11.730 --> 00:17.540
+Always think about your consumer. Have a clear idea about who your consumers are.
+
+00:17.560 --> 00:19.330
+Is it a web application?
+
+00:19.390 --> 00:25.780
+Do you expect a mobile application coming in, in the future, and have a clear idea of what they want. Before
+
+00:25.780 --> 00:27.300
+you name your resources
+
+00:27.310 --> 00:31.930
+Think from the perspective of your customers. What do they think about those resources.
+
+00:31.930 --> 00:37.240
+Will they be able to understand the naming of your resources. The simpler it is for your consumer to
+
+00:37.240 --> 00:40.210
+understand your services the better it is for you.
+
+00:40.210 --> 00:45.130
+Last but not least, have great documentation for your APIs.
+
+00:45.170 --> 00:50.680
+Swagger is one of the most popular documentation standards for RESTful APIs. But whatever standard you are
+
+00:50.680 --> 00:51.510
+using,
+
+00:51.550 --> 00:57.190
+Make sure that your consumers understand the documentation that you produce. The next important best
+
+00:57.190 --> 00:57.850
+practice.
+
+00:57.850 --> 01:05.950
+Make the best use of whatever HTTP provides. RESTful web services are based on HTTP.
+
+01:05.950 --> 01:12.000
+Make the best use of the request methods. Use the right request method appropriate for your specific action
+
+01:12.460 --> 01:19.510
+Get, Post, Put and Delete. And ensure that you're sending a proper response status back. When a resource
+
+01:19.510 --> 01:20.410
+is not found.
+
+01:20.440 --> 01:22.290
+Do not send a server error.
+
+01:22.630 --> 01:28.920
+When there is a bad request, when there is a validation error, do not send the server error. Send a bad request 400.
+
+01:29.110 --> 01:34.660
+When you create a resource do not send just success. Send created back.
+
+01:34.660 --> 01:38.710
+Think about what is the appropriate response status for your situation.
+
+01:38.710 --> 01:47.320
+Ensure that there is a no secure info that is sent in your URIs. Things like SSN, just don't go by the standard
+
+01:47.320 --> 01:48.670
+definition.
+
+01:48.670 --> 01:55.000
+Think about what you're putting in the URI and make sure that there is nothing secure that going in
+
+01:55.000 --> 01:58.560
+your URIs. Always use plurals.
+
+01:58.690 --> 02:05.940
+For example, in the course, we always used slash users. Any resource that we created was slash users slash one. Not slash
+
+02:06.000 --> 02:06.980
+user slash one.
+
+02:07.150 --> 02:14.440
+I really prefer using the plurals because it’s more readable than using the singular. When you think resources
+
+02:14.620 --> 02:19.800
+think noun’s. It user, its account.
+
+02:19.810 --> 02:20.990
+It's not delete user.
+
+02:21.040 --> 02:22.980
+It's not a delete account.
+
+02:23.050 --> 02:29.290
+Think about nouns. When you talk about resources think about nouns. Howeverthinking about noun is
+
+02:29.530 --> 02:30.760
+not always possible.
+
+02:30.760 --> 02:31.120
+Right?
+
+02:31.120 --> 02:32.650
+There are always exceptions scenarios.
+
+02:32.650 --> 02:38.560
+For example, if there's a search link on the web page. How do you do that? For all these exceptional scenarios
+
+02:38.830 --> 02:41.390
+have a consistent approach.
+
+02:41.440 --> 02:46.690
+If you are searching through something then if you are searching through users then say slash users
+
+02:47.050 --> 02:48.740
+slash search.
+
+02:48.880 --> 02:56.320
+So all the resource have the action defined. For example, this is how Github does a star
+
+02:56.320 --> 02:57.490
+on the gists.
+
+02:57.490 --> 03:05.950
+So if I put a star on the gist, the way Github sends the request is to the resource of the gist it sends a put request with
+
+03:06.040 --> 03:09.690
+star in the URI. And the same thing in delete.
+
+03:09.730 --> 03:15.010
+If I unstar something this is the request which goes out. So define a consistent approach of how you would
+
+03:15.010 --> 03:19.560
+want to handle the exceptions scenarios. Things that don't fit into the nouns.
+
+03:19.630 --> 03:22.970
+What we look at in this step are some of the best practices.
+
+03:23.020 --> 03:24.030
+in RESTful	 design.
+
+03:24.370 --> 03:27.040
+Most important thing - consumer first.
