@@ -1,0 +1,160 @@
+WEBVTT
+
+00:04.230 --> 00:10.290
+Welcome back in this video we would introduce you to the need for something called centralized application
+
+00:10.290 --> 00:14.790
+configuration or centralized micro service configuration.
+
+00:14.790 --> 00:21.210
+And we would talk about how Spring cloud config server helps us to implement it.
+
+00:21.210 --> 00:27.120
+When we talk about the microservices that we would be creating in this course we would be creating something
+
+00:27.120 --> 00:34.410
+called currency calculation service currency exchange service and limits service the details of these services are not really
+
+00:34.410 --> 00:35.760
+important for now.
+
+00:35.760 --> 00:40.560
+But the most important thing that you would need to understand is each of these micro services has its
+
+00:40.680 --> 00:42.870
+own configuration.
+
+00:43.170 --> 00:48.690
+I would not be surprised of hearing that enterprises with more than 100 200 micro services.
+
+00:48.690 --> 00:53.470
+So each of these micro services have their own configuration.
+
+00:53.620 --> 01:00.780
+This configuration might be things like database configuration or any external service configuration or
+
+01:00.980 --> 01:04.470
+the typical business logic configuration as well.
+
+01:04.500 --> 01:12.490
+There are a huge variety of things that would need to be configured for each microService the thing is
+
+01:12.580 --> 01:18.970
+there are multiple environment for each of these micro services for example the currency conversion
+
+01:18.970 --> 01:27.400
+service might be having Two QA environments and one each of all others the currency exchange service
+
+01:27.940 --> 01:31.590
+might have a lot of load on it and it has four production.
+
+01:31.600 --> 01:33.270
+environments.
+
+01:33.520 --> 01:35.230
+And two QA environments.
+
+01:35.240 --> 01:42.310
+And so what we are talking about is the fact that there are multiple microServices sometimes hundreds of them and
+
+01:42.570 --> 01:47.980
+for each of these microServices there are multiple environments.
+
+01:48.280 --> 01:54.010
+And some of these environement might have multiple instances of the same Microservice.
+
+01:54.250 --> 02:02.650
+So we are talking about managing configuration of a lot of different instances of different micro services
+
+02:03.460 --> 02:10.060
+managing the configuration individually for each application each environment is a very very difficult
+
+02:10.060 --> 02:10.570
+thing.
+
+02:10.750 --> 02:16.510
+And that's where centralized configuration comes into picture spring cloud
+
+02:16.600 --> 02:18.260
+config server says OK.
+
+02:18.460 --> 02:22.350
+You put all the configuration for you applications in a git repository.
+
+02:22.570 --> 02:31.420
+And I would take care of managing the configuration and providing it to the specific microService if
+
+02:31.600 --> 02:32.860
+limits services says.
+
+02:32.970 --> 02:37.720
+OK I would want the configuration for dev environment for limits service.
+
+02:37.890 --> 02:43.570
+The spring cloud conflict server would be able to provide it to it if currency calculation services.
+
+02:43.640 --> 02:49.600
+OK I would do want the configuration for the third instance of the production environment spring cloud config
+
+02:49.600 --> 02:54.230
+server would be able to provide a spring cloud config.
+
+02:54.270 --> 02:56.830
+server would act as the centralized.
+
+02:56.860 --> 03:04.030
+Microservice configuration application all that you would need to do is to put all the configuration
+
+03:04.030 --> 03:11.170
+for these applications for different environment in a git repository and you can connect the spring
+
+03:11.170 --> 03:18.280
+cloud config server to git repository and it can serve the configuration based on the different needs
+
+03:18.520 --> 03:21.520
+of the different instances in different environments.
+
+03:21.640 --> 03:28.990
+For all the Microservices in the screen here we are configuring the values for different instances
+
+03:29.080 --> 03:30.050
+of the limits service.
+
+03:30.190 --> 03:36.310
+So what we have configured this limits service the default values in here over here we have the properties
+
+03:36.310 --> 03:41.160
+for QA environment and over here we have the properties for dev environment.
+
+03:41.490 --> 03:48.810
+And based on the requests based on how the limits service requests the spring cloud config server would
+
+03:48.820 --> 03:53.030
+be able to provide the appropriate configuration to the limit.
+
+03:53.050 --> 04:01.880
+service what we do in the next subsequent steps is use limits service as an example we would create a simple limits
+
+04:02.030 --> 04:09.350
+service which would pick up a couple of values from configuration and we would connect the limits.
+
+04:09.380 --> 04:16.030
+service to the spring cloud config server spring cloud config server needs a git repository.
+
+04:16.060 --> 04:22.180
+We would also create a git repository and connect the spring cloud config server to that git repository.
+
+04:22.290 --> 04:27.380
+Other than that we would discuss how to store the configuration for multiple environments of the limits
+
+04:27.440 --> 04:32.580
+service and also to retrieve the configuration for a specific environment.
+
+04:32.740 --> 04:35.830
+If all this sounds a little confusing don't worry at all.
+
+04:36.060 --> 04:41.410
+You'd be discussing about this in the subsequent 10 steps and I am sure by the end of these 10 steps
+
+04:41.710 --> 04:48.260
+you will be very clear about the need and how you can configure a spring config server until the next step bye bye.

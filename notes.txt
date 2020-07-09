@@ -231,6 +231,13 @@ spring.security.user.password=password
 - See the image.
 - Use the url https://github.com/in28minutes/spring-microservices/tree/master/03.microservices
 
+46. Intro To Limits Microservice and Spring Cloud Config Server
+- Multiple microservices with mulitple environments like QA, Prod etc.
+- Spring Cloud Config Server say to put configuration in Git.
+- Spring Cloud Config Server act as centralized microservice configuration application.
+
+47. Setting Up Limits Microservice
+- See the project. 
 
 
 

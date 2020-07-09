@@ -1,0 +1,199 @@
+WEBVTT
+
+00:04.110 --> 00:12.680
+Welcome back in this step we will create a simple Microservice we will call this Microservice has limits.
+
+00:12.690 --> 00:18.930
+service there a couple of values which are configurable that we are really interested in.
+
+00:18.930 --> 00:22.970
+These are called the maximum value and the minimum value.
+
+00:23.100 --> 00:29.680
+What we want to do is initially we want to get these values from application dot properties.
+
+00:29.790 --> 00:37.300
+So we'll create a service in this application to retrieve those two values from application dot properties.
+
+00:37.530 --> 00:43.020
+Later we would connect this Micro service to a spring cloud config.
+
+00:43.080 --> 00:49.920
+Server to retrieve the configured values for now let's focus on what is needed to create this micro.
+
+00:49.930 --> 00:59.640
+Service I am at start.spring.io and I'm choosing generate a Maven project Java as the language make sure that you choose
+
+00:59.700 --> 01:06.700
+a version of spring boot which is atleast 2.0.0 i would recommend not to use this snapshot.
+
+01:06.900 --> 01:09.410
+So 2.0.0 M3.
+
+01:09.480 --> 01:15.320
+Or if there is the latest released version of 2.0 you can use that as well.
+
+01:15.330 --> 01:19.070
+Typically the group ID we would be using all through the micro.
+
+01:19.060 --> 01:23.110
+services part of the course is com in 28 minutes.
+
+01:23.110 --> 01:28.740
+Microservices and  Artifact ID is very important.
+
+01:28.760 --> 01:33.920
+Typically we don't really care about the artifact ID because they would be one or two projects that
+
+01:33.920 --> 01:36.790
+we'd be creating But during this micro.
+
+01:36.800 --> 01:43.520
+services part of the course we would be creating n number of projects we'd be creating more than 10
+
+01:43.520 --> 01:44.570
+projects.
+
+01:44.570 --> 01:49.660
+So what I would recommend you to do is exactly use the artifact id that we have here.
+
+01:49.790 --> 01:54.590
+So I would recommend you to use limits hyphen service as the artifact.
+
+01:54.880 --> 02:00.180
+Now we can use the dependences would want to develop a simple service in here.
+
+02:00.200 --> 02:06.060
+So I would choose starting as web as usual we would choose dev tools.
+
+02:06.080 --> 02:11.580
+Dev tools gives us the flexibility of picking up the application changes without needing to restart.
+
+02:11.660 --> 02:19.010
+the server we would use actuator Springboot actuator provides main monitoring capabilities around our application.
+
+02:19.190 --> 02:28.110
+And the last thing I want to use is call config client so config client spring cloud config client.
+
+02:28.160 --> 02:34.640
+This is not going to be used in the initial stages but later once we establish the spring cloud config
+
+02:34.640 --> 02:40.550
+server we would use the spring cloud config client to connect to the spring cloud config.
+
+02:40.550 --> 02:44.570
+Server we'll talk more about it when we get to the spring cloud config server.
+
+02:44.570 --> 02:48.520
+for now we are ready.
+
+02:48.530 --> 02:54.930
+The important things for you to focus on spring boot version which is greater than 2.0.0
+
+02:54.970 --> 02:57.620
+to do not use a snapshot version.
+
+02:57.680 --> 03:03.980
+So 2.0.0 m3 is the latest one I have right now so I'm using that if there really is released version after
+
+03:03.980 --> 03:05.910
+this you can use that as well.
+
+03:06.900 --> 03:09.300
+The group is com in28minutes microservice.
+
+03:09.300 --> 03:12.970
+the artifact Id be used its limits.
+
+03:13.040 --> 03:20.580
+hyphen service and we have chosen the dependences of web dev tools actuator and config client.
+
+03:20.580 --> 03:24.300
+Now you can go ahead and click generate project.
+
+03:24.410 --> 03:32.310
+This would download a zip to your downloas folder what you can do is unzip the zip and put it on
+
+03:32.490 --> 03:34.940
+some folder on your hard disk.
+
+03:35.070 --> 03:44.580
+I can import the folder as maven project file import existing maven projects you can type in existing here
+
+03:44.830 --> 03:48.090
+about existing projects into workspace.
+
+03:48.090 --> 03:52.230
+Not that one we have to choose existing Maven projects.
+
+03:52.290 --> 03:57.990
+So once you choose the existing Maven projects you get the option to enter a directory from which you
+
+03:57.990 --> 04:00.070
+want to import the maven project.
+
+04:00.090 --> 04:09.180
+From what I want to do is to import it from the folder where you unzipped your zip files and i unzip my zip file
+
+04:09.560 --> 04:12.660
+0 3 microservices limits hyphen service.
+
+04:12.770 --> 04:13.690
+This is the folder path.
+
+04:13.700 --> 04:19.560
+You can copy and pasted in here or you can use the Browse to browse to that and once you do that you
+
+04:19.560 --> 04:21.710
+should see the limits service.
+
+04:21.790 --> 04:27.500
+The Pom dot xml for the limits service come up what you can do now is just say finish.
+
+04:27.570 --> 04:33.290
+If this is the first time you're using this specific version of spring boot this might take a while.
+
+04:33.330 --> 04:38.120
+It is importing the complete project and it would set it up for you.
+
+04:38.110 --> 04:44.060
+Once the entire project is set up what you would see are folders like these.
+
+04:44.070 --> 04:48.420
+source main Java source main resources source test Java.
+
+04:48.660 --> 04:56.040
+What I would do is I would go to source main Java and run the limits servies application.
+
+04:56.200 --> 04:59.020
+They don't nothing that is present here right now.
+
+04:59.240 --> 05:03.240
+But I just wanted to make sure that I am able to launch this up fine.
+
+05:03.420 --> 05:05.670
+I would say limit service application.
+
+05:05.670 --> 05:12.410
+Right click run as job application because we have web app dependency on the class but this would lunch up
+
+05:12.420 --> 05:14.280
+as an application inside.
+
+05:14.280 --> 05:19.640
+the tomcat as you can see lunchers can get on port 8080.
+
+05:19.800 --> 05:21.300
+That's cool.
+
+05:21.480 --> 05:24.730
+We have now created a simple microservice for the limits.
+
+05:24.780 --> 05:27.200
+service in the subsequent steps.
+
+05:27.300 --> 05:31.530
+We will Add a couple of services to this limits service  until then.
+
+05:31.560 --> 05:31.890
+Bye bye.
