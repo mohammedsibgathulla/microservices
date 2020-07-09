@@ -1,0 +1,91 @@
+WEBVTT
+
+00:03.500 --> 00:10.410
+Welcome back one of the important things about this Microservice section is that we would be developing
+
+00:10.410 --> 00:12.970
+a lot of components.
+
+00:13.230 --> 00:22.200
+We would be installing at least seven different projects and therefore it's very important to standardize
+
+00:22.200 --> 00:26.210
+the ports on which we would run these applications.
+
+00:26.430 --> 00:33.690
+So if you're going to github repository spring micro services and going to the folders 0 3 Microservices
+
+00:33.780 --> 00:37.720
+that's where all the code for this section of the Course is present for the micro.
+
+00:37.720 --> 00:45.570
+service section of the Course is present and if you scroll further down you'd see a list of ports that we would
+
+00:45.570 --> 00:50.240
+be using for each of these components.
+
+00:50.300 --> 00:57.680
+So for the limit service we would always be using 8080 and 8081 and so on for the currency exchange service.
+
+00:57.740 --> 00:59.010
+It's 8000.
+
+00:59.220 --> 01:05.110
+And the next number is currency conversion service would be eight thousand one hundred and so on the
+
+01:05.160 --> 01:10.730
+spring cloud config server Netflix Eureka naming server Zuul API Gateway Server.
+
+01:10.860 --> 01:17.720
+and zipkin Distributed Tracing Server you'd be using their default ports which for Sping cloud
+
+01:17.730 --> 01:24.860
+config server its 8888 naming server its 8761, 8765 and 9411.
+
+01:24.980 --> 01:29.250
+This is one thing you need to be focused on when we are creating a component.
+
+01:29.280 --> 01:35.230
+Make sure that you're using the right tool you would stress that during the course a lot as well.
+
+01:35.430 --> 01:42.270
+This would ensure that there is no confusion about which application or which component you are really making
+
+01:42.270 --> 01:43.470
+use of.
+
+01:43.470 --> 01:51.300
+The other thing is the URLs because there are so many components that means they are lot of
+
+01:51.300 --> 01:52.950
+URLs as well.
+
+01:53.010 --> 01:58.110
+Some of the URLs are really large as well so if you look at the currency exchange services the currency
+
+01:58.110 --> 02:03.420
+conversion service especially when we are going through zuul these comp URL might get really
+
+02:03.420 --> 02:04.350
+complex.
+
+02:04.530 --> 02:10.790
+So if you're facing any problems with the URLs then you can come over to this U R L section.
+
+02:10.950 --> 02:16.530
+This contains all the URLs that we make use of in this course.
+
+02:16.530 --> 02:22.520
+So if you are facing a problem in creating URL for something then you can start from here.
+
+02:22.530 --> 02:28.580
+So this is the URL section just below the port section.
+
+02:28.640 --> 02:29.280
+That's it.
+
+02:29.300 --> 02:32.420
+Those are two things that are important to this course in this video.
+
+02:32.540 --> 02:33.690
+until the next video bye bye.

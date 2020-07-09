@@ -225,8 +225,11 @@ spring.security.user.password=password
 - Enables to adapt new technology & process it easily.
 - You can build the microservices in different technologies.
 - Dynamic Scaling.
-- 	
 
+
+45. Microservice Components - Standardizing Ports And URL	
+- See the image.
+- Use the url https://github.com/in28minutes/spring-microservices/tree/master/03.microservices
 
 
 
