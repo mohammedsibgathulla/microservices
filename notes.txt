@@ -200,5 +200,12 @@ spring.security.user.password=password
 - Small autonomous services that work together.
 - Mircroservices are services which are exposed by rest have small well chosen deployable units these units should be cloud enabled.
 
+43. Challenges With Microservices
+- Deciding what is the right bound to microservices.
+- Problem of configuration management.
+- Dynamic scale up and scale down (Dynamic Load balancing).
+- How to identify the bug & monitoring.
+- Fault tolerance in microservices.
+
 
 

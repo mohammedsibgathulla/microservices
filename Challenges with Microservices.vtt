@@ -1,0 +1,208 @@
+WEBVTT
+
+00:03.750 --> 00:04.390
+This we do.
+
+00:04.550 --> 00:10.040
+Let's discuss about the different challenges with building your MicroServices
+
+00:10.190 --> 00:15.890
+We will start with the problem number one which is bounded context what do I mean.
+
+00:15.920 --> 00:17.140
+Earlier we said instead of.
+
+00:17.160 --> 00:17.550
+One.
+
+00:17.550 --> 00:23.920
+Big monolith application we'd be building about five small microservices or 10 or 20 or hundred.
+
+00:24.020 --> 00:28.360
+How do you identify the boundary for each of these microservices.
+
+00:28.360 --> 00:32.600
+How do you identify what to do in each of these microservices.
+
+00:32.600 --> 00:36.220
+How do you decide what you should do and what you should not do.
+
+00:36.230 --> 00:42.650
+Thing is for new applications this is especially much more difficult because probably you don't really
+
+00:42.650 --> 00:48.230
+have the business knowledge to be able to establish the right boundaries between these micorservices.
+
+00:48.620 --> 00:52.630
+What I found in my experience is deciding the boundaries of micorservices.
+
+00:52.660 --> 00:58.190
+This is an evolutionary process it's not something you would get it right the first time.
+
+00:58.220 --> 01:00.630
+It's something which you need to play around with.
+
+01:00.800 --> 01:06.860
+Try and follow different domain design try to identify the right boundaries for the microservices based
+
+01:06.860 --> 01:09.830
+on the knowledge you have at that point in time.
+
+01:09.830 --> 01:16.160
+The important thing to understand is as you keep gaining knowledge you should put that knowledge back
+
+01:16.340 --> 01:22.220
+into the microservices into deciding what is the right boundaries for these.
+
+01:22.220 --> 01:26.810
+microservices  the next important challenge for microservices.
+
+01:26.820 --> 01:29.500
+is configuration management.
+
+01:29.510 --> 01:35.540
+We said we would have five or 50 microservices these microservices have multiple instances in
+
+01:35.540 --> 01:39.520
+each environment and there are multiple environments and we don't mind.
+
+01:40.070 --> 01:48.200
+So let's say there are 10 microservices with 5 environments and let's say 50 instances to be talking
+
+01:48.200 --> 01:56.300
+about basically tons of configuration and thats a lot of work for the operation team to maintain an important
+
+01:56.300 --> 02:04.060
+challenge is the dynamic scale up and scale down establishing the technology to be able to do that 
+
+02:04.070 --> 02:11.990
+The loads on different microservices will be different at different instances of time and at particular instance
+
+02:11.990 --> 02:15.390
+I might need two instances of Microservice2.
+
+02:15.440 --> 02:20.570
+But later at a different point in time I might me needing 10 instances of this.
+
+02:20.840 --> 02:29.600
+So I should be able to bring the new instances of Microservice is up and bring down older instances of
+
+02:29.600 --> 02:32.440
+Microservice when they are not really needed.
+
+02:32.450 --> 02:40.040
+All this with dynamic load balancing because when there is one instance of Microservice1 and there
+
+02:40.040 --> 02:46.670
+are four instances of Microservice2  then I would want to distribute the load between all the instances
+
+02:46.670 --> 02:48.200
+of Microservice2.
+
+02:48.440 --> 02:54.140
+And if there are four instances of Microservice2 coming up then I would want to ensure that all the new ones
+
+02:54.200 --> 02:58.390
+are also being used to the fullest extent.
+
+02:58.400 --> 03:05.490
+So we need the ability to dynamically bring in new instances and also to distribute the load among the
+
+03:05.510 --> 03:12.370
+new instances the forth and one of the most important challenges is visibility.
+
+03:12.410 --> 03:18.380
+If I say the functionality is now distributed among 10 microservices and there is a bug How do you
+
+03:18.380 --> 03:21.410
+identify where the bug is.
+
+03:21.560 --> 03:28.100
+You need to have a centralized log where I can go and find out what happened for a specific request
+
+03:28.370 --> 03:35.000
+which MicroService caused the problem not just that we also need monitoring around these microservices
+
+03:35.000 --> 03:40.550
+because we have hundreds ofmicroservices we need to be able to identify the microservices which
+
+03:40.640 --> 03:41.580
+are down.
+
+03:41.660 --> 03:46.870
+We would want to be able to automatically identify those where there is not enough disk space.
+
+03:46.970 --> 03:50.330
+All these kind of things need to be automated.
+
+03:50.480 --> 03:55.850
+So we need great visibility into what's happening with these microservices.
+
+03:55.880 --> 04:02.550
+And last but not the least important of them is the fact that if it's not well-designed microservices
+
+04:02.600 --> 04:10.090
+architecture can be like backoff got  what do I mean it's basically that in microservices architecture.
+
+04:10.100 --> 04:14.300
+You have one microservice is calling another another calling another.
+
+04:14.390 --> 04:19.580
+So there would be certain microservices which would be the fundamental for the whole thing.
+
+04:19.580 --> 04:24.880
+And if that microservice goes down then the entire application might go down.
+
+04:24.880 --> 04:30.180
+So it's like a pack of cards you're building one over the top of the other and so on and so on.
+
+04:30.530 --> 04:37.070
+And therefore they get collapse very easily and therefore it's very important for you to have fault
+
+04:37.300 --> 04:44.420
+tolerance in your microservices in this we looked at the 5 important challenges related
+
+04:44.420 --> 04:45.910
+to microservices.
+
+04:45.980 --> 04:51.440
+We started with bounded context identifying what is the right context for you or microservice is what
+
+04:51.440 --> 04:53.460
+is the right boundary for your.
+
+04:53.510 --> 05:00.650
+microservice  we talked about the problem of configuration management hundreds of microservices and
+
+05:00.800 --> 05:04.890
+a lot of environments there is tons of configuration that you would want to manage.
+
+05:04.890 --> 05:10.830
+How do we simplify say that we would want to be able to dynamically scale up and scale down and dynamically
+
+05:10.830 --> 05:14.610
+distribute load among the active instances.
+
+05:14.610 --> 05:15.930
+How do we do that.
+
+05:15.930 --> 05:21.720
+We want to have great visibility into what's happening behind the scenes with each of these microservices 
+
+05:21.840 --> 05:28.230
+a simple request might involve 10 microservices  how do I determine which microservice  was
+
+05:28.350 --> 05:30.180
+caused for a defect.
+
+05:30.180 --> 05:34.650
+How do I know if all my microservices are up and running.
+
+05:34.800 --> 05:42.120
+And how do I prevent one microservice  being down taking down the entire application.
+
+05:42.120 --> 05:46.560
+How do I build fault tolerance into my microservices.
+
+05:47.010 --> 05:48.300
+And then the next step bye.
