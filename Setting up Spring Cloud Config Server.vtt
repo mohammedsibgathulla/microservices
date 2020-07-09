@@ -1,0 +1,139 @@
+WEBVTT
+
+00:03.760 --> 00:09.520
+Welcome back in the previous step we created a simple limit service to pick up a couple of values from
+
+00:09.520 --> 00:14.820
+application dot properties in this step let's start setting up our spring cloud config.
+
+00:14.830 --> 00:20.230
+Server what will do is will create a new project using start dot soring dot io.
+
+00:20.620 --> 00:25.870
+So as usual we'll pick up maven Project java make sure that you're using the same spring boot version.
+
+00:25.900 --> 00:32.350
+throughout these micro service videos have you 2 dot 0 dot 0 dot m3 earlier.
+
+00:32.370 --> 00:35.000
+So I'll continue using that group ID.
+
+00:35.070 --> 00:41.410
+Will continue to use com in28minutes micro services the artifact ID for this we would want
+
+00:41.410 --> 00:46.660
+to give is spring cloud config server.
+
+00:46.860 --> 00:55.270
+So it's spring cloud config server that's the artifact id that I would want to give it and I would want to add
+
+00:55.360 --> 01:00.560
+in the dependencies on cloud config server.
+
+01:00.680 --> 01:08.440
+So you can type in cloud config or you can type in config so pick that up so config server is the one
+
+01:08.440 --> 01:09.390
+which you would want.
+
+01:09.490 --> 01:18.100
+I don't need config client I will also remove web and actuator so the only things that we are really having as dependencies
+
+01:18.100 --> 01:20.610
+are config server and dev tools.
+
+01:20.720 --> 01:26.950
+Now I can generate a project this would download a zip file extract it to some folder on your hard disk
+
+01:27.250 --> 01:29.890
+and we'll import it into eclipse.
+
+01:29.890 --> 01:34.750
+Once you have unzip the folder it was specific folder on your hard drive you can import it easy ways.
+
+01:34.760 --> 01:44.290
+Some maven projects so file import existing maven projects you can type in next i have copied it to a folder.
+
+01:44.540 --> 01:49.010
+0 3 Micro services spring cloud config.
+
+01:49.030 --> 01:53.160
+Now you can see that in here so com in28minutes Micro services spring.
+
+01:53.490 --> 01:55.500
+Cloud config server let's.
+
+01:55.660 --> 01:58.040
+Go ahead and finish.
+
+01:58.210 --> 02:00.000
+This would import the hole thing out.
+
+02:00.010 --> 02:06.490
+It might take a little while is the first time you're using that spring boot version or even if this is
+
+02:06.520 --> 02:08.730
+the first time you're using spring cloud.
+
+02:09.010 --> 02:15.180
+If you open up the pom dot XML you should see a couple of important dependencies cloud config server
+
+02:15.550 --> 02:21.790
+is the main dependency which enables the cloud config server functionality.
+
+02:21.820 --> 02:27.310
+Other than that we have dev tools to make sure that the server can pick up changes directly without
+
+02:27.310 --> 02:28.110
+restarting.
+
+02:28.510 --> 02:33.580
+Before we do anything with the spring cloud config server what we'll do is we'll assign the application
+
+02:33.580 --> 02:42.350
+name and port will give it a application name of spring cloud config.
+
+02:42.430 --> 02:48.990
+server then the other thing will also do is we will run it on a specific port.
+
+02:48.990 --> 02:55.460
+If you look at a ports configuration which we decided earlier we said we would use 8 8 8 8 for this
+
+02:55.620 --> 02:56.660
+spring cloud config server.
+
+02:56.690 --> 02:58.450
+So let's configure that as well.
+
+02:58.470 --> 03:02.780
+So server dot port is equal to 8888.
+
+03:03.090 --> 03:09.240
+One of the important things is we are standardizing this ports just because we don't want any confusion
+
+03:09.240 --> 03:11.030
+at a later point in time.
+
+03:11.040 --> 03:17.240
+There are a lot of applications that we would be creating as part of this micro services course and by standardizing
+
+03:17.240 --> 03:24.510
+ports on which applications run we make it very easy for us to quickly refer to them whenever we want
+
+03:24.510 --> 03:30.480
+to spring cloud config server running on a 8 8 8 8 and that's in port of configured it in
+
+03:30.480 --> 03:31.780
+here as well.
+
+03:32.160 --> 03:38.100
+In this step we created the simple project for spring cloud config server and we configure the application name
+
+03:38.130 --> 03:40.990
+and the server port for this next step.
+
+03:41.040 --> 03:48.390
+We would create a simple git repository and configure this spring cloud config server pick up the values from
+
+03:48.390 --> 03:51.390
+that particular git repository until then bye bye.
