@@ -1,0 +1,135 @@
+WEBVTT
+
+00:04.510 --> 00:10.500
+In the previous section we talked about the fuzzy world of RESTful Web Services.
+
+00:10.550 --> 00:16.560
+with MicroServices things get even more fuzzier.
+
+00:16.660 --> 00:21.460
+There is no one accepted definition of MicroServices.
+
+00:21.460 --> 00:29.380
+So definitions vary from a smaller one like this which is it's a small autonomous services that work
+
+00:29.380 --> 00:30.550
+together.
+
+00:30.750 --> 00:33.170
+to very long definitions.
+
+00:33.220 --> 00:37.240
+This is the definition which was given by Martin Fowler and Jim Lewis.
+
+00:37.310 --> 00:41.210
+I mean this is like a 10 line definition on its own.
+
+00:41.230 --> 00:50.320
+It says it's a style to develop a single application as a suite of small services each running its own
+
+00:50.320 --> 00:55.450
+process communicating with very lightweight mechanisms.
+
+00:55.450 --> 01:06.370
+Things like HTTP and these services are built around business capabilities independently deployable by
+
+01:06.520 --> 01:08.640
+automated deployment.
+
+01:08.740 --> 01:17.410
+And there is a set of centralized management for these services these services might be written using
+
+01:17.410 --> 01:22.680
+different programming languages and maybe using for idea of data storage technologies.
+
+01:22.750 --> 01:29.490
+The definitions I'm showing you here are just a couple from a lot of other definitions which represent
+
+01:29.650 --> 01:31.450
+for MicroServices.
+
+01:31.450 --> 01:37.270
+So I don't really want to get into the world of what is a MicroService  and what is not a MicroServices
+
+01:37.270 --> 01:39.820
+and how to define it and all that kind of stuff.
+
+01:40.030 --> 01:47.830
+Let's get started with a few things which I really consider are important for MicroServices.
+
+01:47.830 --> 01:56.740
+For me MicroServices are  basically services which are exposed by  REST in addition to that you have
+
+01:56.830 --> 02:06.850
+small deployable units with very well thought out boundaries small well-chosen deployable units and
+
+02:07.300 --> 02:09.750
+these should be cloud enabled.
+
+02:09.770 --> 02:18.880
+For me the important parts are REST having small deployable units which can be cloud enabled.
+
+02:18.890 --> 02:25.360
+Now what do I mean by these what do I mean by cloud enabled  how does it look for me when you build micro
+
+02:25.360 --> 02:26.000
+services.
+
+02:26.020 --> 02:33.090
+This is how it would look instead of building one big monolith you'd be building a set of smaller microservices
+
+02:33.370 --> 02:35.200
+I'm showing five in the picture.
+
+02:35.200 --> 02:38.570
+It might be 10 15 20 hundred or thousand.
+
+02:38.680 --> 02:48.010
+It's a set of microservices with well defined boundaries which are interacting with each other and
+
+02:48.580 --> 02:51.340
+these are cloud enabled.
+
+02:51.340 --> 02:59.160
+That means I would be able to have multiple instances for each of these micro services for example we're
+
+02:59.180 --> 03:03.910
+looking at the diagram of a production deployment for a set of microservices.
+
+03:03.930 --> 03:09.370
+You can see that at that at this moment there are two instances of MicroService1 four instances
+
+03:09.460 --> 03:16.760
+of MicroService1 and one instance of MicroService3 by cloud enabled I mean that if
+
+03:16.770 --> 03:22.490
+there is more load on MicroService3 I should be able to easily bring up another  instance of
+
+03:22.490 --> 03:23.490
+MicroService3.
+
+03:23.720 --> 03:30.070
+This should not involve a lot of configuration I should be able to bring up an instance of MicroService3
+
+03:30.070 --> 03:36.670
+or take down a instance of MicroService2 without having huge problems.
+
+03:36.670 --> 03:39.590
+That is what I mean by cloud enabled.
+
+03:39.670 --> 03:48.730
+So as far as this course is concerned we already looked at RESTful web services what we look at in the subsequent
+
+03:48.730 --> 03:56.890
+sections in this course is how to cloud enable them how to set up an architecture such that it would be
+
+03:56.890 --> 04:04.660
+able to dynamically adjust and be able to bring new instances up and take the older instances down.
+
+04:04.780 --> 04:11.950
+In this step we kind of gave you a high level thousand feet picture of what we think about MicroServices is 
+04:12.190 --> 04:19.300
+in the next step will go one level deeper and look at the challenges that are associated with cloud enabling
+
+04:19.300 --> 04:20.950
+your restful that services.

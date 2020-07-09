@@ -196,4 +196,9 @@ spring.security.user.password=password
 41. RESTful Web Services - Best Practices
 - See the .vtt file.
 
+42. Introduction To Microservices
+- Small autonomous services that work together.
+- Mircroservices are services which are exposed by rest have small well chosen deployable units these units should be cloud enabled.
+
+
 
