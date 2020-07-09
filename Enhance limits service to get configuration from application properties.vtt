@@ -1,0 +1,190 @@
+WEBVTT
+
+00:03.730 --> 00:11.830
+Welcome back in the previous we returned of hardcoded limits configuration back we hardcoded the values
+
+00:11.830 --> 00:14.460
+thousand and one and returned them back.
+
+00:14.470 --> 00:20.230
+But what we want to actually do is pick them up from application dot properties so let's start with that
+
+00:20.260 --> 00:21.240
+right now.
+
+00:21.910 --> 00:26.490
+What I'll do is I'll call this limits hyphen service because this is the configuration for the limits
+
+00:26.490 --> 00:34.820
+hyphen service I'll say limits hyphen servie dot minimum is equal to 99.
+
+00:35.050 --> 00:40.140
+And I'll also configur the maximum is equal to nine thousand nine hundred ninety nine.
+
+00:40.390 --> 00:46.200
+So we're up configuring a couple of values in the application dot properties.
+
+00:46.770 --> 00:52.150
+So for the limits Service I'am saying minimum is 99 maximum is 9 9 9 9.
+
+00:52.420 --> 00:58.480
+What we want to do is we would want to be able to return these values back as part of this service.
+
+00:58.480 --> 01:02.570
+We want to pick the configuration from the application dot properties and return them back.
+
+01:02.710 --> 01:09.430
+One of the ways I can do that is by putting an at value annotation and try and read the value from the property
+
+01:09.430 --> 01:10.030
+file.
+
+01:10.300 --> 01:17.050
+But with spring board there is a better approach to reading the values from configuration.
+
+01:17.050 --> 01:23.280
+One of the best things about spring boot is the approach called configuration properties.
+
+01:23.560 --> 01:26.930
+Let's use that to read the values from the property file.
+
+01:27.130 --> 01:33.550
+So what I'll do is I'll go to the package come in28minutes Micro services limits service and create a
+
+01:33.550 --> 01:35.220
+new class.
+
+01:35.450 --> 01:43.370
+I call this configuration and say finish the first thing I want to make sure that this is recognize component.
+
+01:43.570 --> 01:45.330
+So I'll add at component in.
+
+01:45.370 --> 01:47.530
+I Would want to spring to manage this.
+
+01:47.530 --> 01:52.570
+Secondly I want to do is I would want this to be a configuration properties file so I will need to add
+
+01:52.610 --> 02:02.270
+annotation configuration properties and I would want to add  a prefix the prefix we have been using until
+
+02:02.270 --> 02:05.210
+now is limits hyphen service.
+
+02:05.430 --> 02:10.980
+So I would want to use that prefix or over here to anything starting from limit starting with limits
+
+02:11.000 --> 02:19.050
+hyphen service in the properties configuration I would want to read them how they want to read them in
+
+02:19.050 --> 02:19.420
+here.
+
+02:19.440 --> 02:24.900
+All that I would need to do is to create variables matching the naming in here.
+
+02:24.900 --> 02:27.490
+So I would want to read minimum and maximum.
+
+02:27.600 --> 02:34.590
+So I'll say private int minimum private int maximum.
+
+02:34.670 --> 02:41.550
+What I'll also do is I'll create the getters for this alt shift s generate getters and setters.
+
+02:42.060 --> 02:48.430
+I'll select the getters and create make the changes and save and restart the application.
+
+02:48.440 --> 02:55.340
+You would see that application failed to start it says no setters found for property minimum.
+
+02:55.360 --> 03:01.540
+So one of the things is if you are using the configuration properties it's not sufficient if you just
+
+03:01.540 --> 03:02.750
+create the getters.
+
+03:02.770 --> 03:05.950
+You would also need to generate the setters as well.
+
+03:05.950 --> 03:11.750
+So let's quickly generate setters as well select setters and do this and save.
+
+03:11.980 --> 03:14.500
+Now you would see that the application is starting fine.
+
+03:14.530 --> 03:19.530
+We have configured the configuration but we have not really used it in the controller yet.
+
+03:19.600 --> 03:21.850
+I want to use the configuration here.
+
+03:22.120 --> 03:23.570
+What should I do.
+
+03:23.620 --> 03:26.850
+These are component just managed by spring boot.
+
+03:27.120 --> 03:32.430
+So let's auto wire it in the autowire the configuration.
+
+03:32.500 --> 03:40.030
+And now I can say instead of a thousand configuration dot get maximum and the next one would be
+
+03:40.030 --> 03:43.820
+configuration dot get minimum.
+
+03:43.940 --> 03:44.590
+That's it.
+
+03:44.620 --> 03:52.520
+Let's save the file and you would see that the application would restart and pick it up we are using dev tools.
+
+03:52.600 --> 03:58.510
+So what would happen is as soon as I make a code change the application would directly pick up the change
+
+03:58.820 --> 04:01.680
+Let's go ahead and refresh the limits and now.
+
+04:01.750 --> 04:07.290
+You can see that maximum is 9 9 9 9 and minimum is ninety nine.
+
+04:07.450 --> 04:10.320
+Let's see if it's really picking up the values from here.
+
+04:10.310 --> 04:17.400
+So I'll change this to 9 9 9 9 and save and refresh ok.
+
+04:17.620 --> 04:21.230
+You're getting maximum 9 9 9 and minimum night nine in this step.
+
+04:21.310 --> 04:29.230
+We quickly created an application configuration file so we used configuration properties to create a configuration
+
+04:29.500 --> 04:34.550
+and pick up the values from the application dot properties and assign them in here.
+
+04:34.570 --> 04:41.080
+And then this configuration can be auto wired in wherever I need to read the configuration values so
+
+04:41.080 --> 04:43.210
+we have auto wireed in here and red.
+
+04:43.240 --> 04:47.060
+The maximum and the minimum values and returned it as part our service.
+
+04:47.070 --> 04:51.020
+So we were able to invoke the service and retrieve the values back.
+
+04:51.130 --> 04:58.960
+With this step our limits service is ready it's ready to pick up the values from the application configuration.
+
+04:59.170 --> 05:07.040
+However what we want to do with the limits service is Connect it to a spring cloud config server from the next step on we will
+
+05:07.060 --> 05:10.910
+start setting up our sping cloud config server until then.
+
+05:10.960 --> 05:11.320
+Bye bye.

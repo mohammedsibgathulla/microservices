@@ -242,6 +242,10 @@ spring.security.user.password=password
 48. Creating A Hard Coded Limits Service
 - See the project. 
 
+49. Enhance Limits Service To Get Configuration From application properties
+- You can read the values from applicatoin.properties file using the @Value annontation. But using spring boot there is a better way we can do. We can use ConfigurationProperties.
+- 
+
 
 
 

@@ -1,4 +1,4 @@
-package com.aistle.limitsservice;
+package com.aistle.limitsservice.bean;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
