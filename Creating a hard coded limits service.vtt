@@ -1,0 +1,172 @@
+WEBVTT
+
+00:02.960 --> 00:09.050
+Welcome back in the previous step we set up a simple Micro service for the limits service.
+
+00:09.110 --> 00:13.700
+We would able to get it running our eventual goal with the limits
+
+00:13.700 --> 00:20.360
+srevice is we would want it to connect to this spring cloud config server we would want it to get the
+
+00:20.360 --> 00:24.340
+configuration from the spring cloud config server.
+
+00:24.350 --> 00:31.240
+Before we get there what we'll do in this step is we would try and configure a few values in application
+
+00:31.240 --> 00:37.920
+dot properties and expose the service using the limits srevice to retrieve those values.
+
+00:37.970 --> 00:44.220
+The first thing I would do is I would open up the application dot properties and give a name to our
+
+00:44.240 --> 00:48.150
+application so all that you need to type in this application dot name.
+
+00:48.160 --> 00:52.710
+It's spring dot application dot name is equal to limits.
+
+00:52.940 --> 00:57.290
+Underscore service as we create more and more micro services.
+
+00:57.470 --> 01:03.320
+We would want to give the applications a name so that we can easily identify them.
+
+01:03.320 --> 01:09.740
+The other thing you would also notice as we go on is we would configure a server dot port so we would
+
+01:09.740 --> 01:15.830
+configure a specific port for each of the applications for the limits service.
+
+01:15.830 --> 01:20.200
+However we would continue using the default port 80 80.
+
+01:20.270 --> 01:23.410
+So I don't really need to configure anything.
+
+01:23.510 --> 01:26.510
+What we want to create is a simple service.
+
+01:26.510 --> 01:28.240
+Let's get started with it.
+
+01:28.340 --> 01:33.310
+So let's get started with creating a simple controller I'll say new class.
+
+01:33.370 --> 01:39.890
+I call this limits configuration controller and I'll press finish now over here.
+
+01:39.940 --> 01:44.870
+What we want this to be is a rest controller we want to expose a small service from here.
+
+01:45.040 --> 01:48.550
+So let's do that at rest.
+
+01:48.780 --> 01:55.240
+Controller I'll import the rest controller in and we would want to create a simple method in here what we would
+
+01:55.240 --> 02:06.430
+want to return back is the limits configurations I would say limit configuration and the method we want
+
+02:06.430 --> 02:13.220
+to create is retrieve limits from configuration.
+
+02:13.220 --> 02:19.210
+We want to configure a couple of limits and we would want to retrieve them from the configuration.
+
+02:19.380 --> 02:29.300
+That's cool I'd want to expose a get request so I'll say it get mapping and let's use the URL slash.
+
+02:29.320 --> 02:34.250
+limits let's organize the imports I'm importing to get mapping.
+
+02:34.250 --> 02:37.330
+In right now there is nothing call limits configuration.
+
+02:37.330 --> 02:42.050
+So let's go ahead and create that limits configuration I'll say control one and I can say create
+
+02:42.050 --> 02:43.980
+class limit configuration.
+
+02:44.030 --> 02:45.090
+Go ahead.
+
+02:45.500 --> 02:49.870
+I'll use the package called Dot bean and say finish in this.
+
+02:50.090 --> 03:02.190
+I would want to put two values int maximum and I'll say int minimum and over here as usual I'll quickly create getters and setters.
+
+03:02.290 --> 03:06.470
+First generate getters and setters.
+
+03:06.790 --> 03:13.810
+Let's just do the getters for now I'll also generate a constructor genarate constructor using fields.
+
+03:13.900 --> 03:20.770
+I want both of them because we would be using it and returning it as a return type the rest service what
+
+03:20.770 --> 03:27.640
+we would also need is no argument constructor protected limit configuration.
+
+03:27.790 --> 03:32.500
+So what we have created is a very simple bean right we want to store the minimum and the maximum a couple of
+
+03:32.500 --> 03:32.910
+values.
+
+03:32.920 --> 03:37.570
+Let it be the minimum and maximum for anything it does not really matter what we are really looking
+
+03:37.570 --> 03:39.360
+at is a couple of things.
+
+03:39.870 --> 03:42.970
+I have to also make them private.
+
+03:43.160 --> 03:48.170
+So we have couple of simple things int minimum and maximum and limit configuration.
+
+03:48.170 --> 03:53.790
+I've just created a constructor and also a couple getters to be able to retrieve those values out.
+
+03:53.850 --> 03:54.760
+That's cool.
+
+03:55.030 --> 04:04.930
+Over here I can now return new limit configuration of I can send the values right so what we said is
+
+04:04.940 --> 04:05.800
+first is maximum.
+
+04:05.800 --> 04:06.700
+The second one is minimum.
+
+04:06.820 --> 04:10.340
+So it's say thousand comma one.
+
+04:10.540 --> 04:15.850
+Let's launch up the limits service application for now we are doing is we are hard coding the values in
+
+04:15.850 --> 04:19.410
+we're not really picking them up from the application dot properties at all.
+
+04:19.680 --> 04:25.180
+for now we just want to configure hard coaded value and see if we have everything right.
+
+04:25.250 --> 04:31.980
+When you hit the URL localhost 8080 slash limits you would see that we get a Jason's response back
+
+04:32.000 --> 04:35.730
+maximun thousand and minimum one that's cool.
+
+04:35.750 --> 04:42.060
+So we have a simple rest service working in this step what we did until now is very simple right.
+
+04:42.080 --> 04:50.210
+We expose a simple rest service returning a hard coded limit configuration back in the next step we will make
+
+04:50.280 --> 04:56.130
+it these values from application dot properties until then bye bye.

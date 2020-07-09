@@ -239,6 +239,9 @@ spring.security.user.password=password
 47. Setting Up Limits Microservice
 - See the project. 
 
+48. Creating A Hard Coded Limits Service
+- See the project. 
+
 
 
 
