@@ -220,7 +220,13 @@ spring.security.user.password=password
 
 - Fault Tolerance
 	Hystrix
-	  	
+
+44. Advantages of Microservices Architectures
+- Enables to adapt new technology & process it easily.
+- You can build the microservices in different technologies.
+- Dynamic Scaling.
+- 	
+
 
 
 

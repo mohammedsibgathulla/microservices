@@ -1,0 +1,82 @@
+WEBVTT
+
+00:03.070 --> 00:09.430
+Welcome back in this video we would be discussing about some of the advantages of microServices.
+
+00:09.500 --> 00:17.030
+Architecture is the most important advantage of the MicroServices architecture is that it enables you
+
+00:17.030 --> 00:22.820
+to adapt new technology and processes very easy.
+
+00:22.820 --> 00:30.890
+When they build applications as a combination of microservices which can communicate with each other
+
+00:31.190 --> 00:38.400
+using simple messages each of these microservices can be built in different technologies.
+
+00:38.570 --> 00:43.760
+Typical more nolet applications people would not have that flexibility.
+
+00:43.790 --> 00:50.810
+For example Microservice one might be java MicroService two might be Nodejs Microservice three might be
+
+00:50.810 --> 00:57.770
+written in Kotlin and tomorrow there might be a language X Y Z which is really doing well and which
+
+00:57.770 --> 01:05.390
+provides a lot of benefits to you and you can easily create a micro service in that specific language.
+
+01:05.600 --> 01:14.110
+And also for the new Microservices that we create we can bring in new processors as well.
+
+01:14.120 --> 01:21.800
+The other important advantage of Microservices is Dynamic scaling consider an online shopping application
+
+01:21.920 --> 01:23.260
+like Amazon.
+
+01:23.380 --> 01:30.470
+They don't really have the same amount of load or same amount of traffic or same amount of users throughout
+
+01:30.470 --> 01:33.690
+the year especially during the holiday season.
+
+01:33.710 --> 01:41.870
+The load on the application will be a lot and during the rest of the year there might not be so much
+
+01:42.110 --> 01:47.970
+load during the Black Friday there might be a huge amount of load.
+
+01:48.350 --> 01:56.450
+If your microServices are cloud enabled they can scale dynamically and you can procure hardware and release
+
+01:56.460 --> 01:59.090
+that dynamically as well.
+
+01:59.210 --> 02:06.770
+So you can scale up your applications and scale them down based on the Loadd because you're developing
+
+02:06.770 --> 02:08.620
+smaller components.
+
+02:08.870 --> 02:16.870
+It's much easier to release micro services compared to monolith applications.
+
+02:16.880 --> 02:26.550
+This means that you can bring new features faster to market and that's a big advantage to have in the
+
+02:26.550 --> 02:27.910
+modern world.
+
+02:27.990 --> 02:33.150
+In this video we discuss about three of the most important advantages of Microservices
+
+02:33.170 --> 02:42.960
+its adoption of new technology and processes dynamic scaling and faster release cycles until the next video
+
+02:42.960 --> 02:43.670
+bye bye.
+
+02:43.670 --> 02:44.010
+Purée.
