@@ -207,5 +207,22 @@ spring.security.user.password=password
 - How to identify the bug & monitoring.
 - Fault tolerance in microservices.
 
+44. Introduction To Spring Cloud
+- Configuration Management - Spring Cloud Config Server.
+- Dynamic Scale Up & Scale Down
+  	Ribbon For Client Side Load Balancing.
+  	Naming Server (Eureka)
+  	Feign (Easier Rest Clients)
+
+- Visibility & Monitoring
+  	Zipkin Distributed Tracing
+  	Netflix API Gateway
+
+- Fault Tolerance
+	Hystrix
+	  	
+
+
+
 
 

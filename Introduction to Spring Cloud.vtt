@@ -1,0 +1,241 @@
+WEBVTT
+
+00:02.240 --> 00:03.520
+Welcome back.
+
+00:03.600 --> 00:10.260
+In a previous video we discussed about the challenges with microservice architecture.
+
+00:10.470 --> 00:16.740
+In this video we would introduce you to spring  cloud  and we'd talk about various components under
+
+00:16.740 --> 00:23.770
+the umbrella of spring cloud which help us to provide solutions to the challenges we discussed.
+
+00:23.910 --> 00:25.470
+Let's get started.
+
+00:25.470 --> 00:34.110
+If you go to the home page of spring cloud which is cloud.spring.io it says spring cloud provides tools
+
+00:34.500 --> 00:41.280
+to quickly build some of the common patterns in distributed systems to the typical problems which are
+
+00:41.280 --> 00:49.050
+present for distributed systems in the cloud spring cloud provides a range of solutions.
+
+00:49.050 --> 00:57.270
+The most important thing that you need to understand is spring cloud is not really one project as such.
+
+00:57.270 --> 01:04.780
+There are a wide variety of projects under the umbrella of spring cloud on the  spring cloud homepage.
+
+01:04.800 --> 01:13.620
+If you scroll down further you'll be able to see huge variety of projects which are related to spring
+
+01:13.710 --> 01:14.520
+cloud.
+
+01:14.550 --> 01:19.680
+One of the important projects in spring cloud is spring cloud Netflix.
+
+01:19.770 --> 01:27.930
+Netflix was one of the organizations which started playing around with the microservices
+
+01:27.990 --> 01:30.610
+architecture very early.
+
+01:30.630 --> 01:38.580
+There are a wide range of components that Netflix has Open-Source under the project spring Cloud Netflix
+
+01:38.970 --> 01:39.860
+later in this course.
+
+01:39.870 --> 01:42.210
+We'd be talking about a couple of them as well.
+
+01:42.210 --> 01:47.040
+Eureka Hystrix and so on other than spring cloud Netflix.
+
+01:47.130 --> 01:52.120
+There are a wide range of projects under the umbrella of spring cloud.
+
+01:52.380 --> 01:58.860
+Some of them are spring cloud config which is to provide a centralized configuration management
+
+01:59.040 --> 02:00.400
+spring cloud bus.
+
+02:00.540 --> 02:09.930
+This enables the microservices and the infrastructure components things like config server things like
+
+02:09.960 --> 02:16.350
+API gateway to talk to each other in this course we'd be using the Finchley M2.
+
+02:16.380 --> 02:19.990
+release of spring cloud.
+
+02:20.010 --> 02:27.090
+Now let's take a quick look at the challenges which we discussed earlier and the projects in spring cloud
+
+02:27.270 --> 02:30.900
+that provide solutions to those challenges.
+
+02:31.710 --> 02:37.500
+One of the challenges we talked about earlier was configuration management.
+
+02:37.590 --> 02:44.250
+We talked about the fact that there would be multiple microservices multiple environments for each of
+
+02:44.250 --> 02:50.790
+these microservices and multiple instances in many of those environments.
+
+02:50.790 --> 02:57.480
+This would mean that there is a lot of configuration for these microservices that the operations team
+
+02:57.480 --> 02:59.320
+needs to manage.
+
+02:59.640 --> 03:07.860
+Spring cloud config server provides an approach where you can store all configuration for all
+
+03:07.860 --> 03:13.270
+the different environment of all the microservices in a Git repository.
+
+03:13.590 --> 03:19.830
+So you can store all the configuration for different environments of different microservices in just
+
+03:19.980 --> 03:30.210
+one place in a centralized location and spring cloud config server can be used to expose that configuration
+
+03:30.240 --> 03:33.090
+to all the microservices.
+
+03:33.090 --> 03:40.710
+This helps us to keep the configuration in one place and that makes it very easy to maintain the configuration
+
+03:40.890 --> 03:42.980
+for all the MicroServices.
+
+03:43.110 --> 03:48.150
+The next challenge we talked about was the dynamic scale up and scale down.
+
+03:48.270 --> 03:54.720
+In the example you are looking at there is MicroService is called currency calculation service which is
+
+03:54.720 --> 03:58.040
+talking to the currency exchange service.
+
+03:58.260 --> 04:06.440
+As you can see in the diagram there are multiple instances of the currency exchange service and it's
+
+04:06.560 --> 04:13.770
+possible that at any point in time new instances can be added in or removed out.
+
+04:13.980 --> 04:21.270
+And we would want the currency calculations that we'd want to be able to distribute the load between all
+
+04:21.270 --> 04:25.030
+the instances of the currency exchange service.
+
+04:25.190 --> 04:31.470
+Who would want to be able to dynamically check what are the available instances of the currency exchange
+
+04:31.480 --> 04:37.360
+service and make sure that the load is distributed among all of them.
+
+04:37.930 --> 04:45.570
+The solution which we would be discussing in this course would be using a naming server which is Eureka.
+
+04:45.600 --> 04:52.310
+So all the instances of all MicroServices would register with the naming server.
+
+04:52.470 --> 04:56.900
+So the naming server has two important features.
+
+04:56.910 --> 05:00.210
+One is service registration so all microservices.
+
+05:00.210 --> 05:06.460
+Can register  with the microservicew one the second one is service discovery.
+
+05:06.480 --> 05:14.430
+So in this example the currency calculation service can ask the Eureka naming server Hey naming server
+
+05:14.640 --> 05:23.170
+give me the current instances of currency exchange service and the naming service would provide those
+
+05:23.170 --> 05:26.080
+URLs to the currency calculations.
+
+05:26.140 --> 05:34.110
+this helps to establish dynamic relationship between the currency calculation service and the instances
+
+05:34.140 --> 05:36.890
+of the currency exchange service.
+
+05:37.320 --> 05:41.400
+We will use Ribbon for client side load balancing.
+
+05:41.430 --> 05:48.510
+That means the currency calculation service  will host ribbon and it would make sure that the load is
+
+05:48.570 --> 05:58.110
+evenly distributed among the existing instances that it gets from the naming server we'll also use Feign in
+
+05:58.110 --> 06:07.500
+the currency calculation service as a mechanism to write simple RESTful clients the solutions for visibility
+
+06:07.500 --> 06:12.450
+and monitoring are the zipkin distributing Tracing Server.
+
+06:12.850 --> 06:22.230
+We would use Spring cloud Sloat to assign ID to request across multiple components and we would use
+
+06:22.430 --> 06:29.930
+the Zipkin distributed tracing to trace a request across multiple components.
+
+06:30.030 --> 06:37.960
+One of the important things about microservices is these microservices have a lot of common features.
+
+06:38.130 --> 06:45.600
+For example logging security analytics and things like that you don't want to implement all these common
+
+06:45.600 --> 06:49.520
+features in every microservice.
+
+06:49.800 --> 06:55.140
+API Gateways provide great solutions to these kind of challenges.
+
+06:55.230 --> 06:59.790
+We will use a Netflix Zuel API gateway in this could.
+
+06:59.890 --> 07:06.750
+We will also implement fault tolerance using hystrix if a service is down.
+
+07:06.750 --> 07:13.080
+Hystrix help us to configure a default response in this video.
+
+07:13.170 --> 07:19.980
+We took a quick look at the various components which are present in spring cloud to provide solutions
+
+07:19.980 --> 07:23.090
+to the challenges which we discussed earlier.
+
+07:23.370 --> 07:29.210
+The idea behind this vedio is to help you get a high level big picture.
+
+07:29.610 --> 07:33.530
+If you have a few questions  about what each component that's.
+
+07:33.550 --> 07:34.290
+OK.
+
+07:34.640 --> 07:42.780
+We'll discuss about each of these components in detail as we dig them one by one in the next steps
+
+07:44.100 --> 07:44.960
+in the next week.
+
+07:45.050 --> 07:45.510
+until the next video bye.
