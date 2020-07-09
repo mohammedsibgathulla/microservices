@@ -247,7 +247,10 @@ spring.security.user.password=password
 - See the project. 
 
 50. Setting Up Spring Cloud Config Server
-- 
+- See the project. 
+
+51. Installing Git
+- Refer the image.
 
 
 

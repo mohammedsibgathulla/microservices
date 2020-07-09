@@ -1,0 +1,61 @@
+WEBVTT
+
+00:03.100 --> 00:04.420
+Welcome back.
+
+00:04.420 --> 00:12.170
+As discussed earlier spring cloud config server fix up the configuration from a git repository.
+
+00:12.340 --> 00:17.260
+We would want to connect our limit service to spring cloud config server.
+
+00:17.260 --> 00:25.000
+We have the limits services ready and we have spring cloud config server but we have not really connected them
+
+00:25.000 --> 00:25.690
+yet.
+
+00:25.780 --> 00:31.590
+Before we think about connecting them to git repository we need to install a local git.
+
+00:31.920 --> 00:39.300
+So what I'll do is go to Google and you can do a search for git it is the one of the most popular version
+
+00:39.310 --> 00:45.000
+control systems as you would already know all the code for this particular code is stored in git hub
+
+00:45.300 --> 00:49.190
+which is open source cloudbase installation of kit.
+
+00:49.330 --> 00:54.700
+What I will do is I'll go the first result set git hyphen scm dot com if you going there
+
+00:55.390 --> 01:04.090
+you can get a basic introduction to get what we would want to do is to install git in our local machine.
+
+01:04.120 --> 01:08.980
+So over here because I am on Mac I can see downloads for Mac.
+
+01:09.070 --> 01:12.690
+If you're not on Mac you would be seeing your specific downloading here.
+
+01:12.700 --> 01:20.080
+The other option is also to go to downloads and pick up the one for your specific operating system so
+
+01:20.080 --> 01:23.440
+if you're on Windows go to Windows Mac go to Mac.
+
+01:23.440 --> 01:29.350
+Download the exe for you a specific operating system and doubleclick on it to install it.
+
+01:29.350 --> 01:33.640
+The installation should be a very very simple process should be a cakewalk.
+
+01:33.640 --> 01:38.960
+Couple of clicks to the folder and install it and I see you in the next step.
+
+01:39.040 --> 01:41.900
+Once you have installed you are local git.
+
+01:42.040 --> 01:42.860
+Until then bye bye.
