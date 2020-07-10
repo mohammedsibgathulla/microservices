@@ -297,6 +297,10 @@ spring.security.user.password=password
   spring.profiles.active=dev
 - Unless you commit the changes the values will not be reflected in git-localconfig-repo
 
+55. A Review Of Spring Cloud Config Server
+- Spring Cloud Config Server is used to manage all the configurations related to multiple microservices.
+
+
 
 
 

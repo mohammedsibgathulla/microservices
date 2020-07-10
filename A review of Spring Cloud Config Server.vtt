@@ -1,0 +1,124 @@
+WEBVTT
+
+00:03.620 --> 00:11.690
+Welcome back in the previous few steps we talked a lot about this spring cloud config server the spring cloud
+
+00:11.690 --> 00:18.830
+config server used to manage all the configuration related to multiple micro services.
+
+00:18.830 --> 00:25.020
+So here we have multiple micro services and there would be configuration for each of these micro
+
+00:25.010 --> 00:28.310
+services for different environments.
+
+00:28.520 --> 00:39.310
+We saw how we can configure the properties put limits service for different environments using
+
+00:39.330 --> 00:41.210
+this  sping cloud config server
+
+00:44.150 --> 00:51.470
+all that we had to do was to create a few property files with specific naming convention in the GIT repository
+
+00:51.740 --> 00:53.470
+and commit them in.
+
+00:53.630 --> 00:59.720
+And then we were able to connect the sping cloud config server to the GIT repository to be able to
+
+00:59.720 --> 01:02.050
+serve those configuration.
+
+01:02.050 --> 01:08.270
+We connected the limits service to the spring cloud config server to pick the values from the
+
+01:08.270 --> 01:14.680
+GIT repository.
+
+01:14.730 --> 01:20.460
+So let's say here want now to connect another micro service to the spring cloud config server.
+
+01:20.540 --> 01:23.750
+What would be the steps that would be involved.
+
+01:23.820 --> 01:32.340
+Number one is you have to create those configuration the GIT repository and commit them in.
+
+01:32.360 --> 01:37.610
+So if I want to say currency exchange service and I would want to create the configuration for QA
+
+01:37.730 --> 01:43.960
+I would probably name it as currency hyphen exchange hyphen service hyphen Q8 dot properties and put
+
+01:44.000 --> 01:52.580
+the property configuration in there and commit it down to the GIT repository.
+
+01:52.860 --> 01:59.760
+The next thing you do is to connect the currency exchange service to the spring cloud config server.
+
+01:59.970 --> 02:05.550
+So instead of application dot properties we would rename the configuration file to bootstrap dot properties
+
+02:06.030 --> 02:09.540
+and put the URI for this sping cloud config.
+
+02:09.690 --> 02:14.670
+Server those are the only two steps which are in involved.
+
+02:14.820 --> 02:22.870
+Once you have spring cloud config server installed connecting a new Micro serviceto it is a cakewalk.
+
+02:25.120 --> 02:31.690
+The great thing about the spring cloud config server is now all application configuration is in one place
+
+02:31.720 --> 02:34.110
+it's inside the GIT repository.
+
+02:34.420 --> 02:41.110
+Once you restrict the access to the GIT repository all the application configuration is at one place and
+
+02:41.110 --> 02:43.810
+it's also very secure.
+
+02:43.840 --> 02:50.980
+One of the things that we saw was we had to restart the limits service to pick up the changes in configuration
+
+02:50.990 --> 02:53.670
+from the GIT repository.
+
+02:53.920 --> 03:00.840
+And that becomes even more problem where there are multiple instances of the Limits service.
+
+03:01.180 --> 03:07.030
+The reason why we called the limits service Micro service because we would want to be able to deploy to the cloud
+
+03:07.150 --> 03:16.110
+and would want to be able to have multiple instances of it running and we would want these instances
+
+03:16.140 --> 03:23.390
+all instances to pick up the configuration changes as soon as they are available in the GIT repository.
+
+03:23.490 --> 03:28.400
+And we would want to have a easy way of doing that.
+
+03:28.720 --> 03:34.000
+That's one thing we would look at in a later section on sping cloud config server.
+
+03:34.030 --> 03:42.730
+Let's put a pause on the discussion on sping cloud config server here and move into other important
+
+03:45.030 --> 03:47.710
+problems related to micro services
+
+03:52.680 --> 03:59.840
+We will come back to spring cloud config server when we would talk about using spring cloud bus to
+
+03:59.990 --> 04:06.770
+make sure that all the changes all the configuration changes that are done through the GIT repository are
+
+04:06.830 --> 04:10.500
+automatically reflected in the applications.
+
+04:11.030 --> 04:12.460
+Until the next step bye bye.
