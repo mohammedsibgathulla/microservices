@@ -308,6 +308,11 @@ spring.security.user.password=password
 57. Setting Up Currency Exchange Microservice
 - Setup the project using the dependencies as shown in the image.
 
+58. Create A Simple Hard Coded Currency Exchange Service
+- We have created and exposed the rest service here.
+- http://localhost:8000/currency-exchange/from/USD/to/INR
+- Refer the image.
+
 
 
 

@@ -1,0 +1,226 @@
+WEBVTT
+
+00:03.060 --> 00:09.270
+In the previous step we created an application using sping initialiser for the currency exchange service.
+
+00:09.400 --> 00:16.630
+In this step we would try and create a simple service what we want to do is port for this application
+
+00:16.630 --> 00:21.370
+is eight thousand right so that basically the port that we have already configured here in your application
+
+00:21.370 --> 00:23.630
+dot properties for currency exchange service.
+
+00:23.920 --> 00:26.260
+We have server dot port as eight thousand.
+
+00:26.500 --> 00:34.720
+What we want to do is when we hit localhost eight thousand and we want to create a service for currency
+
+00:34.720 --> 00:36.400
+exchange.
+
+00:36.400 --> 00:39.450
+We want to create a rest service for this currency exchange.
+
+00:39.580 --> 00:45.850
+And I would want to be able to pass from which currency from USD to.
+
+00:46.170 --> 00:47.650
+INR Indian rupee.
+
+00:48.040 --> 00:54.180
+So I would want to be able to create an currency exchange service something similar to that.
+
+00:54.220 --> 01:00.490
+So let's first try and create a simple hard coded service before we would actually convert it to connect to JPA
+
+01:00.550 --> 01:03.540
+and retrieve the data back from back end.
+
+01:03.760 --> 01:11.140
+What we're trying to get here is what is the conversion factor if I want to convert a USD U.S. dollar
+
+01:11.140 --> 01:12.790
+into Indian rupees.
+
+01:12.810 --> 01:17.140
+What is the conversion factor for example to create.
+
+01:17.410 --> 01:20.560
+For example it's around 65 rupees.
+
+01:20.670 --> 01:24.170
+So 1 USD 65 Indian rupees.
+
+01:24.190 --> 01:29.080
+So in response they would be from currency USD to currency is INR.
+
+01:29.350 --> 01:34.510
+And let's say the conversion multiple is 65.
+
+01:34.720 --> 01:40.630
+That's the kind of response that we are expecting out of this is what I'll do is I'll start with creating
+
+01:40.660 --> 01:42.390
+a simple controller.
+
+01:42.730 --> 01:50.670
+So we'll try and create a simple rest controller First up I'll call this currency exchange controller.
+
+01:50.890 --> 01:51.940
+Let's finish this off.
+
+01:52.150 --> 01:57.760
+I would want this to be a rest controller so I'll say rest controller I would want to be able to send json
+
+01:57.880 --> 02:07.420
+request and send response in json format out and I'll create a method the response type for this is
+
+02:07.630 --> 02:10.430
+what we would call as exchange value.
+
+02:10.480 --> 02:17.830
+So we'll create a bean for that very soon so exchange value and we'll say retrieve exchange value.
+
+02:17.950 --> 02:23.240
+What would we want this service to be map to what is the URL that we would want to map to this.
+
+02:23.250 --> 02:31.160
+It's very simple right let's get mapping and I can put the URL in here the URL we would want to map is how ever.
+
+02:31.180 --> 02:38.880
+The important thing is this is going to be from and this is going to be to these are path para meters.
+
+02:38.980 --> 02:43.820
+And if you want to be able to pick up the values in the path parameters how do we do that.
+
+02:43.980 --> 02:52.410
+at path variable and type of this path variable from is string from.
+
+02:52.870 --> 02:55.250
+And I would all to have a path variable.
+
+02:55.410 --> 03:02.210
+So what we are trying to define in here is a simple rest service so we would want to be able to take the input as the
+
+03:02.320 --> 03:05.610
+currency exchange from USD to INR.
+
+03:05.680 --> 03:12.630
+And what happens the USD gets map to this from variable INR gets a map to the to variable that's
+
+03:12.720 --> 03:14.110
+cool.
+
+03:14.230 --> 03:21.240
+We don't really have our exchange value been yet so I'll press control one or command one over here and I'll say
+
+03:22.060 --> 03:25.860
+create class exchange value and say finish.
+
+03:25.930 --> 03:29.460
+We have exchange value class in here over here.
+
+03:29.500 --> 03:38.480
+We need to have basically at least the minimum once so the string from that to basic one and private string
+
+03:39.160 --> 03:48.420
+to so from currency to currency the other one we would need to have for any of the beans we would typically
+
+03:48.420 --> 03:49.480
+have ID.
+
+03:50.280 --> 03:56.430
+Add an ID in and also we would want to get the conversion factor as the output.
+
+03:56.450 --> 04:05.840
+I'll use big decimal because that's the most accurate form and I would say conversion multiple let's organize
+
+04:05.840 --> 04:07.490
+the imports control shift o.
+
+04:07.730 --> 04:11.930
+And right know what we have is a very simple exchange.
+
+04:11.920 --> 04:18.230
+value bean right it would be able to say what is the currency from what did the currency to and what
+
+04:18.230 --> 04:19.800
+is the conversion multiple.
+
+04:20.150 --> 04:27.640
+What I'll do is  I'll create constructors alt shift s generate constructor using fields.
+
+04:28.020 --> 04:29.010
+Ok that's cool.
+
+04:29.030 --> 04:38.900
+We now have a Exchange value constructor and at later point we will actually convert this to a JPA Entity so I'll create
+
+04:38.900 --> 04:42.760
+a no argument constructor as well.
+
+04:42.800 --> 04:48.860
+That would make JPA happy other than this will create the default getters.
+
+04:49.150 --> 04:54.780
+So generate getters and setters and say select getters and say Ok.
+
+04:55.020 --> 05:01.340
+So what we have in here is a very simple bean that can store the values related to exchange value.
+
+05:01.600 --> 05:06.440
+So now I can return this bean from the retrieve exchange value.
+
+05:06.820 --> 05:14.290
+For now I would just return hardcoded one so new exchange value the first value is the ID I'll just send
+
+05:14.290 --> 05:24.100
+in some dummy value as the ID for now I'll say thousand L and from to and I'll say the conversion factor for now
+
+05:24.110 --> 05:30.390
+is hardcoded big decimal dot value of 65 65.
+
+05:30.560 --> 05:33.210
+Let's start up the currency exchange service application.
+
+05:33.200 --> 05:35.310
+Right click on java application.
+
+05:35.630 --> 05:42.790
+It would start on port 8000 as we saw earlier the application as started up and I'll go to the browser
+
+05:42.850 --> 05:45.690
+and try and hit the URL you can see that.
+
+05:45.710 --> 05:54.480
+Now when I had the URL currency exchange from U.S. D to INR I am getting  ID 1000 from USD to INR and the conversion
+
+05:54.530 --> 05:56.070
+multiple is 65.
+
+05:56.150 --> 05:57.650
+That's very cool.
+
+05:57.650 --> 06:02.590
+So what we did in the step is created a very simple controller method.
+
+06:02.600 --> 06:05.350
+What we wanted to expose the rest service for this.
+
+06:05.370 --> 06:08.900
+for now we have hardcoded the exchange value values.
+
+06:08.920 --> 06:15.020
+We would actually want to get them from a in-memory database which we will do a little later.
+
+06:15.020 --> 06:20.510
+For now we created the instance of exchange value which can accept an ID from to.
+
+06:20.780 --> 06:22.340
+And the conversion factor.
+
+06:22.490 --> 06:26.410
+And we are returning that value back until the next step bye bye.
