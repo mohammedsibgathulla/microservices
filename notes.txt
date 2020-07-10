@@ -291,6 +291,13 @@ spring.security.user.password=password
 - We have not set the active profile hence it will choose the default profile.
 - Now if you execute http://localhost:8080/limits then you will see the values loaded from spring-cloud-config-server for the rest  controller method in LimitsConfigurationController.
 
+56. Configuring Profiles For Limits Service
+- Update the code in boostrap.properties in limit service app.
+- #You can configure through vm arguments or java application arguments
+  spring.profiles.active=dev
+- Unless you commit the changes the values will not be reflected in git-localconfig-repo
+
+
 
 
 
