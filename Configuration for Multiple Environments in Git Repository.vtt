@@ -1,0 +1,259 @@
+WEBVTT
+
+00:03.570 --> 00:10.450
+Welcome back the previous step we establish the connection between spring cloud config server and the local
+
+00:10.450 --> 00:19.780
+GIT repository we were able to say local host 8 8 8 8 limits service slash default and retrieve the configuration
+
+00:19.780 --> 00:22.980
+for that specific service.
+
+00:23.080 --> 00:30.220
+Now the other question is we would want to be able to store configuration for multiple environments.
+
+00:30.460 --> 00:35.570
+So this limits services might have DEV environment or QA environment and the stage environment I would
+
+00:36.100 --> 00:42.330
+want to be able to store the configuration for all those environments inside the.
+
+00:42.380 --> 00:43.700
+GIT repository.
+
+00:43.870 --> 00:45.190
+How do I do that.
+
+00:45.220 --> 00:48.080
+Let's look at that in this specific step.
+
+00:48.140 --> 00:53.640
+Earlier we created a simple file right limits hyphen service dot properties.
+
+00:53.670 --> 00:57.260
+Now this becomes the default configuration.
+
+00:57.370 --> 01:04.220
+So what ever values are present in the limit servies becomes the default configuration for the limit service
+
+01:04.410 --> 01:05.450
+however.
+
+01:05.500 --> 01:09.420
+You can override them for a specific environment.
+
+01:09.430 --> 01:11.020
+How do I override them.
+
+01:11.230 --> 01:13.330
+I can make a copy of this file I would.
+
+01:13.470 --> 01:19.550
+Now say I'm copying the same file and pasting down there and I would now say limits hyphen service DEV
+
+01:19.750 --> 01:21.550
+dot properties.
+
+01:22.470 --> 01:24.500
+And I'll also create another file.
+
+01:24.560 --> 01:28.850
+Limits hyphen service Q A dot properties.
+
+01:29.100 --> 01:31.680
+So we have a Dev dot properties in the DEV dot properties.
+
+01:31.680 --> 01:38.480
+I'll put 1 and 1 1 1 and in QA dot properties.
+
+01:38.760 --> 01:43.110
+I would put two and two two two.
+
+01:43.140 --> 01:46.500
+So what we are specifying in here is by default.
+
+01:46.710 --> 01:55.460
+This is the value so the minimum is 8 8 8 8 but in DEV environment for limits service the minimum is 1
+
+01:56.340 --> 01:58.800
+For QA environment it is 2.
+
+01:58.830 --> 02:03.340
+You can specifically decide to override only the values you are interested in.
+
+02:03.390 --> 02:09.960
+Let's say you would want to pick the default for the maximum then you can comment this out then the
+
+02:09.960 --> 02:16.810
+maximum value for the DEV environment you would pick up from the default file the default file is limits
+
+02:16.850 --> 02:17.650
+hyphen service.
+
+02:17.730 --> 02:20.580
+So it would pick up the value from here.
+
+02:20.580 --> 02:23.940
+The minimum value we are overriding it in here.
+
+02:23.940 --> 02:26.930
+The other thing you can do is completely remove this line as well.
+
+02:27.060 --> 02:31.210
+For now what I'll do is I'll override all the values which are present in here.
+
+02:31.230 --> 02:39.580
+So DEV the minimum and maximum are one and one eleven respectively and in QA it's two and two twenty two respectively.
+
+02:39.600 --> 02:45.900
+Know before I would be able to see these values using the URLs what I would need to do is to commit these
+
+02:45.900 --> 02:46.720
+files in.
+
+02:46.740 --> 02:50.430
+There is one thing you need to always remember when ever we are making changes.
+
+02:50.500 --> 02:55.280
+to your files inside the GIT local configu repo.
+
+02:55.380 --> 02:58.290
+Make sure that you commit them in.
+
+02:58.320 --> 03:04.170
+You need to commit them to the local repository and only then they will be available through the spring
+
+03:04.170 --> 03:05.460
+cloud config server.
+
+03:05.490 --> 03:12.240
+So let's go head and commit them in what is the command do you remembered I'll say GIT add hyphen A to add
+
+03:12.270 --> 03:13.400
+all the files in.
+
+03:13.560 --> 03:17.280
+If I do GIT status it would show what are the changes that are present.
+
+03:17.350 --> 03:18.990
+So I am saying GIT status and it shows.
+
+03:19.090 --> 03:19.370
+OK.
+
+03:19.410 --> 03:20.440
+A new file.
+
+03:20.460 --> 03:21.910
+Couple of new files are present.
+
+03:21.930 --> 03:25.820
+So now I can go ahead and commit them into GIT commit
+
+03:25.860 --> 03:35.280
+hyphen m I would want to put the commit saying Dev and QA properties OK they're added in to the repository
+
+03:35.280 --> 03:36.020
+right now.
+
+03:36.210 --> 03:43.470
+And now I can access those properties all that I would need to do is instead the default I need to put in the
+
+03:43.470 --> 03:50.940
+environment names so let's put in QA  now you can see that when I put in QA here it is retrieving
+
+03:50.970 --> 03:53.210
+a list of properties sources.
+
+03:53.340 --> 04:00.360
+One of the important things is these lists of properties sources are in the order of priority.
+
+04:00.450 --> 04:06.420
+So the highest priority is for whatever values are configured in the QA file so limits service QA dot
+
+04:06.450 --> 04:10.900
+properties 2 and 222 and the next priority.
+
+04:10.920 --> 04:13.130
+Goes for the defaults so limits
+
+04:13.260 --> 04:15.830
+service dot properties.
+
+04:15.900 --> 04:23.030
+So if there is a value which is configured in here for example this value the value for this is two.
+
+04:23.100 --> 04:28.740
+So if there was a value which was inside the default which was not present in the QA dot properties
+
+04:29.130 --> 04:32.130
+then the value from the default will be pick up.
+
+04:32.250 --> 04:38.210
+But what ever is present in the QA has the highest priority so whatever is present limits service.
+
+04:38.220 --> 04:42.500
+QA dot properties has the highest priority for now.
+
+04:42.540 --> 04:47.100
+All that we are seeing is the list of properties sources being are that are being written.
+
+04:47.130 --> 04:55.330
+What we'll do at a later point in one of the next steps is Connect the limits service to the spring cloud config server.
+
+04:55.620 --> 05:01.440
+What we are doing right now is connecting Spring cloud config server to GIT in the latest step we'll connect
+
+05:01.440 --> 05:07.740
+the limits service to the spring cloud config server and you would see that these specific values are
+
+05:07.770 --> 05:10.000
+being picked up that's.
+
+05:10.030 --> 05:13.390
+QA What you can also do is the values for DEV.
+
+05:13.470 --> 05:19.890
+So I'm saying slash DEV and now you'd see that limits services Dev dot properties that is the highest priority
+
+05:19.980 --> 05:23.220
+one and one eleven and the next priority goes to limits
+
+05:23.220 --> 05:26.010
+service dot properties eight and eight eight eight.
+
+05:26.460 --> 05:32.210
+Don't worry about the fact that the property values are repeating in these two different files.
+
+05:32.260 --> 05:38.580
+We'll look at the fact that when I connect the limits service to this spring cloud config server it has
+
+05:38.580 --> 05:43.530
+the logic to be able to determine which is the one which is having the highest priority so it knows
+
+05:43.530 --> 05:45.930
+that the first file has the highest priority.
+
+05:46.170 --> 05:53.820
+And if you ask for the value for limits service dot minimum it will return the value 1 it will not return the default
+
+05:53.880 --> 05:57.550
+because it's overridden down here in this step.
+
+05:57.570 --> 06:03.420
+What we have done is we've configured multiple values for the limits service in DEV environment
+
+06:03.540 --> 06:05.110
+in QA environment
+
+06:05.580 --> 06:11.520
+One of the exercises you can try and do is to configure a couple of more property files for the stage and the
+
+06:11.520 --> 06:13.470
+production environment for the limits service.
+
+06:13.470 --> 06:15.490
+Until the next step.
+
+06:15.500 --> 06:15.800
+Bye bye.

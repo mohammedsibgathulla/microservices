@@ -270,6 +270,17 @@ spring.security.user.password=password
 - One of the important things about a spring cloud config server. It's stored configuration for multiple services so I can store configuration for limits service currency exchange service and currency calculations service.
 - And also it can store configurations for each of these services for different environments for example the limits service let's say it has four environments Dev QA stage and production we can store all the configurations related to all those for environments using this spring cloud config server.
 
+54. Configuration For Multiple Environments In Git Repository
+- For configuring QA, Dev, Prod env differently we will use the limit-service.properties and override it as follows
+	limit-service-dev.properties
+	limit-service-qa.properties
+- You can comment the maximum or minimum in any environment. It will take the values from limit-service.properties which is default.
+- Every time you do some changes in the git-locaconfig-repo you have to commit the changes.
+- Now you can access different profiles using 
+	http://localhost:8888/limits-service/qa
+	http://localhost:8888/limits-service/dev
+	http://localhost:8888/limits-service/default
+
 
 
 
