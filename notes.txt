@@ -300,6 +300,11 @@ spring.security.user.password=password
 55. A Review Of Spring Cloud Config Server
 - Spring Cloud Config Server is used to manage all the configurations related to multiple microservices.
 
+56. Introduction To Currency Conversion and Currency Exchange Microservice
+- Setting up two microservices and making to commnunicate with each other.
+- Once service give the current INR value.
+- The other service takes the INR value and multiply with Dollars to give the total INR of the Dollars.
+
 
 
 

@@ -1,0 +1,115 @@
+WEBVTT
+
+00:04.190 --> 00:10.130
+Welcome back to understand all the concepts of spring cloud very well we need to build a couple
+
+00:10.130 --> 00:12.030
+of examples services.
+
+00:12.350 --> 00:15.870
+What we'll do is we'll build a couple of examples.
+
+00:15.890 --> 00:20.320
+Currency exchange service and the currency calculation service.
+
+00:20.600 --> 00:27.860
+We will build one service each one rest service each in each of these components will create currency
+
+00:27.860 --> 00:34.010
+exchange service application or micro service and set up a simple service there and will also set up a
+
+00:34.010 --> 00:37.920
+simple service on the currency calculation service.
+
+00:38.310 --> 00:44.480
+Let's get a quick review into the functionality of each of these services right now.
+
+00:44.720 --> 00:52.070
+The currency exchange service would use JPA to talk to the database and return the exchange value for
+
+00:52.070 --> 00:53.380
+a specific currency.
+
+00:53.390 --> 00:56.470
+Service let's say I want to convert USD to INR.
+
+00:56.480 --> 01:00.220
+What is the exchange value let's say the current exchange value 65.
+
+01:00.320 --> 01:02.350
+That's the thing which the currency exchange.
+
+01:02.390 --> 01:10.330
+Service would return talking to a database so when I invoke the currency exchange service I would need to pass in
+
+01:10.520 --> 01:16.440
+two variables which currency you want to convert from which currency you want to convert to.
+
+01:16.550 --> 01:22.340
+So here I would want to convert euro to INR the currency exchange service would return back.
+
+01:22.340 --> 01:24.180
+What is the conversion multiple.
+
+01:24.210 --> 01:30.470
+It says to convert EUR to INR the conversion multiple is 75.
+
+01:30.470 --> 01:39.170
+So one EUR is equal to 75 INR that one euro is equal to 75 Indian rupees.
+
+01:39.180 --> 01:44.200
+Currency conversion service would use the currency exchange service.
+
+01:44.480 --> 01:51.430
+So the currency converter Service wants to convert 1000 USD to INR.
+
+01:51.620 --> 01:56.690
+So what it does is it calls the currency exchange service it asks the currency exchange service ok.
+
+01:56.720 --> 02:03.630
+What is a USD worth in terms of an INR not what is the value to convert USD to.
+
+02:03.680 --> 02:04.260
+INR.
+
+02:04.280 --> 02:07.200
+It gets a value back saying 65.
+
+02:07.430 --> 02:11.570
+And it uses that to calculate 65 to 1000.
+
+02:11.630 --> 02:16.330
+And the response it gives back is sixty five thousand.
+
+02:16.430 --> 02:22.940
+So the currency converter service would make use of the currency exchange service to do the conversion
+
+02:22.940 --> 02:29.510
+from one currency to another currency of any amount that you provide what you are looking at is a very
+
+02:29.510 --> 02:31.810
+simple version of the currency converter.
+
+02:32.060 --> 02:38.360
+There can be other services in the currency converter which would convert from a bag of currencies to
+
+02:38.480 --> 02:39.790
+one currency.
+
+02:39.980 --> 02:44.990
+What we have is a couple of services talking to each other the currency calculation service talking to
+
+02:44.990 --> 02:52.690
+a currency exchange service we will use these two micro services as an example while we talk about spring
+
+02:52.840 --> 02:59.850
+cloud in detail what we'll do in the subsequent steps is to set these up.
+
+02:59.870 --> 03:05.570
+So in these next eight steps what we'll do is we'll set up the currency exchange service and we'll set
+
+03:05.570 --> 03:11.390
+up the currency calculation service to call the currency exchange service until the next step.
+
+03:11.400 --> 03:11.720
+Bye bye.
