@@ -1,0 +1,88 @@
+WEBVTT
+
+00:03.240 --> 00:04.540
+Welcome back.
+
+00:04.650 --> 00:09.990
+Now that the currency exchange service is ready let's shift our focus to the currency conversion service.
+
+00:10.050 --> 00:17.030
+We will go to the spring initializr start spring dot io and start creating a new micro service for so com in
+
+00:17.040 --> 00:23.640
+28 minutes micro services the package artifact ID is currency conversion service.
+
+00:23.940 --> 00:31.310
+And I would choose the see dependencies as we chose when we created the currency exchange service
+
+00:31.730 --> 00:32.380
+web.
+
+00:32.450 --> 00:35.470
+DEV tools actuator and config client.
+
+00:35.610 --> 00:40.940
+So the only thing which we are changing right now with respect to the currency exchange service is
+
+00:40.980 --> 00:43.680
+the artifact ID we are calling this currency conversion.
+
+00:43.680 --> 00:48.560
+service other then that everything else remains exactly the same.
+
+00:48.570 --> 00:54.000
+You can go ahead and click the generate project unzip the zip to a specific folder and we can import it into
+
+00:54.000 --> 00:54.750
+eclipse.
+
+00:54.860 --> 01:05.740
+Let's import the project search file import existing maven projects and I have copied it into a folder called currency conversion service.
+
+01:05.840 --> 01:08.060
+You can also use the browse if you would want.
+
+01:08.420 --> 01:10.700
+And now I can import this project in.
+
+01:10.700 --> 01:11.590
+Click Finish.
+
+01:11.600 --> 01:16.210
+This should be a very quick thing because we have already created a very similar application earlier currency exchange
+
+01:16.250 --> 01:23.480
+service so they should get ready very soon and I would go into the application dot properties and start
+
+01:23.480 --> 01:32.360
+with configuring the application dot name so spring dot application dot name is equal to currency conversion service
+
+01:32.700 --> 01:40.070
+So the name for this application we are giving it is current conversion service and also the port
+
+01:40.080 --> 01:42.040
+we want to configure server dot port.
+
+01:42.170 --> 01:44.720
+What port do we want to use to run this application.
+
+01:44.840 --> 01:47.610
+We already talked about this currency conversion service.
+
+01:47.690 --> 01:50.600
+We want to use 8100 and so on.
+
+01:50.740 --> 01:57.540
+So what we'll do is we'll configure 8100 as the default is equal to eight thousand one hundred.
+
+01:57.780 --> 02:03.160
+If you start the application up you would see that server would start up on a thousand one hundred
+
+02:03.250 --> 02:06.350
+and everything should start up fine in the next step.
+
+02:06.400 --> 02:12.100
+We will write a simple service to talk to the currency exchange service.
+
+02:12.410 --> 02:13.470
+Until then Bye bye.

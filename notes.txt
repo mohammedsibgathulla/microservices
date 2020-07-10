@@ -335,6 +335,11 @@ spring.security.user.password=password
 - You can check http://localhost:8000/currency-exchange/from/EUR/to/INR
 - http://localhost:8000/currency-exchange/from/USD/to/INR
 
+62. Setting Up Currency Conversion Microservice
+- We have generated the project with same depedencies as of currency-exchange and write the below lines in application.properties
+- spring.application.name=currency-conversion-service
+- spring.server.port=8100
+
 
 
 
