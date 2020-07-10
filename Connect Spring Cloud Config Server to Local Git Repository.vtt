@@ -1,0 +1,190 @@
+WEBVTT
+
+00:04.000 --> 00:07.180
+A previous step we created our local git repository.
+
+00:07.180 --> 00:13.270
+And in this step we'll try and connect our spring cloud config server to the local git repository.
+
+00:13.270 --> 00:19.600
+So how do I connect spring cloud config server to the local git repository the firsr thing I would want to do is to
+
+00:19.600 --> 00:21.340
+find the folder path of this.
+
+00:21.340 --> 00:28.720
+You can do right click properties alt enter or command I and I would copy the location from here.
+
+00:28.730 --> 00:30.470
+So I'll copy the location from here.
+
+00:30.490 --> 00:36.760
+This is the location of the git hub repository in or it's the location of the local git hub repository.
+
+00:36.880 --> 00:44.440
+What I can do over here in the application dot properties of spring cloud config server this is very important
+
+00:44.450 --> 00:48.690
+from now one we have multiple application dot properties present.
+
+00:48.700 --> 00:54.340
+So we have application dot properties and limits service in spring cloud config server so really be careful
+
+00:54.340 --> 00:59.640
+about which application dot properties you are making changes in this one which we are changing is
+
+00:59.690 --> 01:02.620
+spring cloud config server application dot properties.
+
+01:02.620 --> 01:08.620
+You can look at the top over here in Eclipse spring cloud config server application dot properties
+
+01:08.620 --> 01:14.020
+when you are in doubt you can check this down here and choose the appropriate file.
+
+01:14.010 --> 01:20.290
+So what we want to do is we would want to configure the local repository local git repository for the
+
+01:20.290 --> 01:21.430
+spring cloud conflict.
+
+01:21.430 --> 01:22.840
+server how do we do that.
+
+01:22.850 --> 01:26.340
+It's spring dot cloud config dot
+
+01:26.490 --> 01:37.310
+server dot git dot URI over here we are using a local git depositary but actually you can give the git repository
+
+01:37.700 --> 01:39.820
+which is present externally as well.
+
+01:39.920 --> 01:45.150
+So over here we are giving the location of the local git repository.
+
+01:45.260 --> 01:50.510
+One important thing that you need to remember is because there's a local git repository I need to use
+
+01:50.510 --> 01:52.560
+a specific syntax.
+
+01:52.790 --> 01:57.330
+So I would need to type in file colon double slash.
+
+01:57.560 --> 02:00.780
+So make sure that you add this to your.
+
+02:00.830 --> 02:04.640
+Path so this is the path to the folder that I copied in.
+
+02:04.820 --> 02:09.710
+And this is the extra edition that I would need to make sure I would add it in.
+
+02:09.950 --> 02:17.680
+So now I can save this and let's launch up our spring cloud config server right click.
+
+02:17.740 --> 02:24.290
+Run as java application after the server has launched up I can go to the URL local host 8 8 8 8 if you
+
+02:24.290 --> 02:25.320
+remembered it right.
+
+02:25.320 --> 02:32.270
+It's 8 8 8 8 is what we configured as the spring cloud config server and it's local host 8 8 8 8.
+
+02:32.270 --> 02:36.120
+The name of the service the name of the service is limits hyphen service.
+
+02:36.200 --> 02:43.930
+This is exactly the name that we have given to the file in the git local reconfig repo so it limits hyphen
+
+02:43.930 --> 02:48.930
+service so limitations hyphen service slash default.
+
+02:49.160 --> 02:53.890
+When I type this in I get an error page.
+
+02:54.110 --> 02:56.690
+Why am I getting this error page.
+
+02:56.720 --> 03:03.100
+This one very important thing that we need to remember always when ever we create a spring cloud config
+
+03:03.110 --> 03:08.670
+server you would need to enable this spring cloud config server.
+
+03:08.720 --> 03:13.910
+How do they enable us spring cloud config server that's by going through the spring cloud config server
+
+03:13.950 --> 03:15.160
+application class.
+
+03:15.160 --> 03:20.700
+I mean that basically the class where this spring boot application annotation is present I'd go there and put in
+
+03:20.920 --> 03:24.380
+another annotation enable config server.
+
+03:24.680 --> 03:28.560
+You forget to add at enable config server and you would be worrying.
+
+03:28.580 --> 03:34.280
+Why is the config server not really working so make sure that all the application class you have the
+
+03:34.290 --> 03:38.120
+At Enable config server annotation added in.
+
+03:38.180 --> 03:46.100
+Once you go to the URI localhost 8 8 8 8 limits service default you can see now that a set of property
+
+03:46.100 --> 03:47.480
+values are being retrieved.
+
+03:47.480 --> 03:53.300
+You can see the values which we have configure limit servies minium 8 and maximum 8 8 8.
+
+03:53.420 --> 03:59.930
+Other than the minimum and maximum you can also see the name of the property file from which these values
+
+04:00.020 --> 04:01.430
+are retrieved.
+
+04:01.430 --> 04:03.720
+So you can see that this is a big limits.
+
+04:03.730 --> 04:12.440
+service dot properties and the entire path to it you also have a few other values which are being retrieved
+
+04:12.560 --> 04:16.400
+as part of the service response.
+
+04:16.400 --> 04:22.880
+What we have done in this step is establish the connection between the spring cloud config server and
+
+04:23.010 --> 04:24.900
+the git repository.
+
+04:24.920 --> 04:28.280
+One of the important things about a spring cloud config server.
+
+04:28.490 --> 04:35.420
+It's stored configuration for multiple services so I can store configuration for limits service currency
+
+04:35.420 --> 04:38.780
+exchange service and currency calculations service.
+
+04:38.980 --> 04:45.960
+And also it can store configurations for each of these services for different.
+
+04:45.980 --> 04:51.570
+environments for example the limits service let's say it has four environments.
+
+04:51.590 --> 05:00.170
+Dev QA stage and production we can store all the configurations related to all those for environments
+
+05:00.530 --> 05:04.490
+using this spring cloud config server in the next
+
+05:04.490 --> 05:09.000
+step we look at the details of how to do that until then bye bye.

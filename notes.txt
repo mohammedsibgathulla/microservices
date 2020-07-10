@@ -258,6 +258,17 @@ spring.security.user.password=password
 - Create limits-service.properties on the linked folder.
 - Go to git-local-config-repo path and add the file and commit it.
 
+53. Connecting Spring Cloud Config Server To Local Git Repository
+- Right Click on git-localconfig-repo and copy the location.
+- In the application properties of spring-cloud-config-server update as follows
+- spring.cloud.config.server.git.uri=/home/mohammed/ranga/git-localconfig-repo
+- You can also give the url of the git repository which is present externally as well.
+- Hence we are using locally we need to append file:// infront of the location.
+- If you run you will get an error on url http://localhost:8888/limits-service/default as white lable error page.
+- Hence when ever you run a spring-cloud-config-server we should enable it by @EnableConfigServer in the main file.
+- We have establish the connection between the spring cloud config server and the git repository. One of the important things about a spring cloud config server.
+- One of the important things about a spring cloud config server. It's stored configuration for multiple services so I can store configuration for limits service currency exchange service and currency calculations service.
+- And also it can store configurations for each of these services for different environments for example the limits service let's say it has four environments Dev QA stage and production we can store all the configurations related to all those for environments using this spring cloud config server.
 
 
 
