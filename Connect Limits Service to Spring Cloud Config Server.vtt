@@ -1,0 +1,181 @@
+WEBVTT
+
+00:03.850 --> 00:09.670
+Welcome back in the previous step we connected the spring cloud config server to the GIT repository and
+
+00:09.670 --> 00:11.840
+also configure multiple.
+
+00:11.860 --> 00:17.750
+Environments conflagration from multiple environments of limits service in the GIT repository however.
+
+00:18.280 --> 00:23.670
+We have not really connected the limits service to pick the values from the spring cloud config server.
+
+00:23.690 --> 00:26.680
+In this step let's focus on doing that.
+
+00:26.680 --> 00:34.420
+What we'll do is we'll connect the limits service to pick up the configuration from the spring cloud config server
+
+00:35.470 --> 00:41.870
+all the configuration that we have been creating is in files which are named as application dot properties.
+
+00:41.920 --> 00:44.060
+This kind of the default.
+
+00:44.170 --> 00:49.720
+So if you're configuring anything related to the application then application dot properties is probably
+
+00:49.720 --> 00:52.550
+the default place where you would configure that.
+
+00:52.780 --> 00:56.740
+But now what we want to do is limit service configuration.
+
+00:56.740 --> 01:03.130
+We don't want it to be from application dot properties we would want it to connect to the spring cloud
+
+01:03.130 --> 01:06.570
+config server and pick it up.
+
+01:06.580 --> 01:09.210
+We don't know how to configure the values in here.
+
+01:09.280 --> 01:15.940
+What we want to do is we would want to limits service to talk to the spring cloud config server and pick up
+
+01:15.940 --> 01:20.590
+the configuration from there one of the important things is.
+
+01:20.590 --> 01:27.700
+If you would want to pick up the configuration from a spring cloud config server the property file
+
+01:27.760 --> 01:29.760
+has to be renamed.
+
+01:29.770 --> 01:37.960
+I should not use the name application dot properties but I would start calling this bootstrap dot properties.
+
+01:38.200 --> 01:46.010
+So instead of application dot properties the name is bootstrap dot properties so let's rename this to
+
+01:46.010 --> 01:47.880
+bootstrap dot properties.
+
+01:47.890 --> 01:52.660
+The other important thing is we don't really want to configure values in here because all the configuration
+
+01:52.720 --> 01:57.000
+of the values should happen on the spring cloud config server.
+
+01:57.430 --> 02:03.760
+Typically the things which would be present in Bootstrap properties are configuration of what is the
+
+02:03.760 --> 02:05.370
+name of the application.
+
+02:05.530 --> 02:13.900
+Then you need to tell limits service where this spring cloud config server is which URL can be used
+
+02:13.900 --> 02:21.110
+to talk to this spring cloud config server if I say Spring dot cloud dot config dot
+
+02:21.250 --> 02:30.750
+URI that's a property where you can store the value of the URI or the URL actually of this spring
+
+02:31.340 --> 02:36.250
+cloud config server port what did we use localhost 8888.
+
+02:36.300 --> 02:41.930
+That's the URI which we made use what I'll do is I'll restart the limits service.
+
+02:41.950 --> 02:45.450
+Let's see if this is running OK.
+
+02:45.460 --> 02:46.820
+I don't really have it running.
+
+02:46.860 --> 02:51.790
+Let's go ahead and now start up the limits service application.
+
+02:51.790 --> 02:56.530
+The important thing is the fact that the name of the application is a limites hyphen service.
+
+02:56.810 --> 03:00.650
+So we exactly match in the GIT local config repo.
+
+03:00.740 --> 03:04.100
+We have limites hyphen service hyphen dev hyphen QA.
+
+03:04.180 --> 03:09.480
+So this application name is a critical part of your bootstrap dot properties.
+
+03:09.490 --> 03:15.230
+Now based on this application name we are going to pick up values from the git local repository.
+
+03:15.620 --> 03:19.340
+Now the application has started up.
+
+03:19.380 --> 03:27.290
+If I search for localhost 8 8 8 8 you'd see that fetching config from server at so and so and
+
+03:27.300 --> 03:34.200
+you can see it says located environment name is equal to limites service and profile's is equal to default
+
+03:34.590 --> 03:38.480
+because we have not really configured a profile in here.
+
+03:38.510 --> 03:40.690
+It picks up the default profile.
+
+03:40.800 --> 03:46.840
+Later we'll see it we'll see how you can configure a profile and pick up the configuration for that.
+
+03:46.890 --> 03:47.650
+specific environment.
+
+03:47.760 --> 03:52.590
+But for now let's use the default profile so we're using the default profile and we are picking up the
+
+03:52.590 --> 03:55.230
+values from the default profile.
+
+03:55.380 --> 04:01.080
+So I would recommend you to spend some time looking at the log and seeing how the local host 8 8 
+
+04:01.110 --> 04:06.370
+8 8 is being use to pick up the values from the spring cloud config server.
+
+04:06.480 --> 04:14.480
+if you execute the URI local host 80 80 slash limits you would see maximum is 888 minimum is 8.
+
+04:14.480 --> 04:16.170
+Where did we configure that.
+
+04:16.170 --> 04:22.730
+That's coming from your limits service dot properties that's the default values that we have configured.
+
+04:23.000 --> 04:30.120
+So what we have done in this step is we connected the limites service to the spring cloud config server all that we
+
+04:30.120 --> 04:37.370
+had to do was to rename application dot properties to bootstrap dot properties and configure of the URI of this spring
+
+04:37.380 --> 04:40.110
+cloud config server by default.
+
+04:40.140 --> 04:47.400
+It's become picking up the values from limits hyphen service dot properties which is the default profile
+
+04:47.750 --> 04:53.760
+in the next step we would look at configuring profiles in the limits service and picking up the properties for
+
+04:53.760 --> 04:54.800
+the appropriate.
+
+04:54.810 --> 04:56.030
+Environment.
+
+04:56.200 --> 04:57.230
+Until then bye bye.

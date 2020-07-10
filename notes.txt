@@ -281,6 +281,16 @@ spring.security.user.password=password
 	http://localhost:8888/limits-service/dev
 	http://localhost:8888/limits-service/default
 
+55. Connect Limits Service To Spring Cloud Config Server	
+- Rename the application.properties to bootstrap.properties in limit-service project.
+- We won't configure values there. Bcoz all the configuration of values happen on spring-cloud-config server.
+- In bootstrap properties are configuration of the what is the name of application and url to talk to spring-cloud-config-server.
+- Now start the limit-service application it will have the following in console
+  Could not locate PropertySource: I/O error on GET request for "http://localhost:8888/limits-service/default": Connection refused (Connection refused); nested exception is java.net.ConnectException: Connection refused (Connection refused)
+2020-07-10 12:32:03.875  INFO 3811 --- [  restartedMain] c.a.l.LimitsServiceApplication           : No active profile set, falling back to default profiles: default
+- We have not set the active profile hence it will choose the default profile.
+- Now if you execute http://localhost:8080/limits then you will see the values loaded from spring-cloud-config-server for the rest  controller method in LimitsConfigurationController.
+
 
 
 
