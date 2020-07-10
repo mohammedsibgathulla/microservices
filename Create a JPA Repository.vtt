@@ -1,0 +1,190 @@
+WEBVTT
+
+00:03.610 --> 00:09.250
+Welcome back in the previous step we created a table in the in-memory database and we saw that all the data
+
+00:09.250 --> 00:11.220
+is properly populated.
+
+00:11.260 --> 00:16.900
+In this day what we'll do is we'll try and use the data from the database to return as the response
+
+00:16.960 --> 00:18.760
+for this service.
+
+00:18.870 --> 00:22.080
+So the input to the service is from and to.
+
+00:22.120 --> 00:29.050
+So I would get the from currency to currency and the output we expect back from the server is most
+
+00:29.050 --> 00:31.560
+importantly the conversion value.
+
+00:31.570 --> 00:34.590
+How can I convert a USD to INR.
+
+00:34.840 --> 00:37.490
+So that's the value we would want to be able to retrieve from the database.
+
+00:37.510 --> 00:44.740
+So we would want to be able to search the row by from currency and to currency Let's start creating
+
+00:44.800 --> 00:51.940
+a repository I'll create a new class new class and I'll call this exchange value repository.
+
+00:53.050 --> 00:55.270
+Entity name followed by the repository.
+
+00:55.270 --> 01:01.940
+thing is repository should actually be an interface so a public interface should extend what should
+
+01:01.950 --> 01:02.670
+it extend.
+
+01:03.680 --> 01:12.110
+If you have remembered the interaction JPA stuff it should extend JPA repository that to things that you have
+
+01:12.110 --> 01:21.320
+to pass in the first one is what is the type of the entity that it manages its exchange value and what
+
+01:21.430 --> 01:25.450
+it the type of the ID field let's organize the imports.
+
+01:25.700 --> 01:28.100
+Actually it should be a small pa.
+
+01:28.250 --> 01:31.430
+It's a JPA repository exchange value and long.
+
+01:31.500 --> 01:35.170
+Now this will provide me the default method.
+
+01:35.180 --> 01:42.290
+So if I have exchange value repository an instance of it over here exchange value repository I'll say repository
+
+01:42.530 --> 01:50.310
+and I can auto wire it in and make it private as well and now I can use the method from the repository.
+
+01:50.420 --> 01:55.900
+So if I said repository dot there are a lot of methods that the repository provides.
+
+01:55.940 --> 02:03.890
+It will allow us to find different things by id it will be allowing us to find all the rows and it
+
+02:03.890 --> 02:09.900
+will be allowing us to find all and do all sorts and a lot of find methods which are present in there.
+
+02:10.100 --> 02:16.760
+But what we wanted to do is to search based on the from and the to if you want to do such kind of things
+
+02:16.760 --> 02:21.790
+with spring data JPA we have to provide something called the query method.
+
+02:22.010 --> 02:27.470
+How do we search rows in the table buy from and to we provide the query method.
+
+02:27.470 --> 02:29.630
+So how do we create a query method.
+
+02:29.930 --> 02:32.420
+I'll go to the exchange value repository.
+
+02:32.450 --> 02:33.350
+And what do we want to do.
+
+02:33.350 --> 02:41.810
+We want to do find by two columns right which two columns we want to find by from and to find by from
+
+02:42.590 --> 02:49.210
+and to string from Spring to.
+
+02:49.900 --> 02:55.870
+And what is the response that we expected back that's another instance of the exchange value.
+
+02:55.880 --> 02:56.740
+Its very simple.
+
+02:56.840 --> 02:58.670
+Its find by using the common thing.
+
+02:58.850 --> 03:04.430
+And then the two columns that you would want to find the by we would want to find by from and to if you
+
+03:04.430 --> 03:10.770
+do find by from and just pass in a single parameter string from it will turn based on the from.
+
+03:10.820 --> 03:17.390
+If I say find by from and to it will use the combination it will use from and 2 to be able to search
+
+03:17.440 --> 03:18.110
+this.
+
+03:18.170 --> 03:20.530
+This is all the magic of spring data.
+
+03:20.540 --> 03:26.900
+JPA once you provide a method definition like this spring data JPA would provide the implementation
+
+03:26.900 --> 03:35.090
+for us to be able to search the table by using the from the to now lets use this method inside the controller.
+
+03:35.090 --> 03:48.190
+So in the controller I can call this by repository dot find by from and to and pass the from and to variables so now instead
+
+03:48.190 --> 03:54.730
+of using the exchange value from here instead of reading it ourselves I would use this repository by
+
+03:55.130 --> 03:56.820
+dot find by from and to.
+
+03:56.920 --> 04:04.510
+And I would set the port and return it let's save this down want the application has started and pick the change up
+
+04:04.810 --> 04:06.350
+let's refresh.
+
+04:06.580 --> 04:11.290
+You're seeing right now that we are getting the value from the database the most important thing is
+
+04:11.290 --> 04:16.250
+the ID ten thousand one and we hardcoded it we gave it a different ID.
+
+04:16.480 --> 04:25.410
+So ten thousand one USD INR 65 you can also try by passing in from as EUR to INR you can see that EUR
+
+04:25.410 --> 04:29.790
+INR conversion multiple is 75 and port is eight thousand.
+
+04:30.120 --> 04:36.300
+So what we are doing right now is when you pass the currency so EUR to INR what is happening
+
+04:36.300 --> 04:38.990
+is query gets fire to the database.
+
+04:40.380 --> 04:41.800
+Where is the query.
+
+04:41.990 --> 04:46.470
+You can see the query in here so you can see the entire query down here.
+
+04:46.510 --> 04:48.140
+Let's copy this out.
+
+04:48.180 --> 04:49.270
+You can see the whole thing.
+
+04:49.290 --> 04:54.830
+So currency from is equal to this and currency to is equal to this a query is getting fired we are retrieving the
+
+04:54.830 --> 04:56.210
+value from the database.
+
+04:56.330 --> 05:01.730
+And we are returning it back as a response for this specific service.
+
+05:02.400 --> 05:09.020
+With this step our currency exchange service is ready from the next step on we would start focusing
+
+05:09.020 --> 05:12.950
+on the currency conversion service is until then bye bye.

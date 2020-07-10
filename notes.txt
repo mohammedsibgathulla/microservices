@@ -331,6 +331,10 @@ spring.security.user.password=password
 - See the h2 console at http://localhost:8000/h2-console/
 - Hence here we have setup inmemory database.
 
+61. Create A JPA Repository
+- You can check http://localhost:8000/currency-exchange/from/EUR/to/INR
+- http://localhost:8000/currency-exchange/from/USD/to/INR
+
 
 
 
