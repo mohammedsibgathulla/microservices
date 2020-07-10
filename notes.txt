@@ -340,6 +340,15 @@ spring.security.user.password=password
 - spring.application.name=currency-conversion-service
 - spring.server.port=8100
 
+63. Creating A Service For Currency Conversion
+- Create CurrencyConversionBean, CurrencyConversionController and 
+	@GetMapping("/currency-converter/from/{from}/to/{to}/quantity/{quantity}")
+	public CurrencyConversionBean convertCurrency(@PathVariable String from, @PathVariable String to, @PathVariable BigDecimal quantity) {
+		return new CurrencyConversionBean(1L, from, to, BigDecimal.ONE, quantity, quantity,0);
+	}
+- Check the service at http://localhost:8100/currency-converter/from/USD/to/INR/quantity/1000
+
+
 
 
 

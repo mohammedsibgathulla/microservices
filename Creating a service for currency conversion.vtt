@@ -1,0 +1,247 @@
+WEBVTT
+
+00:04.020 --> 00:04.910
+Welcome back.
+
+00:04.980 --> 00:07.860
+We've already created a currency exchange service.
+
+00:07.860 --> 00:08.580
+What does it do.
+
+00:08.640 --> 00:13.010
+What I call currency exchange from EUR to INR it returns me.
+
+00:13.020 --> 00:14.320
+What is the conversion.
+
+00:14.360 --> 00:16.280
+multiple the currency exchange.
+
+00:16.530 --> 00:21.230
+What is the current currency exchange you value when I convert from EUR to INR.
+
+00:21.320 --> 00:26.920
+What do we want to do is we want to create the currency calculation service what we want to create.
+
+00:26.910 --> 00:27.370
+Right now.
+
+00:27.390 --> 00:30.920
+This is a very simple version of the currency calculation service.
+
+00:31.050 --> 00:37.320
+Is this currency calculation service can have a lot of functionality related converting a bucket of
+
+00:37.320 --> 00:39.840
+currencies into a single currency.
+
+00:39.840 --> 00:42.630
+What we'll do is we'll create a simple service.
+
+00:42.690 --> 00:47.150
+So will call this currency converter and it would accept from to.
+
+00:47.160 --> 00:54.060
+So it will accept OK I would want to convert from USD to INR and it will also accept how many.
+
+00:54.090 --> 00:55.280
+It's called quantity.
+
+00:55.440 --> 01:02.400
+So I would want to convert 1000 USD to INR what it does is it does not know what is the exchange value
+
+01:02.400 --> 01:07.780
+for USD to INR it will call the currency exchange service.
+
+01:08.130 --> 01:12.700
+So the currency calculation service would call the currency exchange service and it asks.
+
+01:12.760 --> 01:17.100
+OK tell me how much USD worth in INR.
+
+01:17.250 --> 01:26.370
+It will get 65 back or 65 or whatever the value at that point is back and it would use the amount thousand
+
+01:26.670 --> 01:32.210
+and multiplied thousand by the exchange value thousand into 65 which is 65000.
+
+01:32.340 --> 01:39.380
+And return that as the response what we are creating is the basic version of the currency converter
+
+01:39.400 --> 01:45.330
+service let's get started now and you really really need to create a controller.
+
+01:45.620 --> 01:53.010
+So I'll create a new class I'll call this currency conversion controller this should be our rest controller
+
+01:53.140 --> 01:54.940
+at rest control.
+
+01:55.350 --> 02:02.690
+We would want to create a method a get method a get mapping and have the URL down here.
+
+02:02.730 --> 02:06.690
+This is very similar to what we did with the currency exchange service.
+
+02:06.750 --> 02:14.710
+So I would want to call this currency converter and from from to INR to.
+
+02:15.000 --> 02:20.190
+And this is the quantity and let's call this public.
+
+02:20.290 --> 02:27.300
+I would it return a been back I call this currency conversion bean and we'll create the bean very
+
+02:27.300 --> 02:34.230
+soon I'll call name the method as current convert currency and we need to define a few path variables in here right so path variable
+
+02:34.230 --> 02:42.250
+string from the other ones which you'd need a path variable string to.
+
+02:42.430 --> 02:44.660
+And also we need another path variable.
+
+02:45.080 --> 02:49.190
+This would be a big decimal and I'll call this quantity.
+
+02:49.480 --> 02:59.820
+And for now let's return a hardcoded stuff back let's organize the for imports everything ok expect for the currency conversion
+
+02:59.820 --> 03:02.840
+bean should be automatically result.
+
+03:03.040 --> 03:05.390
+I will create a new currency conversion bean.
+
+03:05.420 --> 03:12.690
+So create class currency conversion bean and scored and do that finish in the currency conversion bean I would
+
+03:12.690 --> 03:17.010
+want a Id private long.
+
+03:17.010 --> 03:30.350
+Id and I'll also want a private String from which currency private string to which currency private string what
+
+03:30.350 --> 03:33.010
+is the conversion value that we got.
+
+03:33.800 --> 03:39.650
+So it's conversion multiple When I call the current currency exchange.
+
+03:39.650 --> 03:48.920
+I would get this currency multiple let's also return that back and I would also put in the requested
+
+03:49.220 --> 03:50.370
+quantity.
+
+03:50.480 --> 03:59.960
+Actually these two should be big decimal big decimal big decimal for quantity as well.
+
+04:00.260 --> 04:12.800
+And the last one is the calculated amount or you can also call this total amount total calculated amount
+
+04:13.310 --> 04:17.420
+and will also return the port back.
+
+04:17.420 --> 04:22.970
+So would we are basically adding in is while the values which we are getting back from the currency exchange
+
+04:23.100 --> 04:25.840
+service ID to conversion multiple input.
+
+04:26.060 --> 04:33.020
+In addition to them we have a quantity and a total calculated amount that's basically  it it's a lot of
+
+04:33.320 --> 04:35.170
+variables that we're adding in here.
+
+04:35.380 --> 04:41.740
+I'll go ahead and generate a simple constructor using fields and I'll also go ahead and add in getter and setter.
+
+04:41.900 --> 04:45.150
+Let's organize the imports as well.
+
+04:45.650 --> 04:53.220
+And also this will be used by Jackson we would need a default constructor no argument constructor
+
+04:53.270 --> 04:55.190
+so let's provide that as well.
+
+04:55.190 --> 04:59.380
+So basically what we are doing in here is creating a simple bean with a lot of variables.
+
+04:59.400 --> 05:01.570
+It looks complex because there are a lot of variables in here.
+
+05:01.580 --> 05:06.050
+But if you really look at it objectively there is nothing complex in here.
+
+05:06.350 --> 05:12.780
+So now I can create a new dummt bean and return it back new currency conversion being let's passing the values
+
+05:12.810 --> 05:14.430
+parameter that would be needed.
+
+05:14.480 --> 05:17.200
+I'll hardcoded as one L the ID.
+
+05:17.330 --> 05:23.320
+The second argument the second argument is let's look at the current conversion bean the second argument
+
+05:23.330 --> 05:28.670
+is from so I'll passing from which we got in here so from to.
+
+05:28.730 --> 05:37.870
+And the next one is conversion multiple and quantity so quantity we have quantity we have the conversion multiple.
+
+05:37.990 --> 05:43.470
+I'll just send some value out I'll just say 65.
+
+05:43.620 --> 05:46.710
+Or for now let's hardcoded what's the big deal.
+
+05:46.940 --> 05:54.700
+So big decimal dot 1 let's say that's the currency multiples and quantity total calculated amount I'll say
+
+05:55.640 --> 05:57.550
+is quantity itself.
+
+05:57.560 --> 06:04.510
+We'll fix that very soon and the port I'll hard coded for now to zero.
+
+06:04.580 --> 06:10.310
+So we are hard coding currency conversion bean and return it back if you restart the application
+
+06:10.310 --> 06:16.690
+now and go to this URI currency converter make sure that you are using localhost 8100 that's the port
+
+06:16.730 --> 06:23.620
+we have configured currency converter from USD to INR quantity 1000 refresh.
+
+06:23.930 --> 06:25.960
+And you would see these values back.
+
+06:26.220 --> 06:32.300
+So the USD the INR and thousand are being picked up from the path variables inside.
+
+06:32.300 --> 06:33.390
+URI.
+
+06:33.500 --> 06:35.360
+The other ones are hard coded.
+
+06:35.390 --> 06:39.120
+What we'll do in the next step is from the currency conversion Service.
+
+06:39.360 --> 06:42.590
+We will call the currency exchange service.
+
+06:42.800 --> 06:49.000
+We will determine what is the conversion multiple and we will use that to determine the total calculated
+
+06:49.000 --> 06:49.660
+amount.
+
+06:49.850 --> 06:55.670
+We will also use the port which comes back in the response until the next step bye bye.
