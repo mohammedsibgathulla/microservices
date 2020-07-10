@@ -1,0 +1,136 @@
+WEBVTT
+
+00:03.320 --> 00:10.010
+Welcome back in this and the subsequent steps you will start setting up a simple service on the currency
+
+00:10.010 --> 00:10.840
+exchange.
+
+00:11.000 --> 00:18.510
+Service as usual we will go to start dot spring  dot io and pick up maven Project Java and use a version
+
+00:18.510 --> 00:20.920
+of spring boot which is greater then 2.0.0 .
+
+00:21.170 --> 00:23.570
+As usual do not use snapshots.
+
+00:23.700 --> 00:30.440
+The group ID at the same com in 28 minutes micro services the artifact ID I want to use.
+
+00:30.470 --> 00:39.740
+Currency exchange service the very cautious about it currency hyphen exchange hyphen service and we would
+
+00:39.740 --> 00:42.010
+want to create a web application.
+
+00:42.080 --> 00:48.290
+Actually we would want to create a service or a rest service so I will use web that's the one we have use to create a restFUL web.
+
+00:48.290 --> 00:54.260
+Services I would want it to be able to automatically pick up changes dev tools.
+
+00:54.350 --> 00:58.410
+I would also want to be able to monitor the application actuator.
+
+00:58.500 --> 01:02.080
+We would want to connect the application to a spring cloud config server.
+
+01:02.120 --> 01:06.600
+So we would need config client so config client.
+
+01:07.210 --> 01:12.330
+So those are the four dependencies that you would need.
+
+01:12.330 --> 01:15.070
+Important things that you would need to be cautious about our.
+
+01:15.360 --> 01:20.860
+version of spring boot at least 2.0.0 and do not use the snapshot.
+
+01:21.030 --> 01:28.680
+The other ones are give the proper artifact ID currency hyphen exchange hyphen service and make sure
+
+01:28.710 --> 01:33.670
+that you would choose all the four dependencies that are present in here.
+
+01:33.720 --> 01:40.710
+The most important one our Web and config client once you have done that you are ready to now generate
+
+01:40.710 --> 01:41.500
+a project.
+
+01:41.640 --> 01:45.260
+If you click generate project it would download the zip.
+
+01:45.300 --> 01:52.080
+Make sure that you unzip the file to a specific folder and we can import the project from Eclipse.
+
+01:52.170 --> 01:58.590
+I can import that project into Eclipse base file import existing Maven projects and I would want to
+
+01:58.590 --> 02:04.370
+use I would copy the zip file to this specific location.
+
+02:04.400 --> 02:12.360
+0 3 Micro services currency exchange service and I would press tab and now we can see currency exchange service being listed
+
+02:12.360 --> 02:13.140
+down here.
+
+02:13.140 --> 02:15.970
+I can click the finish when the import is complete.
+
+02:15.990 --> 02:19.640
+You would see a folder set up similar to what you would see in here.
+
+02:19.810 --> 02:25.590
+You would have source main Java source main resources source test Java and mavendependencies where all the dependencies
+
+02:25.590 --> 02:27.570
+of this project are listed down.
+
+02:27.960 --> 02:33.510
+What I would also want to do is to make sure that the application name for this application is properly
+
+02:33.510 --> 02:35.340
+configured.
+
+02:35.340 --> 02:40.620
+The application name that I would want the same for this is spring dot application dot.
+
+02:40.640 --> 02:49.140
+Name the name which we would want to give it is exactly what we used as the artifact ID currency exchange
+
+02:49.380 --> 02:53.080
+service make sure that you get this absolutely right.
+
+02:53.200 --> 02:59.480
+Currency hyphen exchange hyphen service the other thing we would want to be really cautious about.
+
+02:59.490 --> 03:02.570
+Is the port that we use for the currency exchange service.
+
+03:02.580 --> 03:07.240
+As we discussed earlier the ports which we want to use this eight thousand eight thousand one and eight thousand
+
+03:07.290 --> 03:13.360
+two so I would set the default port to eight thousand.
+
+03:13.530 --> 03:14.890
+How do we set this server port.
+
+03:15.000 --> 03:19.030
+So server dot is equal to eight thousand.
+
+03:19.140 --> 03:23.110
+When you start this application up you'd see that the application would start up fine.
+
+03:23.160 --> 03:26.470
+Would it be have not really exposed any services out of it yet.
+
+03:26.490 --> 03:30.900
+The next step will create a simple currency exchange service.
+
+03:31.200 --> 03:32.100
+Until then bye bye.

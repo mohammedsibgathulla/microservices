@@ -305,6 +305,11 @@ spring.security.user.password=password
 - Once service give the current INR value.
 - The other service takes the INR value and multiply with Dollars to give the total INR of the Dollars.
 
+57. Setting Up Currency Exchange Microservice
+- Setup the project using the dependencies as shown in the image.
+
+
+
 
 
 
