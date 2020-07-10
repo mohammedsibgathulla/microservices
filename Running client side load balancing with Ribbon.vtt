@@ -1,0 +1,196 @@
+WEBVTT
+
+00:03.670 --> 00:09.900
+Welcome back in the previous step we added a dependency on ribbon and we added the annotation at ribbon	client
+
+00:09.910 --> 00:10.740
+as well.
+
+00:10.900 --> 00:17.940
+We also configured the URLs for the currency exchange service inside the application.properties.
+
+00:17.950 --> 00:25.100
+Now let's try and kick these applications up and try and distribute the load using a ribbon.
+
+00:25.180 --> 00:28.150
+I have already have the currency exchange service application running.
+
+00:28.150 --> 00:32.700
+Let's check that up once currency exchange application on eight thousand.
+
+00:32.890 --> 00:34.360
+Ok this is working fine.
+
+00:34.480 --> 00:38.680
+I would want to launch another instance of the currency exchange application.
+
+00:38.680 --> 00:45.970
+We have already configured a currency exchange application to be able to run it on eight Thousand One I'll launch
+
+00:45.970 --> 00:47.330
+that up.
+
+00:47.560 --> 00:49.910
+So we'll have two instances of the currency exchange.
+
+00:49.910 --> 00:53.070
+Service application eight thousand and eight thousand one.
+
+00:53.320 --> 00:55.490
+I'm launch up eight thousand one as well.
+
+00:55.780 --> 01:02.020
+While it's launching up if you really want to configure a different port other than the default port
+
+01:02.050 --> 01:05.150
+for launching up application it's very easy to do that.
+
+01:05.170 --> 01:07.520
+We saw that in one of the early steps as well.
+
+01:07.520 --> 01:15.360
+All you need to do is let's say I want to run the currency exchange application eight thousand in eight thousand
+
+01:15.430 --> 01:16.330
+two as well.
+
+01:16.410 --> 01:23.860
+All that I would need to do is right click this right click duplicate now go over here and change the name.
+
+01:23.890 --> 01:25.940
+eight thousand to eight thousand two.
+
+01:25.960 --> 01:28.600
+You need to go to the argument and passing.
+
+01:28.810 --> 01:30.670
+Hyphen D server.
+
+01:30.870 --> 01:37.940
+Dot port is equal to which port the application has to run it eight thousand two.
+
+01:38.290 --> 01:45.350
+And when you run this let's first app like this and then you run this the application would run on port eight thousand two
+
+01:46.160 --> 01:46.750
+for now.
+
+01:46.780 --> 01:49.070
+I'm not really interested in running it on eight thousand two.
+
+01:49.130 --> 01:51.280
+You would see that for a thousand one.
+
+01:51.280 --> 01:55.230
+We have a similar setting and that's the application which we have launched.
+
+01:55.420 --> 02:00.310
+So I could go this you'd see that we have two currency exchange applications running eight thousand one and
+
+02:00.340 --> 02:01.240
+eight thousand.
+
+02:01.450 --> 02:04.530
+Let's ensure that make sure that they are up and running.
+
+02:04.810 --> 02:09.560
+Let's go to eight thousand one and hit the currency exchange.
+
+02:09.880 --> 02:11.070
+Ok that's cool.
+
+02:11.070 --> 02:16.990
+So we now have two instances of the currency exchange running our currency converter feign is down.
+
+02:16.990 --> 02:20.790
+So here let's launch that up currency conversion.
+
+02:20.790 --> 02:27.670
+service application 8100 can we launch it up please in the application dot properties of the currency
+
+02:27.710 --> 02:31.720
+conversion service we have configured the URLs for the currency exchange service.
+
+02:31.720 --> 02:35.980
+We said the URLs are eight thousand and eight thousand one.
+
+02:36.010 --> 02:36.790
+That's cool.
+
+02:37.090 --> 02:42.930
+You can see that there are a set of statastics that are being printed right now because we configured
+
+02:42.930 --> 02:44.700
+ribbon.
+
+02:44.910 --> 02:50.240
+Everybody is saying OK this is the status of the current server that I'm talking to localhost eight thousand
+
+02:50.600 --> 02:52.190
+localhost eight thousand one.
+
+02:52.390 --> 02:54.620
+We have not sent any requests through yet.
+
+02:54.700 --> 03:01.890
+So let's trigger off the request the request I would want to send this localhost 8100 currency conversion frign from
+
+03:01.960 --> 03:05.130
+EUR to INR quantity let's say.
+
+03:05.260 --> 03:11.860
+Not thousand but the ten thousand and you can see that this request is coming out with a successful response
+
+03:12.070 --> 03:15.190
+which currency exchange application is handling the request.
+
+03:15.220 --> 03:21.610
+You can see that the response is coming back from the application on port eight thousand one you can re
+
+03:21.610 --> 03:27.700
+fresh it again you'd see that the next time the request is handled by the currency exchange service
+
+03:27.760 --> 03:30.750
+on port eight thousand refresh again.
+
+03:30.840 --> 03:34.390
+Eight thousand one refresh again eight thousand.
+
+03:34.390 --> 03:41.710
+This is cool right now what ever request that we are sending from currency converter Feign are being distributed
+
+03:41.770 --> 03:46.610
+against two instances of the currency exchange service.
+
+03:46.870 --> 03:55.180
+So what is happening is Ribbon is now distributing the load between the two active currency exchange
+
+03:55.180 --> 03:56.680
+services.
+
+03:56.680 --> 04:00.400
+So currency exchange service one is running on port eight thousand.
+
+04:00.400 --> 04:02.680
+This is running on port eight thousand one.
+
+04:02.860 --> 04:08.470
+So what ever calls are made using ribbon through the currency calculation servies are being
+
+04:08.470 --> 04:13.810
+distributed between these two services in this step.
+
+04:13.840 --> 04:19.480
+We were able to launch up two instances of the currency exchange service and saw that ribbon distribute
+
+04:19.900 --> 04:26.140
+the load from currency conversion service between these two instances of the currency exchange service.
+
+04:26.190 --> 04:32.950
+However there are still a few things that we would want to improve on top of the set up that we already
+
+04:32.950 --> 04:33.730
+have.
+
+04:33.730 --> 04:36.160
+We will discuss those in the next step.

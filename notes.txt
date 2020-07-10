@@ -391,7 +391,15 @@ proxy file:
 @RibbonClient(name="currency-exchange-service")
 
 application.properties: 
-currency-exchange-service.ribbon.listOfServers=http://localhost:8000,http://localhost:8001		
+currency-exchange-service.ribbon.listOfServers=http://localhost:8000,http://localhost:8001	
+
+67. Running Client Side Load Balancing With Ribbon	
+- Start http://localhost:8000/currency-exchange/from/EUR/to/INR
+- Start http://localhost:80001currency-exchange/from/EUR/to/INR
+- http://localhost:8100/currency-converter-feign/from/AUD/to/INR/quantity/
+- When you run the above url multiple times you can see the load distributed between 8000 & 8001
+
+
 
 
 
