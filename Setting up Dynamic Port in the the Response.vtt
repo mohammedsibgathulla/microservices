@@ -1,0 +1,283 @@
+WEBVTT
+
+00:03.710 --> 00:04.700
+Welcome back.
+
+00:04.820 --> 00:12.420
+As we discussed earlier we would want the currency calculation service to be calling the currency exchange service the
+
+00:12.460 --> 00:16.260
+currency exchange we will be returning the exchange value.
+
+00:16.280 --> 00:20.420
+So if I want to convert USD to INR how much is the exchange value.
+
+00:20.420 --> 00:22.910
+So that's the thing with the currency exchange service.
+
+00:22.910 --> 00:27.920
+Would determine in the currency calculation service would be using the currency exchange.
+
+00:27.920 --> 00:33.830
+service to determine the value of one currency in another currency.
+
+00:33.830 --> 00:34.980
+How much is it.
+
+00:35.210 --> 00:38.840
+Fifty five dollars and hundred euros worth.
+
+00:38.930 --> 00:39.980
+In terms of rupees.
+
+00:40.010 --> 00:42.590
+That's the kind of work the currency calculation.
+
+00:42.590 --> 00:46.210
+service would be doing one of the things that we would be doing at a later point.
+
+00:46.220 --> 00:50.790
+It will create multiple instances of currency exchange service.
+
+00:50.950 --> 00:56.420
+Right now we have one instance running on 8000 but at a later point in then what we'll do is we'll run one
+
+00:56.420 --> 01:01.820
+instance on 8000 another instance on eight thousand one and eight thousand two and so on.
+
+01:02.000 --> 01:08.480
+And we would want the currency calculation  service to be talking to all these three instances and we would want
+
+01:08.480 --> 01:14.910
+to be able to determine which instance of the currency exchange service that the currency calculation
+
+01:14.910 --> 01:16.760
+service is talking to.
+
+01:17.000 --> 01:24.320
+And to be able to determine that what we'll do is we'll use the port as a distinguishing factor.
+
+01:24.530 --> 01:33.080
+So from every service in the currency exchange service we will return the port back so that we know which server
+
+01:33.470 --> 01:34.930
+is responding back.
+
+01:34.940 --> 01:41.300
+Typically there's not really a good practice I am changing the service definition to accommodate for the
+
+01:41.300 --> 01:43.510
+fact that I would want to send the port.
+
+01:43.700 --> 01:47.570
+But as far as you are learning is concerned this is a very good thing.
+
+01:47.600 --> 01:54.230
+It will make it very clear as to which server your response is coming back from in this step we will add
+
+01:54.360 --> 01:59.330
+a port to the currency exchange service response.
+
+01:59.480 --> 02:08.000
+So to be able to hold the port value what I'll do is I'll have a new variable created in here so I'll say private
+
+02:08.660 --> 02:10.830
+a port is typically int so.
+
+02:11.080 --> 02:18.510
+I'll say Int port and I'll not add to the constructor but I'll create a greater and setter for it so generate getters and setters.
+
+02:19.250 --> 02:23.380
+For port I would want both of them to be generated.
+
+02:23.380 --> 02:25.800
+We have get port and set port.
+
+02:26.410 --> 02:28.520
+I don't want them down here.
+
+02:28.550 --> 02:29.970
+I'll add them to the end.
+
+02:30.190 --> 02:36.090
+Now I can set the port in here so I can say I can take this into the variable exchange.
+
+02:36.220 --> 02:38.180
+value alt shift l.
+
+02:39.290 --> 02:40.430
+Extract local variables.
+
+02:40.520 --> 02:50.960
+I can say exchange value dot set port and said the port for now we know it's running 8000 so I can
+
+02:50.960 --> 02:52.390
+hard code it in.
+
+02:52.640 --> 02:57.730
+But the best practice is to pick up the port from the environment.
+
+02:57.750 --> 03:02.450
+Spring boot provide something called environment from which we can actually get the port on which the
+
+03:02.450 --> 03:03.560
+application is running.
+
+03:03.620 --> 03:05.120
+So let's make use of that.
+
+03:05.140 --> 03:09.000
+So I call this environment environment let's make this.
+
+03:09.160 --> 03:09.890
+private.
+
+03:10.180 --> 03:15.850
+Let's also make this auto wired let's try and organize the imports.
+
+03:16.140 --> 03:20.330
+I would want to use Spring Framework code environment that's the interface I want to make use
+
+03:20.330 --> 03:24.710
+of and inside the environment there is a variable inside.
+
+03:25.070 --> 03:33.720
+The environment I would need to get a property get property and the name of the property is local dot
+
+03:34.000 --> 03:36.090
+server dot port.
+
+03:36.260 --> 03:41.850
+Thing is this would return us string value back we created port as an integer value.
+
+03:42.030 --> 03:43.490
+So I would need to parse it.
+
+03:43.500 --> 03:54.990
+So integer dot parse int and the parse the port value that's it let's formate the code a little bit so that we can clearly see what's happening
+
+03:55.320 --> 03:57.490
+and said Poor down here.
+
+03:58.570 --> 04:03.100
+So what we're doing is we are taking the exchange value setting the port we have picking port from environment
+
+04:03.650 --> 04:06.380
+local server port and returning the exchange value back.
+
+04:06.400 --> 04:09.490
+Now when I hit server again let's refresh.
+
+04:09.520 --> 04:13.170
+And now you're seeing Port eight thousand come in.
+
+04:13.180 --> 04:18.410
+One of the things that we can do right now is I can try and run this in a different port.
+
+04:19.030 --> 04:23.450
+How do I run the currency exchange application on a different port.
+
+04:23.500 --> 04:27.940
+One of the ways is I can change the application dot properties right I can use the application dot properties
+
+04:28.450 --> 04:35.560
+and say 8000 or I can take 8001 which port I would want to run it on but I would want let's say
+
+04:35.620 --> 04:38.940
+Two instances of currency exchange service running at the same time.
+
+04:39.070 --> 04:40.210
+How do I do that.
+
+04:40.210 --> 04:42.930
+If I'm depending on the server port configuration which is present in here.
+
+04:42.930 --> 04:44.590
+I'll not be able to do that.
+
+04:44.680 --> 04:48.610
+So I would want to be able to externally set the server port.
+
+04:48.610 --> 04:49.620
+How do I do that.
+
+04:49.690 --> 04:54.830
+Let's now try and run the currency exchange service on port eight thousand one.
+
+04:54.850 --> 04:55.840
+How do we do that.
+
+04:55.900 --> 05:03.130
+I can say right click run as go down to the bottom and click the run configurations.
+
+05:03.430 --> 05:11.620
+The other way you can get down there is by saying over here click it and say run configurations over here we already
+
+05:11.620 --> 05:17.120
+have a simple configuration for the currency service exchange service application.
+
+05:17.140 --> 05:22.480
+This is using the default port the default port is 8000 so I'll rename this.
+
+05:22.480 --> 05:28.690
+So this is currencies exchange service application which is running on eight thousand.
+
+05:28.690 --> 05:34.850
+So I'm giving that name to it apply and I would right click it and say duplicate.
+
+05:34.840 --> 05:40.810
+So I'm duplicating the configuration and I would want this to run the application on eight thousand
+
+05:41.140 --> 05:41.800
+one.
+
+05:42.160 --> 05:46.420
+So if I run this right now it would run on port 80.
+
+05:46.510 --> 05:50.790
+However I would want to run this on port eight thousand one how do I do that.
+
+05:51.160 --> 05:58.100
+I can do that by passing a VM argument called server dot port is equal to eight thousand one.
+
+05:58.230 --> 06:05.370
+What ever value we are passing in VM argument in here will override the application dot properties configuration.
+
+06:05.370 --> 06:10.980
+So the eight thousand one will be used as the port to run this application and what I will do is apply.
+
+06:11.280 --> 06:12.950
+So now we have eight thousand one.
+
+06:13.090 --> 06:19.030
+And now I can say run this would launch up another instance of the currency exchange service.
+
+06:19.220 --> 06:24.890
+However the port on which this would be launched is eight thousand one.
+
+06:24.900 --> 06:29.960
+Now I can hit both the services right now so local localhost 8000 it would return port.
+
+06:30.000 --> 06:31.850
+eight thousand.
+
+06:32.080 --> 06:38.690
+However if I hit localhost eight thousand one let's see what would happen.
+
+06:38.700 --> 06:42.630
+You can see that the port is return back has eight thousand one.
+
+06:42.630 --> 06:50.370
+So basically what we have done in this step is we added port to our service response from now on we'll
+
+06:50.370 --> 06:57.330
+use this port to find out which instance of the currency exchange service we are getting a response
+
+06:57.360 --> 06:57.890
+from.
+
+06:57.900 --> 07:05.200
+We now have two instances of currency exchange applications running on port eight thousand and eight thousand one.
+
+07:06.070 --> 07:07.380
+until the next step buy bye.

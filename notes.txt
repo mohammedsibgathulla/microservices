@@ -313,6 +313,19 @@ spring.security.user.password=password
 - http://localhost:8000/currency-exchange/from/USD/to/INR
 - Refer the image.
 
+59. Setting Up Dynamic Port In The Response
+- Right now we have one instance running on 8000 but at a later point in then what we'll do is we'll run one instance on 8000 another instance on eight thousand one and eight thousand two and so on. And we would want the currency calculation  service to be talking to all these three instances and we would want to be able to determine which instance of the currency exchange service that the currency calculation service is talking to. And to be able to determine that what we'll do is we'll use the port as a distinguishing factor.
+
+- We will return port back but its not a good practice. But for learning we proceed.
+- You can run the instance on many ports by using the Runconfigurations in the eclipse.
+- Right click the CurrencyExchangeServiceApplication and select Duplicate & Give new name.
+- Select the Arguments tab.
+- In VM Arguments field enter -Dserver.port=8001
+- What ever we write here will override the application.properties file.
+- Hence now you can run the application on both the ports.
+- http://localhost:8000/currency-exchange/from/USD/to/INR
+- http://localhost:8001/currency-exchange/from/USD/to/INR
+
 
 
 
