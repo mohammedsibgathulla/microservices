@@ -1,0 +1,325 @@
+WEBVTT
+
+00:03.280 --> 00:04.570
+Welcome back.
+
+00:04.570 --> 00:10.600
+We have the currency exchange series is ready and we have set up the currency service we have set
+
+00:10.600 --> 00:13.490
+up a dummy service on the currency calculation service.
+
+00:13.660 --> 00:19.210
+Now you would want to invoke the currency exchange service from the currency calculation service how do
+
+00:19.210 --> 00:20.460
+we do that.
+
+00:20.520 --> 00:26.470
+The thing which you typically use to invoke an external service which is exposed using entity
+
+00:26.680 --> 00:28.630
+is the rest template.
+
+00:28.780 --> 00:34.300
+Let's create a new rest template and try to invoke this service and see all the complexities that are involved
+
+00:34.300 --> 00:35.270
+in that.
+
+00:35.290 --> 00:36.490
+Let's get started now.
+
+00:36.730 --> 00:42.300
+Let's go to the controller and try and create a new rest template.
+
+00:42.720 --> 00:48.090
+You would rest template dot let's import it in.
+
+00:48.340 --> 00:53.480
+You can see that it's coming in from args framework framework web client rest template.
+
+00:53.500 --> 00:59.500
+This offers a lot of methods the one which would be using is using an entity what we'll do is we'll take
+
+00:59.500 --> 01:05.260
+the response back the response which is coming back from the currency exchange service is this format
+
+01:05.290 --> 01:09.050
+right to ID from to conversion multiple input.
+
+01:09.190 --> 01:16.960
+We have also created the currency conversion bean over here in exactly the same format in exactly the same
+
+01:17.050 --> 01:17.720
+thing.
+
+01:17.770 --> 01:25.810
+So we can try and map the response to this bean and take the conversion multiple and calculate the total
+
+01:25.870 --> 01:27.640
+calculated amount.
+
+01:27.640 --> 01:35.500
+So what we want to do is to map the response which is coming back to a entity and we would want to send a get
+
+01:35.500 --> 01:39.500
+requests so the method to use is get for entity.
+
+01:39.520 --> 01:48.880
+So for the get for entity I need to pass in the URI so URI which we want to use is what we have
+
+01:49.060 --> 01:50.140
+already here.
+
+01:50.140 --> 01:51.110
+So I'll take this.
+
+01:51.250 --> 01:55.840
+However in this we don't want to hard code the EUR or INR.
+
+01:55.900 --> 01:58.480
+So these two have to be variables.
+
+01:58.720 --> 02:02.730
+So the first one is from the other one is true.
+
+02:02.830 --> 02:08.140
+So we would want to take these values from the requests so whatever comes in the request we would want
+
+02:08.140 --> 02:14.140
+to send them out to the currency exchange so that we can get the currency exchange from that currency
+
+02:14.140 --> 02:15.550
+to the other one.
+
+02:15.610 --> 02:18.700
+So we have a few variables that we need to decide.
+
+02:18.720 --> 02:26.890
+So let's not worry about it right now the response type which we're expecting back is currency conversion bean.
+
+02:27.130 --> 02:32.400
+So even from here we are expecting the same thing so currency conversion bean dot class.
+
+02:32.400 --> 02:39.080
+However one more thing that I would need to do is I would need to pass the values for these variables.
+
+02:39.250 --> 02:41.640
+So how should these values be replaced.
+
+02:41.650 --> 02:44.650
+For that you would need to define something called a variables.
+
+02:44.680 --> 02:50.910
+URL variables I can pass in a map of string as URI variables.
+
+02:50.970 --> 02:55.410
+But for now we'll create a map so I'll call this URI variables.
+
+02:55.430 --> 02:58.270
+Let's do a control one and say create a local variable.
+
+02:58.270 --> 03:04.960
+URI variables it's creating an object I'll just say it's map of string.
+
+03:05.140 --> 03:06.270
+Comma string.
+
+03:06.550 --> 03:12.300
+So in this URI variables new hash map let's organize the imports.
+
+03:12.880 --> 03:19.520
+So in the URI variables let's put the variables that I needed for URI so URl variables dot put.
+
+03:19.780 --> 03:29.890
+I can say the value from is whatever is coming in the request path variable and the value of to is
+
+03:29.920 --> 03:31.390
+whatever is coming from the request.
+
+03:31.480 --> 03:39.660
+Path variable again and what we want to do is do a get for this entity and map the response back to the
+
+03:39.660 --> 03:41.120
+currency conversion bean.
+
+03:41.250 --> 03:48.250
+We would want the URI variables to be used to replace the value of from and to that simple right.
+
+03:48.270 --> 03:50.980
+We just created a rest template dot get for entity.
+
+03:51.300 --> 03:56.510
+And this would return the response back so I'll say control one I send a statement to local
+
+03:56.590 --> 04:01.100
+variable and this would return the response entity back.
+
+04:01.110 --> 04:09.200
+Once we get the response entity we can get the actual response object by doing a response entity dot
+
+04:09.420 --> 04:15.320
+get body and I can again do a control one assign to local variable.
+
+04:15.420 --> 04:17.380
+This would be the currency conversion bean.
+
+04:17.520 --> 04:23.130
+And I'll just call this response when we are craeting the conversation bean what we want to do is we
+
+04:23.130 --> 04:25.950
+want to use the values from the response.
+
+04:26.070 --> 04:33.210
+So the id I would use from the response as well so response dot get ID from is fine from I can use
+
+04:33.210 --> 04:37.280
+from the request to alter from the request.
+
+04:37.290 --> 04:45.860
+The next thing that we need to pass in is the conversion factor so if you look at the currency conversion bean
+
+04:45.860 --> 04:48.780
+the 4th one is conversion multiple.
+
+04:49.160 --> 04:53.570
+So I would need to pass in response.
+
+04:53.570 --> 04:55.420
+dot get conversion multiple.
+
+04:55.590 --> 04:59.990
+Let's do that and the next one is quantity.
+
+04:59.990 --> 05:01.910
+After that I would do a quantity dot.
+
+05:02.020 --> 05:04.950
+Multiply that conversion multiple.
+
+05:05.030 --> 05:08.910
+That's the total value that we would want rest return back.
+
+05:08.940 --> 05:14.170
+Let's put this into new so that it's more visible over here what we want to do is we would want to multiply
+
+05:14.170 --> 05:19.140
+the quantity so this is 50 USD each USD is how much 65.
+
+05:19.200 --> 05:25.030
+So I would need to multiply 50 with whatever is coming in the response whatever multiple is coming in
+
+05:25.050 --> 05:31.170
+the response back and I would also want to return the port from the response dot get port.
+
+05:31.380 --> 05:34.470
+That's it what we are doing in here is very simple.
+
+05:34.490 --> 05:39.590
+All that we are doing is we are calling us others services we are calling the currency exchange service.
+
+05:39.630 --> 05:41.240
+We are setting the variables to it.
+
+05:41.250 --> 05:45.500
+So from is what two is what we are calling it.
+
+05:45.500 --> 05:51.820
+We're getting the response back taking it into the bean and we're creating the response bean a new response
+
+05:51.840 --> 05:56.780
+bean by using the content which is present in the response.
+
+05:56.780 --> 06:02.180
+Now if I go ahead and start the application and hit the service this is the currency exchange service
+
+06:02.540 --> 06:04.440
+the currency exchange service is right now down.
+
+06:04.460 --> 06:06.120
+So we will not be able to talked it.
+
+06:06.290 --> 06:09.710
+So let's bring up the currency exchange service as well.
+
+06:09.710 --> 06:14.210
+The important thing for you to understand is the fact that we would need both the currency exchange
+
+06:14.210 --> 06:19.700
+service and the currency conversion service is up right now because the currency conversion Service
+
+06:19.700 --> 06:23.500
+is now talking to the currency exchange service.
+
+06:23.690 --> 06:28.940
+So you will see C S which is the currency conversion service is talking to the currency exchange service which
+
+06:28.940 --> 06:30.540
+is the CCS.
+
+06:30.710 --> 06:33.220
+So we would need both these applications running.
+
+06:33.380 --> 06:37.970
+So make sure that the currency exchange service and the currency conversions service both the applications
+
+06:37.970 --> 06:41.530
+are up and running let's try and hit the currency exchange again.
+
+06:41.710 --> 06:42.150
+Cool.
+
+06:42.200 --> 06:45.310
+The currency exchange service bit returns our response back.
+
+06:45.370 --> 06:49.540
+No I would go to the currency conversion service.
+
+06:49.620 --> 06:55.430
+So this is the URI which we used earlier localhost 8100 currency converter from USD to INR quantity
+
+06:55.510 --> 06:58.500
+thousand let's refresh.
+
+06:58.600 --> 07:04.110
+You're seeing right now that it's getting a conversion multiple of 65 back.
+
+07:04.120 --> 07:10.270
+So based using the conversion multiple 65 multiplying by the quantity and turning the total calculated amount
+
+07:10.450 --> 07:16.420
+is 65000 thousand so thousand USD is equal to 65000 INR.
+
+07:16.550 --> 07:24.400
+And it's also returning back the other application the currency exchange service is returning running on port
+
+07:24.960 --> 07:28.020
+8000 in the last few steps.
+
+07:28.060 --> 07:32.590
+We spent a considerable amount of time setting up the currency calculation service the currency exchange
+
+07:32.590 --> 07:39.820
+servie and the limits service is it is very important for you to understand that these services are critical
+
+07:40.000 --> 07:45.310
+for us to be able to understand all the functionality in spring cloud very well whether you want to
+
+07:45.310 --> 07:50.530
+understand the naming server or you'd want to understand load balancing with ribbon or you would want
+
+07:50.530 --> 07:52.810
+to understand how to do distribute tracing.
+
+07:52.870 --> 07:56.220
+It's very important to have example services.
+
+07:56.500 --> 08:02.890
+And that's what we were doing until now we have now set up a currency exchange service and a currency
+
+08:02.900 --> 08:11.460
+calculation servies as well from the next step on we will take a deep dive into this spring cloud features.
+
+08:11.740 --> 08:12.730
+Until then Bye bye.

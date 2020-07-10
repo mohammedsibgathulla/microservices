@@ -348,6 +348,12 @@ spring.security.user.password=password
 	}
 - Check the service at http://localhost:8100/currency-converter/from/USD/to/INR/quantity/1000
 
+64. Invoking Currency Exchange Microservice From Currency Conversion Micro
+- To invoke the service we use RestTemplate.
+- We are invoking the url http://localhost:8000/currency-exchange/from/{from}/to/{to} of CurrencyExchangeService inside RestTemplate and getting the result.
+- Here we are communicating to CurrencyExchangeService from CurrencyConversionService and printing the output.
+- Refer the image.
+
 
 
 
