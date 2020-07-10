@@ -354,6 +354,22 @@ spring.security.user.password=password
 - Here we are communicating to CurrencyExchangeService from CurrencyConversionService and printing the output.
 - Refer the image.
 
+65. Using Feign REST Client For Service Invocation
+- There is a lot of code to call other micro service. 
+- Hence the code to be simpler to invoke other microservices we use Feign.
+- Feign provides integration with Ribbon which is a client side load balancing framework. 
+- For feign we need to add the dependency.
+- Justl like we use repository to talk to JPA we need proxy to be able to talk to external microservice.
+- Copy the name from the service which you want to talk to from applicatoin.properties like for currency-exchange-service whic is as follows
+@FeignClient(name = "currency-exchange-service", url = "localhost:8000")
+public interface CurrencyExchangeServiceProxy {
+	@GetMapping("/currency-exchange/from/{from}/to/{to}")
+	public CurrencyConversionBean retrieveExchangeValue(@PathVariable String from, @PathVariable String to);
+}
+
+- Imagine the currency-exchange-service is offering 15 services all the details of how to talk to service would be present in one place.
+All the rest of the application need not know that currency-exchange-service is a restful service.
+
 
 
 
