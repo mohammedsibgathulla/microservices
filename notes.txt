@@ -370,6 +370,29 @@ public interface CurrencyExchangeServiceProxy {
 - Imagine the currency-exchange-service is offering 15 services all the details of how to talk to service would be present in one place.
 All the rest of the application need not know that currency-exchange-service is a restful service.
 
+66. Setting Up Client Side Load Balancing With Ribbon
+- currency-conversion-service: It has just 1 instance in production.
+- currency-exchange-service: It has 4 different instances in production. 
+- Currently we are hardcoding the uri of the instance in the proxy @FeignClient(name = "currency-exchange-service", url = "localhost:8000")
+- We can move this form hardcoding to properties file but one instance of currency-conversion-service can only talk to one instance of 
+currency-exchange-service
+- But if we want to make it to talk to all the instance then Ribbon comes into picture.
+- Ribbon can make use of the Feign configuration and help us distribute the calls between different instances of the  currency-exchange-service.  
+- Hence we will enable Ribbon on currency-conversion-service.
+- We need to add the dependency 
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+		</dependency>
+- we configure the load in proxy file & application properties file using ribbon as follows
+proxy file:
+//@FeignClient(name = "currency-exchange-service", url = "localhost:8000")
+@FeignClient(name = "currency-exchange-service")
+@RibbonClient(name="currency-exchange-service")
+
+application.properties: 
+currency-exchange-service.ribbon.listOfServers=http://localhost:8000,http://localhost:8001		
+
 
 
 
