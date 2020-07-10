@@ -326,6 +326,12 @@ spring.security.user.password=password
 - http://localhost:8000/currency-exchange/from/USD/to/INR
 - http://localhost:8001/currency-exchange/from/USD/to/INR
 
+60. Configure JPA And Initialized Data
+- The reponse should come from database or external MQ service but we have hardcoded previously.
+- See the h2 console at http://localhost:8000/h2-console/
+- Hence here we have setup inmemory database.
+
+
 
 
 
