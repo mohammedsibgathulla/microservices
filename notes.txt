@@ -252,6 +252,13 @@ spring.security.user.password=password
 51. Installing Git
 - Refer the image.
 
+52. Creating Local Git Repository
+- Right Click -> Build Path -> Link Source
+- Browse to the git-local-config-repo & then Finish.
+- Create limits-service.properties on the linked folder.
+- Go to git-local-config-repo path and add the file and commit it.
+
+
 
 
 

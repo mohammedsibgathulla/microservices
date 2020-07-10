@@ -1,0 +1,190 @@
+WEBVTT
+
+00:03.520 --> 00:08.420
+Welcome back in the last step we installed git on our local machine.
+
+00:08.530 --> 00:11.780
+one of the things you can try doing is you can use git .
+
+00:11.860 --> 00:14.140
+You can click the try git link in here.
+
+00:14.260 --> 00:17.970
+It's on the git scm dot com home page this is try get.
+
+00:17.980 --> 00:20.300
+It would take you to try dot github dot io.
+
+00:20.420 --> 00:21.500
+And over here.
+
+00:21.670 --> 00:25.150
+You can try and get familier with git.
+
+00:25.170 --> 00:31.570
+This is a beautiful way Actually it shows you a few commands you can just type them in and it would
+
+00:31.570 --> 00:38.110
+show you all the different things that are involved in creating a git repository and also maintaining
+
+00:38.110 --> 00:39.730
+a few files with it.
+
+00:39.760 --> 00:44.470
+This is something which I would definitely recommend you to do if you are new to git what will do in
+
+00:44.470 --> 00:52.690
+this step is create a new git repository and store all the files that we would want to be able to configure
+
+00:52.860 --> 00:54.510
+limits service.
+
+00:54.920 --> 00:57.160
+And also we'll try to access them.
+
+00:57.430 --> 01:03.340
+Through this spring cloud config server what I'll need to do is I'll go to the command prompt.
+
+01:03.360 --> 01:06.300
+So what you're seeing is the terminal in Mac in windows.
+
+01:06.340 --> 01:12.160
+You'd need to open your command prompt up go to some folder on your hard disk where you'd want to store
+
+01:12.400 --> 01:15.200
+the content of your git repository over here.
+
+01:15.200 --> 01:18.510
+I would want to create a new directory so the new directory.
+
+01:18.550 --> 01:26.540
+I would want to call it as git local config hyphen repo so I am creating new directory make that directory and I'll
+
+01:26.860 --> 01:33.010
+CD to that folder which we created just now we are inside that particular folder and in here I would
+
+01:33.010 --> 01:35.350
+want to initialize a new git repository.
+
+01:35.350 --> 01:36.300
+How do I do that.
+
+01:36.520 --> 01:39.300
+I can do it by using git init.
+
+01:39.310 --> 01:42.610
+This would create a new git repository.
+
+01:42.640 --> 01:49.780
+So it says initialized empty git repository in this specific folder the specific folder we have be initialize git repository
+
+01:49.780 --> 01:50.620
+is over here.
+
+01:50.620 --> 01:56.020
+Git local config repo that's the folder we are talking about that's the folder which we created in here
+
+01:56.320 --> 02:03.970
+what I'll do is I'll go to the spring cloud config server and add a link to that specific folder.
+
+02:03.970 --> 02:06.810
+How do I add a link to that folder in Eclipse.
+
+02:06.880 --> 02:15.610
+You can add an external folder as a source link right click build path you can see link source and over here
+
+02:15.640 --> 02:21.610
+I can browse to that folder where ever your git repository is created.
+
+02:21.610 --> 02:29.410
+I've created this in spring Micro services and over in folder 3 micro services I've a foldee called git local
+
+02:29.410 --> 02:34.030
+config repo that's the folder I would want to open so you can look at it in here.
+
+02:34.030 --> 02:37.640
+So this is the git local config repo folder that we've created just now.
+
+02:37.840 --> 02:45.520
+So over here git local config repo and I would say finish what I would want to do is create a new text
+
+02:45.520 --> 02:45.960
+file.
+
+02:45.980 --> 02:49.220
+In this specific folder how do I do that can say right click.
+
+02:49.650 --> 02:50.910
+New file.
+
+02:51.400 --> 02:54.520
+Let's call this in this specific file.
+
+02:54.610 --> 02:56.680
+What would we want to store.
+
+02:56.690 --> 02:59.220
+We would want to store the configuration for limits.
+
+02:59.230 --> 03:00.100
+service.
+
+03:00.290 --> 03:02.190
+So what I'll call this is limits hyphen service.
+
+03:02.290 --> 03:04.940
+hyphen service dot properties.
+
+03:05.080 --> 03:09.720
+This is the application name which we have assigned to limits hyphen service.
+
+03:09.750 --> 03:17.980
+So that's the one which I'm using and dot properties in here I can copy the properties that we have
+
+03:17.980 --> 03:21.470
+already configured in the application dot properties of limits service.
+
+03:21.550 --> 03:22.120
+Right.
+
+03:22.400 --> 03:25.090
+We are configured the minimum and the maximum.
+
+03:25.480 --> 03:30.840
+So let's copy them in and I'll give over here different set of values so that we can differentiate.
+
+03:30.850 --> 03:39.340
+So I'll give 8 and 888 once we created the file we would want to add that file to our word local git repository.
+
+03:39.370 --> 03:42.850
+You would want to commit it in how do we do that.
+
+03:42.880 --> 03:48.890
+The way we would do that is by saying git ADD and give the file name.
+
+03:49.030 --> 03:53.270
+Or I can take the shortcut by saying git add hyphen capital A.
+
+03:53.420 --> 03:58.450
+And now I can go ahead and committed to the local repository git commit.
+
+03:58.480 --> 04:01.440
+hyphen m and  first commit.
+
+04:01.510 --> 04:05.340
+So what we are doing is we are committing the change to the repository.
+
+04:05.360 --> 04:11.010
+You can see that the limits services dot properties file whichever we have added in is now committed
+
+04:11.010 --> 04:13.240
+to the local git repository.
+
+04:13.240 --> 04:18.520
+One of the things you can see is it is one file changed with two new lines that we have inserted in
+
+04:18.760 --> 04:25.840
+our local repository is ready what we'll do in the next step is we will connect our spring cloud config server
+
+04:26.070 --> 04:29.140
+to this local git repository I'll see you in the next step.
