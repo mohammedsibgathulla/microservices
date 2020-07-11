@@ -438,6 +438,9 @@ currency-exchange-service.ribbon.listOfServers=http://localhost:8000,http://loca
 - Now hit http://localhost:8100/currency-converter-feign/from/EUR/to/INR/quantity/1000
 - You can up one more instance then you can see that the load will be distributed.
 
+73. A Review Of Implementing Eureka, Ribbon And Feign
+- See the image.
+
 
 
 

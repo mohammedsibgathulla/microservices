@@ -1,0 +1,130 @@
+WEBVTT
+
+00:03.220 --> 00:10.210
+Welcome back in this step let's take a pause and take a quick review of what we have been doing until
+
+00:10.210 --> 00:10.750
+now.
+
+00:10.990 --> 00:17.260
+We started with creating a couple of Micro services currency calculation service and currency exchange
+
+00:17.260 --> 00:24.400
+service currency calculation service is a consumer of the currency exchange service.
+
+00:24.550 --> 00:31.780
+When we started off we had a direct URL connection between the currency calculation service and the currency
+
+00:31.780 --> 00:32.910
+exchange service.
+
+00:33.430 --> 00:38.920
+So if we have other currency exchange services which are coming up the currency calculation service but
+
+00:39.130 --> 00:47.130
+not able to talk to them and to be able to get load balancing the introduced ribbon.
+
+00:47.380 --> 00:54.610
+Before that we added feign the currency calculation service to make it easy to call the rest services
+
+00:54.610 --> 01:01.660
+from currency exchange service with feign writing client services for restfull webservices becomes very
+
+01:01.660 --> 01:09.970
+easy after that we added ribbon and we load balance between two instances of the currency exchange service
+
+01:09.970 --> 01:15.430
+so all the calls that were coming in from the currency calculation service were distributed between
+
+01:15.550 --> 01:17.890
+two instances of the currency exchange.
+
+01:17.900 --> 01:25.720
+service the way we achieve that is by hard coding the URLs of the currency exchange service in the application
+
+01:25.720 --> 01:30.690
+dot properties of the currency conversion service we thought that that's not good enough.
+
+01:30.760 --> 01:33.820
+And we introduced namings server we connected.
+
+01:33.820 --> 01:35.520
+Currency calculation service.
+
+01:35.660 --> 01:38.840
+And the currency exchange service to the naming server.
+
+01:39.070 --> 01:45.610
+And what we did is instead of hard coding the values are hard coading the URLs of the currency exchange.
+
+01:45.620 --> 01:52.180
+service with the currency calculation service we said talk to the naming server and get the URLs of
+
+01:52.180 --> 01:59.890
+the currency exchange service in the last step we were able to dynamically bring up and send down the currency
+
+01:59.890 --> 02:00.220
+exchange.
+
+02:00.220 --> 02:06.100
+services if there were four currency exchange services which were alive then we were distributing
+
+02:06.100 --> 02:07.360
+the load between them.
+
+02:07.430 --> 02:14.080
+If two of them are brought down the remaining two are the ones which would handle all the requests we
+
+02:14.090 --> 02:21.190
+were able to dynamically bring up services bring them down without causing a problem to the consumers
+
+02:21.430 --> 02:24.190
+without causing a problem to the currency calculation service.
+
+02:24.190 --> 02:31.510
+This is what is needed in the world of micro services in the world of micro services.
+
+02:31.510 --> 02:37.780
+There are so many small services which are talking to each other that we would want to be able to bring
+
+02:37.780 --> 02:44.790
+new instances of them take all the instances down without causing a problem to any of the other consumers.
+
+02:44.920 --> 02:51.340
+And that what we have set up between the currency calculation service and the currency exchange service.
+
+02:51.640 --> 02:58.220
+and the tools we used to be able to do that are A the naming server and B.
+
+02:58.300 --> 03:06.850
+Ribbon C is feign naming server is the one which offers registration that service registration and service
+
+03:06.880 --> 03:16.210
+discovery functionality ribbon provides the client side load balancing facilities so it enables client
+
+03:16.210 --> 03:24.460
+calculation service to distribute the load between multiple service providers and we used feign to make
+
+03:24.460 --> 03:30.310
+sure that the code that we write inside the currency calculation service to call the currency exchange.
+
+03:30.330 --> 03:33.070
+Service is very simple.
+
+03:33.070 --> 03:41.020
+In the subsequent steps we would shift our attention to its monitoring and troubleshooting when we have
+
+03:41.020 --> 03:42.630
+multiple micro services.
+
+03:42.790 --> 03:48.340
+We would want to have great awareness of what's happening between them and we would want to be able to
+
+03:48.340 --> 03:51.880
+troubleshoot issues between them very easily.
+
+03:51.890 --> 03:54.330
+Let's talk about that in the next section.
+
+03:54.400 --> 03:55.290
+Until then Bye bye.
