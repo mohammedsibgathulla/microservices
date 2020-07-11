@@ -430,7 +430,14 @@ currency-exchange-service.ribbon.listOfServers=http://localhost:8000,http://loca
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
-- Do the same for limits-service		
+- Do the same for limits-service	
+
+72. Distributing Calls Using Eureka And Ribbon	
+- Now we want to make currency conversion service talk to exchange service for this we will comment the line -> currency-exchange-service.ribbon.listOfServers=http://localhost:8000,http://localhost:8001 in applcation.propreties and restart all one by one.
+- Now hit the url http://localhost:8000/currency-exchange/from/EUR/to/INR
+- Now hit http://localhost:8100/currency-converter-feign/from/EUR/to/INR/quantity/1000
+- You can up one more instance then you can see that the load will be distributed.
+
 
 
 

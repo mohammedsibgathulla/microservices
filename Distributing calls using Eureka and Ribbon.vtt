@@ -1,0 +1,259 @@
+WEBVTT
+
+00:03.580 --> 00:09.610
+Welcome back in the previous step we have connected the currency calculation service to the Eureka naming server
+
+00:09.610 --> 00:13.060
+and the currency exchange service to the Eureka naming server.
+
+00:13.240 --> 00:18.060
+And what we want to do is when the currency calculation service invokes currency exchange service we
+
+00:18.070 --> 00:25.450
+would want it to use the naming server to find out the details of the currency exchange service.
+
+00:25.600 --> 00:31.210
+So what we would want to do is instead of hard coding the UR for ribbon we would want
+
+00:31.220 --> 00:37.960
+ribbon to talk to the nami server and retrieve the details of all the instances of this services.
+
+00:38.230 --> 00:42.040
+The thing is we have already established a lot of code for that.
+
+00:42.070 --> 00:46.180
+One of the things which we did when we created the feign clients and the ribbon clients.
+
+00:46.200 --> 00:51.080
+We have used the name of the application as currency exchange service.
+
+00:51.340 --> 00:56.080
+If you look at Eureka that's exactly the service name in here as well.
+
+00:56.080 --> 01:01.400
+So the currency action service is what we are really interested in retrieving the details of however
+
+01:01.600 --> 01:02.990
+what we did over here.
+
+01:03.040 --> 01:10.840
+We configure the list of services all that you would need to do to enable ribbon to talk to the naming
+
+01:10.840 --> 01:18.570
+server using this name is to disable this because in that application we have already configured Eureka
+
+01:18.830 --> 01:21.060
+in the currency conversion service in the previous step.
+
+01:21.070 --> 01:25.870
+We already configured the URL for Eureka so it already knows about Eureka.
+
+01:25.870 --> 01:31.240
+So all that I would need to do is disable the list of servers and this exchange service would be starting
+
+01:31.240 --> 01:33.090
+talking to the Eureka server.
+
+01:33.180 --> 01:40.090
+So what I'll do is I will kill all the applications which are running so that we have control over what
+
+01:40.090 --> 01:43.160
+are the application and the instances that are running.
+
+01:43.420 --> 01:46.110
+So lets slowly start off one by one.
+
+01:46.110 --> 01:50.090
+The first thing I would want to start off is the naming server application.
+
+01:50.350 --> 01:55.750
+So if I refresh Eureka right now you would see that there are no instances registered with Eureka
+
+01:55.860 --> 01:56.500
+that's cool.
+
+01:56.720 --> 02:03.800
+Now I would start up the currency exchange service one of the instances of it and starting it on eight thousand.
+
+02:03.880 --> 02:06.520
+cool that's have started up.
+
+02:06.580 --> 02:12.780
+And when I refresh the Eureka server I would see that the currency exchange service is now up and running.
+
+02:13.060 --> 02:14.780
+So its running on eight thousand.
+
+02:14.840 --> 02:15.660
+That's cool.
+
+02:15.880 --> 02:23.470
+I'll clear the console out and I will launch up the instance of the currency conversion service application
+
+02:23.500 --> 02:24.970
+on 8100.
+
+02:25.160 --> 02:29.880
+One of the important things that you can check right now is in application dot properties.
+
+02:29.910 --> 02:37.060
+Nowhere in the application dot properties of currency conversion service we don't have the URL for where the currency
+
+02:37.060 --> 02:39.220
+exchange services is located.
+
+02:39.520 --> 02:45.880
+The application is started up let's refresh the console you can see now there is one instance of currency
+
+02:45.880 --> 02:51.400
+conversion service and one instance of the currency exchange service and nowhere in the currency
+
+02:51.410 --> 02:52.560
+conversion service.
+
+02:52.780 --> 02:56.680
+We have hardcoded the URL of the currency exchange service.
+
+02:56.680 --> 03:01.270
+So over here this is comment it we only have the URL to Eureka.
+
+03:01.300 --> 03:03.720
+We don't know about the currency exchange service.
+
+03:04.000 --> 03:08.620
+And similarly you can look up the proxy as well even in the proxy.
+
+03:08.620 --> 03:11.540
+We don't have any URL hard hardcoded in here.
+
+03:11.640 --> 03:16.420
+One of the important things with the naming server is you need to allow a little bit of time for it
+
+03:16.420 --> 03:17.320
+to warm up.
+
+03:17.470 --> 03:23.750
+So just allow of 30 seconds to one minute before you try executing the service requests.
+
+03:23.750 --> 03:29.490
+when I directly go to the currency exchange this would obviously work because the application is up and running.
+
+03:29.700 --> 03:31.990
+I would get the response back as expected.
+
+03:31.990 --> 03:33.800
+So currency exchanges up and running.
+
+03:33.910 --> 03:41.070
+Now I would want to launch up the currency converter using feign Let's see what would happen when I
+
+03:41.070 --> 03:46.770
+have fired this in you'd see that I'm getting a proper response back.
+
+03:46.770 --> 03:53.400
+The important thing for us to understand right now is that without configuring the URL of the currency
+
+03:53.400 --> 03:58.910
+exchange service inside the currency calculation service we are able to get the currency calculation
+
+03:58.950 --> 04:05.220
+service to talk to the currency exchange service the way it's happening is ribbon asks the naming server
+
+04:05.310 --> 04:08.000
+it ask OK what are the instances of the currency exchange.
+
+04:08.000 --> 04:10.320
+service and it is gets a list back.
+
+04:10.530 --> 04:17.610
+And then it would invoke the appropriate currency exchange service we'll repeat the same thing a few
+
+04:17.610 --> 04:18.300
+times.
+
+04:18.450 --> 04:21.340
+You would see that it's always going to eight thousand.
+
+04:21.510 --> 04:26.440
+What I'll do now is I'll bring up another instance.
+
+04:26.650 --> 04:27.760
+So I'll say run.
+
+04:27.990 --> 04:29.910
+And I would want to run the currency exchange.
+
+04:29.910 --> 04:35.050
+service application on eight thousand one the currency exchange service.
+
+04:35.140 --> 04:42.540
+Is launched up on port eight thousand one let's see the Eureka you see that there are two instances
+
+04:42.600 --> 04:46.440
+that are present currency exchange service eight thousand one and 8000.
+
+04:46.820 --> 04:50.110
+And let's start hitting this server.
+
+04:50.250 --> 04:56.480
+So let's start hitting the currency conversion service eight thousand port is eight thousand.
+
+04:56.690 --> 04:57.920
+Port is eight thousand.
+
+04:57.910 --> 05:05.310
+Still if you wait for a minute or so and try refreshing it you would see that the request alternate
+
+05:05.370 --> 05:11.810
+between port 8000 and port eight thousand one eight thousand one eight thousand eight thousand
+
+05:11.820 --> 05:12.330
+one.
+
+05:12.530 --> 05:18.660
+One of the things you can try and do is bring up a couple of more instances up of the currency exchange
+
+05:18.660 --> 05:20.920
+service and wait for a few minutes.
+
+05:21.090 --> 05:27.510
+And within that time the naming server and the ribbon would be picking up those changes and you would
+
+05:27.510 --> 05:34.350
+see that all the requests to the currency converter would be distributed among all the currency exchange
+
+05:34.500 --> 05:36.310
+applications to which are run in.
+
+05:36.450 --> 05:42.060
+What I'll do now is I'll kill one of the applications which are running so let's kill the one which is
+
+05:42.060 --> 05:50.110
+running on eight thousand so I'm killing the currency exchange service application on eight thousand.
+
+05:50.250 --> 05:53.430
+You can pause for 30 seconds and then refresh.
+
+05:53.500 --> 05:59.900
+You'd see from now on that all the requests would start going to eight thousand one only.
+
+06:00.240 --> 06:05.410
+There will not be any failure because the application and port 8000 has been brought down.
+
+06:05.440 --> 06:11.700
+The setup that we have created with Eureka and ribbon will be able to easily adjust to the fact that new
+
+06:11.700 --> 06:15.360
+instances have coming up and going down in the step.
+
+06:15.390 --> 06:23.570
+We saw a demonstration of how a naming server makes it easy to connect to micro services.
+
+06:23.700 --> 06:29.940
+We brought up multiple instances of currency exchange service and we saw how they were being registered
+
+06:29.940 --> 06:31.150
+with the naming service.
+
+06:31.300 --> 06:33.810
+We will talk about this more in the next step.
