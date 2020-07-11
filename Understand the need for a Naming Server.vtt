@@ -1,0 +1,121 @@
+WEBVTT
+
+00:03.640 --> 00:10.960
+Welcome back in the previous step we configured ribbon we made ribbon distributed the load between two instances
+
+00:11.020 --> 00:12.860
+of the currency exchange service.
+
+00:12.880 --> 00:16.150
+So what ever service calls are coming from the currency calculation service.
+
+00:16.390 --> 00:21.130
+We were able to use ribbon and distribute them between the currency exchange service one and two which were
+
+00:21.130 --> 00:25.320
+running on ports eight thousand and eight thousand one respectively.
+
+00:25.570 --> 00:31.450
+Let's assume that I would start up another instance of the currency exchange service let's call it currency
+
+00:31.450 --> 00:37.990
+exchange service 3 and launch it up on eight thousand two will ribbon be able to distribute the load.
+
+00:37.990 --> 00:41.140
+To it with things as they stand right now.
+
+00:41.380 --> 00:47.990
+Think about it thing is if I would want ribbon to distribute the load to the new server I would need to add
+
+00:48.020 --> 00:49.640
+it to the configuration.
+
+00:49.640 --> 00:56.410
+So I would need to change my application configuration whenever a new server is created.
+
+00:56.660 --> 00:59.090
+And that's not really good.
+
+00:59.450 --> 01:05.630
+What I would want to be able to do is based on the load I would want to be able to increase and
+
+01:05.630 --> 01:09.990
+decrease the number of instances of these services.
+
+01:10.220 --> 01:16.580
+So I would want to be able to dynamically increase the currency exchange services or decrease them if
+
+01:16.580 --> 01:22.400
+I have to keep on changing the configuration of currency calculations service based on how many currency
+
+01:22.400 --> 01:24.540
+exchange services are active right.
+
+01:24.560 --> 01:29.510
+Then it becomes very very difficult maintenance headache.
+
+01:29.590 --> 01:33.130
+That's where the name services come in.
+
+01:33.200 --> 01:38.630
+If the currency exchange service is running on a URL  xyz you don't want to hardcoded on
+
+01:38.630 --> 01:43.420
+the currency calculation service because there might be a new instance of the currency exchange service
+
+01:43.490 --> 01:50.150
+coming up or the existing instance might be going down and things like that rather than that we have
+
+01:50.150 --> 01:52.390
+something called namings server.
+
+01:52.730 --> 02:00.410
+All the instances of all micro services would register with the naming server.
+
+02:00.690 --> 02:07.070
+Whenever an instance of a micro service comes up it would register itself Eureka naming
+
+02:07.070 --> 02:11.600
+service this is called Service registration.
+
+02:11.840 --> 02:18.290
+And whenever a service wants to talk to another service let's said the currency calculation Service wants to talk
+
+02:18.290 --> 02:21.200
+to the currency exchange service what would it do.
+
+02:21.200 --> 02:27.530
+It would talk to the name server and it would ask the name server what are the instances of the currency
+
+02:27.530 --> 02:30.770
+exchange service that are currently running.
+
+02:30.950 --> 02:31.830
+This is called.
+
+02:31.930 --> 02:34.020
+Service discovery.
+
+02:34.100 --> 02:43.160
+So the currency calculation Service is asking for the location of the currency exchange service the instances
+
+02:43.250 --> 02:47.030
+of currency exchange service that is called service discovery.
+
+02:47.060 --> 02:53.570
+The two important features of the naming server are service registration and service discovery at startup 
+
+02:53.570 --> 02:58.980
+of every application they would register with the naming server and whenever they want details of another
+
+02:59.000 --> 03:05.070
+micro service they would a service discovery they'll say I want the details of service X Y Z.
+
+03:05.090 --> 03:08.070
+Can you give me the details in the next step.
+
+03:08.150 --> 03:15.110
+We would set up a naming server and have currency calculation service and the currency exchange service
+
+03:15.320 --> 03:17.710
+connect to that until then bye bye.

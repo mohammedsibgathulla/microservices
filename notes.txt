@@ -399,6 +399,24 @@ currency-exchange-service.ribbon.listOfServers=http://localhost:8000,http://loca
 - http://localhost:8100/currency-converter-feign/from/AUD/to/INR/quantity/
 - When you run the above url multiple times you can see the load distributed between 8000 & 8001
 
+68. Understand The Need For A Naming Server
+- Every time we add a an instance we need to configure it in the properties file like 
+currency-exchange-service.ribbon.listOfServers=http://localhost:8000,http://localhost:8001,http://localhost:8002
+- But it should be done dynamically we can't add everytime. As the load increases it should be able to do scaleup & down automatically.
+- Hence Ribbon will not be able to distribute the load to a new server unless we specify.
+- In order to solve this problem we use Nameservers.
+- If the currency exchange service is running on a URL  xyz you don't want to hardcoded on the currency calculation service because there might be a new instance of the currency exchange service coming up or the existing instance might be going down and things like that rather than that we have something called namings server.
+
+- All the instances of all micro services would register with the naming server. Whenever an instance of a micro service comes up it would register itself Eureka naming service this is called Service registration.
+
+- And whenever a service wants to talk to another service let's say the currency calculation Service wants to talk to the currency exchange service what would it do. It would talk to the name server and it would ask the name server what are the instances of the currency exchange service that are currently running. This is called Service discovery.
+
+- So the currency calculation Service is asking for the location of the currency exchange service the instances of currency exchange service that is called service discovery.
+
+- The two important features of the naming server are service registration and service discovery at startup of every application they would register with the naming server and whenever they want details of another micro service they would a service discovery they'll say I want the details of service X Y Z.
+
+69. 
+
 
 
 
