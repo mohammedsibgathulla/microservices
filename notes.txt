@@ -418,6 +418,11 @@ currency-exchange-service.ribbon.listOfServers=http://localhost:8000,http://loca
 69. Setting Up Eureka Naming Server
 - Setup the Eureka namig server project with dependencies as shown in the image.
 
+70. Connecting Currency Conversion Microservice To Eureka
+- Open the pom.xml of Currency Conversion Microservice and add the dependency & @EnableDiscoveryClient in its main class.
+- Configure the url for eureka in application properties as eureka.client.service-url.default-zone=http://localhost:8761/eureka
+- Once you run the applicatoin you can see the instances in Eureka server.
+
 
 
 
