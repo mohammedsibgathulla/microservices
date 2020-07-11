@@ -1,0 +1,130 @@
+WEBVTT
+
+00:03.650 --> 00:10.320
+Welcome back in the previous steps we saw that with the introduction of micro services calling of
+
+00:10.350 --> 00:12.300
+services becomes complex.
+
+00:12.490 --> 00:14.490
+There are multiple call chains.
+
+00:14.770 --> 00:19.870
+So the currency calculation service would call the currency exchange service and this would be intercepted
+
+00:19.870 --> 00:21.430
+by an API gateway.
+
+00:21.430 --> 00:26.670
+Sometimes we even use the API gateway before calling the currency calculation service.
+
+00:27.210 --> 00:30.390
+Let's say there is a small defect.
+
+00:30.460 --> 00:34.120
+This service is not really working fine and you would want to debug it.
+
+00:35.230 --> 00:36.550
+How do you do that.
+
+00:36.580 --> 00:42.150
+We'll look at the look at the currency calculation service do we look at the currency exchange service or 
+
+00:42.190 --> 00:43.470
+We'll look at the API gateway.
+
+00:43.540 --> 00:50.770
+How do you find out where the defect is and how do I know what is happening in total with that specific
+
+00:50.770 --> 00:52.000
+request.
+
+00:52.000 --> 00:57.400
+One of the most important things with implementing a micro services architecture is we would need
+
+00:57.400 --> 01:01.300
+to have something called distributed tracing.
+
+01:01.660 --> 01:08.250
+I would want one place where I can go and see what happened with a specific request.
+
+01:08.250 --> 01:15.910
+I would want to have one single centralized location where I can see the complete chain of what happened
+
+01:15.910 --> 01:18.340
+with a specific request.
+
+01:18.340 --> 01:23.630
+This is especially important because there are variety of components that are involved.
+
+01:23.680 --> 01:28.640
+When we talk about the typical micro service architecture until now we looked at that different.
+
+01:28.710 --> 01:34.300
+micro services we talked about API gateways we talked about naming server we talked about configuration
+
+01:34.300 --> 01:35.570
+server.
+
+01:36.220 --> 01:38.820
+I want n number of components are involved.
+
+01:39.040 --> 01:45.820
+If you want to solve a problem and if you want to debug a problem through this you would need a centralized
+
+01:45.850 --> 01:47.430
+kind of information.
+
+01:47.590 --> 01:52.310
+And that's where this distributed tracing comes into picture.
+
+01:52.320 --> 01:56.430
+There are a variety of options that are present for distributed tracing.
+
+01:56.680 --> 02:03.980
+What we'll do in this section is to use something called Spring cloud sleuth with Zipkin.
+
+02:04.180 --> 02:09.460
+One of the important things is to assign a unique ID to a request.
+
+02:09.550 --> 02:14.180
+So let's say a request is going through a set of application components.
+
+02:14.290 --> 02:17.170
+It's going through the API gateway to the currency calculation service.
+
+02:17.180 --> 02:23.400
+Are going through the API gateway and the currency exchange service how do I identify that this request
+
+02:23.440 --> 02:31.720
+is the same one the only way I can identify that is by assigning ID to this request and that's what
+
+02:31.810 --> 02:34.230
+spring cloud sleuth.
+
+02:34.270 --> 02:42.980
+So S L E U T H spring cloud sleuth would assign a unique ID to a request so that I can trace it
+
+02:43.500 --> 02:44.400
+across.
+
+02:44.550 --> 02:51.570
+Components zipkin is what we call a distributed tracing system.
+
+02:51.640 --> 03:01.020
+What we would do is all the log from all these services we would put it in MQ we would use rabbitMQ.
+
+03:01.660 --> 03:06.930
+And we would send it out to the zipkin server where it is consolidated.
+
+03:07.120 --> 03:12.370
+And we would be able to look through the different requests and find what happened with the specific
+
+03:12.370 --> 03:13.720
+request.
+
+03:14.070 --> 03:20.230
+Don't worry this sounds complex in the next steps we would start with implementing spring cloud sleuth and after
+
+03:20.230 --> 03:23.710
+that we would start implementing zipkin until then bye bye.

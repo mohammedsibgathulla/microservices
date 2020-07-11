@@ -470,7 +470,17 @@ currency-exchange-service.ribbon.listOfServers=http://localhost:8000,http://loca
 
 	@GetMapping("currency-exchange-service/currency-exchange/from/{from}/to/{to}")
 
-	
+79. Introduction To Distributed Tracing	
+- So the currency calculation service would call the currency exchange service and this would be intercepted by an API gateway.
+- Sometimes we even use the API gateway before calling the currency calculation service.
+- One of the most important things with implementing a micro services architecture is we would need to have something called distributed tracing. I would want one place where I can go and see what happened with a specific request.
+- There are a variety of options that are present for distributed tracing.
+- What we'll do in here is to use something called Spring cloud sleuth with Zipkin.
+- zipkin is what we call a distributed tracing system.
+- What we would do is all the log from all these services we would put it in MQ we would use rabbitMQ.
+- And we would send it out to the zipkin server where it is consolidated.
+
+
 
 
 
