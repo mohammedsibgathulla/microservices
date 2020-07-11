@@ -1,0 +1,217 @@
+WEBVTT
+
+00:03.180 --> 00:08.710
+Welcome back in the previous step we talked about the importance of naming server.
+
+00:08.710 --> 00:14.940
+Before we would be able to use the naming server there a lot of steps that are involved.
+
+00:15.150 --> 00:19.950
+The first thing is we would want to create a component for the Eureka naming server the second thing
+
+00:19.950 --> 00:25.410
+is we would need to update the currency calculation service to connect the Eureka naming server the third
+
+00:25.410 --> 00:31.490
+thing that's we would want to connect the currency exchange application also to talk to the Eureka naming 
+
+00:31.490 --> 00:32.610
+server.
+
+00:32.700 --> 00:36.340
+The last thing we would do is configure ribbon.
+
+00:36.420 --> 00:39.850
+Ribbon is actually currently installed in the currency calculation service.
+
+00:40.230 --> 00:45.350
+Once the currency exchange service instances register with the naming server.
+
+00:45.570 --> 00:51.070
+We would then use the ribbon to find those details from the naming server.
+
+00:51.150 --> 00:54.480
+That would be the last step before we would be able to use the naming.
+
+00:54.490 --> 00:56.690
+server let's get started with the first step.
+
+00:56.700 --> 01:00.180
+That is to create the component for the naming server.
+
+01:00.480 --> 01:03.310
+There are a number of other options present for naming servers.
+
+01:03.360 --> 01:08.130
+But Eureka is one of the famous one which are offered by Netflix.
+
+01:08.160 --> 01:10.320
+So we'll use that as usual.
+
+01:10.560 --> 01:15.360
+Will go with the Maven project java use the same spring boot version that you have used earlier for
+
+01:15.360 --> 01:20.110
+the earlier components at least 2.0.0 and not a snapshot.
+
+01:20.220 --> 01:22.650
+The group ID remains the same com in 28 minutes.
+
+01:22.650 --> 01:27.000
+Micro servies the artifact ID I would want to use for this.
+
+01:27.000 --> 01:30.880
+Is Netflix hyphen Eureka
+
+01:31.100 --> 01:40.620
+hyphen naming server very simple Netflix hyphen Eureka hyphen naming hyphen  server let's clear out all the dependencies that
+
+01:40.620 --> 01:50.540
+are present in it and do it fresh the dependencies I would want are number one I would want this to be the Eureka
+
+01:50.540 --> 01:53.980
+naming server I would need to have eureka server.
+
+01:54.080 --> 02:00.890
+If you want to store the configuration for the Eureka server as well in lets say something like
+
+02:00.890 --> 02:06.590
+a spring config server then you might want a config client.
+
+02:06.680 --> 02:11.560
+Other than that we will add the management things actuator.
+
+02:11.870 --> 02:14.360
+Other than DEV tools.
+
+02:14.390 --> 02:20.840
+So basically what we have added in our Eureka server config client actuator and DEV tools the most important one
+
+02:20.930 --> 02:23.470
+is Eureka server.
+
+02:23.630 --> 02:28.760
+Now uou can click generate Project download the zip extract to a folder and lets import into eclipse.
+
+02:28.820 --> 02:35.180
+I would now import the project into eclipse file import existing Maven projects this is exactly what we have
+
+02:35.180 --> 02:41.930
+been doing a number of times during this course the folder which I've used is Netflix Eureka naming
+
+02:41.930 --> 02:42.610
+server.
+
+02:42.960 --> 02:45.340
+Let's import the project in.
+
+02:45.350 --> 02:52.470
+You'd see that the Netflix Eureka naming server is coming in here as usual we would see source main java resources test
+
+02:52.500 --> 02:55.110
+Java and the Maven dependencies.
+
+02:55.130 --> 03:01.790
+Open up the Netflix Eureka naming server application class to enable the Eureka server you would need to
+
+03:01.790 --> 03:02.750
+add in another 
+
+03:02.750 --> 03:06.480
+ annotation it's enable Eureka.
+
+03:06.620 --> 03:14.180
+Server I would import the annotation in and other than that I would want to open up the application dot properties
+
+03:14.210 --> 03:16.910
+and quickly configure the name and other stuff.
+
+03:16.940 --> 03:24.780
+Spring dot application dot name is equal to I would copy the artifact ID which we have given in here.
+
+03:25.660 --> 03:28.850
+Netflix Eureka naming sever the port.
+
+03:28.850 --> 03:32.090
+We want to use here is 8 7 6 1.
+
+03:32.090 --> 03:35.180
+This is typically the default port for the naming server.
+
+03:35.510 --> 03:42.420
+For now I don't want the server itself to register with the naming server I'll Eureka dot client dot.
+
+03:42.720 --> 03:49.220
+Register with the Eureka I'll make it false and say it was the case with fetching a registry I don't
+
+03:49.220 --> 03:50.240
+want to do that right now.
+
+03:50.240 --> 03:52.550
+So let's disable that as well.
+
+03:52.610 --> 03:54.630
+So this is a very simple configuration right.
+
+03:54.680 --> 03:59.600
+We are giving it an application name configuring a couple of settings and configuring a port name
+
+03:59.600 --> 04:00.290
+for it.
+
+04:00.450 --> 04:06.250
+Once we are done with this you can actually launch the Eureka naming server application as the java application
+
+04:06.260 --> 04:09.000
+Right-Click run as java application.
+
+04:09.020 --> 04:14.210
+You would see that the Eureka server launched up Langella find it's URL 8761.
+
+04:14.490 --> 04:22.590
+Let's go to the browser and hit the URL localhost Colan 8 7 6 1.
+
+04:22.630 --> 04:24.680
+You can see the Eureka.
+
+04:24.700 --> 04:30.600
+Server the UI for it present it in here you can see a high level status of the system here.
+
+04:30.730 --> 04:36.050
+And also you can actually see the instances we check currently registered with the Eureka in
+
+04:36.070 --> 04:36.640
+here.
+
+04:36.850 --> 04:38.450
+Right now we don't really have anything.
+
+04:38.470 --> 04:39.810
+Register with the Eureka server.
+
+04:39.890 --> 04:44.530
+Now what we have now is the Eureka naming server is up and running.
+
+04:44.530 --> 04:51.600
+How ever the currency calculations servies and the currency exchange service are not yet registered with the Eureka server.
+
+04:51.730 --> 04:54.640
+Let's fix that in the next step in this step.
+
+04:54.670 --> 04:57.410
+What we did was to create a new component for the.
+
+04:57.430 --> 05:02.550
+Eureka server and we enable Eureka server by adding an at enable Eureka.
+
+05:02.560 --> 05:09.080
+Server annotation on the application find as well as configured the name and port for the eureka server
+
+05:09.460 --> 05:11.600
+and configured a couple of properties.
+
+05:11.770 --> 05:16.890
+That's all we had to do to get the Eureka server up and running in the next step.
+
+05:16.900 --> 05:22.950
+Let's connect the applications the Micro servies with the Eureka server until then bye bye.

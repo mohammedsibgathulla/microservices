@@ -415,7 +415,9 @@ currency-exchange-service.ribbon.listOfServers=http://localhost:8000,http://loca
 
 - The two important features of the naming server are service registration and service discovery at startup of every application they would register with the naming server and whenever they want details of another micro service they would a service discovery they'll say I want the details of service X Y Z.
 
-69. 
+69. Setting Up Eureka Naming Server
+- Setup the Eureka namig server project with dependencies as shown in the image.
+
 
 
 
