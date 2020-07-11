@@ -459,6 +459,19 @@ currency-exchange-service.ribbon.listOfServers=http://localhost:8000,http://loca
 - So you can give a priority order of one for these two for the other one and three for the other one and so on.	
 - You can implement security or rate limiting in zuul.
 
+77. Executing A Request Through Zuul API Gateway
+- Normally we use http://localhost:8000/currency-exchange/from/EUR/to/INR to invoke a request.
+- For zuul the syntax is http://localhost:8765/{application-name}/{uri}
+- Ex for the above query: http://localhost:8765/currency-exchange-service/currency-exchange/from/EUR/to/INR
+
+78. Setting Up Zuul API Gateway Between Microservice Invocations
+- We update the CurrencyExchangeServiceProxy with 
+	@FeignClient(name = "netflix-zuul-api-gateway-server")
+
+	@GetMapping("currency-exchange-service/currency-exchange/from/{from}/to/{to}")
+
+	
+
 
 
 

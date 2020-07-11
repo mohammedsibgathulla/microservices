@@ -1,0 +1,268 @@
+WEBVTT
+
+00:03.320 --> 00:10.030
+Welcome back in the previous step we used a direct URL to execute the currency exchange service
+
+00:10.510 --> 00:13.960
+through the Zuul API gateway proxy.
+
+00:14.000 --> 00:15.520
+When we use this URL.
+
+00:15.720 --> 00:25.150
+This is the port for the API proxies so Gateway proxies running on 8 7 6 5 and we use the proxy to execute
+
+00:25.150 --> 00:32.290
+the currency exchange service what we want to do now is when the currency calculation Service is calling
+
+00:32.290 --> 00:33.700
+the currency exchange service.
+
+00:33.790 --> 00:41.430
+We don't want the call to happen directly we would want the call to go through the API gateway that's basically
+
+00:41.500 --> 00:42.520
+Zuul server.
+
+00:42.610 --> 00:53.350
+So how do we get the currency calculation service the request from here to go through the Zuul API gateway proxy thing which
+
+00:53.590 --> 01:00.160
+actually makes the call inside the currency conversion service is the proxy the currency exchange service
+
+01:00.520 --> 01:01.550
+proxy.
+
+01:01.570 --> 01:05.470
+The thing is we already configured the naming server.
+
+01:05.500 --> 01:11.910
+The thing is all the important things that we use are registered with the naming server.
+
+01:12.010 --> 01:16.540
+Number one the Exchange service is the currency exchange service is register the currency conversion.
+
+01:16.540 --> 01:21.500
+Service is registered this Zuul API gateway also switches.
+
+01:21.780 --> 01:28.450
+So all that we need to do here is I would need to say OK do not connect to the currency exchange service
+
+01:29.080 --> 01:34.660
+feign connect to the Zuul API proxy.
+
+01:34.660 --> 01:37.300
+I would want to get the application name for it.
+
+01:37.330 --> 01:44.190
+So I'll say application dot properties I would want Zuul API gateway servers name.
+
+01:44.280 --> 01:46.460
+I'll use this feign client.
+
+01:46.480 --> 01:50.140
+You need to make a call to Netflix Zuul API gateway.
+
+01:50.190 --> 01:53.950
+Server talk to the naming server and get the URI for it.
+
+01:54.160 --> 01:54.780
+That's cool.
+
+01:54.790 --> 01:57.410
+So now it would go through the API.
+
+01:57.640 --> 02:01.630
+Server However there is another thing that we would need to change.
+
+02:01.630 --> 02:05.950
+The thing is URI no longer currency exchange from EUR to INR.
+
+02:06.210 --> 02:09.880
+There is something else that needs to be appended to this.
+
+02:09.940 --> 02:17.590
+So you need to append the name of the application which is exposing that service so would need to append in currency
+
+02:17.590 --> 02:19.350
+exchange service to the
+
+02:19.380 --> 02:20.020
+URI.
+
+02:20.320 --> 02:26.130
+So let's go to the service proxy in the get mapping append that stuff in.
+
+02:26.140 --> 02:35.310
+So I'm appending currency exchange service coming this out and I'll copy it again so that we have a history of
+
+02:35.310 --> 02:37.420
+what we are doing in here present.
+
+02:37.740 --> 02:40.090
+So that's basically what we have right now.
+
+02:40.110 --> 02:41.880
+So currency exchange service.
+
+02:42.230 --> 02:46.860
+Now I can save this you can see that the currency conversion service application is launching
+
+02:46.860 --> 02:52.780
+up ensure that you have all these applications shown on the screen running.
+
+02:52.830 --> 02:58.290
+We need the Eureka server we need the Zuul API gateway and we need currency conversion Service and the
+
+02:58.290 --> 03:00.410
+currency exchange service running.
+
+03:00.660 --> 03:07.250
+So once you have all these running all that you need to do is to hit the URL currency converter feign.
+
+03:07.290 --> 03:09.000
+So we are going through the feign.
+
+03:09.030 --> 03:14.340
+So currency converter feign from USD to INR quantity 10.
+
+03:14.360 --> 03:15.480
+So let's refresh.
+
+03:15.480 --> 03:18.170
+This is the same URL which we used earlier.
+
+03:18.300 --> 03:26.820
+I'm looking at the log for the Netflix Zuul API gateway server application you can use this hallow in here to navigate
+
+03:26.820 --> 03:33.000
+between which logs you'd want to see I'm looking at the Netflix Zuul API gateway server so I am seeing a couple of
+
+03:33.000 --> 03:41.340
+logs which are present in here what I'll do this I'll remove that and execute the request again to see the latest
+
+03:41.360 --> 03:46.830
+one you can see that the URI is getting logged some details about the request actually not a lot of
+
+03:46.830 --> 03:53.320
+details about the request its just printing the request wrapper these are shown inside the log if
+
+03:53.320 --> 04:00.000
+you want to add more details you can go to the locking filter and add more request details in there.
+
+04:00.250 --> 04:05.850
+What you are seeing right now is whenever I'm calling the currency converter service.
+
+04:05.920 --> 04:13.420
+So whenever we are calling the currency calculation service through feign what's happening this is being
+
+04:13.420 --> 04:19.540
+routed through the API gateway the service call is directly not going to the currency exchange service.
+
+04:19.540 --> 04:24.580
+It is being routed through the gateway the gateway is executing the filter which is the logging
+
+04:24.580 --> 04:25.180
+filter.
+
+04:25.420 --> 04:32.920
+And invoking the currency exchange service what we're doing now is intercepting the call between the currency
+
+04:32.920 --> 04:36.360
+calculation service and the currency exchange service.
+
+04:36.520 --> 04:43.290
+Or let's say I would want the API gateway to be executed even before the currency calculation service is
+
+04:43.330 --> 04:47.900
+invoked so at this point before a consumer invokes the service.
+
+04:47.980 --> 04:54.040
+I would want it to go through the API gateway and later for the second time it would go through the
+
+04:54.040 --> 05:00.240
+API gateway here when the currency calculation service would call the currency exchange service.
+
+05:00.310 --> 05:01.560
+How do we do that.
+
+05:01.570 --> 05:03.580
+So this is the URL which we are using until now.
+
+05:03.730 --> 05:11.260
+What I would need to do is to send this request through the API gateway Zuul API gateway.
+
+05:11.390 --> 05:18.680
+The URI would be app name hyphen URI right so the app name for the currency conversion application.
+
+05:19.140 --> 05:24.790
+Let's go to the application dot properties to get that currency conversion service the app name is
+
+05:24.790 --> 05:26.420
+currency conversion service.
+
+05:26.680 --> 05:28.460
+Let's pick that up.
+
+05:28.540 --> 05:35.140
+That's the one which would go in here in the URI is the complete URI down here.
+
+05:35.390 --> 05:42.310
+It's localhost eight seven six five current conversion service currency converter feign from USD
+
+05:42.390 --> 05:47.730
+to INR quantity ten OK very long request or actually very long.
+
+05:47.740 --> 05:53.440
+URI I'll open up a new window put this in before executing this.
+
+05:53.500 --> 06:00.090
+I would go down to the Netflix Zuul API gateway server application and clear the 
+
+06:00.180 --> 06:03.680
+console and let's execute this right now.
+
+06:04.120 --> 06:10.070
+You should see two requests through the Netflix API gateway console.
+
+06:10.520 --> 06:19.230
+You could see two times the logging filter is being executed the first time the call is to the currency
+
+06:19.410 --> 06:25.230
+conversion service so you can see that the current conversion service currency converter feign this
+
+06:25.220 --> 06:26.840
+is you the URI which being used.
+
+06:26.950 --> 06:33.040
+And next when the currency conversion Service is calling the currency exchange service again it's going
+
+06:33.040 --> 06:35.160
+through the Zuul API gateway.
+
+06:35.290 --> 06:37.100
+That's pretty cool isn't it.
+
+06:37.180 --> 06:43.570
+What we are doing in here is we're trying to make every call to the micro services go through the Zuul
+
+06:43.780 --> 06:45.070
+API Gateway.
+
+06:45.100 --> 06:51.430
+This would ensure that we have logs about everything if we want analytics we can do that implement security
+
+06:51.610 --> 06:58.570
+you can implement them as part of your API gateway in this step and the previous steps we talked about
+
+06:59.070 --> 07:06.730
+API gateways we implemented a logging filter with an API gateway and ensure that all the calls go through
+
+07:06.730 --> 07:08.560
+the API gateway.
+
+07:08.620 --> 07:11.940
+The next step we would switch towards distributed tracing.
+
+07:11.950 --> 07:13.910
+Until then bye bye.
