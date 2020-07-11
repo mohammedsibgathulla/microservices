@@ -1,0 +1,187 @@
+WEBVTT
+
+00:03.240 --> 00:07.590
+The previous step we talked about the importance of API gateways.
+
+00:07.590 --> 00:13.650
+You said we would want to intercept all calls between all micro services and have them pass through
+
+00:13.890 --> 00:15.430
+API gateway.
+
+00:15.690 --> 00:19.380
+Netflix provides an implementation called Zuul.
+
+00:19.490 --> 00:23.500
+There are three steps to setting up a zuul server.
+
+00:23.550 --> 00:27.840
+number one is create a component for it.
+
+00:27.830 --> 00:35.700
+So we would want to create a component for these zuul API gateways server the second thing is to decide what
+
+00:35.700 --> 00:39.800
+should it do when it intercepts a request.
+
+00:39.810 --> 00:47.460
+So when a currency calculation service is called to currency exchange services intercepted what should
+
+00:47.460 --> 00:51.660
+this Zuul API gateway do you need to implement that.
+
+00:51.670 --> 00:58.410
+That's the second part the third part is to make sure that all the important requests are configured
+
+00:58.410 --> 00:59.490
+to pass through.
+
+00:59.510 --> 01:01.390
+The Zuul API gateway.
+
+01:01.740 --> 01:07.710
+The first part is to set the component of the second part is to decide what things that the Zuul API should
+
+01:07.710 --> 01:09.690
+do when it intercepts a request.
+
+01:09.750 --> 01:14.680
+The third part is to make sure that the right requests go through this Zuul API.
+
+01:14.940 --> 01:21.040
+Let's get started with the first part that basically setting up a Zuul API gateway server as usual.
+
+01:21.120 --> 01:22.730
+Let's go to Star dot spring dot io.
+
+01:22.770 --> 01:27.900
+you can almost make it the homepage of your browser because we are going to do it so many times
+
+01:28.290 --> 01:32.160
+and we're going to use Maven Java and two zero zero m3.
+
+01:32.180 --> 01:41.990
+The group id does not change the artifact id that we would be using now is Netflix Zuul API gateway server.
+
+01:42.120 --> 01:48.360
+I would remove all the dependencies that we had selected earlier in the dependences I would want in
+
+01:48.360 --> 01:48.870
+here.
+
+01:48.950 --> 01:54.570
+Number one you would want to use Zuul So that's number one API gateway features.
+
+01:54.930 --> 02:00.320
+And I would also want to add Zuul to the Eureka..
+
+02:00.390 --> 02:06.060
+So when ever Zuul instances up and running I'd want to be able to see that in Eureka.
+
+02:06.450 --> 02:15.570
+So I'll add Eureka discovery as well and as usual lets add actuator and dev tools as well let's generate
+
+02:15.600 --> 02:21.300
+the project extract the zip to a specific folder on your machine and let's import into eclipse.
+
+02:21.330 --> 02:23.530
+We already have five projects in that eclipse.
+
+02:23.620 --> 02:32.980
+And here comes one more file import existing Mavan projects and the folder I have it in is three Micro 
+
+02:32.990 --> 02:36.170
+services Netflix Zuul API gateway server.
+
+02:36.660 --> 02:38.210
+let's Click finish.
+
+02:38.260 --> 02:44.230
+It would take a while if this is the first time you are importing this specific component.
+
+02:44.320 --> 02:50.720
+That's basically a Zuul API gateway They will download all dependencies and set the project up for you.
+
+02:50.760 --> 02:53.400
+The Netflix Zuul API Gateway server application file.
+
+02:53.480 --> 02:55.370
+That's the spring boot application file.
+
+02:55.530 --> 02:57.480
+Over here we need to do a couple of things.
+
+02:57.480 --> 03:04.140
+One is we would want to enable these Zuul proxy so we would this is the Zuul server on the Zuul server you need
+
+03:04.140 --> 03:09.730
+to have this annotation enable zuul proxy import it in.
+
+03:09.820 --> 03:13.540
+And the other thing is we would want to register with the name server.
+
+03:13.590 --> 03:16.000
+So I'll need to say enable discovery client
+
+03:19.090 --> 03:20.180
+Let's organize the imports.
+
+03:20.240 --> 03:21.900
+This would also be successful.
+
+03:22.250 --> 03:28.920
+And the other thing we would want to do is to configure the application name the server port and the Eureka URL.
+
+03:29.450 --> 03:32.340
+Because I have opened a lot of applications right now.
+
+03:32.440 --> 03:32.900
+My eclipse is.
+
+03:33.140 --> 03:38.300
+acting a little slow let's not really worry about it I'm opening up the application dot properties
+
+03:38.360 --> 03:42.880
+dot currency conversion service and I'm copying these three properties from here.
+
+03:42.980 --> 03:47.540
+I've copied them into the application dot properties which is present in the Netflix zuul API gateway
+
+03:47.540 --> 03:48.470
+server.
+
+03:48.770 --> 03:56.480
+The application name we already know that let's copied out from our home page and put it down here.
+
+03:56.710 --> 03:58.570
+Netflix Zuul API gateway server.
+
+03:58.660 --> 04:02.940
+The port we want to use for the gateway server is eight seven six five.
+
+04:03.110 --> 04:07.450
+You can see that the port which we decided to use for the Netflix Zuul API gateway server
+
+04:07.470 --> 04:09.470
+is eight seven six five.
+
+04:09.590 --> 04:16.370
+And that's what we have configured in here and the Eureka server URL it's same as what we used earlier.
+
+04:16.490 --> 04:17.510
+That's cool.
+
+04:17.900 --> 04:21.980
+The configuration for the Netflix gateway server is ready.
+
+04:21.980 --> 04:24.950
+The API server at the API gateway server is ready.
+
+04:24.950 --> 04:30.070
+However we did not tell it what it should do when it intercepts a request.
+
+04:30.080 --> 04:32.970
+Let's define that in the next step.
+
+04:33.230 --> 04:33.700
+Until then bye bye.

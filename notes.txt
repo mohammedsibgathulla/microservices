@@ -444,6 +444,16 @@ currency-exchange-service.ribbon.listOfServers=http://localhost:8000,http://loca
 74. Introduction To API Gateways
 - See the image & .vtt file.
 
+75. Setting Up Zuul API Gateway
+- Generate the project with depedencies in the image.
+- Add the @EnableZuulProxy
+		  @EnableDiscoveryClient 
+		  in main file.
+- Add 
+	spring.application.name=netflix-zuul-api-gateway-server
+	server.port=8765
+	eureka.client.service-url.default-zone=http://localhost:8761/eureka in application.properties file.
+
 
 
 
