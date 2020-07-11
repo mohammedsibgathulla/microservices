@@ -441,6 +441,9 @@ currency-exchange-service.ribbon.listOfServers=http://localhost:8000,http://loca
 73. A Review Of Implementing Eureka, Ribbon And Feign
 - See the image.
 
+74. Introduction To API Gateways
+- See the image & .vtt file.
+
 
 
 

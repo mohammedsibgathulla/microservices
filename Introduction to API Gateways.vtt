@@ -1,0 +1,76 @@
+WEBVTT
+
+00:03.480 --> 00:10.060
+In the section on micro services until now we have created three simple micro services currency calculation 
+
+00:10.060 --> 00:13.500
+service the currency exchange service and the limits.
+
+00:13.510 --> 00:21.190
+Service typically in a micro services architecture you'd have 100 of my services that are talking to
+
+00:21.220 --> 00:29.800
+each other and there are common features that we would need to implement for all these micro services.
+
+00:29.890 --> 00:36.250
+You would want to make sure that every call to every micro service is authenticated.
+
+00:36.570 --> 00:40.920
+A check is done on the authorization whether the user has the right permissions.
+
+00:41.050 --> 00:45.970
+You also want to implement things like rate limit for a specific client.
+
+00:45.970 --> 00:53.310
+You would only want to allow certain number of calls per hour or per day they might be limits like that
+
+00:53.310 --> 01:01.450
+present you'd want all these micro services to be fault tolerant if there is a service that I am depended
+
+01:01.540 --> 01:09.890
+on and it's not up I should be able to give some default response back and in a typical micro service
+
+01:09.910 --> 01:16.420
+environment they should also be some kind of service aggregation that should be provided.
+
+01:16.580 --> 01:24.800
+Let's say there is an external consumer who wants to call 15 different services as part of one process.
+
+01:24.850 --> 01:31.650
+It's better to aggregate those 15 services and provide one service call for the external consumer.
+
+01:31.810 --> 01:40.270
+So these are kinds of features that are common across all  the micro services and these are features
+
+01:40.600 --> 01:50.680
+which are implemented at the level of API  gateways instead of allowing micro services to call each other directly
+
+01:51.040 --> 02:00.730
+what we will do is we would make all the calls go through a API gateway and the API gateway would take
+
+02:00.730 --> 02:08.770
+care of providing common features like authentication making sure that all service calls are logged making
+
+02:08.770 --> 02:14.350
+sure that the rate limits are at the two and making sure that these services are fault.
+
+02:14.370 --> 02:15.950
+tolerence.
+
+02:16.030 --> 02:24.040
+The API gateways can also provide aggregation services around multiple services because all calls get routed
+
+02:24.040 --> 02:26.320
+through the API gateways it a gateways.
+
+02:26.330 --> 02:34.510
+Also as a great place for debugging as well as doing analytics in the short video we tried to get an
+
+02:34.570 --> 02:40.040
+overview of why API gateways are important in a Micro service architecture.
+
+02:40.160 --> 02:47.410
+The next step we would implement a simple API gateway using Zuul Z U U L I'll see you in
+
+02:47.410 --> 02:48.100
+the next step.
