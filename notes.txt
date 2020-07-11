@@ -423,6 +423,15 @@ currency-exchange-service.ribbon.listOfServers=http://localhost:8000,http://loca
 - Configure the url for eureka in application properties as eureka.client.service-url.default-zone=http://localhost:8761/eureka
 - Once you run the applicatoin you can see the instances in Eureka server.
 
+71. Connecting Currency Exchange Microservice To Eureka
+- Do same as above.
+- Copy the dependency 
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
+- Do the same for limits-service		
+
 
 
 
