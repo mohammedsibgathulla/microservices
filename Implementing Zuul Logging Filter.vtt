@@ -1,0 +1,232 @@
+WEBVTT
+
+00:03.760 --> 00:09.040
+Welcome back in one of the previous steps we talked about the common functionality which is typically
+
+00:09.130 --> 00:15.220
+implemented in the API gateway things like authentication authorization rate limits.
+
+00:15.380 --> 00:21.220
+Service Aggregation fault tolerance logging these are typically the things which are typically implemented
+
+00:21.220 --> 00:22.850
+in the API gateways.
+
+00:22.930 --> 00:23.830
+We have the Zuul server.
+
+00:23.860 --> 00:26.640
+ready to act as the API gateway.
+
+00:26.770 --> 00:30.550
+And now we would want to implement some functionality in there.
+
+00:30.790 --> 00:36.170
+What we'll do in this step is we would add some logging to the Zuul API gateway.
+
+00:36.280 --> 00:39.170
+So what we'll do is any request that comes through the gateway.
+
+00:39.340 --> 00:41.310
+What we'll log it.
+
+00:41.560 --> 00:44.180
+Let's implement that during this step.
+
+00:44.200 --> 00:50.800
+I'm opening eclipse and I'm in the Netflix Zuul API gateway server project and I would want to create
+
+00:50.860 --> 00:53.910
+a new Java class new class.
+
+00:54.100 --> 01:02.500
+I would say next I'll want to call the Zuui logging filter and say finish I'd want spring to manage this I'll say at component.
+
+01:03.130 --> 01:11.060
+And also a Zuul filter should implement a specific class.
+
+01:11.430 --> 01:22.880
+So it should extend a specific class which is Zuul filter let's organize the imports at component is imported
+
+01:22.970 --> 01:25.700
+in Zuul filter is imported in.
+
+01:25.710 --> 01:26.700
+If Let's look at this.
+
+01:26.710 --> 01:34.580
+Zuul filter as you can see something from Netflix com Netflix Zuul Zuul core Zuul log in filter I can press control
+
+01:34.580 --> 01:38.740
+One there is a compilation error because there are some abstract method which are present in this Zuul
+
+01:38.780 --> 01:42.490
+filter which we would need to implement.
+
+01:42.500 --> 01:49.440
+So what I do is add and implemented methods if you add and unimplemented methods you would get the default
+
+01:49.460 --> 01:57.800
+implementations for all the abstract methods inside the Zuul filter so I'll remove the tools which are present
+
+01:57.800 --> 01:58.230
+in here.
+
+01:58.240 --> 01:59.960
+Control D command D.
+
+02:00.320 --> 02:10.200
+And there are four important methods which are present in here should filter run filter type and filter
+
+02:10.260 --> 02:11.290
+order.
+
+02:11.480 --> 02:13.430
+Lets start with the filter order.
+
+02:13.490 --> 02:18.650
+If you have multiple filters so lets say you have a Zuul logging filter Zuul security filter and a lot
+
+02:18.650 --> 02:22.520
+of other filters you can set a priority order between them.
+
+02:22.580 --> 02:26.810
+So you can give a priority order of one for these two for the other one and three for the other one
+
+02:26.840 --> 02:27.620
+and so on.
+
+02:27.810 --> 02:31.010
+So return a one down here.
+
+02:31.040 --> 02:39.590
+So the filter order we are sitting for this one the second one is should this filter be executed or not.
+
+02:40.040 --> 02:45.620
+You can actually implement business logic so you can check the request and see certain things and decide
+
+02:45.860 --> 02:49.090
+if you would want to execute the filter or not.
+
+02:49.110 --> 02:54.050
+For now we would want to execute this filter for every request.
+
+02:54.110 --> 02:56.060
+So I will return true for should.
+
+02:56.060 --> 03:05.300
+Filter the other method which is present in here is filter type the filter type is to when should the filtering.
+
+03:05.300 --> 03:12.220
+Should filter be  happening before the request is executed or after the request has executed.
+
+03:12.530 --> 03:22.420
+Or do you want to filter only error requests that have caused an exception to happen in this specific
+
+03:22.420 --> 03:22.870
+example.
+
+03:22.870 --> 03:30.490
+What we want to do is we would want to intercept all the requests before execution so I'll say pre filter type
+
+03:30.610 --> 03:32.330
+we would want to this pre.
+
+03:32.380 --> 03:36.240
+Here is where the real logic of the interception goes.
+
+03:36.490 --> 03:42.310
+I'll leave the return I'll in here and implement the complete logic in here.
+
+03:42.310 --> 03:46.550
+So what I would want to log is the details of the request.
+
+03:46.690 --> 03:48.580
+So how do I get the current request.
+
+03:48.750 --> 03:56.360
+I can say request context dot get current context dot get request.
+
+03:56.380 --> 04:03.380
+This would give me the current HTTP request which is being handled I'll assign it to a local variable.
+
+04:03.520 --> 04:05.400
+Just call this request that's cool.
+
+04:05.530 --> 04:10.980
+What I would want to do is to log some of the information from this request so I would need a log object
+
+04:10.990 --> 04:12.410
+so I will create a logger in here.
+
+04:12.490 --> 04:27.810
+A private logger logger is equal to logger factory dot get logger and I would say this get class let's organize the imports.
+
+04:28.220 --> 04:30.300
+I would want to use the SLF4J logger.
+
+04:32.240 --> 04:34.430
+And now I'm ready to use the logger.
+
+04:34.460 --> 04:38.130
+So what I would want to print is some of the details of the request right.
+
+04:38.120 --> 04:48.180
+So I would say logger dot info and say request is this.
+
+04:48.420 --> 04:52.910
+And I'll also want to print that request URI request.
+
+04:52.920 --> 04:56.550
+URI is this.
+
+04:56.560 --> 05:05.180
+Let's pass the perameters in does in request comma request dot get a request.
+
+05:05.190 --> 05:06.060
+URI.
+
+05:06.080 --> 05:09.590
+If you look at the HTTP servlet request there are a lot of other methods which it offers.
+
+05:09.590 --> 05:16.280
+So if you want log other information feel free to do so and keeping it very simple and I'm just logging in.
+
+05:16.280 --> 05:18.730
+Couple of things from the request.
+
+05:18.890 --> 05:20.190
+That's it.
+
+05:20.210 --> 05:23.970
+We have a logging filter ready in the next step.
+
+05:24.080 --> 05:30.730
+We will understand how to execute requests through the Zuul API proxy in this step.
+
+05:30.820 --> 05:32.770
+What we have done is very simple right.
+
+05:32.780 --> 05:35.840
+We wrote simple Zuul logging filter.
+
+05:36.020 --> 05:42.280
+The most important method that we have implemented is just to log the content of the request the thing is
+
+05:42.500 --> 05:43.060
+in Zuul.
+
+05:43.070 --> 05:47.400
+You can do a lot more than just logging the request if you want to implement security.
+
+05:47.400 --> 05:53.630
+Or if you'd want to implement rate limiting this would be a great way to implement that in the next
+
+05:53.780 --> 05:54.300
+step.
+
+05:54.530 --> 05:57.370
+Let's see how to intercept requests using Zuul.
+
+05:57.510 --> 05:58.590
+Until then bye.
