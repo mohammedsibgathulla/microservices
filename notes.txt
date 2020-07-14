@@ -534,7 +534,12 @@ currency-exchange-service.ribbon.listOfServers=http://localhost:8000,http://loca
 - It will be a big headache and will have lot of maintenance.
 - Here we use Spring Cloud Bus where it will have 1 url for all the instances once you hit the url all the instances of the microservice will be updated with the latest values from the git configuration.
 
-
+84. Implementing Spring Cloud Bus
+- There are multiple options provided by spring cloud bus like Kafka, RabbitMQ etc. We use RabbitMQ.
+- You can add the dependencies of RabbitMQ in the spring-cloud-config-server & limit-service and restart.
+- update the url using postman - http://localhost:8080/actuator/bus-refresh/
+- Now all the urls are updated for us no need to update all manually. 
+- At the application startup all the microservice instances will register with the cloud bus when there is any change in the configuration the microservice service event will send an event over spring cloud bus it will propagate the changes to all instances.
 
 
 
