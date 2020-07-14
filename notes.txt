@@ -527,6 +527,13 @@ currency-exchange-service.ribbon.listOfServers=http://localhost:8000,http://loca
 		</dependency>		
 - Now start al the dependencies you can trace the id in the zipkin dashboard.		
 
+83. Understanding The Need For Spring Cloud Bus
+- Spring Cloud Bus helps us when we have 100's of limit-service and we have to refresh all the urls using 
+	http://localhost:8080/application/refresh where the port number will be different for different urls.
+	http://localhost:8081/application/refresh
+- It will be a big headache and will have lot of maintenance.
+- Here we use Spring Cloud Bus where it will have 1 url for all the instances once you hit the url all the instances of the microservice will be updated with the latest values from the git configuration.
+
 
 
 
