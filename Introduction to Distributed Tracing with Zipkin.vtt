@@ -1,0 +1,154 @@
+WEBVTT
+
+00:03.560 --> 00:10.690
+In the previous step we installed the dependency for spring cloud sleuth in currency calculations service
+
+00:10.790 --> 00:17.990
+The currency exchange service and also on the API Gateway we saw that and unique ID was being assigned
+
+00:18.080 --> 00:19.440
+to each request.
+
+00:19.520 --> 00:27.210
+And I can use that I.D. to trace the request across the logs of these multiple services.
+
+00:27.550 --> 00:33.560
+However the challenge we face is if you want to place that request then you have to go and check the
+
+00:33.560 --> 00:36.850
+logs of the individual applications.
+
+00:36.860 --> 00:42.990
+One of the solutions to this problem is something called a centralized log.
+
+00:43.250 --> 00:50.470
+What we would need to do is to centralize all the log from all the Micro services.
+
+00:50.660 --> 00:54.560
+So we have to collect currency calculation servies we had the currency exchange service.
+
+00:54.560 --> 01:00.980
+We have the API Gateway we have the limits service all the log from that if there is a way that
+
+01:00.980 --> 01:08.570
+we can centralize it we can bring it to one central location then we can search through that using the
+
+01:08.570 --> 01:12.040
+ID which was assigned by spring cloud sleuth.
+
+01:12.230 --> 01:20.600
+And at one place we would be able to search and find out what has happened with the specific request
+
+01:20.990 --> 01:29.150
+which all the micro services it went through which all components were involved in handling that request.
+
+01:29.180 --> 01:35.990
+And if I'm trying to debug a problem it would give me a consolidated big picture overview of what is
+
+01:35.990 --> 01:39.530
+happening with a specific request.
+
+01:39.550 --> 01:44.480
+There are actually a wide variety of solutions for centralized logging.
+
+01:44.530 --> 01:50.950
+There are things like the haystack which is the elastics search logs stash and key Abana where all the
+
+01:50.950 --> 01:57.430
+log from these micro services is consolidated at one place and using elastics search.
+
+01:57.430 --> 02:01.520
+We would be able to search through all the logs in this course.
+
+02:01.540 --> 02:09.940
+We would use something called zipkin distributed tracing server to consolidate to get a consolidated view of
+
+02:09.970 --> 02:13.370
+what is happening across all the Micro services.
+
+02:13.540 --> 02:20.860
+We will get all the log messages from the individual Micro services to go to this zipkin distributed
+
+02:20.860 --> 02:29.830
+tracing server and after that we would use the UI which is provided by zipkin to look at what happened
+
+02:29.950 --> 02:32.930
+for a specific request.
+
+02:32.930 --> 02:38.950
+Now the question is how do I get the log messages from the currency calculation service to this zipkin distributed
+
+02:38.950 --> 02:40.170
+tracing server.
+
+02:40.450 --> 02:43.060
+What we'll do is we will use a MQ.
+
+02:43.200 --> 02:44.640
+We will use rabbitMQ.
+
+02:44.670 --> 02:51.860
+Whenever there is a log message the micro service would put it on the queue and zipkin distributed tracing
+
+02:51.870 --> 02:55.760
+server would be picking it up from the queue.
+
+02:55.870 --> 02:59.800
+So all that Micro services will put the log messages on the rabbitMQ.
+
+02:59.810 --> 03:07.090
+And zipkin distributed tracing server would be listening on it and will be pulling out the log messages from
+
+03:07.120 --> 03:08.120
+the MQ.
+
+03:08.320 --> 03:13.790
+Typically this zipkin distributed tracing server is connected to a database.
+
+03:14.260 --> 03:21.070
+But as far as our examples are concerned we would use in memory database so we would have all the log
+
+03:21.070 --> 03:27.670
+messages in memory and we would have zipkin search through them and give us a big picture of what's happening
+
+03:27.670 --> 03:29.130
+with the request.
+
+03:29.140 --> 03:31.600
+So at the high level this is what would happen.
+
+03:31.620 --> 03:33.220
+When I fire a request.
+
+03:33.220 --> 03:36.010
+The request would hit multiple micro services right.
+
+03:36.010 --> 03:41.260
+For example if I'm calling the currency calculation service the currency calculation service in turn
+
+03:41.530 --> 03:48.940
+would invoke the currency exchange service and what would happen is the API gateway would be intercepting
+
+03:48.940 --> 03:49.600
+that.
+
+03:49.600 --> 03:54.890
+So the request would go through the currency calculation service the API gateway gateway and the currency exchange
+
+03:55.130 --> 03:57.320
+service the spring cloud sleuth.
+
+03:57.360 --> 04:05.290
+We'll be assigning a unique ID for the request which I can use it to trace the request across multiple
+
+04:05.290 --> 04:12.530
+applications or multiple components all the micro services would put all their long messages on the queue
+
+04:12.730 --> 04:20.560
+as well into rabbitMQ and I would be able to track them on the zipkin distributed tracing server.
+
+04:20.590 --> 04:25.060
+In the next step we would look at what is involved in installing rabbitMQ.
+
+04:25.060 --> 04:31.390
+Before we would start with installing zipkin distributed tracing server until then bye bye.
