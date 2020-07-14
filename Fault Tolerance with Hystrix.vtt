@@ -1,0 +1,235 @@
+WEBVTT
+
+00:03.400 --> 00:10.220
+Welcome back Micro services architecture consist of a number of components.
+
+00:10.420 --> 00:13.170
+instead of having one big monolith application.
+
+00:13.180 --> 00:17.880
+We have a number of smaller micro services interacting with each other.
+
+00:17.950 --> 00:24.690
+It is possible that a couple of my services might be down some some where in the entire architecture.
+
+00:24.820 --> 00:31.900
+If any of these micro services are down then they can pull down the entire chain of micro services
+
+00:31.900 --> 00:35.670
+that are invoking them or that are dependent on them.
+
+00:36.070 --> 00:40.620
+And that's one of the risks of micro services architecture.
+
+00:40.810 --> 00:48.190
+For example the currency calculation service depends on the currency exchange service and the currency
+
+00:48.190 --> 00:50.770
+exchange service depends on the limits service.
+
+00:50.800 --> 00:59.350
+For example in that case if the limit service is down then both these services also will not be available.
+
+00:59.560 --> 01:05.440
+And that's not good situation to be in if one of the micro services goes down all the other micro
+
+01:05.440 --> 01:12.000
+services also go down along with it your micro services have to be better than that.
+
+01:12.250 --> 01:17.780
+And that's where fault tolerance of your micro services comes into picture.
+
+01:17.800 --> 01:24.790
+One of the things that you should always consider when a micro service is being created is what if some
+
+01:24.790 --> 01:28.860
+functionality does not work as expected.
+
+01:28.870 --> 01:35.680
+Let's say the limits service depends on some of the service and that service is not available then can
+
+01:35.770 --> 01:43.690
+limit service providers default graceful behavior the functionality might not be perfect but at least
+
+01:43.810 --> 01:49.930
+the limits service does not go down it at least gives a good enough response back to the currency exchange
+
+01:49.940 --> 01:54.940
+service so that it can go ahead and do the work it needs to do.
+
+01:54.940 --> 01:59.180
+It would prevent the entire chain from going down.
+
+01:59.380 --> 02:05.620
+Hystrix framework helps us to build fault tolerant micro services.
+
+02:05.680 --> 02:06.690
+How do we do that.
+
+02:06.760 --> 02:11.030
+Let's see that in this step we'll start with adding hystrix to our Pom dot xml.
+
+02:11.180 --> 02:21.740
+You would go to the limit service and we would want to use hystrix so I would copy this and starter hystrix
+
+02:21.920 --> 02:26.370
+if you'd want to use hystrix if you want to use hystrix it's hystrix.
+
+02:26.450 --> 02:31.880
+Once you add the dependency on hystrix we have to go to the limits service application and enable it
+
+02:31.970 --> 02:32.960
+as well.
+
+02:33.230 --> 02:42.850
+So I would say at enable hystrix and imported in this would enable hystrix fault tolerant and all the
+
+02:42.850 --> 02:53.470
+controllers and on all the controller methods that what we can do is we can add an annotation called at hystrix
+
+02:53.590 --> 02:59.410
+command and you can specify what is the fallback method.
+
+02:59.560 --> 03:04.330
+If this method throws an exception what is the fallback method.
+
+03:04.660 --> 03:10.170
+You can specify this on all the services inside your application.
+
+03:10.270 --> 03:19.270
+What we will do is to illustrate hystrix will create a new simple get method so I will call mapping and let's call this
+
+03:19.600 --> 03:21.560
+let's call it fault tolerant example.
+
+03:21.970 --> 03:33.340
+And I'll say this also returns limit configuration in retrieve configuration for now let's just throw
+
+03:33.650 --> 03:35.860
+a runtime exception from here.
+
+03:36.070 --> 03:38.590
+I'll say it through a new runtime exception.
+
+03:38.590 --> 03:43.990
+here trying to replicate a scenario where one of these services throws an exception.
+
+03:43.990 --> 03:46.870
+So just because some other service.
+
+03:46.900 --> 03:51.130
+It depends on is not available or it's not able to connect to the database it's not able to connect.
+
+03:51.150 --> 03:53.660
+Queue For some reason is throwing an exception.
+
+03:53.710 --> 04:02.500
+What happens is if Now this service is down all the services which are dependent on this also go down
+
+04:02.950 --> 04:12.720
+and to prevent that what we can do is we can add fault tolerance to this we can say at hystrix command
+
+04:13.050 --> 04:22.520
+fallback methos equal to fall back for retrieve configuration let's organize the imports control space.
+
+04:22.690 --> 04:24.950
+I will import the hystrix command in.
+
+04:24.950 --> 04:28.050
+And now I can define this method as well.
+
+04:28.190 --> 04:37.210
+Let's copy this and I would say fall back so the fallback method with the name that is present.
+
+04:37.210 --> 04:38.750
+In here we are creating a method.
+
+04:38.960 --> 04:42.420
+And over here I can return the default.
+
+04:42.670 --> 04:44.460
+So if any exception.
+
+04:44.470 --> 04:46.930
+I mean here I'm directly throwing an exception.
+
+04:46.930 --> 04:53.350
+But in real world this would be a method which would be doing a lot of functionality if any chance
+
+04:53.410 --> 05:00.910
+if by any chance this throws an exception this method would be called and over here I can return a default
+
+05:01.390 --> 05:08.680
+limit configuration I can say OK I would want to hard code that if there are errors and we are not able
+
+05:08.680 --> 05:16.480
+to retrieve the configuration by due to some reason we would return default of 9 in 1999.
+
+05:16.720 --> 05:25.300
+So what would happen because this is at least there is some basic behavior which is offered in case of
+
+05:25.390 --> 05:26.530
+an exception.
+
+05:26.530 --> 05:32.230
+So by any chance if there is a lot of logic in here and one of this stuff which we depend on here is
+
+05:32.230 --> 05:42.490
+not available we would always return graceful behavior bad we would not fail but we would return some
+
+05:42.640 --> 05:45.210
+default configuration back.
+
+05:45.220 --> 05:46.780
+Let's start this up.
+
+05:46.800 --> 05:48.970
+We understand the limits service application.
+
+05:48.970 --> 05:56.920
+You can see that when I hit the localhost 8080 fault tolerance example we get the fault tolerant behavior.
+
+05:57.010 --> 06:05.140
+It returns the values which we have configured into hysterics method it returns maximum of 9 and minimum
+
+06:05.140 --> 06:08.280
+of 9 9 9.
+
+06:08.710 --> 06:09.670
+That's not really good.
+
+06:09.670 --> 06:16.570
+So I have to change the maximum of 999 and minimum of nine but you get the whole thing right.
+
+06:16.570 --> 06:22.840
+So it basically that if this has a lot of logic and because of any of this the reason this method is
+
+06:22.870 --> 06:26.410
+an exception we're configuring a fallback method.
+
+06:26.500 --> 06:32.830
+This fallback method is getting invoked and rewritten the values which are configured in here.
+
+06:32.860 --> 06:38.230
+This is very useful especially in the micro services architectures because there's a ripple effect if
+
+06:38.290 --> 06:40.320
+any of the micro services failed.
+
+06:40.360 --> 06:46.780
+So if one micro service fails all the other micro services which are dependent on that start feeling
+
+06:47.110 --> 06:49.150
+and there is a ripple effect because of that.
+
+06:49.270 --> 06:56.140
+And we can prevent that by providing fault tolerance what we are doing here is if I'm not able to talk
+
+06:56.140 --> 07:02.500
+to that application and retrieve the values and kind of providing a default behavior this would improve
+
+07:02.500 --> 07:05.900
+the fault tolerance of our micro services.
+
+07:06.010 --> 07:07.800
+until the next step bye bye.

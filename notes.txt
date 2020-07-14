@@ -541,7 +541,8 @@ currency-exchange-service.ribbon.listOfServers=http://localhost:8000,http://loca
 - Now all the urls are updated for us no need to update all manually. 
 - At the application startup all the microservice instances will register with the cloud bus when there is any change in the configuration the microservice service event will send an event over spring cloud bus it will propagate the changes to all instances.
 
-
+85. Fault Tolerance with Hystrix
+- Hystrix framework helps us to build fault tolerant microservices.
 
 
 
