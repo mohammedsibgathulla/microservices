@@ -480,6 +480,22 @@ currency-exchange-service.ribbon.listOfServers=http://localhost:8000,http://loca
 - What we would do is all the log from all these services we would put it in MQ we would use rabbitMQ.
 - And we would send it out to the zipkin server where it is consolidated.
 
+80. Implementing Spring Cloud Sleuth
+- Spring Cloud Sleuth adds a unique ID to every request.
+- We will implement Sleuth in currency-conversion-service, currency-exchange-service & netflix-zuul-api-gateway.
+- You have to add the sluth dependency in the pom.xml of all the services.
+- You have to add the below code in the main file of all the services
+ 	@Bean
+	public Sampler defaultSampler() {
+		return Sampler.ALWAYS_SAMPLE;
+	}
+- Now when you can add the log files to print the requests.
+- When you hit the request you will see the id printed in the console.
+	INFO [currency-conversion-service,b18d27313397e69b,b18d27313397e69b,true]
+	INFO [currency-exchange-service,b18d27313397e69b,37d7b3bcb252900c,true] 	
+- You can see that in above logs the id is same in both services and as well as netflix-zuul-api-gateway.
+- Here the problem is the logs are distributed in multiple places hence we need to centralize the logs. Here the need for distributed server comes in. We want to send all the logs in one place. For this we use Zipkin.
+
 
 
 
