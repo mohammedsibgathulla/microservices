@@ -505,6 +505,29 @@ currency-exchange-service.ribbon.listOfServers=http://localhost:8000,http://loca
 - Typically this zipkin distributed tracing server is connected to a database.
 - But as far as our examples are concerned we would use in memory database so we would have all the log messages in memory and we would have zipkin search through them and give us a big picture of what's happening with the request.
 
+82. Installing Rabbit MQ & Zipkin & Connecting Microservices To Zipkin
+- To install Rabbit MQ we need to install erlang & then Rabbit MQ.
+- To install Zipkin google zipkin quick start & install zipkin.
+- To start zipking - java jar zipkin.jar
+- To go to zipkin dashboard enter - localhost:9411/zipkin
+- We have to make zipkin listen to Rabbit MQ
+- sudo service rabbitmq-server start
+- sudo service rabbitmq-server status
+- sudo service rabbitmq-server stop
+- RABBIT_URI=amqp://localhost java -jar zipkin.jar
+- Configure Zipkin in all the services by copying the dependencies as follows
+  		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-sleuth-zipkin</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-bus-amqp</artifactId>
+		</dependency>		
+- Now start al the dependencies you can trace the id in the zipkin dashboard.		
+
+
 
 
 

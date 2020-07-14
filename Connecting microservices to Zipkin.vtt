@@ -1,0 +1,136 @@
+WEBVTT
+
+00:03.920 --> 00:06.940
+Welcome back in the previous steps we installed RabbitMq.
+
+00:06.950 --> 00:12.320
+We created a component for  Zipkin Tracing server and Zipkin Distributed Tracing server is listening
+
+00:12.320 --> 00:14.490
+on RabbitMq for messages.
+
+00:14.690 --> 00:21.700
+What we would need to do is to connect our micro services to put the messages for the Zipkin Distributed Tracing server
+
+00:21.700 --> 00:23.410
+on RabbitMq.
+
+00:23.460 --> 00:25.770
+Once place messages on here.
+
+00:25.880 --> 00:30.730
+These messages will be picked up and we would we would see them on the zipkin dash board.
+
+00:30.740 --> 00:36.230
+So in this step what we'll do is we will connect the currency calculation service and the currency exchange
+
+00:36.230 --> 00:41.690
+service along with the API gateway to rabbit MQ to be able to do that.
+
+00:41.720 --> 00:48.710
+We would need to add a couple of dependencies let's add them to all our Micro services.
+
+00:49.040 --> 00:50.070
+Let's get started now.
+
+00:50.150 --> 00:55.310
+I'm going to our pom dot xml I'm in the api gateway server pom dot xml.
+
+00:55.310 --> 01:01.220
+We already have spring cloud starter sleuth so that assigns an ID next what we would need to do is
+
+01:01.250 --> 01:06.190
+we would want to create a message in the format that it expects.
+
+01:06.200 --> 01:10.580
+So I would need to add zipkin so we would want to connect the zipkin.
+
+01:10.620 --> 01:15.950
+So we added dependency on sping cloud starter sleuth zipkin.
+
+01:15.980 --> 01:18.450
+Now how do I send a message to the zipkin.
+
+01:18.470 --> 01:20.320
+I would want to send it over MQ.
+
+01:20.330 --> 01:22.790
+You would want to use rabbit MQ.
+
+01:22.810 --> 01:29.980
+Which uses the amqp protocol so we would need to add a dependency for that as well.
+
+01:30.190 --> 01:35.270
+The dependency for that is spring cloud starter bus.
+
+01:35.270 --> 01:43.150
+Amqp So these are the two dependencies that you need starter sleuth zipkin and starter bus.
+
+01:43.190 --> 01:49.350
+amqp you can save this project and copy the same dependencies into currency exchange service pom dot xml
+
+01:50.280 --> 01:50.640
+where is sleuth.
+
+01:50.660 --> 01:52.700
+I'll just put this below the sleuth.
+
+01:52.730 --> 01:59.280
+So now we have sleuth zipkin and bus amqp in pom dot xml for currency exchange service and I'll
+
+01:59.320 --> 02:04.490
+also go to the currency conversion service pom dot xml one of the important things to note is that the name
+
+02:04.550 --> 02:07.200
+is spring cloud sleuth zipkin.
+
+02:07.310 --> 02:10.770
+I added in starter that's starter is not their.
+
+02:10.790 --> 02:13.160
+Actually spring cloud sleuth zipkin.
+
+02:13.310 --> 02:19.370
+And this would reslove the error we had I will caught the same thing into the currency exchange service i will remove the
+
+02:19.460 --> 02:21.360
+starter from here as well.
+
+02:21.470 --> 02:23.940
+And who are the currency conversion.
+
+02:23.940 --> 02:28.450
+Services as well so what we are basically doing is adding a couple of dependencies.
+
+02:28.580 --> 02:33.570
+We're already logging messages into the log with the ID using a sleuth.
+
+02:33.890 --> 02:41.300
+So when we add the dependency for spring cloud sleuth zipkin what would happen is we would start logging
+
+02:41.300 --> 02:46.370
+these messages in the format that zipkin would be able to understand.
+
+02:46.550 --> 02:56.570
+And also we are adding amqp dependency so we are establishing a connection to the amqp Bus and the
+
+02:56.570 --> 03:04.310
+default amqp installation which is used is a rabbit MQ So we are also adding a dependency so that we
+
+03:04.310 --> 03:06.560
+get a connection to rabbit MQ.
+
+03:06.590 --> 03:15.920
+So we would be able to put a zipkin message on rabbit mQ In this step we added the dependencies that
+
+03:15.920 --> 03:21.430
+are needed for sleuth zipkin and the connection to the rabbit MQ.
+
+03:21.460 --> 03:27.570
+into api gateway into our currency connection service and the currency exchange.
+
+03:27.710 --> 03:31.680
+service in the next step we would try running all of them together.
+
+03:31.850 --> 03:32.820
+Until then bye bye.
